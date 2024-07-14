@@ -1,0 +1,51 @@
+<!------------------------ file ts ----------------------------->
+uploadProgress: number | undefined;
+  files: string[] = [];
+  downloadUrl: string | undefined;
+
+  constructor(private fileService: FileService) {}
+
+  ngOnInit(): void {
+    this.listFiles();
+  }
+
+  // Upload file
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    const filePath = `uploads/${file.name}`;
+    this.fileService.uploadFile(filePath, file).subscribe((progress) => {
+      this.uploadProgress = progress;
+    });
+  }
+
+  // List files
+  listFiles(): void {
+    this.fileService.getFilesList('uploads').subscribe((files) => {
+      this.files = files;
+    });
+  }
+
+  // Download file
+  downloadFile(fileName: string): void {
+    const filePath = `uploads/${fileName}`;
+    this.fileService.getFileUrl(filePath).subscribe((url) => {
+      this.downloadUrl = url;
+      window.open(url, '_blank');
+    });
+  }
+
+  <!------------------------ file html ----------------------------->
+  <div>
+  <h2>File Manager</h2>
+  <input type="file" (change)="onFileSelected($event)" />
+  <div *ngIf="uploadProgress">Upload Progress: {{ uploadProgress }}%</div>
+  <button (click)="listFiles()">List Files</button>
+  <ul>
+    <li *ngFor="let file of files" (click)="downloadFile(file)">
+      {{ file }}
+    </li>
+  </ul>
+  <div *ngIf="downloadUrl">
+    <a [href]="downloadUrl" target="_blank">Download File</a>
+  </div>
+</div>
