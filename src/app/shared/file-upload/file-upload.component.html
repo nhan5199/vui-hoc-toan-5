@@ -1,0 +1,16 @@
+<div class="upload-form" [formGroup]="uploadFileForm">
+  <p class="title">Upload File</p>
+  <div class="upload-form-content">
+    <div class="file-type">
+      <select formControlName="type">
+        <option value="0">Kế hoạch bài dạy</option>
+        <option value="1">Bài giảng điện từ</option>
+        <option value="2">Select File</option>
+      </select>
+    </div>
+    <div class="file">
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+  </div>
+  <button class="submit" (click)="onSubmit()">Thêm file</button>
+</div>
