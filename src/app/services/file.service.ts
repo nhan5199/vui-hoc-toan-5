@@ -16,7 +16,6 @@ export class FileService {
 
   // Upload file
   uploadFile(filePath: string, file: File): Observable<number | undefined> {
-    debugger;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
