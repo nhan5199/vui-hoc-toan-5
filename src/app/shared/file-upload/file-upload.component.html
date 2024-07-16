@@ -1,16 +1,30 @@
 <div class="upload-form" [formGroup]="uploadFileForm">
-  <p class="title">Upload File</p>
+  <h2 class="title">Upload File</h2>
   <div class="upload-form-content">
     <div class="file-type">
-      <select formControlName="type">
-        <option value="0">Kế hoạch bài dạy</option>
-        <option value="1">Bài giảng điện từ</option>
-        <option value="2">Select File</option>
-      </select>
-    </div>
-    <div class="file">
-      <input type="file" (change)="onFileSelected($event)" />
+      <div class="file-type">
+        <label for="type">Thư mục</label>
+        <select formControlName="type">
+          <option value="ke-hoach-bai-day">Kế hoạch bài dạy</option>
+          <option value="bai-giang-dien-tu">Bài giảng điện từ</option>
+          <option value="tai-nguyen">Tài nguyên</option>
+          <option value="kiem-tra-danh-gia">Kiểm tra - Đánh giá</option>
+        </select>
+      </div>
+
+      <div class="book-name">
+        <label for="bookName">Tên bộ sách</label>
+        <select formControlName="bookName">
+          <option value="canh-dieu">Cánh diều</option>
+          <option value="chan-troi-sang-tao">Chân trời sáng tạo</option>
+          <option value="ket-noi-tri-thuc">Kết nối tri thức</option>
+        </select>
+      </div>
+
+      <div class="file">
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
     </div>
   </div>
-  <button class="submit" (click)="onSubmit()">Thêm file</button>
+  <button class="submit btn" (click)="onSubmit()">Thêm file</button>
 </div>

@@ -27,8 +27,13 @@ export class HomeComponent implements OnInit {
 
   // List files
   listFiles(): void {
-    this.fileService.getFilesList('uploads').subscribe((files) => {
-      this.files = files;
+    this.files = [];
+    this.fileService.listFolder.forEach((folder: any) => {
+      this.fileService.getFilesList(folder).subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
+      });
     });
   }
 

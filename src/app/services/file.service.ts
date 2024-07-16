@@ -12,6 +12,8 @@ export interface FileData {
   providedIn: 'root',
 })
 export class FileService {
+  listFolder: string[] = ['uploads/0', 'uploads/1', 'uploads/2'];
+
   constructor(private storage: AngularFireStorage) {}
 
   // Upload file

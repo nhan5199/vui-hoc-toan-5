@@ -1,11 +1,13 @@
-.container {
-  display: flex;
-  position: relative;
+.body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: 100svh;
+  position: relative;
 }
 
 app-menu {
-  display: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;

@@ -1,5 +1,5 @@
 .menu {
-  width: 5px;
+  width: 1px;
   height: 100svh;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,12 @@
   overflow-y: auto;
   overflow-x: hidden;
   transition: 0.75s ease;
+  background-color: none;
 }
 
 .menu:hover {
   width: 450px;
+  background-color: rgba(0, 0, 0, 0.768);
 }
 
 .menu:hover .menu-button {
@@ -30,7 +32,7 @@
   width: 300px;
   text-align: center;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: 10px solid orangered;
   border-radius: 15px;
@@ -42,6 +44,10 @@
   background-position: right bottom;
 }
 
+.menu-button a {
+  text-decoration: none;
+  color: black;
+}
 .menu-button:hover {
   padding: 20px 30px;
   color: white;

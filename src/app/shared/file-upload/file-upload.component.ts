@@ -22,7 +22,8 @@ export class FileUploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.uploadFileForm = this.fb.group({
-      type: [0, Validators.required], //mạc định là Kế hoạch bài dạy,
+      type: ['ke-hoach-bai-day', Validators.required], //mặc định là Kế hoạch bài dạy,
+      bookName: ['canh-dieu'], //loại sách
       file: [null, Validators.required],
     });
   }
@@ -30,9 +31,9 @@ export class FileUploadComponent implements OnInit {
   // Upload file
   onFileSelected(event: any): void {
     this.currentFile = event.target.files[0];
-    this.currentPath = `uploads/${this.uploadFileForm.get('type')!.value}/${
-      this.currentFile.name
-    }`;
+    this.currentPath = `${this.uploadFileForm.get('type')!.value}/${
+      this.uploadFileForm.get('bookName')!.value
+    }/${this.currentFile.name}`;
 
     if (this.currentFile) {
       this.uploadFileForm.get('file')?.setValue(this.currentFile.name);
