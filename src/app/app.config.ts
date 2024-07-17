@@ -10,7 +10,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { provideClientHydration } from '@angular/platform-browser';
-import { firebaseConfig } from './constants/firebase';
+import { firebaseConfig } from './components/constants/firebase';
 import { CommonModule } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {

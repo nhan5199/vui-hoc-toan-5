@@ -5,6 +5,7 @@ import { LessionPlanComponent } from './lession-plan/lession-plan.component';
 import { ELessionPlanComponent } from './e-lession-plan/e-lession-plan.component';
 import { ResourceComponent } from './resource/resource.component';
 import { TestAndReviewComponent } from './test-and-review/test-and-review.component';
+import { ParagraphComponent } from './test-and-review/paragraph/paragraph.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'kiem-tra-danh-gia',
     component: TestAndReviewComponent,
+  },
+  {
+    path: 'kiem-tra-danh-gia/van-ban',
+    component: ParagraphComponent,
   },
 ];
 
