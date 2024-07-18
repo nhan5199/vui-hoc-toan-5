@@ -18,14 +18,29 @@
           alt="file type"
         />
 
-        <span (click)="viewFile(file.url)">{{ file.name.split(".")[0] }}</span>
+        <span (click)="viewFile(file.name)">{{ file.name.split(".")[0] }}</span>
       </li>
     </ul>
   </div>
-  <div>
-    <pdf-viewer
-      [src]="downloadUrl"
-      style="display: block; width: 500px; height: 100svh"
-    ></pdf-viewer>
+</div>
+<div class="flipbook" id="flipbook">
+  <div class="flip-panel">
+    <ng-container *ngFor="let item of content; let i = index">
+      <div class="panel" #panelRef>
+        <div class="front">
+          <div class="content">
+            <span class="fold"></span>
+            <img [src]="item.front" alt="" />
+          </div>
+        </div>
+
+        <div class="back">
+          <div class="content">
+            <span class="fold1"></span>
+            <img [src]="item.back" alt="" />
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>

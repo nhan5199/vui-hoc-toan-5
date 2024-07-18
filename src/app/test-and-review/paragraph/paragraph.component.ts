@@ -1,18 +1,26 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileData, FileService } from '../../services/file.service';
 import { CommonModule } from '@angular/common';
-import { PdfService } from '../../services/pdf.services';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { HttpClient } from '@angular/common/http';
+import Constant from '../../components/constants/Constant';
 
 @Component({
   selector: 'app-paragraph',
   standalone: true,
-  imports: [CommonModule, PdfViewerModule],
+  imports: [CommonModule],
   templateUrl: './paragraph.component.html',
   styleUrl: './paragraph.component.css',
 })
-export class ParagraphComponent implements OnInit {
+export class ParagraphComponent implements OnInit, AfterViewInit {
   path: string = '';
 
   uploadProgress: number | undefined;
@@ -20,13 +28,12 @@ export class ParagraphComponent implements OnInit {
   downloadUrl: string | undefined;
   isUploadFile: boolean = false;
 
-  pdfSrc!: string;
-  images: string[] = [];
+  listImagePaths: any[] = [];
   constructor(
     private route: ActivatedRoute,
     private fileService: FileService,
     private cdr: ChangeDetectorRef,
-    private pdfService: PdfService
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +44,8 @@ export class ParagraphComponent implements OnInit {
         this.listFiles();
       });
     });
+
+    this.listImagePaths = Constant.IMAGE_PATHS.images;
   }
 
   // List files
@@ -77,7 +86,94 @@ export class ParagraphComponent implements OnInit {
     }, 0);
   }
 
-  viewFile(fileUrl: string) {
-    this.downloadUrl = fileUrl;
+  content: any[] = [];
+
+  sortImagePathsByNumber(paths: string[]) {
+    paths.sort((a, b) => {
+      const numA = this.extractNumber(a);
+      const numB = this.extractNumber(b);
+      return numA - numB;
+    });
+  }
+
+  extractNumber(path: string): number {
+    const regex = /-images-(\d+)\.jpg$/;
+    const match = path.match(regex);
+    return match ? parseInt(match[1], 10) : 0;
+  }
+
+  viewFile(fileName: string) {
+    let path = `${this.path}/${fileName?.split('.')[0]}`;
+    let imgPaths = this.listImagePaths.filter((x) => x.includes(path));
+    this.sortImagePathsByNumber(imgPaths);
+
+    for (let i = 0; i < imgPaths.length; i += 2) {
+      let item = {
+        front: imgPaths[i].split('public/')[1],
+        back:
+          i + 1 >= imgPaths.length
+            ? '/assets/imgs/last-page.png'
+            : imgPaths[i + 1].split('public/')[1],
+      };
+      this.content.push(item);
+    }
+    console.log('data: ', this.content);
+  }
+
+  @ViewChildren('panelRef') panels: QueryList<ElementRef> =
+    new QueryList<ElementRef>();
+  ngAfterViewInit(): void {
+    this.panels.changes.subscribe(() => {
+      // This code will run when the QueryList is updated
+      const panelElements: ElementRef[] = this.panels.toArray();
+
+      // You can now access the panel elements and work with them
+      const panels: HTMLElement[] = Array.from(
+        document.querySelectorAll('.panel')
+      );
+      const numPanels: number = panels.length;
+
+      // if a panel is open, lower its z-idx
+      // otherwise, set zIdx back to the original
+      function checkZ(aPanel: HTMLElement) {
+        if (aPanel.classList.contains('open')) {
+          setTimeout(() => {
+            aPanel.style.zIndex = '1';
+          }, 800);
+        } else {
+          // set z-index back to original stored in data
+          const zIdx = Number(aPanel.dataset['zIdx']);
+          aPanel.style.zIndex = zIdx.toString();
+        }
+      }
+
+      // loop through all panels and reverse sort via zIdx
+      panels.forEach((panel, i) => {
+        const zIdx: number = numPanels - i; // Specify the type of zIdx
+        panel.style.zIndex = zIdx.toString();
+        panel.dataset['zIdx'] = zIdx.toString();
+      });
+
+      const imgs: HTMLElement[] = Array.from(
+        document.querySelectorAll('.panel img')
+      );
+
+      imgs.forEach((img) => {
+        img.addEventListener('click', (event) => {
+          const target = img.parentElement?.parentElement as HTMLElement;
+          const panel = target.closest('.panel') as HTMLElement;
+          if (panel) {
+            if (
+              target.classList.contains('front') ||
+              target.classList.contains('back')
+            ) {
+              panel.classList.toggle('open');
+              checkZ(panel);
+            }
+          }
+          event.stopPropagation();
+        });
+      });
+    });
   }
 }
