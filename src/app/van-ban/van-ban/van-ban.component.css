@@ -1,5 +1,6 @@
 .van-ban {
+  padding: 50px 100px;
   width: 100%;
   min-height: 100svh;
-  background-color: black;
+  background-color: rgb(138, 253, 255);
 }
