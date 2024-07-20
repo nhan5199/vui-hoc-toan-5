@@ -1,0 +1,13 @@
+.canh-dieu {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100svh;
+}
+
+app-background-button {
+  /* flex: 0 1; */
+  width: 50%;
+  height: 50svh;
+}

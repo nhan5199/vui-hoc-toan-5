@@ -1,0 +1,75 @@
+.home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("/images/images/home_pic.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 2s ease, opacity 2s ease;
+}
+
+.disappear {
+  transform: scale(0) translate(-50%, -50%) rotate(360deg);
+  opacity: 0;
+}
+
+.menu {
+  width: 100%;
+  height: 100vh;
+  background-color: aqua;
+  transition: transform 2s ease, opacity 2s ease;
+  transform: scale(0) translate(-50%, -50%) rotate(-360deg);
+  opacity: 0;
+}
+
+.appear {
+  transform: scale(1) translate(0, 0) rotate(0);
+  opacity: 1;
+}
+
+.menu-container {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.start {
+  text-align: center;
+  color: black;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border: 15px solid orangered;
+  border-radius: 80px;
+  padding: 20px 100px;
+  cursor: pointer;
+  transition: 0.75s ease;
+  background: linear-gradient(to left, #fff 50%, orange 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.start a {
+  text-decoration: none;
+  color: black;
+}
+.start:hover {
+  padding: 25px 105px;
+  font-size: 2.6rem;
+  color: white;
+  background-position: left bottom;
+}

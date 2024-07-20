@@ -1,14 +1,26 @@
-.menu-icon {
-  position: fixed;
-  top: 50px;
-  left: 20px;
+.menu-icon,
+.menu-home {
+  position: absolute;
+
   width: 30px;
   cursor: pointer;
   transition: 0.5s ease;
 }
 
-.menu-icon:hover {
+.menu-icon {
+  top: 50px;
+  left: 20px;
+}
+
+.menu-home {
+  top: 50px;
+  right: 20px;
+}
+
+.menu-icon:hover,
+.menu-home:hover {
   width: 35px;
+  transition: 0.5s ease;
 }
 
 .menu {
@@ -38,33 +50,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 60%;
-}
-
-.menu-button {
-  opacity: 1;
-  width: 300px;
-  text-align: center;
-  color: black;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: 10px solid orangered;
-  border-radius: 15px;
-  padding: 15px 25px;
-  cursor: pointer;
-  transition: 0.75s ease;
-  background: linear-gradient(to left, #fff 50%, orange 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-}
-
-.menu-button a {
-  text-decoration: none;
-  color: black;
-}
-.menu-button:hover {
-  padding: 20px 30px;
-  width: 320px;
-  color: white;
-  background-position: left bottom;
+  height: 70%;
 }

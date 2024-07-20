@@ -1,5 +1,5 @@
 <div class="list-file">
-  <ul>
+  <!-- <ul>
     <li *ngFor="let file of files">
       <a [href]="file.url" download target="_blank"
         ><img
@@ -13,7 +13,17 @@
         alt="file type"
       />
 
-      <span>{{ file.name.split(".")[0] }}</span>
+
     </li>
-  </ul>
+  </ul> -->
+
+  <div class="book-shelf" *ngFor="let line of bookshelfLines">
+    <div class="book-shelf-line" *ngFor="let file of line">
+      <app-file-display
+        [fileName]="file.name?.split('.')[0]"
+        [currentPath]="path"
+        [imageDownloadUrl]="file.url"
+      ></app-file-display>
+    </div>
+  </div>
 </div>

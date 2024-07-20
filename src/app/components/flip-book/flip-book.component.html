@@ -1,0 +1,22 @@
+<div *ngIf="loading" class="loading">loading...</div>
+<div *ngIf="!loading" class="flipbook" id="flipbook">
+  <div class="flip-panel">
+    <ng-container *ngFor="let item of content; let i = index">
+      <div class="panel" #panelRef>
+        <div class="front">
+          <div class="content">
+            <span class="fold"></span>
+            <img [src]="item.front" alt="" />
+          </div>
+        </div>
+
+        <div class="back">
+          <div class="content">
+            <span class="fold1"></span>
+            <img [src]="item.back" alt="" />
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

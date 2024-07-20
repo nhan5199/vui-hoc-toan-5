@@ -12,9 +12,26 @@ export interface FileData {
   providedIn: 'root',
 })
 export class FileService {
-  listFolder: string[] = ['uploads/0', 'uploads/1', 'uploads/2'];
+  imageFolderPath: string = '';
+  imageDownloadUrl: string = '';
 
   constructor(private storage: AngularFireStorage) {}
+
+  setImageFolderPath(path: string) {
+    this.imageFolderPath = path;
+  }
+
+  getImageFolderPath(): string {
+    return this.imageFolderPath;
+  }
+
+  setImageDownloadUrl(url: string) {
+    this.imageDownloadUrl = url;
+  }
+
+  getImageDownloadUrl(): string {
+    return this.imageDownloadUrl;
+  }
 
   // Upload file
   uploadFile(filePath: string, file: File): Observable<number | undefined> {

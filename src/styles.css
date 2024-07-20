@@ -4,3 +4,34 @@ body {
   margin: 0;
   border: none;
 }
+
+/*----------- Menu button --------------------*/
+.menu-button {
+  opacity: 1;
+  width: 300px;
+  text-align: center;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 10px solid orangered;
+  border-radius: 50px;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: 0.75s ease;
+  background: linear-gradient(to left, #fff 50%, orange 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+.menu-button a {
+  text-decoration: none;
+  color: black;
+}
+.menu-button:hover {
+  padding: 20px 30px;
+  width: 320px;
+  color: white;
+  background-position: left bottom;
+}
+
+/*-----------End Menu button --------------------*/

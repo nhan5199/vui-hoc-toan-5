@@ -3,6 +3,7 @@ import { KetNoiTriThucModule } from './ket-noi-tri-thuc/ket-noi-tri-thuc.module'
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { FlipBookComponent } from './components/flip-book/flip-book.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -35,6 +36,11 @@ export const routes: Routes = [
     path: 'tai-nguyen',
     loadChildren: () =>
       import('./tai-nguyen/tai-nguyen.module').then((m) => m.TaiNguyenModule),
+  },
+
+  {
+    path: 'flip-book',
+    component: FlipBookComponent,
   },
 ];
 

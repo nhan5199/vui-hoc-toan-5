@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   displayMenu: boolean = false;
   menuIconPath: string = '/icons/open-menu.png';
 
+  constructor(private readonly router: Router) {}
   ngOnInit(): void {}
 
   onClickMenuICon() {
@@ -22,5 +23,10 @@ export class MenuComponent implements OnInit {
     } else {
       this.menuIconPath = '/icons/open-menu.png';
     }
+  }
+
+  onClickHomeIcon() {
+    this.router.navigateByUrl('');
+    this.displayMenu = !this.displayMenu;
   }
 }

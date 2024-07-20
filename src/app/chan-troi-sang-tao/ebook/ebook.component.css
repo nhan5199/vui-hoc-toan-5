@@ -1,0 +1,20 @@
+.chan-troi-sang-tao-e-book {
+  padding: 50px 100px;
+  width: 100%;
+  min-height: 100svh;
+  background-color: rgb(138, 253, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p.title {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+}
+
+app-list-file {
+  width: 90%;
+}

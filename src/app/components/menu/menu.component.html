@@ -4,19 +4,33 @@
   alt=""
   (click)="onClickMenuICon()"
 />
+
+<img
+  class="menu-home"
+  src="icons/home-icon.png"
+  alt=""
+  (click)="onClickHomeIcon()"
+/>
 <div [class.hidden]="!displayMenu" class="menu">
   <div class="menu-container">
     <div class="menu-button">
-      <a routerLink="van-ban">Văn bản</a>
+      <a routerLink="van-ban" (click)="onClickMenuICon()">Văn bản</a>
     </div>
     <div class="menu-button">
-      <a routerLink="canh-dieu">Cánh diều</a>
+      <a routerLink="canh-dieu" (click)="onClickMenuICon()">Cánh diều</a>
     </div>
     <div class="menu-button">
-      <a routerLink="chan-troi-sang-tao">Chân trời sáng tạo</a>
+      <a routerLink="chan-troi-sang-tao" (click)="onClickMenuICon()"
+        >Chân trời sáng tạo</a
+      >
     </div>
     <div class="menu-button">
-      <a routerLink="ket-noi-tri-thuc">Kết nối tri thức</a>
+      <a routerLink="ket-noi-tri-thuc" (click)="onClickMenuICon()"
+        >Kết nối tri thức</a
+      >
+    </div>
+    <div class="menu-button">
+      <a routerLink="tai-nguyen" (click)="onClickMenuICon()">Tài nguyên</a>
     </div>
   </div>
 </div>

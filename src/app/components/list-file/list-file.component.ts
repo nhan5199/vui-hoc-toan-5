@@ -6,13 +6,13 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FileData, FileService } from '../../services/file.service';
+import { FileDisplayComponent } from '../file-display/file-display.component';
 
 @Component({
   selector: 'app-list-file',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FileDisplayComponent, FileDisplayComponent],
   templateUrl: './list-file.component.html',
   styleUrl: './list-file.component.css',
 })
@@ -21,11 +21,9 @@ export class ListFileComponent implements OnInit, OnChanges {
 
   path: string = '';
   files: FileData[] = [];
+  bookshelfLines: any[][] = [];
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly fileService: FileService
-  ) {}
+  constructor(private readonly fileService: FileService) {}
   ngOnInit(): void {}
 
   listFiles(folderPath: string): void {
@@ -33,8 +31,11 @@ export class ListFileComponent implements OnInit, OnChanges {
     this.fileService.getFilesList(folderPath).subscribe((files) => {
       files.forEach((file: any) => {
         this.files.push(file);
-        console.log(files);
       });
+
+      for (let i = 0; i < this.files.length; i += 4) {
+        this.bookshelfLines.push(this.files.slice(i, i + 4));
+      }
     });
   }
 
