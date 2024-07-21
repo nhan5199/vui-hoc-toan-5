@@ -1,5 +1,5 @@
 <div class="file" (click)="viewFile()">
-  <img src="" alt="" />
+  <img [src]="fileImage" alt="" />
   <p [title]="fileName">
     {{ fileName.length > 50 ? fileName.substring(0, 47) + "..." : fileName }}
   </p>

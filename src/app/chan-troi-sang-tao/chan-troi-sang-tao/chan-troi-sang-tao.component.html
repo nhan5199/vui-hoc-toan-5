@@ -1,18 +1,40 @@
-<div class="chan-troi-sang-tao">
+<div [class.hidden-chan-troi-sang-tao]="hiddenMenu" class="chan-troi-sang-tao">
   <app-background-button
     [buttonName]="'E-Book'"
     [router]="'e-book'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Kế hoạch bài dạy'"
     [router]="'ke-hoach-bai-day'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Giáo án điện tử'"
     [router]="'giao-an-dien-tu'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Phiếu bài tập'"
     [router]="'phieu-bai-tap'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
+</div>
+
+<div
+  [class.appear-list-file]="appearListFile"
+  class="chan-troi-sang-tao-list-file"
+>
+  <img
+    class="back-icon"
+    title="Trở về"
+    src="icons/back-icon.png"
+    alt=""
+    (click)="onBack()"
+  />
+  <p class="title">
+    Bộ sách <br />
+    CHÂN TRỜI SÁNG TẠO
+  </p>
+  <app-list-file [folderPath]="listFilePath"></app-list-file>
 </div>

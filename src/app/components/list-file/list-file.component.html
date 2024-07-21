@@ -21,8 +21,9 @@
     <div class="book-shelf-line" *ngFor="let file of line">
       <app-file-display
         [fileName]="file.name?.split('.')[0]"
-        [currentPath]="path"
+        [currentPath]="folderPath"
         [imageDownloadUrl]="file.url"
+        [fileImage]="getFileImage(file.name?.split('.')[1])"
       ></app-file-display>
     </div>
   </div>

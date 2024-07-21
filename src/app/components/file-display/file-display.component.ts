@@ -14,6 +14,7 @@ export class FileDisplayComponent implements OnInit {
   @Input('fileName') fileName: string = '';
   @Input('currentPath') currentPath: string = '';
   @Input('imageDownloadUrl') imageDownloadUrl: string = '';
+  @Input('fileImage') fileImage: string = '';
 
   constructor(
     private readonly router: Router,
@@ -23,6 +24,7 @@ export class FileDisplayComponent implements OnInit {
   ngOnInit(): void {}
 
   viewFile() {
+    console.log(`${this.currentPath}/${this.fileName}`);
     this.fileService.setImageFolderPath(`${this.currentPath}/${this.fileName}`);
     this.fileService.setImageDownloadUrl(this.imageDownloadUrl);
     this.router.navigateByUrl('flip-book');

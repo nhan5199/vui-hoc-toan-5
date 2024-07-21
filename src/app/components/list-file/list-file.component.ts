@@ -19,15 +19,21 @@ import { FileDisplayComponent } from '../file-display/file-display.component';
 export class ListFileComponent implements OnInit, OnChanges {
   @Input('folderPath') folderPath: string = '';
 
-  path: string = '';
   files: FileData[] = [];
   bookshelfLines: any[][] = [];
 
   constructor(private readonly fileService: FileService) {}
   ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['folderPath']) {
+      this.listFiles(this.folderPath);
+    }
+  }
+
   listFiles(folderPath: string): void {
     this.files = [];
+    this.bookshelfLines = [];
     this.fileService.getFilesList(folderPath).subscribe((files) => {
       files.forEach((file: any) => {
         this.files.push(file);
@@ -41,7 +47,7 @@ export class ListFileComponent implements OnInit, OnChanges {
 
   // Download file
   downloadFile(fileName: string): void {
-    const folderPath = `${this.path}/${fileName}`;
+    const folderPath = `${this.folderPath}/${fileName}`;
     this.fileService.getFileUrl(folderPath).subscribe((url) => {
       window.open(url, '_blank');
     });
@@ -59,9 +65,18 @@ export class ListFileComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['folderPath']) {
-      this.listFiles(this.folderPath);
+  getFileImage(fileType: string) {
+    let imgSrc = 'icons/';
+    if (fileType.toLowerCase() == 'pdf') {
+      imgSrc += 'pdf.png';
+    } else if (
+      fileType.toLowerCase() == 'doc' ||
+      fileType.toLowerCase() == 'docx'
+    ) {
+      imgSrc += 'word.png';
+    } else if (fileType.toLowerCase() == 'pptx') {
+      imgSrc += 'ppt.png';
     }
+    return imgSrc;
   }
 }

@@ -1,18 +1,37 @@
-<div class="canh-dieu">
+<div [class.hidden-canh-dieu]="hiddenMenu" class="canh-dieu">
   <app-background-button
     [buttonName]="'E-Book'"
     [router]="'e-book'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Kế hoạch bài dạy'"
     [router]="'ke-hoach-bai-day'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Giáo án điện tử'"
     [router]="'giao-an-dien-tu'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Phiếu bài tập'"
     [router]="'phieu-bai-tap'"
+    (onClickEvent)="getListFile($event)"
   ></app-background-button>
+</div>
+
+<div [class.appear-list-file]="appearListFile" class="canh-dieu-list-file">
+  <img
+    class="back-icon"
+    title="Trở về"
+    src="icons/back-icon.png"
+    alt=""
+    (click)="onBack()"
+  />
+  <p class="title">
+    Bộ sách <br />
+    CÁNH DIỀU
+  </p>
+  <app-list-file [folderPath]="listFilePath"></app-list-file>
 </div>

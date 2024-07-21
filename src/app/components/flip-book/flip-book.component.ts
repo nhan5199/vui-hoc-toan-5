@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -31,13 +31,15 @@ export class FlipBookComponent implements OnInit {
 
   constructor(
     private readonly fileService: FileService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private readonly location: Location
   ) {}
 
   ngOnInit(): void {
     this.imageFolderPath = this.fileService.getImageFolderPath();
     this.imageDownloadUrl = this.fileService.getImageDownloadUrl();
     if (this.imageFolderPath?.length > 0) {
+      console.log(Constant.IMAGE_PATHS.images);
       this.listImagePaths = Constant.IMAGE_PATHS.images.filter((x) =>
         x.includes(this.imageFolderPath)
       );
@@ -133,5 +135,9 @@ export class FlipBookComponent implements OnInit {
       this.loading = false;
       this.cdr.detectChanges();
     }, 0);
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

@@ -1,13 +1,53 @@
 .chan-troi-sang-tao {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   height: 100svh;
+  opacity: 1;
+  transition: 1s ease;
+  z-index: 10;
+}
+
+.chan-troi-sang-tao.hidden-chan-troi-sang-tao {
+  transform: scale(0) translate(-50%, -100%);
+  opacity: 0;
 }
 
 app-background-button {
   /* flex: 0 1; */
   width: 50%;
   height: 50svh;
+}
+
+.chan-troi-sang-tao-list-file {
+  padding: 50px 100px;
+  width: 100%;
+  min-height: 100svh;
+  background-color: rgb(138, 253, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 1s ease;
+
+  transform: scale(0) translate(-50%, -100%);
+}
+
+.chan-troi-sang-tao-list-file.appear-list-file {
+  transform: scale(1) translate(0, 0);
+  opacity: 1;
+}
+
+p.title {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+}
+
+app-list-file {
+  width: 90%;
 }

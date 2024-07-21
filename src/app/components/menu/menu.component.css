@@ -2,7 +2,7 @@
 .menu-home {
   position: absolute;
 
-  width: 30px;
+  width: 50px;
   cursor: pointer;
   transition: 0.5s ease;
 }
@@ -19,7 +19,7 @@
 
 .menu-icon:hover,
 .menu-home:hover {
-  width: 35px;
+  width: 55px;
   transition: 0.5s ease;
 }
 

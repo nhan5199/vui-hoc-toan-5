@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,6 +11,12 @@ import { RouterLink } from '@angular/router';
 export class BackgroundButtonComponent implements OnInit {
   @Input('buttonName') buttonName: string = '';
   @Input('router') router: string = '';
+  @Output() onClickEvent: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() {}
   ngOnInit(): void {}
+
+  onClick() {
+    this.onClickEvent.emit(this.router);
+  }
 }

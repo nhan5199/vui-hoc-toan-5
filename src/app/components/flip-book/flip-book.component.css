@@ -1,14 +1,20 @@
+.flip-book-container {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+
+  background-color: aqua;
+}
 .flipbook {
   position: absolute;
   top: 5%;
   width: 50%;
   left: 50%;
-  background-color: aqua;
 }
 
 .flip-panel {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 90svh;
   perspective: 1200px;
 }
