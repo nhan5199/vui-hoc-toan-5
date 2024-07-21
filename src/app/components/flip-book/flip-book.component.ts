@@ -27,7 +27,6 @@ export class FlipBookComponent implements OnInit {
   content: any[] = [];
 
   loading: boolean = true;
-  imagesToLoad: number = 0;
 
   constructor(
     private readonly fileService: FileService,
@@ -43,8 +42,6 @@ export class FlipBookComponent implements OnInit {
       this.listImagePaths = Constant.IMAGE_PATHS.images.filter((x) =>
         x.includes(this.imageFolderPath)
       );
-
-      this.imagesToLoad = this.listImagePaths.length;
 
       let path = `${this.imageFolderPath}`;
       let imgPaths = this.listImagePaths.filter((x) => x.includes(path));

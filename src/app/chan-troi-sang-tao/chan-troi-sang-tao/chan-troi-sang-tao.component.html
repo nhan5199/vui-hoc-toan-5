@@ -2,22 +2,22 @@
   <app-background-button
     [buttonName]="'E-Book'"
     [router]="'e-book'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'E-Book', 'e-book')"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Kế hoạch bài dạy'"
     [router]="'ke-hoach-bai-day'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'Kế hoạch bài dạy', 'ke-hoach-bai-day')"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Giáo án điện tử'"
     [router]="'giao-an-dien-tu'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'Giáo án điện tử', 'giao-an-dien-tu')"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Phiếu bài tập'"
     [router]="'phieu-bai-tap'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'Phiếu bài tập', 'phieu-bai-tap')"
   ></app-background-button>
 </div>
 
@@ -33,8 +33,7 @@
     (click)="onBack()"
   />
   <p class="title">
-    Bộ sách <br />
-    CHÂN TRỜI SÁNG TẠO
+    {{ buttonName }}
   </p>
   <app-list-file [folderPath]="listFilePath"></app-list-file>
 </div>

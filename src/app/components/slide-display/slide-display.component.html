@@ -1,0 +1,31 @@
+<div class="slide-display-container">
+  <img
+    class="back-icon"
+    title="Trở về"
+    src="icons/back-icon.png"
+    alt=""
+    (click)="onBack()"
+  />
+
+  <div class="list-images">
+    <img
+      class="left-arrow"
+      src="icons/left-arrow.png"
+      (click)="setActiveImg(-1)"
+      alt=""
+    />
+    <img
+      class="right-arrow"
+      src="icons/right-arrow.png"
+      (click)="setActiveImg(1)"
+      alt=""
+    />
+    <div class="image" *ngFor="let image of listImagePaths; let i = index">
+      <img
+        [class.active-img]="i == activeImg"
+        [src]="image.split('public/')[1]"
+        alt=""
+      />
+    </div>
+  </div>
+</div>

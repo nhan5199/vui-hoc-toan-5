@@ -1,1 +1,24 @@
-<p>tai-nguyen works!</p>
+<div [class.hidden-tai-nguyen]="hiddenMenu" class="tai-nguyen">
+  <app-background-button
+    [buttonName]="'Slide trò chơi'"
+    [router]="'slide-tro-choi'"
+    (onClickEvent)="getListFile($event)"
+  ></app-background-button>
+  <app-background-button
+    [buttonName]="'Công cụ hỗ trợ'"
+    [router]="'cong-cu-ho-tro'"
+    (onClickEvent)="getListFile($event)"
+  ></app-background-button>
+</div>
+
+<div [class.appear-list-file]="appearListFile" class="tai-nguyen-list-file">
+  <img
+    class="back-icon"
+    title="Trở về"
+    src="icons/back-icon.png"
+    alt=""
+    (click)="onBack()"
+  />
+  <p class="title">Slide TRÒ CHƠI</p>
+  <app-list-file [folderPath]="listFilePath"></app-list-file>
+</div>

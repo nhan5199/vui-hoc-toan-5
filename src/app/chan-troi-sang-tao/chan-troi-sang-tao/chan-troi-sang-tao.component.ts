@@ -17,10 +17,13 @@ export class ChanTroiSangTaoComponent implements OnInit {
   hiddenMenu: boolean = false;
   appearListFile: boolean = false;
 
+  buttonName: string = '';
+  routerName: string = '';
+
   constructor(private readonly route: ActivatedRoute) {}
   ngOnInit(): void {}
 
-  getListFile(event: string) {
+  getListFile(event: string, buttonName: string, routerName: string) {
     this.listFilePath = '';
     this.currentPath = '/';
 
@@ -30,6 +33,9 @@ export class ChanTroiSangTaoComponent implements OnInit {
       });
     });
     this.listFilePath = this.currentPath + '/' + event;
+
+    this.buttonName = buttonName;
+    this.routerName = routerName;
 
     this.hiddenMenu = true;
     setTimeout(() => {

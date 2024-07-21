@@ -38,7 +38,7 @@ body {
 
 /*-----------Back button --------------------*/
 .back-icon {
-  position: absolute;
+  position: fixed;
 
   width: 50px;
   cursor: pointer;

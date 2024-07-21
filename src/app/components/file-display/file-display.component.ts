@@ -24,9 +24,12 @@ export class FileDisplayComponent implements OnInit {
   ngOnInit(): void {}
 
   viewFile() {
-    console.log(`${this.currentPath}/${this.fileName}`);
     this.fileService.setImageFolderPath(`${this.currentPath}/${this.fileName}`);
     this.fileService.setImageDownloadUrl(this.imageDownloadUrl);
-    this.router.navigateByUrl('flip-book');
+    if (this.fileImage.includes('ppt')) {
+      this.router.navigateByUrl('slide-display');
+    } else {
+      this.router.navigateByUrl('flip-book');
+    }
   }
 }

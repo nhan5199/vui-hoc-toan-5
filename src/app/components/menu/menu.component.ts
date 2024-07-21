@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit {
 
   onClickHomeIcon() {
     this.router.navigateByUrl('');
+    this.menuIconPath = '/icons/open-menu.png';
     this.displayMenu = !this.displayMenu;
   }
 }

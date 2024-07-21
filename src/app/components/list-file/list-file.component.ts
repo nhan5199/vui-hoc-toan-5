@@ -65,7 +65,10 @@ export class ListFileComponent implements OnInit, OnChanges {
     }
   }
 
-  getFileImage(fileType: string) {
+  getFileImage(fileName: string) {
+    debugger;
+    let lastDotIndex = fileName.lastIndexOf('.');
+    let fileType = fileName.substring(lastDotIndex + 1);
     let imgSrc = 'icons/';
     if (fileType.toLowerCase() == 'pdf') {
       imgSrc += 'pdf.png';
