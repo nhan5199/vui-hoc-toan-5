@@ -6,6 +6,11 @@
     alt=""
     (click)="onBack()"
   />
+
+  <a [href]="imageDownloadUrl" download target="_blank"
+    ><img class="download" title="Tải file" src="icons/download.png" alt=""
+  /></a>
+
   <div *ngIf="loading" class="loading">loading...</div>
   <div *ngIf="!loading" class="flipbook" id="flipbook">
     <div class="flip-panel">

@@ -11,12 +11,18 @@ import { RouterLink } from '@angular/router';
 export class BackgroundButtonComponent implements OnInit {
   @Input('buttonName') buttonName: string = '';
   @Input('router') router: string = '';
+  @Input('isQuestion') isQuestion = false;
+
   @Output() onClickEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
   ngOnInit(): void {}
 
   onClick() {
-    this.onClickEvent.emit(this.router);
+    if (this.isQuestion) {
+      this.onClickEvent.emit('list-question');
+    } else {
+      this.onClickEvent.emit(this.router);
+    }
   }
 }

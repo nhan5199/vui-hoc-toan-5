@@ -27,9 +27,9 @@ export class FileDisplayComponent implements OnInit {
     this.fileService.setImageFolderPath(`${this.currentPath}/${this.fileName}`);
     this.fileService.setImageDownloadUrl(this.imageDownloadUrl);
     if (this.fileImage.includes('ppt')) {
-      this.router.navigateByUrl('slide-display');
+      this.router.navigateByUrl('doc-slide');
     } else {
-      this.router.navigateByUrl('flip-book');
+      this.router.navigateByUrl('doc-sach');
     }
   }
 }

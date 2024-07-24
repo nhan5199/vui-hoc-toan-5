@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FlipBookComponent } from './components/flip-book/flip-book.component';
 import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
+import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -39,12 +40,16 @@ export const routes: Routes = [
       import('./tai-nguyen/tai-nguyen.module').then((m) => m.TaiNguyenModule),
   },
   {
-    path: 'flip-book',
+    path: 'doc-sach',
     component: FlipBookComponent,
   },
   {
-    path: 'slide-display',
+    path: 'doc-slide',
     component: SlideDisplayComponent,
+  },
+  {
+    path: 'bai-on-tap',
+    component: ListQuestionComponent,
   },
 ];
 

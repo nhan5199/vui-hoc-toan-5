@@ -2,12 +2,18 @@
   <app-background-button
     [buttonName]="'Slide trò chơi'"
     [router]="'slide-tro-choi'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'Slide trò chơi', 'slide-tro-choi')"
   ></app-background-button>
   <app-background-button
     [buttonName]="'Công cụ hỗ trợ'"
     [router]="'cong-cu-ho-tro'"
-    (onClickEvent)="getListFile($event)"
+    (onClickEvent)="getListFile($event, 'Công cụ hỗ trợ', 'cong-cu-ho-tro')"
+  ></app-background-button>
+  <app-background-button
+    [buttonName]="'Bài ôn tập'"
+    [router]="'bai-on-tap'"
+    [isQuestion]="true"
+    (onClickEvent)="getListFile($event, 'Bài ôn tập', 'bai-on-tap')"
   ></app-background-button>
 </div>
 
@@ -19,6 +25,6 @@
     alt=""
     (click)="onBack()"
   />
-  <p class="title">Slide TRÒ CHƠI</p>
+  <p class="title">{{ buttonName }}</p>
   <app-list-file [folderPath]="listFilePath"></app-list-file>
 </div>

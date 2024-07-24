@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { BackgroundButtonComponent } from '../../components/background-button/background-button.component';
 import { ListFileComponent } from '../../components/list-file/list-file.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tai-nguyen',
@@ -17,10 +17,19 @@ export class TaiNguyenComponent implements OnInit {
   hiddenMenu: boolean = false;
   appearListFile: boolean = false;
 
-  constructor(private readonly route: ActivatedRoute) {}
+  buttonName: string = '';
+  routerName: string = '';
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
   ngOnInit(): void {}
 
-  getListFile(event: string) {
+  getListFile(event: string, buttonName: string, routerName: string) {
+    //đưa đến danh sách câu hỏi ôn tập
+    if (routerName == 'bai-on-tap') {
+      this.router.navigateByUrl('bai-on-tap');
+    }
+
+    //đưa đến trang danh sách file
     this.listFilePath = '';
     this.currentPath = '/';
 
@@ -30,6 +39,8 @@ export class TaiNguyenComponent implements OnInit {
       });
     });
     this.listFilePath = this.currentPath + '/' + event;
+    this.buttonName = buttonName;
+    this.routerName = routerName;
 
     this.hiddenMenu = true;
     setTimeout(() => {

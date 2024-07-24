@@ -1,0 +1,13 @@
+<div class="re-arrange-question">
+  <div class="question">{{ question }}</div>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    @for (item of reArrangedAnswer; track item) {
+    <div class="example-box" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{ item }}
+    </div>
+    }
+  </div>
+
+  <button type="submit" (click)="checkAnswer()">Kiểm tra</button>
+</div>
