@@ -59,17 +59,30 @@ export class ListFileComponent implements OnInit, OnChanges {
   ];
 
   bookIcon: string = '/images/images/';
-
+  lessonNumber = 1;
   constructor(private readonly fileService: FileService) {}
   ngOnInit(): void {}
 
+  onChangeSemester(event: any) {
+    this.selectedSemester = event;
+  }
+
+  onChangeWeek(event: any) {
+    this.selectedWeek = event;
+    this.getListTempFiles(false);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['folderPath']) {
-      this.listFiles(this.folderPath);
+      // this.listFiles(this.folderPath);
+
+      this.lessonNumber = 1;
+      this.getListTempFiles(true);
       this.bookIcon =
         'images/images/' +
-        this.folderPath.split('/')[1].split('/')[0] +
+        this.folderPath?.split('/')[1]?.split('/')[0] +
         '-icon.jpg';
+
       this.selectedSemester = 'hoc-ki-1';
       this.selectedWeek = 'tuan-1';
     }
@@ -79,41 +92,112 @@ export class ListFileComponent implements OnInit, OnChanges {
     this.files = [];
     this.bookshelfLines = [];
 
-    this.files = [
-      {
-        name: 'GIỚI THIỆU SÁCH GIÁO KHOA.docx',
-        url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FGI%E1%BB%9AI%20THI%E1%BB%86U%20S%C3%81CH%20GI%C3%81O%20KHOA.docx?alt=media&token=20263ed0-fb51-4ee5-95db-7fb25033d834',
-      },
-      {
-        name: 'Sách Tiếng Việt 5 cho Giáo viên.pdf',
-        url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20Ti%E1%BA%BFng%20Vi%E1%BB%87t%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=f59d3823-33db-41ad-a7af-38c26abc3a9d',
-      },
-      {
-        name: 'Sách Toán 5 cho Giáo viên.pdf',
-        url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20To%C3%A1n%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=9559b1f6-143b-4525-a527-e76d20d5076e',
-      },
-      {
-        name: 'sgk Toán 5 tập 1 CD.pdf',
-        url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%201%20CD.pdf?alt=media&token=dfd2e90b-bd65-4602-91f2-97e3307875a7',
-      },
-      {
-        name: 'sgk Toán 5 tập 2 CD.pdf',
-        url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
-      },
-    ];
+    this.fileService.getFilesList(folderPath).subscribe((files) => {
+      files.forEach((file: any) => {
+        this.files.push(file);
+      });
 
+      for (let i = 0; i < this.files.length; i += 4) {
+        this.bookshelfLines.push(this.files.slice(i, i + 4));
+      }
+    });
+  }
+
+  getListTempFiles(isFirstLoad: boolean) {
+    this.files = [];
+    this.bookshelfLines = [];
+    if (this.folderPath.includes('e-book')) {
+      this.lessonNumber = isFirstLoad
+        ? this.lessonNumber
+        : +this.selectedWeek.split('-')[1] + 3;
+      this.files = [
+        {
+          name: `Bài ${this.lessonNumber} (Tiết 1).pdf`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FGI%E1%BB%9AI%20THI%E1%BB%86U%20S%C3%81CH%20GI%C3%81O%20KHOA.docx?alt=media&token=20263ed0-fb51-4ee5-95db-7fb25033d834',
+        },
+        {
+          name: `Bài ${this.lessonNumber} (Tiết 2).pdf`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20Ti%E1%BA%BFng%20Vi%E1%BB%87t%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=f59d3823-33db-41ad-a7af-38c26abc3a9d',
+        },
+        {
+          name: `Bài ${this.lessonNumber + 1} (Tiết 1).pdf`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20To%C3%A1n%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=9559b1f6-143b-4525-a527-e76d20d5076e',
+        },
+        {
+          name: `Bài ${this.lessonNumber + 1} (Tiết 2).pdf`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%201%20CD.pdf?alt=media&token=dfd2e90b-bd65-4602-91f2-97e3307875a7',
+        },
+        {
+          name: `Bài ${this.lessonNumber + 2} (Tiết 1).pdf`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
+        },
+      ];
+    } else if (this.folderPath.includes('phieu-bai-tap')) {
+      this.lessonNumber = isFirstLoad
+        ? this.lessonNumber
+        : +this.selectedWeek.split('-')[1] + 6;
+      this.files = [
+        {
+          name: `Phiếu bài tập ${this.lessonNumber}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FGI%E1%BB%9AI%20THI%E1%BB%86U%20S%C3%81CH%20GI%C3%81O%20KHOA.docx?alt=media&token=20263ed0-fb51-4ee5-95db-7fb25033d834',
+        },
+        {
+          name: `Phiếu bài tập ${this.lessonNumber + 1}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20Ti%E1%BA%BFng%20Vi%E1%BB%87t%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=f59d3823-33db-41ad-a7af-38c26abc3a9d',
+        },
+        {
+          name: `Phiếu bài tập ${this.lessonNumber + 2}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20To%C3%A1n%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=9559b1f6-143b-4525-a527-e76d20d5076e',
+        },
+        {
+          name: `Phiếu bài tập ${this.lessonNumber + 3}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%201%20CD.pdf?alt=media&token=dfd2e90b-bd65-4602-91f2-97e3307875a7',
+        },
+        {
+          name: `Phiếu bài tập ${this.lessonNumber + 4}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
+        },
+
+        {
+          name: `Phiếu bài tập ${this.lessonNumber + 5}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
+        },
+      ];
+    } else {
+      this.lessonNumber = isFirstLoad
+        ? this.lessonNumber
+        : +this.selectedWeek.split('-')[1] + 6;
+      this.files = [
+        {
+          name: `Bài giảng ${this.lessonNumber}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FGI%E1%BB%9AI%20THI%E1%BB%86U%20S%C3%81CH%20GI%C3%81O%20KHOA.docx?alt=media&token=20263ed0-fb51-4ee5-95db-7fb25033d834',
+        },
+        {
+          name: `Bài giảng ${this.lessonNumber + 1}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20Ti%E1%BA%BFng%20Vi%E1%BB%87t%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=f59d3823-33db-41ad-a7af-38c26abc3a9d',
+        },
+        {
+          name: `Bài giảng ${this.lessonNumber + 2}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2FS%C3%A1ch%20To%C3%A1n%205%20cho%20Gi%C3%A1o%20vi%C3%AAn.pdf?alt=media&token=9559b1f6-143b-4525-a527-e76d20d5076e',
+        },
+        {
+          name: `Bài giảng ${this.lessonNumber + 3}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%201%20CD.pdf?alt=media&token=dfd2e90b-bd65-4602-91f2-97e3307875a7',
+        },
+        {
+          name: `Bài giảng ${this.lessonNumber + 4}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
+        },
+
+        {
+          name: `Bài giảng ${this.lessonNumber + 5}`,
+          url: 'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/canh-dieu%2Fe-book%2Fsgk%20To%C3%A1n%205%20t%E1%BA%ADp%202%20CD.pdf?alt=media&token=f8285832-e391-4e42-84ff-3fe842e3fa13',
+        },
+      ];
+    }
     for (let i = 0; i < this.files.length; i += 4) {
       this.bookshelfLines.push(this.files.slice(i, i + 4));
     }
-    // this.fileService.getFilesList(folderPath).subscribe((files) => {
-    //   files.forEach((file: any) => {
-    //     this.files.push(file);
-    //   });
-
-    //   for (let i = 0; i < this.files.length; i += 4) {
-    //     this.bookshelfLines.push(this.files.slice(i, i + 4));
-    //   }
-    // });
   }
 
   // Download file
@@ -151,5 +235,15 @@ export class ListFileComponent implements OnInit, OnChanges {
       imgSrc += 'ppt.png';
     }
     return imgSrc;
+  }
+
+  getBookName() {
+    if (this.folderPath.includes('canh-dieu')) {
+      return 'Cánh diều';
+    } else if (this.folderPath.includes('ket-noi-tri-thuc')) {
+      return 'Kết nối tri thức';
+    } else {
+      return 'Chân trời sáng tạo';
+    }
   }
 }

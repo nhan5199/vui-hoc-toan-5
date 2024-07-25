@@ -1,24 +1,36 @@
 <div [class.hidden-chan-troi-sang-tao]="hiddenMenu" class="chan-troi-sang-tao">
-  <app-background-button
+  <app-left-button-detail
     [buttonName]="'E-Book'"
     [router]="'e-book'"
+    [buttonDecaratePath]="'/images/images/decorates/top-right-button-decor.gif'"
+    [buttonBackgroundPath]="''"
     (onClickEvent)="getListFile($event, 'E-Book', 'e-book')"
-  ></app-background-button>
-  <app-background-button
+  ></app-left-button-detail>
+  <app-right-button-detail
     [buttonName]="'Kế hoạch bài dạy'"
     [router]="'ke-hoach-bai-day'"
     (onClickEvent)="getListFile($event, 'Kế hoạch bài dạy', 'ke-hoach-bai-day')"
-  ></app-background-button>
-  <app-background-button
+    [buttonDecaratePath]="'/images/images/decorates/top-left-button-decor.gif'"
+    [buttonBackgroundPath]="''"
+  ></app-right-button-detail>
+  <app-left-button-detail
     [buttonName]="'Giáo án điện tử'"
     [router]="'giao-an-dien-tu'"
     (onClickEvent)="getListFile($event, 'Giáo án điện tử', 'giao-an-dien-tu')"
-  ></app-background-button>
-  <app-background-button
+    [buttonDecaratePath]="
+      '/images/images/decorates/bottom-right-button-decor.gif'
+    "
+    [buttonBackgroundPath]="''"
+  ></app-left-button-detail>
+  <app-right-button-detail
     [buttonName]="'Phiếu bài tập'"
     [router]="'phieu-bai-tap'"
     (onClickEvent)="getListFile($event, 'Phiếu bài tập', 'phieu-bai-tap')"
-  ></app-background-button>
+    [buttonDecaratePath]="
+      '/images/images/decorates/bottom-left-button-decor.gif'
+    "
+    [buttonBackgroundPath]="''"
+  ></app-right-button-detail>
 </div>
 
 <div

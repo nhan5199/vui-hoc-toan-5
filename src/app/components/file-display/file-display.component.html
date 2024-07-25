@@ -1,6 +1,29 @@
-<div class="file" (click)="viewFile()">
+<div *ngIf="fileName.includes('Tiết')" class="file" (click)="viewFile()">
   <img [src]="fileImage" alt="" />
-  <p [title]="fileName">
-    {{ fileName.length > 50 ? fileName.substring(0, 47) + "..." : fileName }}
-  </p>
+  <div class="content">
+    <p class="title" [title]="fileName">
+      {{ fileName.length > 50 ? fileName.substring(0, 47) + "..." : fileName }}
+    </p>
+    <a>Tải file</a>
+  </div>
+</div>
+
+<div *ngIf="fileName.includes('Phiếu')" class="file" (click)="viewFile()">
+  <img src="images/images/excercise-card.png" alt="" />
+  <div class="content">
+    <p class="title" [title]="fileName">
+      {{ fileName.length > 50 ? fileName.substring(0, 47) + "..." : fileName }}
+    </p>
+    <a>Tải file</a>
+  </div>
+</div>
+
+<div *ngIf="fileName.includes('giảng')" class="file" (click)="viewFile()">
+  <img src="images/images/algebra_background.gif" alt="" />
+  <div class="content">
+    <p class="title" [title]="fileName">
+      {{ fileName.length > 50 ? fileName.substring(0, 47) + "..." : fileName }}
+    </p>
+    <a>Tải file</a>
+  </div>
 </div>

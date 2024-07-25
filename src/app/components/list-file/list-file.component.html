@@ -1,16 +1,29 @@
 <div class="list-file">
   <div class="search-form">
-    <select id="selectBox" [(ngModel)]="selectedSemester">
-      <option *ngFor="let semester of semesters" [value]="semester.value">
-        {{ semester.viewValue }}
-      </option>
-    </select>
-    <select id="selectBox" [(ngModel)]="selectedWeek">
-      <option *ngFor="let week of weeks" [value]="week.value">
-        {{ week.viewValue }}
-      </option>
-    </select>
-    <img class="book-icon" [src]="bookIcon" alt="" />
+    <div class="book-title">
+      <img class="book-icon" [src]="bookIcon" alt="" />
+      <p clasS="book-name">{{ getBookName() }}</p>
+    </div>
+    <div class="search">
+      <select
+        id="selectBox"
+        [(ngModel)]="selectedSemester"
+        (ngModelChange)="onChangeSemester($event)"
+      >
+        <option *ngFor="let semester of semesters" [value]="semester.value">
+          {{ semester.viewValue }}
+        </option>
+      </select>
+      <select
+        id="selectBox"
+        [(ngModel)]="selectedWeek"
+        (ngModelChange)="onChangeWeek($event)"
+      >
+        <option *ngFor="let week of weeks" [value]="week.value">
+          {{ week.viewValue }}
+        </option>
+      </select>
+    </div>
   </div>
 
   <div class="book-shelf" *ngFor="let line of bookshelfLines">

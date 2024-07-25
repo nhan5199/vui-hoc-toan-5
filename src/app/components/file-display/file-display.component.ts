@@ -24,12 +24,14 @@ export class FileDisplayComponent implements OnInit {
   ngOnInit(): void {}
 
   viewFile() {
-    this.fileService.setImageFolderPath(`${this.currentPath}/${this.fileName}`);
-    this.fileService.setImageDownloadUrl(this.imageDownloadUrl);
-    if (this.fileImage.includes('ppt')) {
-      this.router.navigateByUrl('doc-slide');
-    } else {
-      this.router.navigateByUrl('doc-sach');
-    }
+    // this.fileService.setImageFolderPath(`${this.currentPath}/${this.fileName}`);
+    // this.fileService.setImageDownloadUrl(this.imageDownloadUrl);
+    // if (this.fileImage.includes('ppt')) {
+    //   this.router.navigateByUrl('doc-slide');
+    // } else {
+    //   this.router.navigateByUrl('doc-sach');
+    // }
+
+    window.open(this.imageDownloadUrl, '_blank');
   }
 }

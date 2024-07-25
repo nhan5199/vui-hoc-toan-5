@@ -24,6 +24,8 @@ app-right-button-detail {
 }
 
 .canh-dieu-list-file {
+  position: absolute;
+  top: 0;
   padding: 50px 100px;
   width: 100%;
   min-height: 100svh;

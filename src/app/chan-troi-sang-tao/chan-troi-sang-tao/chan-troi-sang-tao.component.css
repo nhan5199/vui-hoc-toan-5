@@ -16,17 +16,20 @@
   opacity: 0;
 }
 
-app-background-button {
+app-left-button-detail,
+app-right-button-detail {
   /* flex: 0 1; */
   width: 50%;
   height: 50svh;
 }
 
 .chan-troi-sang-tao-list-file {
+  position: absolute;
+  top: 0;
   padding: 50px 100px;
   width: 100%;
   min-height: 100svh;
-  background-color: rgb(138, 253, 255);
+  background: url("/images/images/decorates/background.jpg");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +38,8 @@ app-background-button {
   transition: 1s ease;
 
   transform: scale(0) translate(-50%, -100%);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .chan-troi-sang-tao-list-file.appear-list-file {

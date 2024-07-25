@@ -22,9 +22,16 @@
 
 .search-form {
   display: flex;
-  gap: 30px;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  display: flex;
   justify-content: end;
+  align-items: center;
+  gap: 30px;
 }
 
 select {
@@ -37,6 +44,20 @@ select {
   font-weight: 700;
 }
 
+.book-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .book-icon {
-  width: 50px;
+  width: 60px;
+}
+
+.book-name {
+  color: white;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
 }
