@@ -1,21 +1,17 @@
 <div class="list-file">
-  <!-- <ul>
-    <li *ngFor="let file of files">
-      <a [href]="file.url" download target="_blank"
-        ><img
-          style="width: 20px; height: 25px"
-          src="icons/download.png"
-          alt="download"
-      /></a>
-      <img
-        style="width: 20px; height: 25px"
-        [src]="getFileType(file.name)"
-        alt="file type"
-      />
-
-
-    </li>
-  </ul> -->
+  <div class="search-form">
+    <select id="selectBox" [(ngModel)]="selectedSemester">
+      <option *ngFor="let semester of semesters" [value]="semester.value">
+        {{ semester.viewValue }}
+      </option>
+    </select>
+    <select id="selectBox" [(ngModel)]="selectedWeek">
+      <option *ngFor="let week of weeks" [value]="week.value">
+        {{ week.viewValue }}
+      </option>
+    </select>
+    <img class="book-icon" [src]="bookIcon" alt="" />
+  </div>
 
   <div class="book-shelf" *ngFor="let line of bookshelfLines">
     <div class="book-shelf-line" *ngFor="let file of line">

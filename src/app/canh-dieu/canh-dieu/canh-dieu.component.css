@@ -16,7 +16,8 @@
   opacity: 0;
 }
 
-app-background-button {
+app-left-button-detail,
+app-right-button-detail {
   /* flex: 0 1; */
   width: 50%;
   height: 50svh;
@@ -26,7 +27,7 @@ app-background-button {
   padding: 50px 100px;
   width: 100%;
   min-height: 100svh;
-  background-color: rgb(138, 253, 255);
+  background: url("/images/images/decorates/background.jpg");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +36,8 @@ app-background-button {
   transition: 1s ease;
 
   transform: scale(0) translate(-50%, -100%);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .canh-dieu-list-file.appear-list-file {
