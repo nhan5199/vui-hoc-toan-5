@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BackgroundButtonComponent } from '../../components/background-button/background-button.component';
 import { ActivatedRoute } from '@angular/router';
 import { ListFileComponent } from '../../components/list-file/list-file.component';
-import { LeftButtonDetailComponent } from '../../components/left-button-detail/left-button-detail.component';
-import { RightButtonDetailComponent } from '../../components/right-button-detail/right-button-detail.component';
+import { BookButtonComponent } from '../../components/book-button/book-button.component';
 
 @Component({
   selector: 'app-canh-dieu',
   standalone: true,
-  imports: [
-    ListFileComponent,
-    LeftButtonDetailComponent,
-    RightButtonDetailComponent,
-  ],
+  imports: [ListFileComponent, BookButtonComponent],
   templateUrl: './canh-dieu.component.html',
   styleUrl: './canh-dieu.component.css',
 })
@@ -27,17 +21,19 @@ export class CanhDieuComponent implements OnInit {
   routerName: string = '';
 
   constructor(private readonly route: ActivatedRoute) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.pathFromRoot.forEach((route) => {
+      route.url.subscribe((urlSegment) => {
+        this.currentPath += urlSegment.map((segment) => segment.path).join('/');
+        console.log(this.currentPath);
+      });
+    });
+  }
 
   getListFile(event: any, buttonName: string, routerName: string) {
     this.listFilePath = '';
     this.currentPath = '/';
 
-    this.route.pathFromRoot.forEach((route) => {
-      route.url.subscribe((urlSegment) => {
-        this.currentPath += urlSegment.map((segment) => segment.path).join('/');
-      });
-    });
     this.listFilePath = this.currentPath + '/' + event;
 
     this.buttonName = buttonName;
@@ -54,5 +50,15 @@ export class CanhDieuComponent implements OnInit {
     setTimeout(() => {
       this.hiddenMenu = false;
     }, 100);
+  }
+
+  getBookLogo() {
+    if (this.currentPath.includes('canh-dieu')) {
+      return 'images/images/canh-dieu-icon.jpg';
+    } else if (this.currentPath.includes('chan-troi-sang-tao')) {
+      return 'images/images/chan-troi-sang-tao-icon.jpg';
+    } else {
+      return 'images/images/ket-noi-tri-thuc-icon.jpg';
+    }
   }
 }

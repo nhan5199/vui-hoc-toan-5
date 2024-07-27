@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BackgroundButtonComponent } from '../../components/background-button/background-button.component';
-import { ListFileComponent } from '../../components/list-file/list-file.component';
 import { ActivatedRoute } from '@angular/router';
-import { LeftButtonDetailComponent } from '../../components/left-button-detail/left-button-detail.component';
-import { RightButtonDetailComponent } from '../../components/right-button-detail/right-button-detail.component';
+import { BookButtonComponent } from '../../components/book-button/book-button.component';
 
 @Component({
   selector: 'app-chan-troi-sang-tao',
   standalone: true,
-  imports: [
-    LeftButtonDetailComponent,
-    RightButtonDetailComponent,
-    ListFileComponent,
-  ],
+  imports: [BookButtonComponent],
   templateUrl: './chan-troi-sang-tao.component.html',
   styleUrl: './chan-troi-sang-tao.component.css',
 })

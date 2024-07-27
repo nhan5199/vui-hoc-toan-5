@@ -1,30 +1,35 @@
-<div [class.hidden-tai-nguyen]="hiddenMenu" class="tai-nguyen">
-  <app-background-button
-    [buttonName]="'Slide trò chơi'"
-    [router]="'slide-tro-choi'"
-    (onClickEvent)="getListFile($event, 'Slide trò chơi', 'slide-tro-choi')"
-  ></app-background-button>
-  <app-background-button
-    [buttonName]="'Công cụ hỗ trợ'"
-    [router]="'cong-cu-ho-tro'"
-    (onClickEvent)="getListFile($event, 'Công cụ hỗ trợ', 'cong-cu-ho-tro')"
-  ></app-background-button>
-  <app-background-button
-    [buttonName]="'Bài ôn tập'"
-    [router]="'bai-on-tap'"
-    [isQuestion]="true"
-    (onClickEvent)="getListFile($event, 'Bài ôn tập', 'bai-on-tap')"
-  ></app-background-button>
-</div>
-
-<div [class.appear-list-file]="appearListFile" class="tai-nguyen-list-file">
-  <img
-    class="back-icon"
-    title="Trở về"
-    src="icons/back-icon.png"
-    alt=""
-    (click)="onBack()"
-  />
-  <p class="title">{{ buttonName }}</p>
-  <app-list-file [folderPath]="listFilePath"></app-list-file>
+<div class="tai-nguyen">
+  <p class="menu-title">KHO TÀI NGUYÊN</p>
+  <div class="tai-nguyen-container">
+    <app-book-button
+      [buttonName]="'VĂN BẢN QUY ĐỊNH'"
+      [routerNavigate]="'van-ban-quy-dinh'"
+      [buttonIcon]="'images/images/buttons/van-ban-quy-dinh-button-icon.png'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'VIDEO MINH HỌA'"
+      [routerNavigate]="'video-minh-hoa'"
+      [buttonIcon]="'images/images/buttons/video-minh-hoa-button-icon.png'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'CÔNG CỤ HỖ TRỢ'"
+      [routerNavigate]="'cong-cu-ho-tro'"
+      [buttonIcon]="'images/images/buttons/cong-cu-ho-tro-button-icon.png'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'STEM'"
+      [routerNavigate]="'stem'"
+      [buttonIcon]="'images/images/buttons/stem-button-icon.png'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'PHẦN MỀM TOÁN HỌC'"
+      [routerNavigate]="'phan-mem-toan-hoc'"
+      [buttonIcon]="'images/images/buttons/phan-mem-toan-hoc-button-icon.png'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'GAME TƯƠNG TÁC'"
+      [routerNavigate]="'game-tuong-tac'"
+      [buttonIcon]="'images/images/buttons/game-tuong-tac-button-icon.png'"
+    ></app-book-button>
+  </div>
 </div>

@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BackgroundButtonComponent } from '../../components/background-button/background-button.component';
-import { ListFileComponent } from '../../components/list-file/list-file.component';
 import { ActivatedRoute } from '@angular/router';
-import { LeftButtonDetailComponent } from '../../components/left-button-detail/left-button-detail.component';
-import { RightButtonDetailComponent } from '../../components/right-button-detail/right-button-detail.component';
+import { BookButtonComponent } from '../../components/book-button/book-button.component';
 
 @Component({
   selector: 'app-ket-noi-tri-thuc',
   standalone: true,
-  imports: [
-    LeftButtonDetailComponent,
-    RightButtonDetailComponent,
-    ListFileComponent,
-  ],
+  imports: [BookButtonComponent],
   templateUrl: './ket-noi-tri-thuc.component.html',
   styleUrl: './ket-noi-tri-thuc.component.css',
 })

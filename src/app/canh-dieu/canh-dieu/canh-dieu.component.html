@@ -1,48 +1,26 @@
-<div [class.hidden-canh-dieu]="hiddenMenu" class="canh-dieu">
-  <app-left-button-detail
-    [buttonName]="'E-Book'"
-    [router]="'e-book'"
-    [buttonDecaratePath]="'/images/images/decorates/top-right-button-decor.gif'"
-    [buttonBackgroundPath]="''"
-    (onClickEvent)="getListFile($event, 'E-Book', 'e-book')"
-  ></app-left-button-detail>
-  <app-right-button-detail
-    [buttonName]="'Kế hoạch bài dạy'"
-    [router]="'ke-hoach-bai-day'"
-    (onClickEvent)="getListFile($event, 'Kế hoạch bài dạy', 'ke-hoach-bai-day')"
-    [buttonDecaratePath]="'/images/images/decorates/top-left-button-decor.gif'"
-    [buttonBackgroundPath]="''"
-  ></app-right-button-detail>
-  <app-left-button-detail
-    [buttonName]="'Giáo án điện tử'"
-    [router]="'giao-an-dien-tu'"
-    (onClickEvent)="getListFile($event, 'Giáo án điện tử', 'giao-an-dien-tu')"
-    [buttonDecaratePath]="
-      '/images/images/decorates/bottom-right-button-decor.gif'
-    "
-    [buttonBackgroundPath]="''"
-  ></app-left-button-detail>
-  <app-right-button-detail
-    [buttonName]="'Phiếu bài tập'"
-    [router]="'phieu-bai-tap'"
-    (onClickEvent)="getListFile($event, 'Phiếu bài tập', 'phieu-bai-tap')"
-    [buttonDecaratePath]="
-      '/images/images/decorates/bottom-left-button-decor.gif'
-    "
-    [buttonBackgroundPath]="''"
-  ></app-right-button-detail>
-</div>
-
-<div [class.appear-list-file]="appearListFile" class="canh-dieu-list-file">
-  <img
-    class="back-icon"
-    title="Trở về"
-    src="icons/back-icon.png"
-    alt=""
-    (click)="onBack()"
-  />
-  <p class="title">
-    {{ buttonName }}
-  </p>
-  <app-list-file [folderPath]="listFilePath"></app-list-file>
+<div class="canh-dieu">
+  <p class="menu-title">CÁNH DIỀU</p>
+  <img src="images/images/canh-dieu-icon.jpg" alt="" class="book-logo" />
+  <div class="canh-dieu-container">
+    <app-book-button
+      [buttonName]="'KẾ HOẠCH BÀI DẠY'"
+      [routerNavigate]="'ke-hoach-bai-day'"
+      [buttonIcon]="'images/images/buttons/ke-hoach-bai-day-button-icon.gif'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'PHIẾU BÀI TẬP'"
+      [routerNavigate]="'phieu-bai-tap'"
+      [buttonIcon]="'images/images/buttons/phieu-bai-tap-button-icon.gif'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'GIÁO ÁN ĐIỆN TỬ'"
+      [routerNavigate]="'giao-an-dien-tu'"
+      [buttonIcon]="'images/images/buttons/giao-an-dien-tu-button-icon.gif'"
+    ></app-book-button>
+    <app-book-button
+      [buttonName]="'E-BOOK'"
+      [routerNavigate]="'e-book'"
+      [buttonIcon]="'images/images/buttons/e-book-button-icon.gif'"
+    ></app-book-button>
+  </div>
 </div>

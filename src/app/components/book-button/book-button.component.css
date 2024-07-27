@@ -1,0 +1,55 @@
+/*----------- Menu button --------------------*/
+.book-button {
+  position: relative;
+  opacity: 1;
+  width: 520px;
+  text-align: center;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+  /* border: 6px solid white; */
+  border-radius: 15px;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: 0.75s ease;
+  border: 6px solid #5271ff;
+  background-color: #eef30e;
+  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+a {
+  text-decoration: none;
+}
+
+.book-button img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -8%;
+  width: 7.5rem;
+  transition: 0.75s ease;
+}
+
+.book-button a {
+  text-align: center;
+  color: #5271ff;
+  font-family: var(--button-font);
+  margin-left: 5%;
+}
+.book-button:hover {
+  padding: 20px 30px;
+  width: 550px;
+  color: #eef30e;
+  border: 6px solid #eef30e;
+  background-position: left bottom;
+}
+
+.book-button:hover img {
+  width: 8rem;
+}
+
+.book-button:hover a {
+  color: #eef30e;
+}

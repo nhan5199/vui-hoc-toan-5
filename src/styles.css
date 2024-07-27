@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Tilt+Prism&family=Twinkle+Star&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Black+Ops+One&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Single+Day&family=Tilt+Prism&family=Twinkle+Star&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 :root {
   --title: "Kablammo";
   --text: "Twinkle Star";
   --title-size: 3vw;
   --title-font: "Pattaya";
+  --menu-font: "Black Ops One", system-ui;
+  --button-font: "";
 }
 /* You can add global styles to this file, and also import other style files */
 body {
@@ -21,36 +29,14 @@ body {
   font-family: var(--title-font);
 }
 
-/*----------- Menu button --------------------*/
-.menu-button {
-  opacity: 1;
-  width: 300px;
-  text-align: center;
-  color: black;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: 10px solid orangered;
-  border-radius: 50px;
-  padding: 15px 25px;
-  cursor: pointer;
-  transition: 0.75s ease;
-  background: linear-gradient(to left, #fff 50%, orange 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-}
-
-.menu-button a {
-  text-decoration: none;
-  color: black;
-}
-.menu-button:hover {
-  padding: 20px 30px;
-  width: 320px;
+/*-----------Menu button --------------------*/
+.menu-title {
+  font-size: 5rem;
+  font-family: var(--menu-font);
   color: white;
-  background-position: left bottom;
+  padding-top: 8rem;
+  text-align: center;
 }
-
-/*-----------End Menu button --------------------*/
 
 /*-----------Back button --------------------*/
 .back-icon {

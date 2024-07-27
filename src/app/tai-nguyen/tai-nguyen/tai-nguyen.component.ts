@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BackgroundButtonComponent } from '../../components/background-button/background-button.component';
-import { ListFileComponent } from '../../components/list-file/list-file.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ListFileComponent } from '../../components/list-file/list-file.component';
+import { BookButtonComponent } from '../../components/book-button/book-button.component';
 
 @Component({
   selector: 'app-tai-nguyen',
   standalone: true,
-  imports: [BackgroundButtonComponent, ListFileComponent],
+  imports: [BookButtonComponent],
   templateUrl: './tai-nguyen.component.html',
   styleUrl: './tai-nguyen.component.css',
 })

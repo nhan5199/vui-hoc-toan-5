@@ -1,0 +1,252 @@
+.loading {
+  width: 100%;
+  height: 100svh;
+  background: url("/images/images/loading.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  opacity: 1;
+  z-index: 2000;
+  transition: 0.5s ease;
+}
+
+.loading.disappear {
+  opacity: 0;
+  z-index: 0;
+}
+
+.exercise-shape {
+  width: 100%;
+  height: 100svh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.orientation {
+  width: 100%;
+  height: 100svh;
+  object-fit: fill;
+
+  background-image: url("/assets/imgs/home/background.jpg");
+  background-size: cover;
+}
+
+.flip-phone {
+  width: 50%;
+  margin: 0 auto;
+  height: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  border: 5px solid black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+img.background {
+  width: 100%;
+  height: 100svh;
+  object-fit: fill;
+}
+
+button {
+  margin: 5px;
+}
+
+.shape-container {
+  display: flex;
+  justify-content: space-around;
+  height: 100px;
+  align-items: self-start;
+}
+
+#container {
+  width: 50%;
+  height: 100svh;
+  display: flex;
+  z-index: 100;
+  position: absolute;
+  left: 0;
+}
+
+.konvajs-content {
+  width: 50%;
+  height: 100svh;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100svh;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  top: 10px;
+  transform: translateX(-50%);
+  padding: 10px;
+  left: 50%;
+  z-index: 100;
+  gap: 20px;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.buttons button img {
+  width: 60px;
+  height: 50px;
+  transition: 0.5s ease;
+}
+
+.buttons button.square img {
+  width: 50px;
+}
+
+.buttons button img:hover {
+  width: 70px;
+  height: 58.3px;
+}
+
+.buttons button.square img:hover {
+  width: 70px;
+  height: 70px;
+}
+
+.left {
+  z-index: 1000;
+}
+
+.change-pic {
+  left: 50%;
+  position: absolute;
+  bottom: 15%;
+  transform: translateX(-50%);
+  width: 70px;
+  z-index: 1000;
+  transition: 0.5s ease;
+}
+
+.change-pic:hover {
+  width: 80px;
+  left: 49.8%;
+  transform: translateX(-49.8%);
+}
+
+.puzzle {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 400px;
+}
+
+.info {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 60px;
+  z-index: 1000;
+}
+
+.info img {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.info img:hover {
+  width: 70px;
+}
+
+.change-pic img,
+.puzzle img,
+.info img {
+  width: 100%;
+}
+
+@media screen and (max-width: 950px) {
+  .info {
+    width: 40px;
+  }
+  .buttons {
+    padding: 0;
+    top: 0;
+  }
+  .buttons button img {
+    width: 40px;
+    height: 30px;
+  }
+
+  .buttons button.square img {
+    width: 40px;
+  }
+
+  .buttons button img:hover {
+    width: 50px;
+    height: 43px;
+  }
+
+  .buttons button.square img:hover {
+    width: 50px;
+    height: 50px;
+  }
+  .puzzle {
+    width: 200px;
+  }
+  .change-pic {
+    width: 40px;
+  }
+
+  .change-pic:hover {
+    width: 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .info {
+    width: 30px;
+  }
+  .buttons {
+    padding: 0;
+    top: 0;
+  }
+  .buttons button img {
+    width: 30px;
+    height: 20px;
+  }
+
+  .buttons button.square img {
+    width: 30px;
+  }
+
+  .buttons button img:hover {
+    width: 40px;
+    height: 26.7px;
+  }
+
+  .buttons button.square img:hover {
+    width: 40px;
+    height: 40px;
+  }
+  .puzzle {
+    width: 170px;
+  }
+  .change-pic {
+    width: 30px;
+  }
+
+  .change-pic:hover {
+    width: 40px;
+  }
+}

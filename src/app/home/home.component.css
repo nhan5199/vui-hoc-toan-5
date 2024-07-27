@@ -4,72 +4,99 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("/images/images/home_pic.gif");
+  background-image: url("/images/images/home-background.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-  transition: transform 2s ease, opacity 2s ease;
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+
+.home-title {
+  font-size: 7rem;
+  font-family: var(--menu-font);
+  color: white;
+  padding-top: 10rem;
+  text-align: center;
 }
 
 .disappear {
-  transform: scale(0) translate(-50%, -50%) rotate(360deg);
   opacity: 0;
+  z-index: 0;
 }
 
 .menu {
   width: 100%;
   height: 100vh;
-  background-color: aqua;
-  transition: transform 2s ease, opacity 2s ease;
-  transform: scale(0) translate(-50%, -50%) rotate(-360deg);
+  background: url("/images/images/menu-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease;
   opacity: 0;
+  z-index: 0;
 }
 
 .appear {
-  transform: scale(1) translate(0, 0) rotate(0);
   opacity: 1;
+  z-index: 10;
 }
 
-.menu-container {
-  width: 80%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-}
-
+/*home-button*/
 .start {
   text-align: center;
-  color: black;
   font-size: 2.5rem;
   font-weight: bold;
-  border: 15px solid orangered;
+  background: url("/images/images/buttons/home-go-to-button-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  /* border: 15px solid orangered; */
   border-radius: 80px;
-  padding: 20px 100px;
+  padding: 10px 50px;
   cursor: pointer;
-  transition: 0.75s ease;
-  background: linear-gradient(to left, #fff 50%, orange 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-
+  transition: 1s ease;
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
   position: absolute;
   bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.start a {
-  text-decoration: none;
-  color: black;
+.start span {
+  font-weight: 700;
+  transition: 1s ease;
 }
+
+.start .math {
+  color: #2692d2;
+}
+
+.start .class {
+  color: #039961;
+}
+
 .start:hover {
-  padding: 25px 105px;
-  font-size: 2.6rem;
+  background: url("/images/images/buttons/home-go-to-button-background-gradient-left-to-right.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: 6%;
+}
+
+.start:hover span {
   color: white;
-  background-position: left bottom;
+}
+
+/* menu */
+.menu-container {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  align-items: center;
+  justify-content: space-around;
 }
