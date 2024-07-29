@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { TaiNguyenComponent } from './tai-nguyen/tai-nguyen.component';
 import { GameTuongTacComponent } from './game-tuong-tac/game-tuong-tac.component';
+import { VanBanQUyDinhComponent } from './van-ban-quy-dinh/van-ban-quy-dinh.component';
+import { CongCuHoTroComponent } from './cong-cu-ho-tro/cong-cu-ho-tro.component';
 
 export const routes: Routes = [
   {
@@ -11,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'van-ban-quy-dinh',
-    component: TaiNguyenComponent,
+    component: VanBanQUyDinhComponent,
   },
   {
     path: 'video-minh-hoa',
@@ -19,7 +21,7 @@ export const routes: Routes = [
   },
   {
     path: 'cong-cu-ho-tro',
-    component: TaiNguyenComponent,
+    component: CongCuHoTroComponent,
   },
 
   {

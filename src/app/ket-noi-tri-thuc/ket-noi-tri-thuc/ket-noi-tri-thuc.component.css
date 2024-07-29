@@ -13,6 +13,10 @@
   width: 7rem;
 }
 
+.menu-title {
+  color: yellow;
+}
+
 .ket-noi-tri-thuc-container {
   width: 80%;
   position: absolute;
@@ -24,4 +28,13 @@
   gap: 100px;
   align-items: center;
   justify-content: space-around;
+}
+
+app-book-button {
+  width: 40%;
+  transition: 0.5s ease;
+}
+
+app-book-button:hover {
+  width: 41%;
 }

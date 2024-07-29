@@ -7,8 +7,12 @@
     (click)="onBack()"
   />
 
-  <a [href]="imageDownloadUrl" download target="_blank"
-    ><img class="download" title="Tải file" src="icons/download.png" alt=""
+  <a (click)="downloadFile()"
+    ><img
+      class="download"
+      title="Tải file"
+      src="icons/download-icon.png"
+      alt=""
   /></a>
 
   <div *ngIf="loading" class="loading">loading...</div>

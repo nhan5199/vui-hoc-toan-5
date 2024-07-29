@@ -1,0 +1,14 @@
+<div class="van-ban-quy-dinh">
+  <p class="menu-title">VĂN BẢN QUY ĐỊNH</p>
+  <div class="van-ban-quy-dinh-container">
+    <app-van-ban-button
+      *ngFor="let file of files"
+      [buttonName]="file.name"
+      [fileDownloadUrl]="file.url"
+      [imgFolderPath]="this.folderPath"
+      [buttonIcon]="
+        'images/images/buttons/van-ban-quy-dinh-detail-button-icon.png'
+      "
+    ></app-van-ban-button>
+  </div>
+</div>

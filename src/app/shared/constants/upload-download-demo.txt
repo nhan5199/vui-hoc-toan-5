@@ -301,7 +301,6 @@ export class ParagraphComponent implements OnInit, AfterViewInit {
       };
       this.content.push(item);
     }
-    console.log('data: ', this.content);
   }
 
   @ViewChildren('panelRef') panels: QueryList<ElementRef> =

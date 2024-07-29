@@ -2,6 +2,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Black+Ops+One&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Single+Day&family=Tilt+Prism&family=Twinkle+Star&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Baloo+Bhai+2:wght@400;500&family=Black+Ops+One&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Single+Day&family=Tilt+Prism&family=Twinkle+Star&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Calistoga&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Tilt+Prism&display=swap");
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -11,8 +15,11 @@ body {
   --text: "Twinkle Star";
   --title-size: 3vw;
   --title-font: "Pattaya";
-  --menu-font: "Black Ops One", system-ui;
-  --button-font: "";
+  --black-ops-one-font: "Black Ops One", system-ui;
+  --anton-font: "Anton", sans-serif;
+  --lobster-font: "Lobster", sans-serif;
+  --tilt-prism-font: "Tilt Prism", sans-serif;
+  --pacifico-font: "Pacifico", cursive;
 }
 /* You can add global styles to this file, and also import other style files */
 body {
@@ -32,7 +39,7 @@ body {
 /*-----------Menu button --------------------*/
 .menu-title {
   font-size: 5rem;
-  font-family: var(--menu-font);
+  font-family: var(--black-ops-one-font);
   color: white;
   padding-top: 8rem;
   text-align: center;

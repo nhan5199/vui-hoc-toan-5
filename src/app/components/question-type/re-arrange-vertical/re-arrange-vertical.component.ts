@@ -67,11 +67,9 @@ export class ReArrangeVerticalComponent implements OnChanges, OnInit {
   checkAnswer() {
     for (let i = 0; i < this.reArrangedAnswer.length; i++) {
       if (this.answer[i] !== this.reArrangedAnswer[i]) {
-        console.log(false);
         return false;
       }
     }
-    console.log(true);
     return true;
   }
 }

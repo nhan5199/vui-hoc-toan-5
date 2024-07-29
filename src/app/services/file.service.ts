@@ -14,6 +14,7 @@ export interface FileData {
 export class FileService {
   imageFolderPath: string = '';
   imageDownloadUrl: string = '';
+  fileName: string = '';
 
   constructor(private storage: AngularFireStorage) {}
 
@@ -31,6 +32,14 @@ export class FileService {
 
   getImageDownloadUrl(): string {
     return this.imageDownloadUrl;
+  }
+
+  setFileName(fileName: string) {
+    this.fileName = fileName;
+  }
+
+  getFileName(): string {
+    return this.fileName;
   }
 
   // Upload file

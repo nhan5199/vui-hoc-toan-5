@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("/images/images/home-background.png");
+  background-image: url("/images/images/home_pic.gif");
   background-size: cover;
   background-repeat: no-repeat;
   transition: opacity 1s ease;
@@ -13,7 +13,7 @@
 
 .home-title {
   font-size: 7rem;
-  font-family: var(--menu-font);
+  font-family: var(--black-ops-one-font);
   color: white;
   padding-top: 10rem;
   text-align: center;
@@ -99,4 +99,8 @@
   gap: 100px;
   align-items: center;
   justify-content: space-around;
+}
+
+app-menu-button {
+  width: 40%;
 }

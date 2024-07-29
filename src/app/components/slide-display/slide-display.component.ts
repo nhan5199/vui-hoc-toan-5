@@ -62,7 +62,6 @@ export class SlideDisplayComponent implements OnInit {
     } else if (this.activeImg >= this.listImagePaths.length) {
       this.activeImg = 0;
     }
-    console.log('data: ', this.activeImg);
   }
 
   onBack() {

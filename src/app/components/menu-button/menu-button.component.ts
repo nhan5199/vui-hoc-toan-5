@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,9 +8,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './menu-button.component.html',
   styleUrl: './menu-button.component.css',
 })
-export class MenuButtonComponent implements OnInit {
+export class MenuButtonComponent {
   @Input('buttonName') buttonName: string = '';
   @Input('routerNavigate') routerNavigate: string = '';
   @Input('buttonIcon') buttonIcon: string = '';
-  ngOnInit() {}
 }

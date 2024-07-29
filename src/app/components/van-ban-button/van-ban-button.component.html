@@ -1,0 +1,9 @@
+<a (click)="viewFile()" title="Xem chi tiết">
+  <div class="van-ban-button">
+    <div class="img-icon">
+      <img [src]="buttonIcon" alt="" />
+      <p class="img-name">{{ getButtonIconName() }}</p>
+    </div>
+    <a>{{ buttonName.split(".")[0] }}</a>
+  </div>
+</a>

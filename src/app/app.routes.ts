@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FlipBookComponent } from './components/flip-book/flip-book.component';
 import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
 import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
+import { EBookComponent } from './components/book-detail/ebook/ebook.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -50,6 +51,10 @@ export const routes: Routes = [
   {
     path: 'bai-on-tap',
     component: ListQuestionComponent,
+  },
+  {
+    path: ':bookName/e-book',
+    component: EBookComponent,
   },
 ];
 

@@ -1,0 +1,37 @@
+.cong-cu-ho-tro {
+  width: 100%;
+  min-height: 100svh;
+  background: url("/images/images/menu-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.menu-title {
+  color: yellow;
+}
+
+.cong-cu-ho-tro-container {
+  width: 80%;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menu-title {
+  color: yellow;
+}
+
+app-cong-cu-button {
+  width: 40%;
+  transition: 0.5s ease;
+}
+
+app-cong-cu-button {
+  width: 41%;
+}

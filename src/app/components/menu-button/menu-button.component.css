@@ -2,7 +2,6 @@
 .menu-button {
   position: relative;
   opacity: 1;
-  width: 500px;
   text-align: center;
   color: black;
   font-size: 2rem;
@@ -23,7 +22,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: -5%;
-  width: 5.6rem;
+  width: 5.8rem;
   transition: 0.75s ease;
 }
 
@@ -34,17 +33,16 @@ a {
 .menu-button a {
   text-align: center;
   color: white;
-  font-family: var(--button-font);
+  font-family: var(--anton-font);
 }
 .menu-button:hover {
   padding: 20px 30px;
-  width: 520px;
   /* color: white;
   background-position: left bottom; */
 }
 
 .menu-button:hover img {
-  width: 6.1rem;
+  width: 6.3rem;
 }
 
 .menu-button:hover a {

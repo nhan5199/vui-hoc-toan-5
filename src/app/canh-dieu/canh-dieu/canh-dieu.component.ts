@@ -25,7 +25,6 @@ export class CanhDieuComponent implements OnInit {
     this.route.pathFromRoot.forEach((route) => {
       route.url.subscribe((urlSegment) => {
         this.currentPath += urlSegment.map((segment) => segment.path).join('/');
-        console.log(this.currentPath);
       });
     });
   }
@@ -50,15 +49,5 @@ export class CanhDieuComponent implements OnInit {
     setTimeout(() => {
       this.hiddenMenu = false;
     }, 100);
-  }
-
-  getBookLogo() {
-    if (this.currentPath.includes('canh-dieu')) {
-      return 'images/images/canh-dieu-icon.jpg';
-    } else if (this.currentPath.includes('chan-troi-sang-tao')) {
-      return 'images/images/chan-troi-sang-tao-icon.jpg';
-    } else {
-      return 'images/images/ket-noi-tri-thuc-icon.jpg';
-    }
   }
 }

@@ -14,7 +14,20 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
-  gap: 100px;
+  gap: 5rem;
   align-items: center;
   justify-content: space-around;
+}
+
+.menu-title {
+  color: yellow;
+}
+
+app-book-button {
+  width: 40%;
+  transition: 0.5s ease;
+}
+
+app-book-button {
+  width: 41%;
 }

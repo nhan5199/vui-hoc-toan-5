@@ -23,6 +23,8 @@ export class FlipBookComponent implements OnInit {
 
   imageFolderPath: string = '';
   imageDownloadUrl: string = '';
+  fileName: string = '';
+
   listImagePaths: string[] = [];
   content: any[] = [];
 
@@ -35,10 +37,13 @@ export class FlipBookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.imageFolderPath = this.fileService.getImageFolderPath();
+    this.imageFolderPath = this.fileService
+      .getImageFolderPath()
+      ?.split('//')[1];
     this.imageDownloadUrl = this.fileService.getImageDownloadUrl();
+    this.fileName = this.fileService.getFileName();
+
     if (this.imageFolderPath?.length > 0) {
-      console.log(Constant.IMAGE_PATHS.images);
       this.listImagePaths = Constant.IMAGE_PATHS.images.filter((x) =>
         x.includes(this.imageFolderPath)
       );
@@ -136,5 +141,12 @@ export class FlipBookComponent implements OnInit {
 
   onBack() {
     this.location.back();
+  }
+
+  downloadFile(): void {
+    const link = document.createElement('a');
+    link.href = `/files/${this.imageFolderPath}`; // Replace with your file path
+    link.download = `${this.fileName}`; // Replace with the desired file name
+    link.click();
   }
 }
