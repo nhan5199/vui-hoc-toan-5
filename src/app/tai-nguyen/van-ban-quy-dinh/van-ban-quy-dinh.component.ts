@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VanBanButtonComponent } from '../../components/van-ban-button/van-ban-button.component';
+import { VanBanButtonComponent } from '../../components/buttons/van-ban-button/van-ban-button.component';
 import { FileData, FileService } from '../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';

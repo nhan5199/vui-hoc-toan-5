@@ -1,1 +1,11 @@
-<p>ebook works!</p>
+<div class="e-book">
+  <p class="menu-title">{{ getTitle() }}</p>
+  <img [src]="bookIconUrl" alt="" class="book-logo" />
+  <div class="e-book-container">
+    <app-ebook-button
+      *ngFor="let file of files"
+      [buttonName]="file.name"
+      [folderPath]="folderPath"
+    ></app-ebook-button>
+  </div>
+</div>

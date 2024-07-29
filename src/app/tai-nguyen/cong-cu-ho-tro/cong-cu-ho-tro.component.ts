@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { CongCuButtonComponent } from '../../components/cong-cu-button/cong-cu-button.component';
+import { Component } from '@angular/core';
+import { CongCuButtonComponent } from '../../components/buttons/cong-cu-button/cong-cu-button.component';
 
 @Component({
   selector: 'app-cong-cu-ho-tro',

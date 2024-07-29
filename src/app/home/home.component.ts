@@ -1,9 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FileData, FileService } from '../services/file.service';
 import { CommonModule } from '@angular/common';
-import { FileUploadComponent } from '../shared/file-upload/file-upload.component';
-import { RouterLink } from '@angular/router';
-import { MenuButtonComponent } from '../components/menu-button/menu-button.component';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MenuButtonComponent } from '../components/buttons/menu-button/menu-button.component';
 
 @Component({
   selector: 'app-home',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListFileComponent } from '../../components/list-file/list-file.component';
-import { BookButtonComponent } from '../../components/book-button/book-button.component';
+import { BookButtonComponent } from '../../components/buttons/book-button/book-button.component';
 
 @Component({
   selector: 'app-canh-dieu',

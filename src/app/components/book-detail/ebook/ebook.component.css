@@ -1,0 +1,42 @@
+.e-book {
+  width: 100%;
+  min-height: 100svh;
+  background: url("/images/images/menu-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.menu-title {
+  color: yellow;
+  font-family: var(--pacifico-font);
+}
+
+.book-logo {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 5rem;
+}
+
+.e-book-container {
+  margin: 1rem auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menu-title {
+  color: yellow;
+}
+
+app-ebook-button {
+  width: 25%;
+  transition: 0.5s ease;
+}
+
+app-cong-cu-button {
+  width: 31%;
+}

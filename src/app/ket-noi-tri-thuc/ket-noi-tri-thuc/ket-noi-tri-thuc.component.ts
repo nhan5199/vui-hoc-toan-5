@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BookButtonComponent } from '../../components/book-button/book-button.component';
+import { BookButtonComponent } from '../../components/buttons/book-button/book-button.component';
 
 @Component({
   selector: 'app-ket-noi-tri-thuc',
