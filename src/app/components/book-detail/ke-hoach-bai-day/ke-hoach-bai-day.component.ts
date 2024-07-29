@@ -3,11 +3,12 @@ import { FileService } from '../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { KeHoachBaiDayButtonComponent } from '../../buttons/ke-hoach-bai-day-button/ke-hoach-bai-day-button.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ke-hoach-bai-day',
   standalone: true,
-  imports: [KeHoachBaiDayButtonComponent, FormsModule],
+  imports: [KeHoachBaiDayButtonComponent, FormsModule, CommonModule],
   templateUrl: './ke-hoach-bai-day.component.html',
   styleUrl: './ke-hoach-bai-day.component.css',
 })
@@ -130,10 +131,6 @@ export class KeHoachBaiDayComponent implements OnInit {
 
         {
           name: 'Tuần 36',
-          url: '',
-        },
-        {
-          name: 'Tuần 37',
           url: '',
         },
       ];

@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FileService } from '../../../services/file.service';
-import { Router } from 'express';
 
 @Component({
   selector: 'app-ke-hoach-bai-day-button',
@@ -13,10 +12,7 @@ export class KeHoachBaiDayButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
   imgUrl: string = 'images/images/';
-  constructor(
-    private readonly fileService: FileService,
-    private readonly router: Router
-  ) {}
+  constructor(private readonly fileService: FileService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {

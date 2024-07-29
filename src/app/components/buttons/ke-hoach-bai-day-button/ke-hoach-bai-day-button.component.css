@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 15px 20px;
+  padding: 10px;
   background-color: white;
   filter: drop-shadow();
   border-radius: 15px;
@@ -17,16 +17,17 @@
   margin-bottom: 10px;
 }
 
-.ke-hoach-bai-day .download {
-  width: 10rem;
-  transition: 0.5s ease;
-}
 .ke-hoach-bai-day:hover .download {
-  width: 10.5rem;
+  transform: scaleX(-1);
+}
+
+.ke-hoach-bai-day .download {
+  width: 5rem;
+  transition: 0.5s ease;
 }
 
 .ke-hoach-bai-day img {
-  width: 100px;
+  width: 60px;
 }
 
 .content {
@@ -40,7 +41,7 @@
   font-family: var(--lobster-font);
   text-align: center;
   word-break: break-word;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #f57669;
 }
 
