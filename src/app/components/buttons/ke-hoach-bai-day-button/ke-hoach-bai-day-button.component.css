@@ -1,0 +1,72 @@
+.ke-hoach-bai-day {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: white;
+  filter: drop-shadow();
+  border-radius: 15px;
+  border: 3px solid black;
+  cursor: pointer;
+  gap: 15px;
+  transition: 0.5s ease;
+}
+
+.ke-hoach-bai-day:hover {
+  margin-bottom: 10px;
+}
+
+.ke-hoach-bai-day .download {
+  width: 10rem;
+  transition: 0.5s ease;
+}
+.ke-hoach-bai-day:hover .download {
+  width: 10.5rem;
+}
+
+.ke-hoach-bai-day img {
+  width: 100px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ke-hoach-bai-day .content .book-name {
+  font-family: var(--lobster-font);
+  text-align: center;
+  word-break: break-word;
+  font-size: 1.5rem;
+  color: #f57669;
+}
+
+.content button {
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 1rem;
+  font-family: "anton";
+  /* border: 6px solid white; */
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  border: none;
+  outline: none;
+  background-color: #eef30e;
+  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+.content button:hover {
+  padding: 12px 17px;
+  color: #eef30e;
+  background-position: left bottom;
+}
+
+.default {
+  color: #2c63ff;
+}

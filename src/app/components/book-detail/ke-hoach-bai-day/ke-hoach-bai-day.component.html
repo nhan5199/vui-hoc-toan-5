@@ -1,1 +1,23 @@
-<p>ke-hoach-bai-day works!</p>
+<div class="ke-hoach-bai-day">
+  <p class="menu-title">Ngân hàng Phiếu bài tập {{ getTitle() }}</p>
+  <img [src]="bookIconUrl" alt="" class="book-logo" />
+  <div class="search">
+    <img src="icons/search-icon.png" alt="" />
+    <select
+      id="exampleSelect"
+      [(ngModel)]="selectedSemester"
+      (change)="onChangeSemester()"
+    >
+      <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+  <div class="ke-hoach-bai-day-container">
+    <app-ke-hoach-bai-day-button
+      *ngFor="let file of files"
+      [buttonName]="file.name"
+      [folderPath]="folderPath"
+    ></app-ke-hoach-bai-day-button>
+  </div>
+</div>
