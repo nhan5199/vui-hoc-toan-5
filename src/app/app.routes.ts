@@ -7,6 +7,9 @@ import { FlipBookComponent } from './components/flip-book/flip-book.component';
 import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
 import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
 import { EBookComponent } from './components/book-detail/ebook/ebook.component';
+import { KeHoachBaiDayComponent } from './components/book-detail/ke-hoach-bai-day/ke-hoach-bai-day.component';
+import { GiaoAnDienTuComponent } from './components/book-detail/giao-an-dien-tu/giao-an-dien-tu.component';
+import { PhieuBaiTapComponent } from './components/book-detail/phieu-bai-tap/phieu-bai-tap.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -55,6 +58,19 @@ export const routes: Routes = [
   {
     path: ':bookName/e-book',
     component: EBookComponent,
+  },
+
+  {
+    path: ':bookName/ke-hoach-bai-day',
+    component: KeHoachBaiDayComponent,
+  },
+  {
+    path: ':bookName/giao-an-dien-tu',
+    component: GiaoAnDienTuComponent,
+  },
+  {
+    path: ':bookName/phieu-bai-tap',
+    component: PhieuBaiTapComponent,
   },
 ];
 
