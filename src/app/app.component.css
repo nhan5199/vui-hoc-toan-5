@@ -12,3 +12,7 @@ app-menu {
   left: 0;
   z-index: 3000;
 }
+
+.back-icon {
+  z-index: 2000;
+}

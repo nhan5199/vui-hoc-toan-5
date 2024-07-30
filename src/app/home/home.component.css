@@ -103,4 +103,9 @@
 
 app-menu-button {
   width: 40%;
+  transition: 0.5s ease;
+}
+
+app-menu-button:hover {
+  margin-bottom: 10px;
 }

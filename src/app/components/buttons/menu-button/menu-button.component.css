@@ -10,11 +10,8 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: 0.5s ease;
   background-color: #fd9eab;
-  /* background: linear-gradient(to left, #fff 50%, orange 50%);
-  background-size: 200% 100%;
-  background-position: right bottom; */
 }
 
 .menu-button img {
@@ -23,7 +20,7 @@
   transform: translateY(-50%);
   left: -5%;
   width: 5.8rem;
-  transition: 0.75s ease;
+  transition: 0.5s ease;
 }
 
 a {
@@ -34,15 +31,7 @@ a {
   text-align: center;
   color: white;
   font-family: var(--anton-font);
-}
-.menu-button:hover {
-  padding: 20px 30px;
-  /* color: white;
-  background-position: left bottom; */
-}
-
-.menu-button:hover img {
-  width: 6.3rem;
+  transition: 0.5s ease;
 }
 
 .menu-button:hover a {
