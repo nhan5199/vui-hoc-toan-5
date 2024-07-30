@@ -7,7 +7,7 @@
 }
 
 .video-container {
-  width: 80%;
+  width: 90%;
   position: absolute;
   top: 60%;
   left: 50%;
@@ -17,7 +17,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 2rem;
 }
 
 .video {
@@ -25,10 +25,10 @@
   background-color: white;
   border: 4px solid black;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   cursor: pointer;
   transition: 0.5s ease;
@@ -45,13 +45,13 @@ video:hover {
 }
 
 .video img {
-  width: 150px;
+  width: 130px;
 }
 
 .video button {
   padding: 10px 15px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "anton";
   /* border: 6px solid white; */
   border-radius: 15px;
@@ -71,6 +71,7 @@ video:hover {
   align-items: center;
   flex-direction: column;
   padding: 20px;
+  width: 100%;
 }
 .video button:hover {
   padding: 12px 17px;
@@ -80,6 +81,6 @@ video:hover {
 
 .title {
   color: #5271ff;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-family: var(--pacifico-font);
 }

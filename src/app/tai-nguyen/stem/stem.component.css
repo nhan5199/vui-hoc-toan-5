@@ -1,0 +1,7 @@
+.stem {
+  width: 100%;
+  height: 100svh;
+  background: url("/images/images/stem-background.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

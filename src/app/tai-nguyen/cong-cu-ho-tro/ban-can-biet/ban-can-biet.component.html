@@ -1,1 +1,17 @@
-<p>ban-can-biet works!</p>
+<div class="ban-can-biet">
+  <div class="ban-can-biet-container">
+    <img
+      class="left-arrow"
+      src="icons/left-arrow.png"
+      alt=""
+      (click)="onClick(-1)"
+    />
+    <img
+      class="right-arrow"
+      src="icons/right-arrow.png"
+      alt=""
+      (click)="onClick(+1)"
+    />
+    <img class="content" [src]="imgUrls[currentUrl]" alt="" />
+  </div>
+</div>

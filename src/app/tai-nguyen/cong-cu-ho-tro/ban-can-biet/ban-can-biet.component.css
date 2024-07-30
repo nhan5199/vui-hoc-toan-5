@@ -1,0 +1,47 @@
+.ban-can-biet {
+  width: 100%;
+  height: 100%;
+  background: url("/images/images/ban-can-biet-background.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ban-can-biet-container {
+  width: 80%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ban-can-biet-container .content {
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  z-index: 10;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.left-arrow:hover,
+.right-arrow:hover {
+  width: 60px;
+}
+
+.left-arrow {
+  left: 5%;
+}
+
+.right-arrow {
+  right: 5%;
+}

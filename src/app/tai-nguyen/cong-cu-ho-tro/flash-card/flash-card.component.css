@@ -1,0 +1,67 @@
+.flash-card {
+  width: 100%;
+  height: 100%;
+  background: url("/images/images/flash-card-background.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.flash-card-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  cursor: pointer;
+  width: 25rem;
+  transition: 0.5s ease;
+  border-radius: 10px;
+}
+.card:hover {
+  margin-bottom: 20px;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card:hover .download {
+  opacity: 1;
+  z-index: 100;
+}
+
+.download {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+  border-radius: 10px;
+}
+
+.download button {
+  text-decoration: none;
+  border: 3px solid #00a9ff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #0576c8;
+  outline: none;
+  margin-bottom: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.download button:hover {
+  background-color: #00a9ff;
+}
