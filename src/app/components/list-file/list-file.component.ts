@@ -239,7 +239,7 @@ export class ListFileComponent implements OnInit, OnChanges {
 
   getBookName() {
     if (this.folderPath.includes('canh-dieu')) {
-      return 'Cánh diều';
+      return 'Cánh Diều';
     } else if (this.folderPath.includes('ket-noi-tri-thuc')) {
       return 'Kết nối tri thức';
     } else {

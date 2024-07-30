@@ -47,7 +47,7 @@ export class EBookComponent implements OnInit {
   getTitle() {
     let title = 'E-book ';
     if (this.bookName == 'canh-dieu') {
-      title += 'Cánh diều';
+      title += 'Cánh Diều';
     } else if (this.bookName == 'chan-troi-sang-tao') {
       title += 'Chân trời sáng tạo';
     } else {

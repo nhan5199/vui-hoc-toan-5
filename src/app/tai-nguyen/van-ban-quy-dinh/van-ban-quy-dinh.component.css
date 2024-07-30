@@ -1,13 +1,16 @@
 .van-ban-quy-dinh {
   width: 100%;
   min-height: 100svh;
-  background: url("/images/images/detail-background.png");
+  background: url("/images/images/detail-background.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .van-ban-quy-dinh-container {
-  margin: 0 auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding-bottom: 50px;
   width: 80%;
   display: flex;
@@ -28,4 +31,14 @@ app-van-ban-button {
 
 app-van-ban-button:hover {
   width: 40.5%;
+}
+
+.footer {
+  position: absolute;
+  font-size: 2rem;
+  font-family: "Pacifico";
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #2c63ff;
 }

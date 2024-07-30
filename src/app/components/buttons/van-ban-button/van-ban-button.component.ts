@@ -36,7 +36,7 @@ export class VanBanButtonComponent implements OnChanges {
       this.buttonName.split('.')[0].toLowerCase() ==
       'quy định đánh giá hs tiểu học'
     ) {
-      return 'TT 37';
+      return 'TT 27';
     } else {
       return 'GDPT 2018';
     }

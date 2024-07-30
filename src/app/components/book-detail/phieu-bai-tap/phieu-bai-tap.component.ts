@@ -332,7 +332,7 @@ export class PhieuBaiTapComponent implements OnInit {
 
   getTitle() {
     if (this.bookName == 'canh-dieu') {
-      return 'Cánh diều';
+      return 'Cánh Diều';
     } else if (this.bookName == 'chan-troi-sang-tao') {
       return 'Chân trời sáng tạo';
     } else {

@@ -1888,7 +1888,7 @@ export default class {
       'public/images/images/decorates/excercise-card.png',
       'public/images/images/decorates/top-left-button-decor.gif',
       'public/images/images/decorates/top-right-button-decor.gif',
-      'public/images/images/detail-background.png',
+      'public/images/images/detail-background.gif',
       'public/images/images/file-loading.gif',
       'public/images/images/home-background.png',
       'public/images/images/home_pic.gif',
