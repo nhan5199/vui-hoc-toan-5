@@ -1,1 +1,67 @@
-<p>giao-an-dien-tu works!</p>
+<div class="giao-an-dien-tu">
+  <p class="menu-title">
+    <span class="dèault">Thư viện bài giảng điện tử</span> <br />
+    {{ getTitle() }}
+  </p>
+  <img [src]="bookIconUrl" alt="" class="book-logo" />
+  <div class="search">
+    <div class="search-item">
+      <img src="icons/search-icon.png" alt="" />
+      <select
+        id="exampleSelect"
+        [(ngModel)]="selectedSemester"
+        (change)="onChangeSemester()"
+      >
+        <option *ngFor="let option of semesterOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="search-item">
+      <img src="icons/search-icon.png" alt="" />
+      <select
+        id="exampleSelect"
+        [(ngModel)]="selectedWeek"
+        (change)="onChangeWeek()"
+      >
+        <option *ngFor="let option of weekOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="giao-an-dien-tu-container">
+    <!-- <app-giao-an-dien-tu-button
+      *ngFor="let file of files"
+      [buttonName]="file.name"
+      [folderPath]="folderPath"
+      [urlImg]="file.url"
+    ></app-giao-an-dien-tu-button> -->
+    <app-giao-an-dien-tu-button
+      [buttonName]="'Bài 1 (Tiết 1)'"
+      [folderPath]="folderPath"
+      [urlImg]="getImgUrl1()"
+    ></app-giao-an-dien-tu-button>
+    <app-giao-an-dien-tu-button
+      [buttonName]="'Bài 1 (Tiết 2)'"
+      [folderPath]="folderPath"
+      [urlImg]="getImgUrl2()"
+    ></app-giao-an-dien-tu-button>
+    <app-giao-an-dien-tu-button
+      [buttonName]="'Bài 2 (Tiết 1)'"
+      [folderPath]="folderPath"
+      [urlImg]="getImgUrl3()"
+    ></app-giao-an-dien-tu-button>
+    <app-giao-an-dien-tu-button
+      [buttonName]="'Bài 2 (Tiết 2)'"
+      [folderPath]="folderPath"
+      [urlImg]="getImgUrl4()"
+    ></app-giao-an-dien-tu-button>
+    <app-giao-an-dien-tu-button
+      [buttonName]="'Bài 3 (Tiết 1)'"
+      [folderPath]="folderPath"
+      [urlImg]="getImgUrl5()"
+    ></app-giao-an-dien-tu-button>
+  </div>
+</div>
