@@ -336,7 +336,7 @@ export class PhieuBaiTapComponent implements OnInit {
     } else if (this.bookName == 'chan-troi-sang-tao') {
       return 'Chân trời sáng tạo';
     } else {
-      return 'Kết nối tri thức';
+      return 'Kết nối tri thức với cuộc sống';
     }
   }
 }

@@ -1,7 +1,7 @@
 .ke-hoach-bai-day {
   width: 100%;
   min-height: 100svh;
-  background: url("/images/images/menu-background.png");
+  background: url("/images/images/detail-background.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -20,19 +20,19 @@
 }
 
 .ke-hoach-bai-day-container {
-  margin: 6rem auto 0;
-  width: 80%;
+  margin: 3rem auto 0;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 2rem;
   align-items: center;
-  justify-content: space-around;
-  max-height: 60svh;
+  justify-content: center;
+  max-height: 55svh;
   overflow-y: auto;
 }
 
 .menu-title {
-  color: yellow;
+  color: #4ba5bc;
 }
 
 app-ke-hoach-bai-day-button {
@@ -60,4 +60,8 @@ app-ke-hoach-bai-day-button {
   color: #2c63ff;
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+.default {
+  color: #f3663c;
 }

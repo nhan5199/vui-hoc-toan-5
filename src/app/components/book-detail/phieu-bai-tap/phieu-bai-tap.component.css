@@ -20,14 +20,14 @@
 }
 
 .phieu-bai-tap-container {
-  margin: 6rem auto 0;
+  margin: 3rem auto 0;
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
-  max-height: 60svh;
+  max-height: 55svh;
   overflow-y: auto;
 }
 
