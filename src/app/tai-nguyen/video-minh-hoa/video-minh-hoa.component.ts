@@ -17,6 +17,9 @@ export class VideoMinhHoaComponent implements OnInit {
   currentPath: string = '';
   files: FileData[] = [];
 
+  isDisplayVideo: boolean = false;
+  slectedVideoUrl: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private fileService: FileService
@@ -41,12 +44,8 @@ export class VideoMinhHoaComponent implements OnInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
-        console.log(this.files);
       });
   }
-
-  isDisplayVideo: boolean = false;
-  slectedVideoUrl: string = '';
 
   onViewVideo(event: string) {
     this.slectedVideoUrl = event;

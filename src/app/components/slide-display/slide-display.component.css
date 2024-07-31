@@ -39,6 +39,7 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 .left-arrow {
@@ -49,6 +50,11 @@
 .right-arrow {
   right: 10%;
   transform: translateX(-10%);
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  width: 50px;
 }
 
 .download {

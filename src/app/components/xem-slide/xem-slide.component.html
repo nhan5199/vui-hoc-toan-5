@@ -1,0 +1,24 @@
+<div class="slide">
+  <div class="slide-container">
+    <a [href]="downloadUrl" download target="_blank"
+      ><img
+        class="download-img"
+        title="Tải file"
+        src="icons/download-icon.png"
+        alt=""
+    /></a>
+    <img
+      class="left-arrow"
+      src="icons/left-arrow.png"
+      (click)="setActiveImg(-1)"
+      alt=""
+    />
+    <img
+      class="right-arrow"
+      src="icons/right-arrow.png"
+      (click)="setActiveImg(1)"
+      alt=""
+    />
+    <img class="content" [src]="slides[activeImg].split('public/')[1]" alt="" />
+  </div>
+</div>

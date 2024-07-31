@@ -20,7 +20,6 @@ export class GiaoAnDienTuButtonComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.urlImg);
     if (changes['buttonName'] && this.buttonName?.length > 0) {
       if (this.folderPath.includes('canh-dieu')) {
         this.imgUrl += 'canh-dieu-icon.jpg';

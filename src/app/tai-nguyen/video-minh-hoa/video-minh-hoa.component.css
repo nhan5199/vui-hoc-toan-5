@@ -9,7 +9,7 @@
 .video-container {
   width: 90%;
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  max-height: 60svh;
+  max-height: 65svh;
   overflow-y: auto;
 }
 

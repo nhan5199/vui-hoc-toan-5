@@ -29,12 +29,6 @@ export class EBookButtonComponent implements OnChanges {
           }-images-0`.split('//')[1]
         )
       );
-      console.log(
-        `${this.folderPath}/${this.buttonName.split('.')[0]}/${
-          this.buttonName.split('.')[0]
-        }-images-0`
-      );
-      console.log(this.imageUrl[0]);
     }
   }
 

@@ -1,5 +1,7 @@
 <div class="video-button" (click)="onViewVideo()">
   <img src="icons/video-minh-hoa-button-icon.png" alt="" />
-  <p class="title">{{ buttonName }}</p>
+  <p class="title" [title]="buttonName">
+    {{ buttonName.length >= 37 ? buttonName.slice(0, 36) + "..." : buttonName }}
+  </p>
   <button>Xem video</button>
 </div>
