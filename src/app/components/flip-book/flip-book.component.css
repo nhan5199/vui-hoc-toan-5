@@ -149,3 +149,22 @@
 .download:hover {
   width: 11rem;
 }
+
+.action-icon {
+  position: absolute;
+  width: 50px;
+  top: 40%;
+  right: 39%;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+  cursor: pointer;
+}
+
+.action-icon img {
+  width: 50px;
+  transition: 0.5s ease;
+}
+
+.action-icon img:hover {
+  width: 55px;
+}

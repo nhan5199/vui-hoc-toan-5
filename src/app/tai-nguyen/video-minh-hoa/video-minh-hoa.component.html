@@ -1,39 +1,16 @@
 <div class="video-minh-hoa">
   <div class="video-container">
-    <div class="video">
-      <img src="icons/video-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình tam giác</p>
-        <button>Xem video</button>
-      </div>
-    </div>
-    <div class="video">
-      <img src="icons/video-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình chữ nhật</p>
-        <button>Xem video</button>
-      </div>
-    </div>
-    <div class="video">
-      <img src="icons/video-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình tròn</p>
-        <button>Xem video</button>
-      </div>
-    </div>
-    <div class="video">
-      <img src="icons/video-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình thang</p>
-        <button>Xem video</button>
-      </div>
-    </div>
-    <div class="video">
-      <img src="icons/video-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình lập phương</p>
-        <button>Xem video</button>
-      </div>
-    </div>
+    <app-video-minh-hoa-button
+      *ngFor="let file of files | slice : 0 : 5; let i = index"
+      [buttonName]="file.name"
+      [downloadUrl]="file.url"
+      (viewVideo)="onViewVideo($event)"
+    ></app-video-minh-hoa-button>
   </div>
 </div>
+
+<app-xem-video
+  *ngIf="isDisplayVideo"
+  [videoUrl]="slectedVideoUrl"
+  (closeVideo)="onCloseVideo($event)"
+></app-xem-video>

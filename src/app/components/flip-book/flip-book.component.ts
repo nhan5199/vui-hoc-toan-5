@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { FileService } from '../../services/file.service';
 import Constant from '../../shared/constants/Constant';
+import { XemVideoComponent } from '../xem-video/xem-video.component';
 
 @Component({
   selector: 'app-flip-book',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, XemVideoComponent],
   templateUrl: './flip-book.component.html',
   styleUrl: './flip-book.component.css',
 })
@@ -148,5 +149,17 @@ export class FlipBookComponent implements OnInit {
     link.href = `/files/${this.imageFolderPath}`; // Replace with your file path
     link.download = `${this.fileName}`; // Replace with the desired file name
     link.click();
+  }
+
+  isDisplayVideo: boolean = false;
+  slectedVideoUrl: string =
+    'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/tai-nguyen%2Fvideo-minh-hoa%2FHo%E1%BA%A1t%20h%C3%ACnh_H%C3%ACnh%20tr%C3%B2n_%C4%91%C6%B0%E1%BB%9Dng%20tr%C3%B2n.mp4?alt=media&token=3efb0651-3f46-4978-a45e-7f252cf64586';
+
+  onViewVideo() {
+    this.isDisplayVideo = true;
+  }
+
+  onCloseVideo(event: boolean) {
+    if (event) this.isDisplayVideo = false;
   }
 }

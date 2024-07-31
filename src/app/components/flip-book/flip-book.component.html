@@ -28,6 +28,12 @@
           </div>
 
           <div class="back">
+            <div
+              class="action-icon"
+              *ngIf="i == 1 && imageFolderPath.includes('canh-dieu')"
+            >
+              <img (click)="onViewVideo()" src="icons/video-icon.png" alt="" />
+            </div>
             <div class="content">
               <span class="fold1"></span>
               <img [src]="item.back" alt="" />
@@ -38,3 +44,9 @@
     </div>
   </div>
 </div>
+
+<app-xem-video
+  *ngIf="isDisplayVideo"
+  [videoUrl]="slectedVideoUrl"
+  (closeVideo)="onCloseVideo($event)"
+></app-xem-video>
