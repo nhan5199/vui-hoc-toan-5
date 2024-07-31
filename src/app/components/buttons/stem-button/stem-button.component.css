@@ -1,0 +1,50 @@
+a {
+  text-decoration: none;
+}
+.stem-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.stem-button button {
+  word-break: break-word;
+  padding: 15px 20px;
+  font-size: 1.3rem;
+  font-family: var(--lobster-font);
+  transition: 0.75s ease;
+  border: 5px solid #5271ff;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  color: #5271ff;
+  background-color: #eef30e;
+  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+.stem-button button p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.stem-button button:hover {
+  padding: 17px 22px;
+  /* width: 550px; */
+  color: #eef30e;
+  border: 6px solid #eef30e;
+  background-position: left bottom;
+}
+
+.left,
+.right {
+  position: absolute;
+}
+.left {
+  width: 7rem;
+  left: -5%;
+}
+.right {
+  width: 3.5rem;
+  right: 5%;
+}

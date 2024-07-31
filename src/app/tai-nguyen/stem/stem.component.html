@@ -1,1 +1,9 @@
-<div class="stem"></div>
+<div class="stem">
+  <div class="stem-container">
+    <app-stem-button
+      *ngFor="let file of files"
+      [buttonName]="file.name"
+      [downloadUrl]="file.url"
+    ></app-stem-button>
+  </div>
+</div>

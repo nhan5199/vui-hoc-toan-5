@@ -5,3 +5,23 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.stem-container {
+  width: 90%;
+  height: 65svh;
+  overflow-y: auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+
+app-stem-button {
+  width: 30%;
+  transition: 0.5s ease;
+}
