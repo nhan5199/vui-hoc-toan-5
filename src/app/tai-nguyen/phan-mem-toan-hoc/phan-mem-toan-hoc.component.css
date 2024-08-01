@@ -7,7 +7,7 @@
 }
 
 .phan-mem-toan-hoc-container {
-  width: 60%;
+  width: 80%;
   position: absolute;
   left: 60%;
   top: 60%;
@@ -18,10 +18,12 @@
   gap: 30px;
   flex-wrap: wrap;
   flex-direction: column;
+  max-height: 65svh;
+  overflow: auto;
 }
 
 .phan-mem {
-  width: 45%;
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -39,7 +41,7 @@
 .phan-mem:hover {
   margin-bottom: 10px;
 }
-.phan-mem:hover .content button {
+.phan-mem:hover .content a {
   background-color: #00a9ff;
 }
 
@@ -55,7 +57,7 @@
   align-items: center;
 }
 
-.content button {
+.content a {
   text-decoration: none;
   border: 3px solid #00a9ff;
   border-radius: 10px;

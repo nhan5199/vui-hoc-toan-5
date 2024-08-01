@@ -1,24 +1,10 @@
 <div class="phan-mem-toan-hoc">
   <div class="phan-mem-toan-hoc-container">
-    <div class="phan-mem">
+    <div class="phan-mem" *ngFor="let file of files">
       <img src="icons/phan-mem-toan-hoc-icon.png" alt="" />
       <div class="content">
-        <p class="title">Hình thang</p>
-        <button>Nhấn để tải</button>
-      </div>
-    </div>
-    <div class="phan-mem">
-      <img src="icons/phan-mem-toan-hoc-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Diện tích hình tròn</p>
-        <button>Nhấn để tải</button>
-      </div>
-    </div>
-    <div class="phan-mem">
-      <img src="icons/phan-mem-toan-hoc-icon.png" alt="" />
-      <div class="content">
-        <p class="title">Hình hộp chữ nhật</p>
-        <button>Nhấn để tải</button>
+        <p class="title">{{ file.name }}</p>
+        <a [href]="file.url" target="_blank">Nhấn để tải</a>
       </div>
     </div>
   </div>
