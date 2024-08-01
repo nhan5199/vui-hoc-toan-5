@@ -1,9 +1,14 @@
 <div class="flash-card">
   <div class="flash-card-container">
-    <div class="card" title="Bảng đv đo KL">
-      <img src="images/Bảng đv đo KL.jpg" alt="" />
+    <div class="card" *ngFor="let file of files" [title]="file.name">
+      <img
+        [src]="
+          'images/images/tai-nguyen/cong-cu-ho-tro/flash-card/' + file.name
+        "
+        alt=""
+      />
       <div class="download">
-        <button>Nhấn để tải</button>
+        <a [href]="file.url" target="_blank">Nhấn để tải</a>
       </div>
     </div>
   </div>

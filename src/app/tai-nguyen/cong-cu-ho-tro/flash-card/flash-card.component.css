@@ -8,18 +8,23 @@
 
 .flash-card-container {
   position: absolute;
-  top: 60%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  max-height: 65%;
+  overflow-y: auto;
   justify-content: center;
   align-items: center;
+  gap: 30px;
 }
 
 .card {
   cursor: pointer;
-  width: 25rem;
+  width: 15rem;
   transition: 0.5s ease;
   border-radius: 10px;
 }
@@ -48,7 +53,7 @@
   border-radius: 10px;
 }
 
-.download button {
+.download a {
   text-decoration: none;
   border: 3px solid #00a9ff;
   border-radius: 10px;
@@ -62,6 +67,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.download button:hover {
+.download a:hover {
   background-color: #00a9ff;
 }
