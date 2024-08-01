@@ -51,4 +51,14 @@
   align-items: center;
   justify-content: space-between;
   height: 70%;
+  width: 90%;
+}
+
+app-side-menu-button {
+  width: 90%;
+  transition: 0.5s ease;
+}
+
+app-side-menu-button:hover {
+  margin-bottom: 10px;
 }
