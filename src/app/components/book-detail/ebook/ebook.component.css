@@ -1,7 +1,7 @@
 .e-book {
   width: 100%;
   min-height: 100svh;
-  background: url("/images/images/menu-background.png");
+  background: url("/images/images/menu-background.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -23,9 +23,9 @@
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 15rem;
 }
 
 .menu-title {
@@ -33,10 +33,6 @@
 }
 
 app-ebook-button {
-  width: 25%;
+  width: 10%;
   transition: 0.5s ease;
-}
-
-app-cong-cu-button {
-  width: 31%;
 }

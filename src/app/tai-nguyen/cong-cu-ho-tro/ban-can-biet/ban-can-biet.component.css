@@ -45,3 +45,17 @@
 .right-arrow {
   right: 5%;
 }
+
+.download {
+  position: fixed;
+  width: 10rem;
+  cursor: pointer;
+  transition: 0.5s ease;
+  top: 150px;
+  right: 50px;
+  z-index: 10;
+}
+
+.download:hover {
+  width: 11rem;
+}

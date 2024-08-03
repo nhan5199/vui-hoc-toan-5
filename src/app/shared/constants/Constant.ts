@@ -3288,7 +3288,7 @@ export default class {
       'public/images/images/ket-noi-tri-thuc-icon.jpg',
       'public/images/images/loading.gif',
       'public/images/images/menu-background.gif',
-      'public/images/images/menu-background.png',
+      'public/images/images/menu-background.gif',
       'public/images/images/phan-mem-toan-hoc-background.gif',
       'public/images/images/puzzle/1.png',
       'public/images/images/puzzle/10.png',

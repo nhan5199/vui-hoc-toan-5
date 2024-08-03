@@ -1,7 +1,8 @@
 <div [class.disappear]="disappearHomeImg" class="home">
-  <div class="start" (click)="onDisappear()">
+  <!-- <div class="start" (click)="onDisappear()">
     <span class="math">MATH</span> <span class="class">CLASS</span>
-  </div>
+  </div> -->
+  <home-button (clickHome)="onDisappear()"></home-button>
 </div>
 <div [class.appear]="appearMenu" class="menu">
   <div class="menu-title">VUI HỌC TOÁN 5</div>

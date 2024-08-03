@@ -1,15 +1,12 @@
-import { ChanTroiSangTaoModule } from './chan-troi-sang-tao/chan-troi-sang-tao.module';
-import { KetNoiTriThucModule } from './ket-noi-tri-thuc/ket-noi-tri-thuc.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { FlipBookComponent } from './components/flip-book/flip-book.component';
-import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
-import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
 import { EBookComponent } from './components/book-detail/ebook/ebook.component';
-import { KeHoachBaiDayComponent } from './components/book-detail/ke-hoach-bai-day/ke-hoach-bai-day.component';
 import { GiaoAnDienTuComponent } from './components/book-detail/giao-an-dien-tu/giao-an-dien-tu.component';
+import { KeHoachBaiDayComponent } from './components/book-detail/ke-hoach-bai-day/ke-hoach-bai-day.component';
 import { PhieuBaiTapComponent } from './components/book-detail/phieu-bai-tap/phieu-bai-tap.component';
+import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
+import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -42,10 +39,6 @@ export const routes: Routes = [
     path: 'tai-nguyen',
     loadChildren: () =>
       import('./tai-nguyen/tai-nguyen.module').then((m) => m.TaiNguyenModule),
-  },
-  {
-    path: 'doc-sach',
-    component: FlipBookComponent,
   },
   {
     path: 'doc-slide',

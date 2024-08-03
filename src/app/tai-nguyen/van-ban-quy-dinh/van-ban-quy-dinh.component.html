@@ -9,7 +9,15 @@
       [buttonIcon]="
         'images/images/buttons/van-ban-quy-dinh-detail-button-icon.png'
       "
+      (viewFile)="onViewFile($event)"
     ></app-van-ban-button>
   </div>
   <p class="footer">Vuihoctoan5</p>
 </div>
+
+<app-flip-book
+  *ngIf="isDisplayFlipBook"
+  [folderPath]="currentImgPath"
+  [downloadUrl]="currentDownloadUrl"
+  (closeFlipBook)="onCloseFlipBook($event)"
+></app-flip-book>

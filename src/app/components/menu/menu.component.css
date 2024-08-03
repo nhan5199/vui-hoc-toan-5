@@ -38,7 +38,7 @@
 }
 
 .menu.hidden {
-  width: 1px;
+  width: 0px;
 }
 
 .menu.hidden .menu-button {

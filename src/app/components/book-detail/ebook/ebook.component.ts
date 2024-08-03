@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FileData, FileService } from '../../../services/file.service';
 import { EBookButtonComponent } from '../../buttons/ebook-button/ebook-button.component';
 import { CommonModule } from '@angular/common';
+import { FlipBookComponent } from '../../flip-book/flip-book.component';
 
 @Component({
   selector: 'app-ebook',
   standalone: true,
-  imports: [EBookButtonComponent, CommonModule],
+  imports: [EBookButtonComponent, CommonModule, FlipBookComponent],
   templateUrl: './ebook.component.html',
   styleUrl: './ebook.component.css',
 })
@@ -16,6 +17,10 @@ export class EBookComponent implements OnInit {
   bookIconUrl: string = '';
   folderPath: string = '';
   files: FileData[] = [];
+
+  currentImgPath: string = '';
+  currentDownloadUrl: string = '';
+  isDisplayFlipBook: boolean = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -54,5 +59,15 @@ export class EBookComponent implements OnInit {
       title += 'Kết nối tri thức';
     }
     return title;
+  }
+
+  onViewBook(event: any) {
+    this.currentImgPath = event?.name;
+    this.currentDownloadUrl = event?.url;
+    this.isDisplayFlipBook = true;
+  }
+
+  onCloseFlipBook(event: any) {
+    if (event) this.isDisplayFlipBook = false;
   }
 }

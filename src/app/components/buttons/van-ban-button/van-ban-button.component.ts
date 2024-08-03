@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  EventEmitter,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FileService } from '../../../services/file.service';
 
@@ -14,6 +21,7 @@ export class VanBanButtonComponent implements OnChanges {
   @Input('fileDownloadUrl') fileDownloadUrl: string = '';
   @Input('imgFolderPath') imgFolderPath: string = '';
   @Input('buttonIcon') buttonIcon: string = '';
+  @Output('viewFile') viewFile: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private readonly router: Router,
@@ -42,14 +50,10 @@ export class VanBanButtonComponent implements OnChanges {
     }
   }
 
-  viewFile() {
-    this.fileService.setImageFolderPath(
-      this.imgFolderPath + '/' + this.buttonName?.split('.')[0]
-    );
-    this.fileService.setImageDownloadUrl(this.fileDownloadUrl);
-    this.fileService.setFileName(this.buttonName);
-    setTimeout(() => {
-      this.router.navigateByUrl('doc-sach');
-    }, 100);
+  onClickFile() {
+    this.viewFile.emit({
+      name: this.imgFolderPath + '/' + this.buttonName?.split('.')[0],
+      url: this.fileDownloadUrl,
+    });
   }
 }

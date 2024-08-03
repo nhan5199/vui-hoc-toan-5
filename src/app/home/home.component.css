@@ -41,39 +41,11 @@
 }
 
 /*home-button*/
-.start {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-  background: url("/images/images/buttons/home-go-to-button-background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: none;
-  /* border: 15px solid orangered; */
-  border-radius: 80px;
-  padding: 10px 50px;
-  cursor: pointer;
-  transition: 1s ease;
-  display: flex;
-  gap: 20px;
-  cursor: pointer;
+home-button {
   position: absolute;
-  bottom: 5%;
   left: 50%;
-  transform: translateX(-50%);
-}
-
-.start span {
-  font-weight: 700;
-  transition: 1s ease;
-}
-
-.start .math {
-  color: #2692d2;
-}
-
-.start .class {
-  color: #039961;
+  bottom: 5%;
+  transform: translate(-50%, 0);
 }
 
 .start:hover {

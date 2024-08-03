@@ -1,69 +1,64 @@
-import { CommonModule, Location } from '@angular/common';
 import {
-  ChangeDetectorRef,
+  AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
-  QueryList,
-  ViewChildren,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
 } from '@angular/core';
-import { FileService } from '../../services/file.service';
 import Constant from '../../shared/constants/Constant';
-import { XemVideoComponent } from '../xem-video/xem-video.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-flip-book',
   standalone: true,
-  imports: [CommonModule, XemVideoComponent],
+  imports: [CommonModule],
   templateUrl: './flip-book.component.html',
   styleUrl: './flip-book.component.css',
 })
-export class FlipBookComponent implements OnInit {
-  @ViewChildren('panelRef') panels: QueryList<ElementRef> =
-    new QueryList<ElementRef>();
+export class FlipBookComponent implements AfterViewInit, OnChanges {
+  @Input('folderPath') folderPath: string = '';
+  @Input('downloadUrl') downloadUrl: string = '';
+  @Output('closeFlipBook')
+  closeFlipBook: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  imageFolderPath: string = '';
-  imageDownloadUrl: string = '';
-  fileName: string = '';
+  listImgs: string[] = [];
+  isLoading: boolean = true;
 
-  listImagePaths: string[] = [];
-  content: any[] = [];
+  currentPageIndex: number = 0; // Track the current page index
 
-  loading: boolean = true;
+  constructor(private readonly el: ElementRef) {}
 
-  constructor(
-    private readonly fileService: FileService,
-    private cdr: ChangeDetectorRef,
-    private readonly location: Location
-  ) {}
-
-  ngOnInit(): void {
-    this.imageFolderPath = this.fileService
-      .getImageFolderPath()
-      ?.split('//')[1];
-    this.imageDownloadUrl = this.fileService.getImageDownloadUrl();
-    this.fileName = this.fileService.getFileName();
-
-    if (this.imageFolderPath?.length > 0) {
-      this.listImagePaths = Constant.IMAGE_PATHS.images.filter((x) =>
-        x.includes(this.imageFolderPath)
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['folderPath'] && this.folderPath?.length > 0) {
+      this.listImgs = Constant.IMAGE_PATHS.images.filter((x) =>
+        x.includes(this.folderPath)
       );
+      this.sortImagePathsByNumber(this.listImgs);
+    }
+  }
 
-      let path = `${this.imageFolderPath}`;
-      let imgPaths = this.listImagePaths.filter((x) => x.includes(path));
-      this.sortImagePathsByNumber(imgPaths);
-
-      for (let i = 0; i < imgPaths.length; i += 2) {
-        let item = {
-          front: imgPaths[i].split('public/')[1],
-          back:
-            i + 1 >= imgPaths.length
-              ? '/assets/imgs/last-page.png'
-              : imgPaths[i + 1].split('public/')[1],
-        };
-        this.content.push(item);
+  ngAfterViewInit(): void {
+    const pages = document.querySelectorAll<HTMLDivElement>('.book .page');
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+      if (i % 2 === 0) {
+        page.style.zIndex = (pages.length - i).toString();
       }
     }
+
+    pages.forEach((page, index) => {
+      page.addEventListener('click', () => {
+        this.flipPage(index, page);
+      });
+    });
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   }
 
   sortImagePathsByNumber(paths: string[]) {
@@ -80,86 +75,85 @@ export class FlipBookComponent implements OnInit {
     return match ? parseInt(match[1], 10) : 0;
   }
 
-  ngAfterViewInit(): void {
-    this.panels.changes.subscribe(() => {
-      // This code will run when the QueryList is updated
-      const panelElements: ElementRef[] = this.panels.toArray();
+  onClick(direction: number) {
+    const pages = document.querySelectorAll<HTMLDivElement>('.book .page');
 
-      // You can now access the panel elements and work with them
-      const panels: HTMLElement[] = Array.from(
-        document.querySelectorAll('.panel')
-      );
-      const numPanels: number = panels.length;
+    // Calculate the next page pair index based on the current page pair index and the direction
+    let nextPagePairIndex = this.currentPageIndex + direction * 2;
 
-      // if a panel is open, lower its z-idx
-      // otherwise, set zIdx back to the original
-      function checkZ(aPanel: HTMLElement) {
-        if (aPanel.classList.contains('open')) {
-          setTimeout(() => {
-            aPanel.style.zIndex = '1';
-          }, 800);
+    if (nextPagePairIndex < 0 || nextPagePairIndex >= pages.length) {
+      return; // Do nothing if the next page pair index is out of bounds
+    }
+
+    // Flip the pages in pairs
+    if (direction === -1 && this.currentPageIndex > 0) {
+      this.flipPagePair(this.currentPageIndex - 2, pages);
+      this.currentPageIndex -= 2;
+    } else if (direction === 1 && this.currentPageIndex < pages.length - 2) {
+      this.flipPagePair(this.currentPageIndex, pages);
+      this.currentPageIndex += 2;
+    }
+  }
+
+  flipPagePair(index: number, pages: NodeListOf<HTMLDivElement>) {
+    if (index < 0 || index >= pages.length) return;
+
+    // Flip the even page and the next odd page together
+    const evenPage = pages[index];
+    const oddPage = pages[index + 1];
+
+    if (evenPage) {
+      evenPage.classList.toggle('flipped');
+    }
+    if (oddPage) {
+      oddPage.classList.toggle('flipped');
+    }
+  }
+
+  flipPage(index: number, page: HTMLDivElement) {
+    if (!page) return;
+
+    if (index % 2 === 0) {
+      // Even pages
+      page.classList.toggle('flipped');
+      const nextPage = page.nextElementSibling as HTMLDivElement;
+      if (nextPage) {
+        if (page.classList.contains('flipped')) {
+          nextPage.classList.add('flipped');
         } else {
-          // set z-index back to original stored in data
-          const zIdx = Number(aPanel.dataset['zIdx']);
-          aPanel.style.zIndex = zIdx.toString();
+          nextPage.classList.remove('flipped');
         }
       }
-
-      // loop through all panels and reverse sort via zIdx
-      panels.forEach((panel, i) => {
-        const zIdx: number = numPanels - i; // Specify the type of zIdx
-        panel.style.zIndex = zIdx.toString();
-        panel.dataset['zIdx'] = zIdx.toString();
-      });
-
-      const imgs: HTMLElement[] = Array.from(
-        document.querySelectorAll('.panel img')
-      );
-
-      imgs.forEach((img) => {
-        img.addEventListener('click', (event) => {
-          const target = img.parentElement?.parentElement as HTMLElement;
-          const panel = target.closest('.panel') as HTMLElement;
-          if (panel) {
-            if (
-              target.classList.contains('front') ||
-              target.classList.contains('back')
-            ) {
-              panel.classList.toggle('open');
-              checkZ(panel);
-            }
-          }
-          event.stopPropagation();
-        });
-      });
-    });
-
-    setTimeout(() => {
-      this.loading = false;
-      this.cdr.detectChanges();
-    }, 0);
+    } else {
+      // Odd pages
+      page.classList.toggle('flipped');
+      const prevPage = page.previousElementSibling as HTMLDivElement;
+      if (prevPage) {
+        if (page.classList.contains('flipped')) {
+          prevPage.classList.add('flipped');
+        } else {
+          prevPage.classList.remove('flipped');
+        }
+      }
+    }
   }
 
-  onBack() {
-    this.location.back();
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      this.onClick(-1);
+    } else if (event.key === 'ArrowRight') {
+      this.onClick(+1);
+    }
   }
 
-  downloadFile(): void {
-    const link = document.createElement('a');
-    link.href = `/files/${this.imageFolderPath}`; // Replace with your file path
-    link.download = `${this.fileName}`; // Replace with the desired file name
-    link.click();
-  }
-
-  isDisplayVideo: boolean = false;
-  slectedVideoUrl: string =
-    'https://firebasestorage.googleapis.com/v0/b/vui-hoc-toan-5.appspot.com/o/tai-nguyen%2Fvideo-minh-hoa%2FHo%E1%BA%A1t%20h%C3%ACnh_H%C3%ACnh%20tr%C3%B2n_%C4%91%C6%B0%E1%BB%9Dng%20tr%C3%B2n.mp4?alt=media&token=3efb0651-3f46-4978-a45e-7f252cf64586';
-
-  onViewVideo() {
-    this.isDisplayVideo = true;
-  }
-
-  onCloseVideo(event: boolean) {
-    if (event) this.isDisplayVideo = false;
+  @HostListener('document:click', ['$event'])
+  handleClick(event: Event) {
+    const clickedInside = this.el.nativeElement
+      .querySelector('.flip-book .book')
+      .contains(event.target as Node);
+    if (!clickedInside) {
+      this.closeFlipBook.emit(true);
+    }
   }
 }

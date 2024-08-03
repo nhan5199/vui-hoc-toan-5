@@ -6,6 +6,15 @@
       *ngFor="let file of files"
       [buttonName]="file.name"
       [folderPath]="folderPath"
+      [folderDownloadUrl]="file.url"
+      (viewBook)="onViewBook($event)"
     ></app-ebook-button>
   </div>
 </div>
+
+<app-flip-book
+  *ngIf="isDisplayFlipBook"
+  [folderPath]="currentImgPath"
+  [downloadUrl]="currentDownloadUrl"
+  (closeFlipBook)="onCloseFlipBook($event)"
+></app-flip-book>

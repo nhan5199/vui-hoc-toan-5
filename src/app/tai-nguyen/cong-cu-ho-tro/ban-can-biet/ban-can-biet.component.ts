@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FileData, FileService } from '../../../services/file.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ban-can-biet',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './ban-can-biet.component.html',
   styleUrl: './ban-can-biet.component.css',
 })
@@ -24,8 +26,21 @@ export class BanCanBietComponent implements OnInit {
   ];
 
   currentUrl: number = 0;
+  downloadUrl: string = '';
 
-  ngOnInit(): void {}
+  constructor(private readonly fileService: FileService) {}
+
+  ngOnInit(): void {
+    let fileDownload: FileData[] = [];
+    this.fileService
+      .getFilesList('tai-nguyen/cong-cu-ho-tro/ban-can-biet')
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          fileDownload.push(file);
+        });
+        this.downloadUrl = fileDownload[0].url;
+      });
+  }
 
   onClick(event: number) {
     this.currentUrl += event;

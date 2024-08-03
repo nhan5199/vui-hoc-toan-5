@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MenuButtonComponent } from '../components/buttons/menu-button/menu-button.component';
+import { HomeButtonComponent } from '../components/buttons/home-button/home-button.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MenuButtonComponent],
+  imports: [CommonModule, MenuButtonComponent, HomeButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

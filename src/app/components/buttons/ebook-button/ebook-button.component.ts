@@ -1,7 +1,14 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import Constant from '../../../shared/constants/Constant';
-import { FileService } from '../../../services/file.service';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { FileService } from '../../../services/file.service';
+import Constant from '../../../shared/constants/Constant';
 
 @Component({
   selector: 'app-ebook-button',
@@ -13,6 +20,10 @@ import { Router } from '@angular/router';
 export class EBookButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
+  @Input('folderDownloadUrl') folderDownloadUrl: string = '';
+  @Output('viewBook')
+  viewBook: EventEmitter<any> = new EventEmitter<any>();
+
   imageUrl: string[] = [];
 
   constructor(
@@ -32,18 +43,12 @@ export class EBookButtonComponent implements OnChanges {
     }
   }
 
-  viewFile() {
-    this.fileService.setImageFolderPath(
-      this.folderPath + '/' + this.buttonName?.split('.')[0]
-    );
-    this.fileService.setImageDownloadUrl(
-      `${this.folderPath}/${this.buttonName.split('.')[0]}/${
+  onClickButton() {
+    this.viewBook.emit({
+      name: `${this.folderPath}/${this.buttonName.split('.')[0]}/${
         this.buttonName.split('.')[0]
-      }`
-    );
-    this.fileService.setFileName(this.buttonName);
-    setTimeout(() => {
-      this.router.navigateByUrl('doc-sach');
-    }, 100);
+      }`.split('//')[1],
+      url: this.folderDownloadUrl,
+    });
   }
 }

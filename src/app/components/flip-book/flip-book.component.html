@@ -1,52 +1,27 @@
-<div class="flip-book-container">
-  <!-- <img
-    class="back-icon"
-    title="Trở về"
-    src="icons/back-icon.png"
-    alt=""
-    (click)="onBack()"
-  /> -->
-
-  <a (click)="downloadFile()"
-    ><img
-      class="download"
-      title="Tải file"
-      src="icons/download-icon.png"
-      alt=""
+<div class="flip-book">
+  <a [href]="downloadUrl" download target="_blank">
+    <img class="download" title="Tải file" src="icons/download-icon.png" alt=""
   /></a>
-
-  <div *ngIf="loading" class="loading">loading...</div>
-  <div *ngIf="!loading" class="flipbook" id="flipbook">
-    <div class="flip-panel">
-      <ng-container *ngFor="let item of content; let i = index">
-        <div class="panel" #panelRef>
-          <div class="front">
-            <div class="content">
-              <span class="fold"></span>
-              <img [src]="item.front" alt="" />
-            </div>
-          </div>
-
-          <div class="back">
-            <div
-              class="action-icon"
-              *ngIf="i == 1 && imageFolderPath.includes('canh-dieu')"
-            >
-              <img (click)="onViewVideo()" src="icons/video-icon.png" alt="" />
-            </div>
-            <div class="content">
-              <span class="fold1"></span>
-              <img [src]="item.back" alt="" />
-            </div>
-          </div>
-        </div>
-      </ng-container>
+  <div class="loading" *ngIf="isLoading">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="book" [class.disappear]="isLoading">
+    <img
+      class="left-arrow"
+      src="icons/left-arrow.png"
+      alt=""
+      (click)="onClick(-1)"
+    />
+    <img
+      class="right-arrow"
+      src="icons/right-arrow.png"
+      alt=""
+      (click)="onClick(+1)"
+    />
+    <div id="pages" class="pages">
+      <div class="page" *ngFor="let img of listImgs; let i = index">
+        <img [src]="img.split('public/')[1]" alt="" />
+      </div>
     </div>
   </div>
 </div>
-
-<app-xem-video
-  *ngIf="isDisplayVideo"
-  [videoUrl]="slectedVideoUrl"
-  (closeVideo)="onCloseVideo($event)"
-></app-xem-video>

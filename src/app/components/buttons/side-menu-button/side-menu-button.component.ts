@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,4 +12,11 @@ export class SideMenuButtonComponent {
   @Input('buttonName') buttonName: string = '';
   @Input('routerNavigate') routerNavigate: string = '';
   @Input('buttonIcon') buttonIcon: string = '';
+
+  @Output('clickButton') clickButton: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
+
+  onClickButton() {
+    this.clickButton.emit(true);
+  }
 }
