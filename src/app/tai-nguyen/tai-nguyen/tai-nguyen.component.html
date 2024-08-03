@@ -1,4 +1,5 @@
-<div class="tai-nguyen">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="tai-nguyen" [class.hidden]="isLoading" #taiNguyenContainer>
   <p class="menu-title">KHO TÀI NGUYÊN</p>
   <div class="tai-nguyen-container">
     <app-book-button

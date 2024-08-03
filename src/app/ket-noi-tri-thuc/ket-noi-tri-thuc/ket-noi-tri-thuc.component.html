@@ -1,4 +1,9 @@
-<div class="ket-noi-tri-thuc">
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="ket-noi-tri-thuc"
+  [class.hidden]="isLoading"
+  #ketNoiTriThucContainer
+>
   <p class="menu-title">KẾT NỐI TRI THỨC</p>
   <img src="images/images/ket-noi-tri-thuc-icon.jpg" alt="" class="book-logo" />
   <div class="ket-noi-tri-thuc-container">

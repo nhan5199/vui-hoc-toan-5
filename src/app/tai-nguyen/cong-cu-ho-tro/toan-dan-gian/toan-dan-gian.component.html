@@ -1,4 +1,5 @@
-<div class="toan-dan-gian">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="toan-dan-gian" [class.hidden]="isLoading" #toanDanGianContainer>
   <div class="toan-dan-gian-container">
     <div class="toan-card">
       <img

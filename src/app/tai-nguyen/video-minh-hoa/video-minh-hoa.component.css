@@ -1,7 +1,7 @@
 .video-minh-hoa {
   width: 100%;
   height: 100svh;
-  background: url("/images/images/video-minh-hoa-background.gif");
+  background-image: url("/images/images/video-minh-hoa-background.gif");
   background-repeat: no-repeat;
   background-size: cover;
 }

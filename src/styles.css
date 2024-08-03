@@ -87,3 +87,18 @@ body {
   background: #a8a8a8;
 }
 /*-----------End Scrollbar --------------------*/
+
+/*-----------Loading --------------------*/
+.loading {
+  width: 100%;
+  height: 100svh;
+  background-image: url("/images/images/loading.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hidden {
+  display: none;
+}
+/*-----------End Loading --------------------*/

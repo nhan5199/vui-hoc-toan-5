@@ -1,4 +1,5 @@
-<div class="slide">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="slide" [class.hidden]="isLoading" #slideContainer>
   <div class="slide-container">
     <!-- <div class="slide-item">
       <img src="icons/ppt.png" alt="" />

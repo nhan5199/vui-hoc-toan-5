@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListFileComponent } from '../../components/list-file/list-file.component';
 import { BookButtonComponent } from '../../components/buttons/book-button/book-button.component';
+import { CommonModule } from '@angular/common';
+import { ImageLoaderService } from '../../services/image-loader.service';
 
 @Component({
   selector: 'app-canh-dieu',
   standalone: true,
-  imports: [ListFileComponent, BookButtonComponent],
+  imports: [ListFileComponent, BookButtonComponent, CommonModule],
   templateUrl: './canh-dieu.component.html',
   styleUrl: './canh-dieu.component.css',
 })
-export class CanhDieuComponent implements OnInit {
+export class CanhDieuComponent implements OnInit, AfterViewInit {
   currentPath: string = '/';
   listFilePath: string = '';
 
@@ -20,7 +29,11 @@ export class CanhDieuComponent implements OnInit {
   buttonName: string = '';
   routerName: string = '';
 
-  constructor(private readonly route: ActivatedRoute) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly imageLoaderService: ImageLoaderService
+  ) {}
   ngOnInit(): void {
     this.route.pathFromRoot.forEach((route) => {
       route.url.subscribe((urlSegment) => {
@@ -49,5 +62,15 @@ export class CanhDieuComponent implements OnInit {
     setTimeout(() => {
       this.hiddenMenu = false;
     }, 100);
+  }
+
+  isLoading = true;
+  @ViewChild('canhDieuContainer', { static: true })
+  canhDieuContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(this.canhDieuContainer, () => {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

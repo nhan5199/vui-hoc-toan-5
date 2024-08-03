@@ -1,4 +1,5 @@
-<div class="cong-cu-ho-tro">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="cong-cu-ho-tro" [class.hidden]="isLoading" #congCuHoTroContainer>
   <p class="menu-title">CÔNG CỤ HỖ TRỢ</p>
   <div class="cong-cu-ho-tro-container">
     <app-cong-cu-button

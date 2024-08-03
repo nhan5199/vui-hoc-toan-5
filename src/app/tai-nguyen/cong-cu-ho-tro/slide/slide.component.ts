@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FileData, FileService } from '../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { SlideButtonComponent } from '../../../components/buttons/slide-button/slide-button.component';
 import { CommonModule } from '@angular/common';
 import { XemSlideComponent } from '../../../components/xem-slide/xem-slide.component';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-slide',
@@ -12,7 +20,7 @@ import { XemSlideComponent } from '../../../components/xem-slide/xem-slide.compo
   templateUrl: './slide.component.html',
   styleUrl: './slide.component.css',
 })
-export class SlideComponent implements OnInit {
+export class SlideComponent implements OnInit, AfterViewInit {
   currentPath: string = '';
   files: FileData[] = [];
 
@@ -22,7 +30,9 @@ export class SlideComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private fileService: FileService
+    private fileService: FileService,
+    private imageLoaderService: ImageLoaderService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -55,5 +65,15 @@ export class SlideComponent implements OnInit {
 
   onCloseViewSlide(event: boolean) {
     if (event) this.isDisplayViewSlide = false;
+  }
+
+  isLoading = true;
+  @ViewChild('slideContainer', { static: true })
+  slideContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(this.slideContainer, () => {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

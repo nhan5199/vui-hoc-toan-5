@@ -1,4 +1,5 @@
-<div class="canh-dieu">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="canh-dieu" [class.hidden]="isLoading" #canhDieuContainer>
   <p class="menu-title">CÁNH DIỀU</p>
   <img src="images/images/canh-dieu-icon.jpg" alt="" class="book-logo" />
   <div class="canh-dieu-container">

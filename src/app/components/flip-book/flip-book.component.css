@@ -8,7 +8,7 @@
   z-index: 200;
 }
 
-.loading {
+.book-loading {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +22,7 @@
   z-index: 300;
 }
 
-.loading img {
+.book-loading img {
   width: 100%;
   height: auto;
 }

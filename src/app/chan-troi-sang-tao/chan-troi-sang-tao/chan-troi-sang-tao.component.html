@@ -1,4 +1,9 @@
-<div class="chan-troi-sang-tao">
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="chan-troi-sang-tao"
+  [class.hidden]="isLoading"
+  #chanTroiSangTaoContainer
+>
   <p class="menu-title">CHÂN TRỜI SÁNG TẠO</p>
   <img
     src="images/images/chan-troi-sang-tao-icon.jpg"
