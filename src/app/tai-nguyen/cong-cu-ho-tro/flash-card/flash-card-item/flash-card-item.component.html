@@ -1,0 +1,10 @@
+<div class="flash-card-item">
+  <div class="flash-card-item-container">
+    <div *ngFor="let file of files" class="flash-card">
+      <img [src]="file.url" alt="" />
+      <div class="download-content">
+        <a [href]="file.url" download target="_blank">Tải xuống </a>
+      </div>
+    </div>
+  </div>
+</div>

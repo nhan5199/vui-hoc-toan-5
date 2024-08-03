@@ -13,6 +13,7 @@ import { SlideComponent } from './cong-cu-ho-tro/slide/slide.component';
 import { QuizzComponent } from './cong-cu-ho-tro/quizz/quizz.component';
 import { ToanDanGianComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian.component';
 import { BanCanBietComponent } from './cong-cu-ho-tro/ban-can-biet/ban-can-biet.component';
+import { FlashCardItemComponent } from './cong-cu-ho-tro/flash-card/flash-card-item/flash-card-item.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +52,11 @@ export const routes: Routes = [
   {
     path: 'cong-cu-ho-tro/flash-card',
     component: FlashCardComponent,
+  },
+
+  {
+    path: 'cong-cu-ho-tro/flash-card/:item',
+    component: FlashCardItemComponent,
   },
   {
     path: 'cong-cu-ho-tro/slide',

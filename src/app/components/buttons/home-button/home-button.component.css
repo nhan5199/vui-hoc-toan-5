@@ -4,10 +4,10 @@
 }
 
 .home-button img {
-  width: 16rem;
+  width: 12rem;
   position: absolute;
-  left: -25%;
-  top: -40%;
+  left: -15%;
+  top: -60%;
   z-index: 10;
 }
 

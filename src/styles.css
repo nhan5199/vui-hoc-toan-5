@@ -13,7 +13,7 @@ body {
 :root {
   --title: "Kablammo";
   --text: "Twinkle Star";
-  --title-size: 3vw;
+  --title-size: 2vw;
   --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   --background-transparent-black: rgba(0, 0, 0, 0.5);
   --title-font: "Pattaya";
@@ -40,7 +40,7 @@ body {
 
 /*-----------Menu button --------------------*/
 .menu-title {
-  font-size: 5rem;
+  font-size: 3rem;
   font-family: var(--black-ops-one-font);
   color: white;
   padding-top: 8rem;
@@ -51,7 +51,7 @@ body {
 .back-icon {
   position: fixed;
 
-  width: 50px;
+  width: 2.4rem;
   cursor: pointer;
   transition: 0.5s ease;
   top: 50px;
@@ -59,7 +59,7 @@ body {
 }
 
 .back-icon:hover {
-  width: 55px;
+  width: 2.5rem;
   transition: 0.5s ease;
 }
 /*-----------End Back button --------------------*/

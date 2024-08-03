@@ -20,12 +20,12 @@
 
 .e-book-container {
   margin: 1rem auto;
-  width: 80%;
+  width: 85%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 15rem;
+  gap: 10rem;
 }
 
 .menu-title {
@@ -33,6 +33,6 @@
 }
 
 app-ebook-button {
-  width: 10%;
+  width: 15%;
   transition: 0.5s ease;
 }

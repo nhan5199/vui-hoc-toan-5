@@ -1,6 +1,39 @@
 <div class="flash-card">
   <div class="flash-card-container">
-    <div class="card" *ngFor="let file of files" [title]="file.name">
+    <app-flash-card-button
+      [buttonName]="'Phân số'"
+      [buttonIcon]="''"
+      [routerNavigate]="'phan-so'"
+    ></app-flash-card-button>
+    <app-flash-card-button
+      [buttonName]="'Bảng đơn vị'"
+      [buttonIcon]="''"
+      [routerNavigate]="'bang-don-vi'"
+    ></app-flash-card-button>
+    <app-flash-card-button
+      [buttonName]="'Hình học - Học hình'"
+      [buttonIcon]="''"
+      [routerNavigate]="'hinh-hoc-hoc-hinh'"
+    ></app-flash-card-button>
+    <app-flash-card-button
+      [buttonName]="'Ghép hình sáng tạo'"
+      [buttonIcon]="''"
+      [routerNavigate]="'ghep-hinh-sang-tao'"
+    ></app-flash-card-button>
+    <app-flash-card-button
+      [buttonName]="'Tổng hợp công thức'"
+      [buttonIcon]="''"
+      [routerNavigate]="'tong-hop-cong-thuc'"
+    ></app-flash-card-button>
+    <app-flash-card-button
+      [buttonName]="'Học toán cùng nhân vật hoạt hình'"
+      [buttonIcon]="''"
+      [routerNavigate]="'hoc-toan-cung-nhan-vat-hoat-hinh'"
+    ></app-flash-card-button>
+  </div>
+</div>
+<!--
+<div class="card" *ngFor="let file of files" [title]="file.name">
       <img
         [src]="
           'images/images/tai-nguyen/cong-cu-ho-tro/flash-card/' + file.name
@@ -10,6 +43,4 @@
       <div class="download">
         <a [href]="file.url" target="_blank">Nhấn để tải</a>
       </div>
-    </div>
-  </div>
-</div>
+    </div> -->
