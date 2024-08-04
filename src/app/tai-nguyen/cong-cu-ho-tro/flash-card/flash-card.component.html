@@ -1,4 +1,5 @@
-<div class="flash-card">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="flash-card" [class.hidden]="isLoading" #flashCardContainer>
   <div class="flash-card-container">
     <app-flash-card-button
       [buttonName]="'Phân số'"
@@ -32,15 +33,3 @@
     ></app-flash-card-button>
   </div>
 </div>
-<!--
-<div class="card" *ngFor="let file of files" [title]="file.name">
-      <img
-        [src]="
-          'images/images/tai-nguyen/cong-cu-ho-tro/flash-card/' + file.name
-        "
-        alt=""
-      />
-      <div class="download">
-        <a [href]="file.url" target="_blank">Nhấn để tải</a>
-      </div>
-    </div> -->

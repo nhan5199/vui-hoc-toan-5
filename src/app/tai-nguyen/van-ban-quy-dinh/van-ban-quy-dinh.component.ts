@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { VanBanButtonComponent } from '../../components/buttons/van-ban-button/van-ban-button.component';
 import { FileData, FileService } from '../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../components/flip-book/flip-book.component';
+import { ImageLoaderService } from '../../services/image-loader.service';
 
 @Component({
   selector: 'app-van-ban-quy-dinh',
@@ -22,7 +29,9 @@ export class VanBanQUyDinhComponent implements OnInit {
 
   constructor(
     private readonly fileService: FileService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly imageLoaderService: ImageLoaderService
   ) {}
 
   ngOnInit(): void {
@@ -53,5 +62,18 @@ export class VanBanQUyDinhComponent implements OnInit {
 
   onCloseFlipBook(event: any) {
     if (event) this.isDisplayFlipBook = false;
+  }
+
+  isLoading = true;
+  @ViewChild('vanBanQuyDinhContainer', { static: true })
+  vanBanQuyDinhContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(
+      this.vanBanQuyDinhContainer,
+      () => {
+        this.isLoading = false;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 }

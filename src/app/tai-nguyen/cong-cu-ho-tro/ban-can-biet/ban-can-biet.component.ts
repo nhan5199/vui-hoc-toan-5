@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FileData, FileService } from '../../../services/file.service';
 import { RouterLink } from '@angular/router';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-ban-can-biet',
@@ -28,7 +35,11 @@ export class BanCanBietComponent implements OnInit {
   currentUrl: number = 0;
   downloadUrl: string = '';
 
-  constructor(private readonly fileService: FileService) {}
+  constructor(
+    private readonly fileService: FileService,
+    private readonly imageLoaderService: ImageLoaderService,
+    private readonly cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     let fileDownload: FileData[] = [];
@@ -49,5 +60,15 @@ export class BanCanBietComponent implements OnInit {
     } else if (this.currentUrl > this.imgUrls.length - 1) {
       this.currentUrl = 0;
     }
+  }
+
+  isLoading = true;
+  @ViewChild('banCanBietContainer', { static: true })
+  banCanBietContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(this.banCanBietContainer, () => {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

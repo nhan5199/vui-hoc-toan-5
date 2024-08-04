@@ -1,4 +1,5 @@
-<div class="quizz">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="quizz" [class.hidden]="isLoading" #quizzContainer>
   <div class="quizz-container">
     <div class="quizz-card" title="Nhấn để tải">
       <img

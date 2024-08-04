@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FileData, FileService } from '../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import Constant from '../../shared/constants/Constant';
 import { CommonModule } from '@angular/common';
 import { VideoMinhHoaButtonComponent } from '../../components/buttons/video-minh-hoa-button/video-minh-hoa-button.component';
 import { XemVideoComponent } from '../../components/xem-video/xem-video.component';
+import { ImageLoaderService } from '../../services/image-loader.service';
 
 @Component({
   selector: 'app-video-minh-hoa',
@@ -22,7 +29,9 @@ export class VideoMinhHoaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private fileService: FileService
+    private fileService: FileService,
+    private cdRef: ChangeDetectorRef,
+    private imageLoaderService: ImageLoaderService
   ) {}
 
   ngOnInit(): void {
@@ -54,5 +63,18 @@ export class VideoMinhHoaComponent implements OnInit {
 
   onCloseVideo(event: boolean) {
     if (event) this.isDisplayVideo = false;
+  }
+
+  isLoading = true;
+  @ViewChild('videoMinhHoaContainer', { static: true })
+  videoMinhHoaContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(
+      this.videoMinhHoaContainer,
+      () => {
+        this.isLoading = false;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 }

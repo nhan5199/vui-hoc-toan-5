@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -6,9 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CongCuButtonComponent } from '../../components/buttons/cong-cu-button/cong-cu-button.component';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ImageLoaderService } from '../../services/image-loader.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cong-cu-ho-tro',
@@ -19,8 +18,6 @@ import { CommonModule } from '@angular/common';
 })
 export class CongCuHoTroComponent implements AfterViewInit {
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private readonly imageLoaderService: ImageLoaderService,
     private readonly cdRef: ChangeDetectorRef
   ) {}

@@ -1,4 +1,9 @@
-<div class="van-ban-quy-dinh">
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="van-ban-quy-dinh"
+  [class.hidden]="isLoading"
+  #vanBanQuyDinhContainer
+>
   <p class="menu-title">VĂN BẢN QUY ĐỊNH</p>
   <div class="van-ban-quy-dinh-container">
     <app-van-ban-button

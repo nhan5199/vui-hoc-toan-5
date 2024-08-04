@@ -1,4 +1,5 @@
-<div class="stem">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="stem" [class.hidden]="isLoading" #stemContainer>
   <div class="stem-container">
     <app-stem-button
       *ngFor="let file of files"

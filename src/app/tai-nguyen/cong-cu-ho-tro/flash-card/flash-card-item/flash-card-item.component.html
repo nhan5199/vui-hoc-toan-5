@@ -1,4 +1,5 @@
-<div class="flash-card-item">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="flash-card-item" [class.hidden]="isLoading" #flashCardItemContainer>
   <div class="flash-card-item-container">
     <div *ngFor="let file of files" class="flash-card">
       <img [src]="file.url" alt="" />

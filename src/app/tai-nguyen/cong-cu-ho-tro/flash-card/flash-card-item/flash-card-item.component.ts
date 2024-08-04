@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FileData, FileService } from '../../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ImageLoaderService } from '../../../../services/image-loader.service';
 
 @Component({
   selector: 'app-flash-card-item',
@@ -20,7 +27,9 @@ export class FlashCardItemComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private fileService: FileService
+    private fileService: FileService,
+    private imageLoaderService: ImageLoaderService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -46,5 +55,18 @@ export class FlashCardItemComponent implements OnInit {
         });
         console.log(this.files);
       });
+  }
+
+  isLoading = true;
+  @ViewChild('flashCardItemContainer', { static: true })
+  flashCardItemContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(
+      this.flashCardItemContainer,
+      () => {
+        this.isLoading = false;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 }

@@ -1,4 +1,9 @@
-<div class="phan-mem-toan-hoc">
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="phan-mem-toan-hoc"
+  [class.hidden]="isLoading"
+  #phanMemToanHocContainer
+>
   <div class="phan-mem-toan-hoc-container">
     <div class="phan-mem" *ngFor="let file of files">
       <img src="icons/phan-mem-toan-hoc-icon.png" alt="" />

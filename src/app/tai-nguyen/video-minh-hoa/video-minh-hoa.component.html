@@ -1,4 +1,5 @@
-<div class="video-minh-hoa">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="video-minh-hoa" [class.hidden]="isLoading" #videoMinhHoaContainer>
   <div class="video-container">
     <app-video-minh-hoa-button
       *ngFor="let file of files"
