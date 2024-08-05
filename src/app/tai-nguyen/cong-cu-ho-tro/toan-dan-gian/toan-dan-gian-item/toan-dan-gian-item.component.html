@@ -1,0 +1,15 @@
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="toan-dan-gian-item"
+  [class.hidden]="isLoading"
+  #toanDanGianItemContainer
+>
+  <div class="toan-dan-gian-item-container">
+    <div class="toan-card" *ngFor="let file of files">
+      <img [src]="file.url" alt="" class="right" />
+      <div class="download">
+        <a [href]="file.url">Nhấn để tải</a>
+      </div>
+    </div>
+  </div>
+</div>

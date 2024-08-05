@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TaiNguyenComponent } from './tai-nguyen/tai-nguyen.component';
-import { GameTuongTacComponent } from './game-tuong-tac/game-tuong-tac.component';
-import { VanBanQUyDinhComponent } from './van-ban-quy-dinh/van-ban-quy-dinh.component';
-import { CongCuHoTroComponent } from './cong-cu-ho-tro/cong-cu-ho-tro.component';
-import { VideoMinhHoaComponent } from './video-minh-hoa/video-minh-hoa.component';
-import { StemComponent } from './stem/stem.component';
-import { PhanMemToanHocComponent } from './phan-mem-toan-hoc/phan-mem-toan-hoc.component';
-import { FlashCardComponent } from './cong-cu-ho-tro/flash-card/flash-card.component';
-import { SlideComponent } from './cong-cu-ho-tro/slide/slide.component';
-import { QuizzComponent } from './cong-cu-ho-tro/quizz/quizz.component';
-import { ToanDanGianComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian.component';
 import { BanCanBietComponent } from './cong-cu-ho-tro/ban-can-biet/ban-can-biet.component';
+import { CongCuHoTroComponent } from './cong-cu-ho-tro/cong-cu-ho-tro.component';
 import { FlashCardItemComponent } from './cong-cu-ho-tro/flash-card/flash-card-item/flash-card-item.component';
+import { FlashCardComponent } from './cong-cu-ho-tro/flash-card/flash-card.component';
+import { QuizzComponent } from './cong-cu-ho-tro/quizz/quizz.component';
+import { SlideComponent } from './cong-cu-ho-tro/slide/slide.component';
+import { ToanDanGianItemComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian-item/toan-dan-gian-item.component';
+import { ToanDanGianComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian.component';
+import { GameTuongTacComponent } from './game-tuong-tac/game-tuong-tac.component';
+import { PhanMemToanHocComponent } from './phan-mem-toan-hoc/phan-mem-toan-hoc.component';
+import { StemComponent } from './stem/stem.component';
+import { TaiNguyenComponent } from './tai-nguyen/tai-nguyen.component';
+import { VanBanQUyDinhComponent } from './van-ban-quy-dinh/van-ban-quy-dinh.component';
+import { VideoMinhHoaComponent } from './video-minh-hoa/video-minh-hoa.component';
 
 export const routes: Routes = [
   {
@@ -69,6 +70,10 @@ export const routes: Routes = [
   {
     path: 'cong-cu-ho-tro/toan-dan-gian',
     component: ToanDanGianComponent,
+  },
+  {
+    path: 'cong-cu-ho-tro/toan-dan-gian/:item',
+    component: ToanDanGianItemComponent,
   },
 ];
 
