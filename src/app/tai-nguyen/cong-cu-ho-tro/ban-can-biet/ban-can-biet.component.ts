@@ -9,6 +9,7 @@ import {
 import { FileData, FileService } from '../../../services/file.service';
 import { RouterLink } from '@angular/router';
 import { ImageLoaderService } from '../../../services/image-loader.service';
+import Constant from '../../../shared/constants/Constant';
 
 @Component({
   selector: 'app-ban-can-biet',
@@ -18,19 +19,7 @@ import { ImageLoaderService } from '../../../services/image-loader.service';
   styleUrl: './ban-can-biet.component.css',
 })
 export class BanCanBietComponent implements OnInit {
-  imgUrls: string[] = [
-    'images/images/tai-nguyen/ban-can-biet/Slide1.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide2.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide3.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide4.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide5.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide6.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide7.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide8.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide9.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide10.PNG',
-    'images/images/tai-nguyen/ban-can-biet/Slide11.PNG',
-  ];
+  files: FileData[] = [];
 
   currentUrl: number = 0;
   downloadUrl: string = '';
@@ -47,19 +36,9 @@ export class BanCanBietComponent implements OnInit {
       .getFilesList('tai-nguyen/cong-cu-ho-tro/ban-can-biet')
       .subscribe((files) => {
         files.forEach((file: any) => {
-          fileDownload.push(file);
+          this.files.push(file);
         });
-        this.downloadUrl = fileDownload[0].url;
       });
-  }
-
-  onClick(event: number) {
-    this.currentUrl += event;
-    if (this.currentUrl < 0) {
-      this.currentUrl = this.imgUrls.length - 1;
-    } else if (this.currentUrl > this.imgUrls.length - 1) {
-      this.currentUrl = 0;
-    }
   }
 
   isLoading = true;
@@ -70,5 +49,13 @@ export class BanCanBietComponent implements OnInit {
       this.isLoading = false;
       this.cdRef.detectChanges();
     });
+  }
+
+  getCoverUrl(fileName: string) {
+    let cover!: string | undefined;
+    cover = Constant.IMAGE_PATHS.images.find(
+      (x) => x.includes(fileName?.split('.')[0]) && x.includes('image-0')
+    );
+    return cover?.split('public/')[1];
   }
 }

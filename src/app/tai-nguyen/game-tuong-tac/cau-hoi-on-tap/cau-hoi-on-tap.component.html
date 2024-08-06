@@ -1,0 +1,10 @@
+<div class="cau-hoi-on-tap">
+  <div class="cau-hoi-on-tap-container">
+    <app-cau-hoi-on-tap-button
+      *ngFor="let item of listQuestionAnswer"
+      [buttonName]="item.topicName"
+      [buttonIcon]="''"
+      [navigateUrl]="item.topicUrl"
+    ></app-cau-hoi-on-tap-button>
+  </div>
+</div>

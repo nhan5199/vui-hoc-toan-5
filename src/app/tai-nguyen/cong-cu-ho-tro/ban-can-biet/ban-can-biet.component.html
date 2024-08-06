@@ -18,5 +18,15 @@
     />
     <img class="content" [src]="imgUrls[currentUrl]" alt="" />
   </div> -->
-  <div class="ban-can-biet-container"></div>
+  <div class="ban-can-biet-container">
+    <div class="ban-can-biet-item" *ngFor="let file of files">
+      <img [src]="getCoverUrl(file.name)" alt="" />
+      <a [href]="file.url"
+        ><div class="download-content">
+          <p class="content-title">{{ file.name.split(".")[0] }}</p>
+          <button>Tải về</button>
+        </div></a
+      >
+    </div>
+  </div>
 </div>

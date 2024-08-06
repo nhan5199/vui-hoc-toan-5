@@ -1,0 +1,40 @@
+<div class="exercise-shape-info" [class.appear]="isDisplayInfo">
+  <div class="popup">
+    <img
+      class="background"
+      src="images/images/puzzle/info-background.png"
+      alt=""
+    />
+
+    <img
+      class="close-popup"
+      src="images/images/puzzle/return.png"
+      (click)="onClosePopup()"
+      alt=""
+      title="quay lại"
+    />
+
+    <div class="content">
+      <div class="item">
+        <img src="images/images/buttons/rectangle.png" alt="" />
+        <p>: Nhấn vào danh sách hình ở góc trên màn hình để thêm hình mới.</p>
+      </div>
+      <div class="item">
+        <img src="images/images/buttons/delete.png" alt="" />
+        <p>
+          : Nhấn vào hình muốn xóa và nhấn vào biểu tượng thùng rác để xóa.<br />
+          Nếu muốn xóa nhiều hình, bôi những hình cần xóa và nhấn vào biểu tượng
+          thùng rác
+        </p>
+      </div>
+      <div class="item">
+        <img src="images/images/buttons/change-pic.png" alt="" />
+        <p>
+          : Nhấn để đổi hình muốn xếp, đồng thời sẽ xóa các hình hiện có trên
+          màn hình.
+        </p>
+      </div>
+      <div class="item"></div>
+    </div>
+  </div>
+</div>

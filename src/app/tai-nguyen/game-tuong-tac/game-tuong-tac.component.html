@@ -1,89 +1,16 @@
-<ng-container *ngIf="isPhoneAndOrientation">
-  <div class="orientation">
-    <img class="flip-phone" src="/assets/flip-phone.png" alt="" /></div
-></ng-container>
-<ng-container *ngIf="!isPhoneAndOrientation">
-  <div class="game-loading" [class.disappear]="!isLoading"></div>
-  <div>
-    <div class="exercise-shape">
-      <!-- <img
-        class="left"
-        src="images/images/puzzle/lession/back.png"
-        (click)="returnToBackPage()"
-        alt=""
-        title="quay lại"
-      /> -->
-      <div class="shape-container">
-        <img
-          class="background"
-          src="images/images/puzzle/question.png"
-          alt="cau-hoi"
-        />
-        <div id="container"></div>
-      </div>
-      <div class="buttons">
-        <button
-          (click)="addRectangle(this.width / 5, this.height / 5)"
-          title="Thêm hình chữ nhật"
-        >
-          <img src="images/images/puzzle/rectangle.png" alt="" />
-        </button>
-        <button
-          class="square"
-          (click)="addSquare(this.width / 5, this.height / 5)"
-          title="Thêm hình vuông"
-        >
-          <img src="images/images/puzzle/square.png" alt="" />
-        </button>
-        <button (click)="addTrapezoid(this.width / 5, this.height / 5)">
-          <img src="images/images/puzzle/trapezoid.png" alt="" />
-        </button>
-
-        <button
-          (click)="addTriangle(this.width / 5, this.height / 4)"
-          title="Thêm hình tam giác đều"
-        >
-          <img src="images/images/puzzle/triangle.png" alt="" />
-        </button>
-        <button
-          (click)="addLeftAngleTriangle(this.width / 5, this.height / 5)"
-          title="Thêm hình tam giác vuông"
-        >
-          <img src="images/images/puzzle/left-angle-triangle.png" alt="" />
-        </button>
-        <button
-          (click)="addCircle(this.width / 5, this.height / 4)"
-          title="Thêm hình tròn"
-        >
-          <img src="images/images/puzzle/circle.png" alt="" />
-        </button>
-        <button (click)="deleteSelected()" title="Xóa hình">
-          <img src="images/images/puzzle/delete.png" alt="" />
-        </button>
-      </div>
-    </div>
-
-    <div class="info" title="Xem hướng dẫn">
-      <img
-        (click)="onOpenInfoPopup()"
-        src="images/images/puzzle/info.png"
-        alt=""
-      />
-    </div>
-
-    <div class="puzzle">
-      <img [src]="this.picUrl" alt="" />
-    </div>
-
-    <div class="change-pic">
-      <button title="Đổi hình" (click)="onChangePic()">
-        <img src="images/images/puzzle/change-pic.png" alt="" />
-      </button>
-    </div>
-
-    <app-shape-info
-      [isDispayInfo]="isDisplayInfo"
-      (closeInfoPopup)="onCloseInfoPopup($event)"
-    ></app-shape-info>
+<div class="game-tuong-tac">
+  <div class="game-tuong-tac-container">
+    <app-game-tuong-tac-button
+      [buttonName]="'Tangram'"
+      [buttonIcon]="''"
+      [navigateUrl]="'tangram'"
+    >
+    </app-game-tuong-tac-button>
+    <app-game-tuong-tac-button
+      [buttonName]="'Câu hỏi ôn tập'"
+      [buttonIcon]="''"
+      [navigateUrl]="'cau-hoi-on-tap'"
+    >
+    </app-game-tuong-tac-button>
   </div>
-</ng-container>
+</div>

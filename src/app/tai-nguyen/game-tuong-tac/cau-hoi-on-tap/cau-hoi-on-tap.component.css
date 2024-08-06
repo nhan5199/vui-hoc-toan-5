@@ -1,0 +1,44 @@
+.cau-hoi-on-tap {
+  width: 100%;
+  height: 100svh;
+  background: url("/images/images/detail-background.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cau-hoi-on-tap-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 50px;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menu-title {
+  font-family: var(--pacifico-font);
+}
+
+app-cau-hoi-on-tap-button {
+  width: 40%;
+  transition: 0.5s ease;
+}
+
+app-cau-hoi-on-tap-button:hover {
+  width: 40.5%;
+}
+
+.footer {
+  position: absolute;
+  font-size: 2rem;
+  font-family: "Pacifico";
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #2c63ff;
+}

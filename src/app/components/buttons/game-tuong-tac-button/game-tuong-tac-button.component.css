@@ -1,0 +1,54 @@
+.game-tuong-tac-button {
+  position: relative;
+  opacity: 1;
+  /* width: 520px; */
+  text-align: center;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  /* border: 6px solid white; */
+  border-radius: 15px;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: 0.75s ease;
+  border: 6px solid #5271ff;
+  background-color: #eef30e;
+  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+
+a {
+  text-decoration: none;
+}
+
+.game-tuong-tac-button img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -8%;
+  width: 7.5rem;
+  transition: 0.75s ease;
+}
+
+.game-tuong-tac-button a {
+  text-align: center;
+  color: #5271ff;
+  font-family: var(--anton-font);
+  margin-left: 5%;
+}
+.game-tuong-tac-button:hover {
+  padding: 20px 30px;
+  /* width: 550px; */
+  color: #eef30e;
+  border: 6px solid #eef30e;
+  background-position: left bottom;
+}
+
+.game-tuong-tac-button:hover img {
+  width: 8rem;
+}
+
+.game-tuong-tac-button:hover a {
+  color: #eef30e;
+}
