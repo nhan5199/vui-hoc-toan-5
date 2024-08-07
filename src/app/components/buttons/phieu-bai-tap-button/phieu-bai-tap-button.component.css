@@ -14,7 +14,7 @@
 }
 
 .phieu-bai-tap:hover {
-  margin-bottom: 10px;
+  transform: scale(1.05);
 }
 
 .phieu-bai-tap:hover .download {

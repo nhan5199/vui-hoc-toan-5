@@ -14,7 +14,7 @@
 }
 
 .ke-hoach-bai-day:hover {
-  margin-bottom: 10px;
+  transform: scale(1.05);
 }
 
 .ke-hoach-bai-day:hover .download {

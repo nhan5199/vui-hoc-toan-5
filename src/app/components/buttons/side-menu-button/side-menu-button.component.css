@@ -44,5 +44,6 @@ a {
 
 .side-menu-button:hover {
   color: #5271ff;
+  transform: scale(1.05);
   background-position: left bottom;
 }

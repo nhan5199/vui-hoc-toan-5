@@ -6,6 +6,15 @@ a {
   justify-content: center;
   align-items: center;
   position: relative;
+  transition: 0.5s ease;
+}
+
+.stem-button:hover {
+  transform: scale(1.05);
+}
+
+.stem-button:hover .right {
+  transform: rotateY(180deg);
 }
 
 .stem-button button {
@@ -29,7 +38,6 @@ a {
 }
 
 .stem-button button:hover {
-  padding: 17px 22px;
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;
@@ -39,6 +47,7 @@ a {
 .left,
 .right {
   position: absolute;
+  transition: 0.5s ease;
 }
 .left {
   width: 7rem;

@@ -34,7 +34,3 @@ app-book-button {
   width: 40%;
   transition: 0.5s ease;
 }
-
-app-book-button:hover {
-  width: 41%;
-}

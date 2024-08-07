@@ -10,7 +10,7 @@
   width: 80%;
   position: absolute;
   left: 60%;
-  top: 60%;
+  top: 65%;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
@@ -19,6 +19,7 @@
   flex-direction: column;
   max-height: 65svh;
   overflow: auto;
+  padding: 10px;
 }
 
 .phan-mem {
@@ -38,7 +39,7 @@
 }
 
 .phan-mem:hover {
-  margin-bottom: 10px;
+  transform: scale(1.05);
 }
 .phan-mem:hover .content a {
   background-color: #00a9ff;

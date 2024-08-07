@@ -5,7 +5,7 @@
   /* width: 520px; */
   text-align: center;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   /* border: 6px solid white; */
   border-radius: 15px;
@@ -28,7 +28,7 @@ a {
   top: 50%;
   transform: translateY(-50%);
   left: -8%;
-  width: 7.5rem;
+  width: 6.5rem;
   transition: 0.75s ease;
 }
 
@@ -39,15 +39,11 @@ a {
   margin-left: 5%;
 }
 .cong-cu-ho-tro-button:hover {
-  padding: 20px 30px;
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;
   background-position: left bottom;
-}
-
-.cong-cu-ho-tro-button:hover img {
-  width: 8rem;
+  transform: scale(1.1);
 }
 
 .cong-cu-ho-tro-button:hover a {

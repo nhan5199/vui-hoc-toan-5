@@ -33,7 +33,7 @@
 }
 
 .quizz-card:hover {
-  margin-bottom: 20px;
+  transform: scale(1.05);
 }
 
 .quizz-card:hover .download {

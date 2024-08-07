@@ -44,4 +44,5 @@ a {
 .menu-button:hover {
   color: #5271ff;
   background-position: left bottom;
+  transform: scale(1.1);
 }

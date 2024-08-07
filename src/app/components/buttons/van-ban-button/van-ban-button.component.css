@@ -5,7 +5,7 @@
   opacity: 1;
   text-align: center;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: 6px solid white;
   border-radius: 15px;
@@ -52,17 +52,7 @@ a {
   margin-left: 50px;
 }
 .van-ban-button:hover {
-  padding: 20px 0;
-  /* color: white;
-  background-position: left bottom; */
-}
-
-.van-ban-button:hover .img-icon img {
-  width: 7.5rem;
-}
-
-.van-ban-button:hover .img-icon .img-name {
-  font-size: 1.7rem;
+  transform: scale(1.1);
 }
 
 .van-ban-button:hover a {

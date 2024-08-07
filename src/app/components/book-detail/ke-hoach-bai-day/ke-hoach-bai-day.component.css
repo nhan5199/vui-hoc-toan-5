@@ -20,6 +20,7 @@
 }
 
 .ke-hoach-bai-day-container {
+  padding: 10px;
   margin: 3rem auto 0;
   width: 90%;
   display: flex;
@@ -29,6 +30,10 @@
   justify-content: center;
   max-height: 55svh;
   overflow-y: auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .menu-title {

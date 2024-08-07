@@ -14,7 +14,7 @@
 }
 
 .giao-an-dien-tu:hover {
-  margin-bottom: 10px;
+  transform: scale(1.05);
 }
 
 .giao-an-dien-tu:hover .download {
@@ -42,7 +42,7 @@
   font-family: var(--lobster-font);
   text-align: center;
   word-break: break-word;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #f57669;
 }
 

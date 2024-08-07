@@ -18,6 +18,10 @@
   background-position: right bottom;
 }
 
+.game-tuong-tac-button:hover {
+  transform: scale(1.1);
+}
+
 a {
   text-decoration: none;
 }
@@ -43,10 +47,6 @@ a {
   color: #eef30e;
   border: 6px solid #eef30e;
   background-position: left bottom;
-}
-
-.game-tuong-tac-button:hover img {
-  width: 8rem;
 }
 
 .game-tuong-tac-button:hover a {

@@ -38,15 +38,11 @@ a {
   margin-left: 5%;
 }
 .toan-dan-gian-button:hover {
-  padding: 20px 30px;
+  transform: scale(1.05);
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;
   background-position: left bottom;
-}
-
-.toan-dan-gian-button:hover img {
-  width: 8rem;
 }
 
 .toan-dan-gian-button:hover a {

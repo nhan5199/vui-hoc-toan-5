@@ -59,8 +59,7 @@ body {
 }
 
 .back-icon:hover {
-  width: 2.5rem;
-  transition: 0.5s ease;
+  transform: scale(1.2);
 }
 /*-----------End Back button --------------------*/
 

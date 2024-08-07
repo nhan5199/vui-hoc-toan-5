@@ -38,7 +38,7 @@ a {
   margin-left: 5%;
 }
 .flash-card-button:hover {
-  padding: 20px 30px;
+  transform: scale(1.1);
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;

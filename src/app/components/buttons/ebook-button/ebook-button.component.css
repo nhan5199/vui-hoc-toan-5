@@ -4,7 +4,7 @@
 }
 
 .ebook:hover {
-  margin-bottom: 10px;
+  transform: scale(1.05);
 }
 .ebook:hover .content button {
   padding: 12px 17px;
@@ -26,6 +26,7 @@
   align-items: center;
   border-radius: 5px;
   transition: 0.5s ease;
+  cursor: pointer;
 }
 
 .ebook .content p {
@@ -173,40 +174,40 @@ body {
 }
 
 .ebook:hover .front {
-  transform: rotateY(-160deg) scale(1.1);
+  transform: rotateY(-160deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page1 {
-  transform: rotateY(-150deg) scale(1.1);
+  transform: rotateY(-150deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page2 {
-  transform: rotateY(-30deg) scale(1.1);
+  transform: rotateY(-30deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page3 {
-  transform: rotateY(-140deg) scale(1.1);
+  transform: rotateY(-140deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page4 {
-  transform: rotateY(-40deg) scale(1.1);
+  transform: rotateY(-40deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page5 {
-  transform: rotateY(-130deg) scale(1.1);
+  transform: rotateY(-130deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .page6 {
-  transform: rotateY(-50deg) scale(1.1);
+  transform: rotateY(-50deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
 .ebook:hover .back {
-  transform: rotateY(-20deg) scale(1.1);
+  transform: rotateY(-20deg);
 }

@@ -5,7 +5,7 @@
   opacity: 1;
   text-align: center;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: 6px solid white;
   border-radius: 15px;
@@ -52,17 +52,9 @@ a {
   margin-left: 50px;
 }
 .cau-hoi-on-tap-button:hover {
-  padding: 20px 0;
+  transform: scale(1.05);
   /* color: white;
   background-position: left bottom; */
-}
-
-.cau-hoi-on-tap-button:hover .img-icon img {
-  width: 7.5rem;
-}
-
-.cau-hoi-on-tap-button:hover .img-icon .img-name {
-  font-size: 1.7rem;
 }
 
 .cau-hoi-on-tap-button:hover a {
