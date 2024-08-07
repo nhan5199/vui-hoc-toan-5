@@ -1,31 +1,33 @@
-<div [class.disappear]="disappearHomeImg" class="home">
-  <!-- <div class="start" (click)="onDisappear()">
-    <span class="math">MATH</span> <span class="class">CLASS</span>
-  </div> -->
-  <home-button (clickHome)="onDisappear()"></home-button>
-</div>
-<div [class.appear]="appearMenu" class="menu">
-  <div class="menu-title">VUI HỌC TOÁN 5</div>
-  <div class="menu-container">
-    <app-menu-button
-      [buttonName]="'TÀI NGUYÊN'"
-      [routerNavigate]="'tai-nguyen'"
-      [buttonIcon]="'images/images/buttons/tai-nguyen-button-icon.png'"
-    ></app-menu-button>
-    <app-menu-button
-      [buttonName]="'CHÂN TRỜI SÁNG TẠO'"
-      [routerNavigate]="'chan-troi-sang-tao'"
-      [buttonIcon]="'images/images/buttons/chan-troi-sang-tao-button-icon.png'"
-    ></app-menu-button>
-    <app-menu-button
-      [buttonName]="'CÁNH DIỀU'"
-      [routerNavigate]="'canh-dieu'"
-      [buttonIcon]="'images/images/buttons/canh-dieu-button-icon.png'"
-    ></app-menu-button>
-    <app-menu-button
-      [buttonName]="'KẾT NỐI TRI THỨC'"
-      [routerNavigate]="'ket-noi-tri-thuc'"
-      [buttonIcon]="'images/images/buttons/ket-noi-tri-thuc-button-icon.png'"
-    ></app-menu-button>
+<div class="loading" *ngIf="isLoading"></div>
+<div class="home-container" [class.hidden]="isLoading" #homeContainer>
+  <div [class.disappear]="disappearHomeImg" class="home">
+    <home-button (clickHome)="onDisappear()"></home-button>
+  </div>
+  <div [class.appear]="appearMenu" class="menu">
+    <div class="menu-title">VUI HỌC TOÁN 5</div>
+    <div class="menu-container">
+      <app-menu-button
+        [buttonName]="'TÀI NGUYÊN'"
+        [routerNavigate]="'tai-nguyen'"
+        [buttonIcon]="'images/images/buttons/tai-nguyen-button-icon.png'"
+      ></app-menu-button>
+      <app-menu-button
+        [buttonName]="'CHÂN TRỜI SÁNG TẠO'"
+        [routerNavigate]="'chan-troi-sang-tao'"
+        [buttonIcon]="
+          'images/images/buttons/chan-troi-sang-tao-button-icon.png'
+        "
+      ></app-menu-button>
+      <app-menu-button
+        [buttonName]="'CÁNH DIỀU'"
+        [routerNavigate]="'canh-dieu'"
+        [buttonIcon]="'images/images/buttons/canh-dieu-button-icon.png'"
+      ></app-menu-button>
+      <app-menu-button
+        [buttonName]="'KẾT NỐI TRI THỨC'"
+        [routerNavigate]="'ket-noi-tri-thuc'"
+        [buttonIcon]="'images/images/buttons/ket-noi-tri-thuc-button-icon.png'"
+      ></app-menu-button>
+    </div>
   </div>
 </div>
