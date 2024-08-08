@@ -1,4 +1,5 @@
-<div class="cau-hoi-on-tap">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="cau-hoi-on-tap" [class.hidden]="isLoading">
   <div class="cau-hoi-on-tap-container">
     <app-cau-hoi-on-tap-button
       *ngFor="let item of listQuestionAnswer"

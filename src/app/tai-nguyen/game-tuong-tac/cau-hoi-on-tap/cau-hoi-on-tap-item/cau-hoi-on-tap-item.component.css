@@ -24,22 +24,22 @@ app-cau-hoi-on-tap-item-button {
   width: 20%;
 }
 
-.danh-sach-cau-hoi {
+.tra-loi-cau-hoi {
   width: 100%;
   height: 100svh;
   position: absolute;
-  z-index: 20;
   top: 0;
   left: 0;
   transition: 0.5s ease;
-  background: url("/images/images/question.png");
+
+  background: url("/images/images/cau-hoi/question.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-.hidden-questions {
-  opacity: 0;
+.hidden-list-questions {
+  display: none;
   width: 0;
   height: 0;
   bottom: 0;
@@ -48,7 +48,8 @@ app-cau-hoi-on-tap-item-button {
   z-index: 0;
 }
 
-.quit-question {
+.quit-list-question,
+.quit-welcome-page {
   width: 3rem;
   transition: 0.5s ease;
   cursor: pointer;
@@ -57,6 +58,197 @@ app-cau-hoi-on-tap-item-button {
   right: 4rem;
 }
 
-.quit-question:hover {
+.quit-welcome-page {
+  top: 5rem;
+  right: 15rem;
+}
+
+.quit-list-question:hover,
+.quit-welcome-page:hover {
   transform: scale(1.1);
+}
+
+.hidden-question {
+  display: none;
+  z-index: 0;
+}
+
+.welcome-page {
+  width: 100%;
+  height: 100svh;
+  position: absolute;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transition: 0.5s ease;
+  background: url("/images/images/cau-hoi/welcome-exercise.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s ease;
+}
+
+.start-question {
+  font-size: 3rem;
+  font-family: "Anton";
+  color: #c77559;
+  padding: 10px 40px;
+  border: 10px solid #c77559;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.5s ease;
+}
+
+.start-question:hover {
+  transform: scale(1.1) translateX(-50%);
+  background-color: #c77559;
+  color: #ffffff;
+}
+
+.welcome-page-title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  font-size: 5rem;
+  font-family: var(--lobster-font);
+  color: #ba6f55;
+}
+
+.danh-sach-cau-hoi {
+  width: 80%;
+  height: 100svh;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 50%;
+  transition: 0.5s ease;
+  transform: translateX(-50%);
+}
+
+.cau-hoi button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.point-container {
+  position: absolute;
+  top: 3rem;
+  width: 15%;
+  right: 3rem;
+}
+
+.point-content {
+  background-color: #742c00;
+  border: 5px solid #ffd460;
+  border-radius: 20px;
+}
+
+.point-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  font-family: var(--anton-font);
+  margin-right: 25%;
+}
+
+.point-container img {
+  width: 4rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+
+.ket-qua {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  transition: 0.5s ease;
+}
+
+.ket-qua .ket-qua-background {
+  width: 100%;
+}
+
+.ket-qua-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ket-qua-point,
+.ket-qua-right,
+.ket-qua-wrong {
+  width: 100%;
+  position: relative;
+}
+
+.ket-qua-point p,
+.ket-qua-right p,
+.ket-qua-wrong p {
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+  padding: 15px 15px;
+  width: 100%;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  font-family: var(--anton-font);
+  margin-right: 25%;
+}
+
+.ket-qua-point img,
+.ket-qua-right img,
+.ket-qua-wrong img {
+  width: 5rem;
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+}
+
+.action-button {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.action-button button {
+  border-radius: 10px;
+  font-size: 1.5rem;
+  width: 45%;
+  font-family: var(--anton-font);
+  color: #b15f27;
+  border: 5px solid #b15f27;
+  transition: 0.5s ease;
+}
+
+.action-button button:hover {
+  transform: scale(1.05);
+  background-color: #b15f27;
+  color: #fed16d;
 }

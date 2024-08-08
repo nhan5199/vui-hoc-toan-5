@@ -13,9 +13,12 @@ import { CommonModule } from '@angular/common';
 export class CauHoiOnTapComponent implements OnInit {
   constructor(private readonly databaseService: DatabaseService) {}
 
+  isLoading = true;
   listQuestionAnswer: any[] = [];
   ngOnInit(): void {
     this.listQuestionAnswer = this.databaseService.getQuestionAnswers();
-    console.log(this.listQuestionAnswer);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   }
 }

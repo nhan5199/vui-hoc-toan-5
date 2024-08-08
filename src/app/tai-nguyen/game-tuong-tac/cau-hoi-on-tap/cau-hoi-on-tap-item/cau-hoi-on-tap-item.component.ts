@@ -23,7 +23,7 @@ export class CauHoiOnTapItemComponent implements OnInit {
   ngOnInit(): void {
     this.topicUrl = this.route.snapshot.paramMap.get('topic')!;
     this.listCauHoiOnTapItem = this.databaseService.getQuestionAnswers();
-
+    console.log('data: ', this.listCauHoiOnTapItem);
     if (this.listCauHoiOnTapItem) {
       this.listCauHoiOnTapItem = this.listCauHoiOnTapItem.filter(
         (x: any) => x.topicUrl == this.topicUrl
@@ -31,14 +31,29 @@ export class CauHoiOnTapItemComponent implements OnInit {
     }
   }
 
+  activeQuestion: number = 0;
   listQuestionAnswers: any[] = [];
+  exerciseName: string = '';
+
   onDoExercise(exerciseName: string) {
     this.listQuestionAnswers = this.listCauHoiOnTapItem.filter(
       (x) => x.name == exerciseName
     );
+    this.exerciseName = exerciseName;
   }
 
   onQuitQuestion() {
     this.listQuestionAnswers = [];
+    this.activeQuestion = 0;
+    this.exerciseName = '';
+  }
+
+  goToNextQuestion() {
+    this.activeQuestion += 1;
+    console.log(this.listQuestionAnswers[0]?.quests?.length);
+  }
+
+  onRedo() {
+    this.activeQuestion = 0;
   }
 }

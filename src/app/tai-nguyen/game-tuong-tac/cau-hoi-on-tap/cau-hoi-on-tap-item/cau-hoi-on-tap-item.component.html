@@ -10,13 +10,92 @@
 </div>
 
 <div
-  class="danh-sach-cau-hoi"
-  [class.hidden-questions]="listQuestionAnswers.length <= 0"
+  class="tra-loi-cau-hoi"
+  [class.hidden-list-questions]="listQuestionAnswers.length <= 0"
 >
   <img
     (click)="onQuitQuestion()"
-    src="images/images/return.png"
+    src="images/images/cau-hoi/return.png"
     alt=""
-    class="quit-question"
+    class="quit-list-question"
+    title="Thoát"
   />
+  <div class="welcome-page" [class.hidden-question]="activeQuestion != 0">
+    <img
+      (click)="onQuitQuestion()"
+      src="images/images/cau-hoi/return.png"
+      alt=""
+      class="quit-welcome-page"
+      title="Thoát"
+    />
+    <p class="welcome-page-title">{{ exerciseName }}</p>
+    <button class="start-question" (click)="goToNextQuestion()">Bắt đầu</button>
+  </div>
+  <div
+    class="danh-sach-cau-hoi"
+    [class.hidden]="
+      activeQuestion == 0 ||
+      activeQuestion > listQuestionAnswers[0]?.quests?.length
+    "
+  >
+    <div class="point-container">
+      <div class="point-content">
+        <p class="point">0</p>
+      </div>
+      <img src="images/images/cau-hoi/point-icon.png" alt="" />
+    </div>
+    <div class="cau-hoi">
+      <button (click)="goToNextQuestion()">Câu hỏi {{ activeQuestion }}</button>
+    </div>
+  </div>
+  <div
+    class="ket-qua"
+    [class.hidden]="activeQuestion <= listQuestionAnswers[0]?.quests?.length"
+  >
+    <img
+      class="ket-qua-background"
+      src="images/images/cau-hoi/summary-result.png"
+      alt=""
+    />
+
+    <div class="ket-qua-content">
+      <div class="ket-qua-point">
+        <div class="ket-qua-point-content">
+          <p>0</p>
+        </div>
+        <img
+          src="/images/images/cau-hoi/treasure.png"
+          alt=""
+          class="ket-qua-point-icon"
+        />
+      </div>
+
+      <div class="ket-qua-right">
+        <div class="ket-qua-right-content">
+          <p>0</p>
+        </div>
+        <img
+          src="/images/images/cau-hoi/correct-icon.png"
+          alt=""
+          class="ket-qua-right-icon"
+        />
+      </div>
+
+      <div class="ket-qua-wrong">
+        <div class="ket-qua-wrong-content">
+          <p>0</p>
+        </div>
+        <img
+          src="/images/images/cau-hoi/false-icon.png"
+          alt=""
+          class="ket-qua-wrong-icon"
+        />
+      </div>
+    </div>
+
+    <div class="action-button">
+      <button class="redo" (click)="onRedo()">Làm lại</button>
+      <button class="return-list" (click)="onQuitQuestion()">Trờ về</button>
+    </div>
+  </div>
 </div>
