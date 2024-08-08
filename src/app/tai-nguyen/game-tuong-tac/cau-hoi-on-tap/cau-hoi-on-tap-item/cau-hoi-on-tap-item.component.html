@@ -1,1 +1,22 @@
-<p>cau-hoi-on-tap-item works!</p>
+<div class="cau-hoi-on-tap-item">
+  <div class="cau-hoi-on-tap-item-container">
+    <app-cau-hoi-on-tap-item-button
+      *ngFor="let item of listCauHoiOnTapItem"
+      [buttonName]="item.name"
+      [navigateUrl]="item.url"
+      (doExercise)="onDoExercise($event)"
+    ></app-cau-hoi-on-tap-item-button>
+  </div>
+</div>
+
+<div
+  class="danh-sach-cau-hoi"
+  [class.hidden-questions]="listQuestionAnswers.length <= 0"
+>
+  <img
+    (click)="onQuitQuestion()"
+    src="images/images/return.png"
+    alt=""
+    class="quit-question"
+  />
+</div>

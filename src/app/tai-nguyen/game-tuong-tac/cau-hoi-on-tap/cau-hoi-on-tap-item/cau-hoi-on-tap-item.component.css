@@ -1,0 +1,62 @@
+.cau-hoi-on-tap-item {
+  width: 100%;
+  height: 100svh;
+  background: url("/images/images/detail-background.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cau-hoi-on-tap-item-container {
+  width: 90%;
+  height: 65svh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+app-cau-hoi-on-tap-item-button {
+  width: 20%;
+}
+
+.danh-sach-cau-hoi {
+  width: 100%;
+  height: 100svh;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  transition: 0.5s ease;
+  background: url("/images/images/question.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hidden-questions {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.quit-question {
+  width: 3rem;
+  transition: 0.5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+}
+
+.quit-question:hover {
+  transform: scale(1.1);
+}

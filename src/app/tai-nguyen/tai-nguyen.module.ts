@@ -9,6 +9,8 @@ import { QuizzComponent } from './cong-cu-ho-tro/quizz/quizz.component';
 import { SlideComponent } from './cong-cu-ho-tro/slide/slide.component';
 import { ToanDanGianItemComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian-item/toan-dan-gian-item.component';
 import { ToanDanGianComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian.component';
+import { CauHoiOnTapItemComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap-item/cau-hoi-on-tap-item.component';
+import { CauHoiOnTapComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap.component';
 import { GameTuongTacComponent } from './game-tuong-tac/game-tuong-tac.component';
 import { TangramComponent } from './game-tuong-tac/tangram/tangram.component';
 import { PhanMemToanHocComponent } from './phan-mem-toan-hoc/phan-mem-toan-hoc.component';
@@ -16,8 +18,6 @@ import { StemComponent } from './stem/stem.component';
 import { TaiNguyenComponent } from './tai-nguyen/tai-nguyen.component';
 import { VanBanQUyDinhComponent } from './van-ban-quy-dinh/van-ban-quy-dinh.component';
 import { VideoMinhHoaComponent } from './video-minh-hoa/video-minh-hoa.component';
-import { CauHoiOnTapComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap.component';
-import { CauHoiOnTapItemComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap-item/cau-hoi-on-tap-item.component';
 
 export const routes: Routes = [
   {

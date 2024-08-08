@@ -1,0 +1,97 @@
+.cau-hoi-on-tap-item-button {
+  position: relative;
+  width: 80%;
+  height: 35svh;
+
+  perspective: 1000px; /* Enables 3D effect */
+}
+
+.outside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: white;
+  border: 4px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.5s ease;
+  transform-origin: left center; /* Set origin to the left edge */
+  transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.cau-hoi-title {
+  font-size: 1rem;
+  color: black;
+  font-family: var(--lobster-font);
+  margin: 1rem;
+  padding: 0;
+  text-align: center;
+}
+
+.outside img {
+  width: 100%;
+}
+
+.inside {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(5%, 5%);
+  background-color: white;
+  border: 4px solid black;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
+
+.inside .content {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-transparent-black);
+  z-index: 5;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.inside .content:hover button {
+  border: 6px solid #eef30e;
+  background-position: left bottom;
+  color: #eef30e;
+}
+
+.inside .content button {
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 1rem;
+  font-family: "anton";
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.75s ease;
+  border: 3px solid #5271ff;
+  background-color: #eef30e;
+  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  position: absolute;
+  right: 20%;
+  top: 50%;
+  transform: translate(-20%, -50%);
+}
+
+.cau-hoi-on-tap-item-button:hover .outside {
+  transform: rotateY(-75deg); /* Flip 45 degrees to the left */
+}
+
+.cau-hoi-on-tap-item-button:hover .inside {
+  transform: translate(10%, 5%);
+}
+
+.cau-hoi-on-tap-item-button:hover .inside .content {
+  opacity: 1;
+}
