@@ -39,7 +39,6 @@ export class FlashCardItemComponent implements OnInit {
           '/' + urlSegment.map((segment) => segment.path).join('/');
 
         this.listFiles();
-        console.log(this.files);
       });
     });
   }
@@ -53,7 +52,6 @@ export class FlashCardItemComponent implements OnInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
-        console.log(this.files);
       });
   }
 

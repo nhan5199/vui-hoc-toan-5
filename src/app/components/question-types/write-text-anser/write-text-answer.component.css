@@ -1,0 +1,125 @@
+.write-answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+p {
+  margin: 0;
+  font-size: 25px;
+}
+
+.answer p {
+  color: white;
+  font-size: 1.5rem;
+  font-family: var(--title-font);
+}
+
+.answer input {
+  text-align: center;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid white;
+  color: white;
+  font-size: 1.5rem;
+  width: 100px;
+  margin: 0 1rem;
+  font-family: var(--title-font);
+}
+
+.question-answer {
+  position: relative;
+}
+
+.answer {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+}
+
+.answer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.answer-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.question {
+  width: 100%;
+  overflow-y: auto;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  margin: 0.5em;
+  font-family: var(--title-font);
+}
+
+.question img {
+  width: 40%;
+  margin: 0 auto;
+  object-fit: fill;
+}
+
+.decorate {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.answer-img {
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
+  object-fit: fill;
+}
+
+.point {
+  position: absolute;
+  top: 0.5%;
+  right: 10.5%;
+}
+
+.check button {
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Calistoga";
+  border-radius: 10px;
+  background-color: #e19246;
+  cursor: pointer;
+  border: 3px solid white;
+  color: white;
+  margin-top: 20px;
+}
+
+.check button:hover {
+  background-color: #f17c0c;
+}
+
+@media screen and (max-width: 1000px) {
+  .answer-img {
+    width: 150px;
+    height: 100px;
+  }
+
+  p,
+  .answer input {
+    font-size: 15px;
+  }
+
+  .check-button {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}

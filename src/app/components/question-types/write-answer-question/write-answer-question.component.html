@@ -1,0 +1,36 @@
+<div class="write-answer">
+  <div class="question">
+    <img
+      class="decorate"
+      *ngIf="question?.decoratePath?.length > 0"
+      [src]="question?.decoratePath"
+      alt=""
+    />
+  </div>
+  <div class="answer-content">
+    <img
+      class="answer-img"
+      *ngIf="question?.imgPath?.length > 0"
+      [src]="question?.imgPath"
+      alt=""
+    />
+    <div class="answer">
+      <p class="question-name" [innerHTML]="question.questionName"></p>
+      <div class="answer-input">
+        <p>Đáp án là:</p>
+        <input
+          type="number"
+          [(ngModel)]="answer"
+          maxlength="10"
+          id="answer"
+          autocomplete="off"
+          (keydown.enter)="onCheckAnswer()"
+        />
+        <p [innerHTML]="question.unit"></p>
+      </div>
+    </div>
+  </div>
+  <div class="check">
+    <button id="checkButton" (click)="onCheckAnswer()">Kiểm tra</button>
+  </div>
+</div>

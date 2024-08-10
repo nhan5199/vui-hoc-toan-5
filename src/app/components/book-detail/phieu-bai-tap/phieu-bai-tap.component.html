@@ -16,7 +16,10 @@
       </option>
     </select>
   </div>
-  <div class="phieu-bai-tap-container">
+  <div class="loading-file" *ngIf="isLoadingFiles">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="phieu-bai-tap-container" [class.hidden]="isLoadingFiles">
     <app-phieu-bai-tap-button
       *ngFor="let file of files"
       [buttonName]="file.name"

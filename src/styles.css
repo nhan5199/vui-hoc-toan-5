@@ -98,6 +98,51 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 /*-----------End Loading --------------------*/
+
+/*-----------check answer button --------------------*/
+.check {
+  margin: 2rem;
+}
+
+.check button {
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Calistoga";
+  border-radius: 10px;
+  background-color: #e19246;
+  cursor: pointer;
+  border: 4px solid white;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.check button:hover {
+  background-color: #f17c0c;
+  transform: scale(1.1);
+}
+/*-----------End check answer button --------------------*/
+
+/*-----------Loading file --------------------*/
+.loading-file {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 15%;
+  height: 20svh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s ease;
+  z-index: 500;
+}
+
+.loading-file img {
+  width: 100%;
+  height: auto;
+}
+/*-----------End Loading file --------------------*/

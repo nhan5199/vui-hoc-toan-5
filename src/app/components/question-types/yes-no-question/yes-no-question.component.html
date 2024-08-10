@@ -1,0 +1,64 @@
+<div class="yes-no-question">
+  <div class="question">
+    <img
+      class="decorate"
+      *ngIf="question?.decoratePath?.length > 0"
+      [src]="question?.decoratePath"
+      alt=""
+    />
+    <p [innerHTML]="question.questionName"></p>
+  </div>
+  <div class="answer-content">
+    <img
+      class="answer-img"
+      *ngIf="question?.imgPath?.length > 0"
+      [src]="question?.imgPath"
+      alt=""
+    />
+    <div class="list-answers">
+      <div
+        class="answer"
+        *ngFor="let answer of question.choices; let i = index"
+      >
+        <div class="opinion">
+          <p [innerHTML]="answer.name"></p>
+        </div>
+        <div class="value">
+          <button [disabled]="isClickCheck" (click)="saveAnswer(i, $event)">
+            Đ
+          </button>
+          <button [disabled]="isClickCheck" (click)="saveAnswer(i, $event)">
+            S
+          </button>
+        </div>
+        <div class="check-result-icon">
+          <img
+            [class.appear]="
+              isClickCheck &&
+              this.listAnswer[i].choice == this.listAnswer[i].answer
+            "
+            src="images/images/cau-hoi/correct-icon.png"
+            alt=""
+          />
+          <img
+            [class.appear]="
+              isClickCheck &&
+              this.listAnswer[i].choice != this.listAnswer[i].answer
+            "
+            src="images/images/cau-hoi/false-icon.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="check">
+    <button
+      [disabled]="isClickCheck"
+      id="checkButton"
+      (click)="onCheckAnswer()"
+    >
+      Kiểm tra
+    </button>
+  </div>
+</div>

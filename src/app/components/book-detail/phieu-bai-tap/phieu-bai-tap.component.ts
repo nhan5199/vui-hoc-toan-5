@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PhieuBaiTapButtonComponent } from '../../buttons/phieu-bai-tap-button/phieu-bai-tap-button.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-phieu-bai-tap',
@@ -37,196 +38,202 @@ export class PhieuBaiTapComponent implements OnInit {
       route.url.subscribe((urlSegment) => {
         this.folderPath +=
           '/' + urlSegment.map((segment) => segment.path).join('/');
-
-        // this.listFiles();
-        this.getListTempFiles();
+        if (this.bookName == 'ket-noi-tri-thuc') {
+          this.listFiles();
+        } else {
+          this.getListTempFiles();
+        }
       });
     });
   }
 
   onChangeSemester() {
-    if (this.selectedSemester == 'hoc-ki-2') {
-      this.files = [
-        {
-          name: 'Tuần 19',
-          url: '',
-        },
-        {
-          name: 'Tuần 20',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 21',
-          url: '',
-        },
-        {
-          name: 'Tuần 22',
-          url: '',
-        },
-        {
-          name: 'Tuần 23',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 24',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 25',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 26',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 27',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 28',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 29',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 30',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 31',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 32',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 33',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 34',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 35',
-          url: '',
-        },
-
-        {
-          name: 'Tuần 36',
-          url: '',
-        },
-        {
-          name: 'Tuần 37',
-          url: '',
-        },
-      ];
+    if (this.bookName == 'ket-noi-tri-thuc') {
+      this.listFiles();
     } else {
-      this.files = [
-        {
-          name: 'Tuần 1',
-          url: '',
-        },
-        {
-          name: 'Tuần 2',
-          url: '',
-        },
+      if (this.selectedSemester == 'hoc-ki-2') {
+        this.files = [
+          {
+            name: 'Tuần 19',
+            url: '',
+          },
+          {
+            name: 'Tuần 20',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 3',
-          url: '',
-        },
-        {
-          name: 'Tuần 4',
-          url: '',
-        },
-        {
-          name: 'Tuần 5',
-          url: '',
-        },
+          {
+            name: 'Tuần 21',
+            url: '',
+          },
+          {
+            name: 'Tuần 22',
+            url: '',
+          },
+          {
+            name: 'Tuần 23',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 6',
-          url: '',
-        },
+          {
+            name: 'Tuần 24',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 7',
-          url: '',
-        },
+          {
+            name: 'Tuần 25',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 8',
-          url: '',
-        },
+          {
+            name: 'Tuần 26',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 9',
-          url: '',
-        },
+          {
+            name: 'Tuần 27',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 10',
-          url: '',
-        },
+          {
+            name: 'Tuần 28',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 11',
-          url: '',
-        },
+          {
+            name: 'Tuần 29',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 12',
-          url: '',
-        },
+          {
+            name: 'Tuần 30',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 13',
-          url: '',
-        },
+          {
+            name: 'Tuần 31',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 14',
-          url: '',
-        },
+          {
+            name: 'Tuần 32',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 15',
-          url: '',
-        },
+          {
+            name: 'Tuần 33',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 16',
-          url: '',
-        },
+          {
+            name: 'Tuần 34',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 17',
-          url: '',
-        },
+          {
+            name: 'Tuần 35',
+            url: '',
+          },
 
-        {
-          name: 'Tuần 18',
-          url: '',
-        },
-      ];
+          {
+            name: 'Tuần 36',
+            url: '',
+          },
+          {
+            name: 'Tuần 37',
+            url: '',
+          },
+        ];
+      } else {
+        this.files = [
+          {
+            name: 'Tuần 1',
+            url: '',
+          },
+          {
+            name: 'Tuần 2',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 3',
+            url: '',
+          },
+          {
+            name: 'Tuần 4',
+            url: '',
+          },
+          {
+            name: 'Tuần 5',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 6',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 7',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 8',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 9',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 10',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 11',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 12',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 13',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 14',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 15',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 16',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 17',
+            url: '',
+          },
+
+          {
+            name: 'Tuần 18',
+            url: '',
+          },
+        ];
+      }
     }
   }
 
@@ -321,13 +328,21 @@ export class PhieuBaiTapComponent implements OnInit {
     ];
   }
 
+  isLoadingFiles: boolean = true;
+
   listFiles(): void {
     this.files = [];
-    this.fileService.getFilesList(this.folderPath).subscribe((files) => {
-      files.forEach((file: any) => {
-        this.files.push(file);
+    this.isLoadingFiles = true;
+    this.fileService
+      .getFilesList(this.folderPath + `/${this.selectedSemester}`)
+      .pipe(finalize(() => (this.isLoadingFiles = false)))
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
+
+        this.sortFilesByName(this.files);
       });
-    });
   }
 
   getTitle() {
@@ -338,5 +353,18 @@ export class PhieuBaiTapComponent implements OnInit {
     } else {
       return 'Kết nối tri thức với cuộc sống';
     }
+  }
+
+  sortFilesByName(files: FileData[]) {
+    this.files = files.sort((a, b) => {
+      const numA = this.extractNumber(a.name);
+      const numB = this.extractNumber(b.name);
+      return numA - numB;
+    });
+  }
+
+  extractNumber(name: string): number {
+    const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
+    return +number;
   }
 }

@@ -34,7 +34,6 @@ export class XemSlideComponent implements OnChanges {
         x.includes(this.slideName?.split('.')[0])
       );
       this.sortImagePathsByNumber(this.slides);
-      console.log(this.slides);
     }
   }
 

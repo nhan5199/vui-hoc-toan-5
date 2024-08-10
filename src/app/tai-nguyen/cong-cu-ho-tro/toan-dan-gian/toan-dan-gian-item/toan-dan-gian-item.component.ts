@@ -44,7 +44,6 @@ export class ToanDanGianItemComponent implements AfterViewInit {
       files.forEach((file: any) => {
         this.files.push(file);
       });
-      console.log(this.files);
     });
   }
 

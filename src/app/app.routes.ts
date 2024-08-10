@@ -4,7 +4,6 @@ import { EBookComponent } from './components/book-detail/ebook/ebook.component';
 import { GiaoAnDienTuComponent } from './components/book-detail/giao-an-dien-tu/giao-an-dien-tu.component';
 import { KeHoachBaiDayComponent } from './components/book-detail/ke-hoach-bai-day/ke-hoach-bai-day.component';
 import { PhieuBaiTapComponent } from './components/book-detail/phieu-bai-tap/phieu-bai-tap.component';
-import { ListQuestionComponent } from './components/question-type/list-question/list-question.component';
 import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
 import { HomeComponent } from './home/home.component';
 
@@ -43,10 +42,6 @@ export const routes: Routes = [
   {
     path: 'doc-slide',
     component: SlideDisplayComponent,
-  },
-  {
-    path: 'bai-on-tap',
-    component: ListQuestionComponent,
   },
   {
     path: ':bookName/e-book',

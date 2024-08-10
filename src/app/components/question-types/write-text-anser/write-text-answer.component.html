@@ -1,0 +1,33 @@
+<div class="write-answer">
+  <div class="question">
+    <img
+      class="decorate"
+      *ngIf="question?.decoratePath?.length > 0"
+      [src]="question?.decoratePath"
+      alt=""
+    />
+  </div>
+  <div class="answer">
+    <div class="decorate-img" *ngIf="question?.imgPath?.length > 0">
+      <img class="answer-img" [src]="question?.imgPath" alt="" />
+    </div>
+    <div class="answer-content" *ngIf="question?.questionName?.length > 0">
+      <ng-container *ngFor="let item of question.questionName; let i = index">
+        <div class="answer-item">
+          <p [innerHTML]="item"></p>
+          <input
+            type="text"
+            [(ngModel)]="answer[i]"
+            [maxlength]="10"
+            [id]="'answer-' + i"
+            autocomplete="off"
+            (keydown.enter)="onCheckAnswer()"
+          />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="check">
+    <button id="checkButton" (click)="onCheckAnswer()">Kiểm tra</button>
+  </div>
+</div>

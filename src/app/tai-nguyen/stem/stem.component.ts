@@ -33,7 +33,6 @@ export class StemComponent implements OnInit {
       route.url.subscribe((urlSegment) => {
         this.folderPath +=
           '/' + urlSegment.map((segment) => segment.path).join('/');
-        console.log(this.folderPath);
         this.listFiles();
       });
     });

@@ -40,13 +40,64 @@
   >
     <div class="point-container">
       <div class="point-content">
-        <p class="point">0</p>
+        <p class="point">{{ currentPoint }}</p>
+        <p class="temp-point" [class.hidden]="tempPoint == ''">
+          {{ tempPoint }}
+        </p>
       </div>
       <img src="images/images/cau-hoi/point-icon.png" alt="" />
     </div>
-    <div class="cau-hoi">
-      <button (click)="goToNextQuestion()">Câu hỏi {{ activeQuestion }}</button>
-    </div>
+    <ng-container
+      *ngIf="listQuestionAnswers[0]?.quests[activeQuestion - 1]?.type == 1"
+    >
+      <app-choose-correct-answer
+        class="question-answer"
+        [question]="listQuestionAnswers[0]?.quests[activeQuestion - 1]"
+        (result)="checkAnswer($event)"
+      ></app-choose-correct-answer>
+    </ng-container>
+
+    <!-- Câu hỏi Chọn đúng sai -->
+    <ng-container
+      *ngIf="listQuestionAnswers[0]?.quests[activeQuestion - 1]?.type == 2"
+    >
+      <app-yes-no-question
+        class="question-answer"
+        [question]="listQuestionAnswers[0]?.quests[activeQuestion - 1]"
+        (result)="checkAnswer($event)"
+      ></app-yes-no-question>
+    </ng-container>
+
+    <!-- Câu hỏi điền đáp án -->
+    <ng-container
+      *ngIf="listQuestionAnswers[0]?.quests[activeQuestion - 1]?.type == 3"
+    >
+      <app-write-answer-question
+        class="question-answer"
+        [question]="listQuestionAnswers[0]?.quests[activeQuestion - 1]"
+        (result)="checkAnswer($event)"
+      ></app-write-answer-question>
+    </ng-container>
+
+    <!-- Câu hỏi đổi đơn vị đo -->
+    <!-- <ng-container *ngIf="item?.type == 4">
+                    <app-exchange-unit
+                      class="question-answer"
+                      [question]="item"
+                      (result)="checkAnswer($event)"
+                    ></app-exchange-unit>
+                  </ng-container> -->
+
+    <!-- Câu hỏi điền đáp án dạng text -->
+    <ng-container
+      *ngIf="listQuestionAnswers[0]?.quests[activeQuestion - 1]?.type == 5"
+    >
+      <app-write-text-answer
+        class="question-answer"
+        [question]="listQuestionAnswers[0]?.quests[activeQuestion - 1]"
+        (result)="checkAnswer($event)"
+      ></app-write-text-answer>
+    </ng-container>
   </div>
   <div
     class="ket-qua"
@@ -61,7 +112,7 @@
     <div class="ket-qua-content">
       <div class="ket-qua-point">
         <div class="ket-qua-point-content">
-          <p>0</p>
+          <p>{{ currentPoint }}</p>
         </div>
         <img
           src="/images/images/cau-hoi/treasure.png"
@@ -72,7 +123,7 @@
 
       <div class="ket-qua-right">
         <div class="ket-qua-right-content">
-          <p>0</p>
+          <p>{{ rightAnswersCount }}</p>
         </div>
         <img
           src="/images/images/cau-hoi/correct-icon.png"
@@ -83,7 +134,7 @@
 
       <div class="ket-qua-wrong">
         <div class="ket-qua-wrong-content">
-          <p>0</p>
+          <p>{{ wrongAnswersCount }}</p>
         </div>
         <img
           src="/images/images/cau-hoi/false-icon.png"

@@ -8,25 +8,6 @@
   z-index: 200;
 }
 
-.book-loading {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 15%;
-  height: 20svh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.5s ease;
-  z-index: 300;
-}
-
-.book-loading img {
-  width: 100%;
-  height: auto;
-}
-
 .book {
   transition: opacity 0.4s 0.2s;
   position: absolute;

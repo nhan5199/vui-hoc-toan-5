@@ -29,9 +29,6 @@ export class SlideButtonComponent implements OnChanges {
       );
 
       this.imgUrl[0] = this.imgUrl[0]?.split('public/')[1];
-      if (this.imgUrl == null) {
-        console.log(this.buttonName);
-      }
     }
   }
 

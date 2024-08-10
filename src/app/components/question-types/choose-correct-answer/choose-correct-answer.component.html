@@ -1,0 +1,29 @@
+<div class="choose-correct-answer">
+  <div class="question">
+    <p [innerHTML]="question.questionName"></p>
+    <img
+      *ngIf="question?.imgPath?.length > 0"
+      [src]="question?.imgPath"
+      alt=""
+    />
+  </div>
+  <div class="list-answers">
+    <ng-container *ngIf="!isAnswerWithImage">
+      <button
+        class="answer"
+        *ngFor="let answer of question.choices"
+        (click)="checkAnswer(answer.value, $event)"
+        [innerHTML]="answer.name"
+      ></button>
+    </ng-container>
+    <ng-container *ngIf="isAnswerWithImage">
+      <span
+        class="answer-img"
+        *ngFor="let answer of question.choices"
+        (click)="checkAnswer(answer.value, $event)"
+      >
+        <img [src]="answer.name" />
+      </span>
+    </ng-container>
+  </div>
+</div>

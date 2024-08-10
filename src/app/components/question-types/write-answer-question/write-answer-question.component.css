@@ -1,0 +1,111 @@
+.write-answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  margin: 0;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.answer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.answer-img {
+  border-radius: 10px;
+  height: auto;
+  width: 40%;
+  object-fit: fill;
+}
+
+.answer-input {
+  display: flex;
+  color: white;
+  font-size: 2rem;
+  font-family: var(--title-font);
+}
+
+.answer input {
+  outline: none;
+  background: transparent;
+  border: none;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  width: 100px;
+  margin: 0 10px;
+  font-family: var(--title-font);
+  border-bottom: 2px solid white;
+}
+
+.question-answer {
+  position: relative;
+}
+
+.question-name {
+  width: 95%;
+  max-height: 50svh;
+  overflow-y: auto;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  margin: 4rem;
+  font-family: var(--title-font);
+}
+
+.question img {
+  width: 40%;
+  margin: 0 auto;
+  object-fit: fill;
+}
+
+.decorate {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.point {
+  position: absolute;
+  top: 0.5%;
+  right: 10.5%;
+}
+
+/*Bỏ arrow ở inpur*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+@media screen and (max-width: 1000px) {
+  .answer-img {
+    width: 150px;
+    height: 100px;
+  }
+
+  p,
+  .answer input {
+    font-size: 15px;
+  }
+
+  .check button {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
