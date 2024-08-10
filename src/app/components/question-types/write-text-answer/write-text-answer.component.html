@@ -28,6 +28,12 @@
     </div>
   </div>
   <div class="check">
-    <button id="checkButton" (click)="onCheckAnswer()">Kiểm tra</button>
+    <button
+      id="checkButton"
+      [disabled]="isClickChecked"
+      (click)="onCheckAnswer()"
+    >
+      Kiểm tra
+    </button>
   </div>
 </div>

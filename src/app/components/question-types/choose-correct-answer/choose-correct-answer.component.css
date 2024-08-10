@@ -4,8 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 70svh;
-  height: 60svh;
+  max-height: 90svh;
 }
 
 .list-answers {
@@ -15,12 +14,12 @@
   height: auto;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 4rem;
 }
 
 .question {
-  max-height: 35svh;
+  max-height: 60svh;
   overflow-y: auto;
   width: 95%;
   text-align: center;
@@ -47,6 +46,7 @@
   cursor: pointer;
   min-width: 20%;
   transition: 0.5s ease;
+  flex: 1;
 }
 
 .list-answers .answer:hover,

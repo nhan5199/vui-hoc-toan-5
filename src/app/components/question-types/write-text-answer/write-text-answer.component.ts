@@ -1,6 +1,14 @@
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-write-text-answer',
@@ -9,15 +17,31 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './write-text-answer.component.html',
   styleUrl: './write-text-answer.component.css',
 })
-export class WriteTextAnswerComponent implements OnInit {
+export class WriteTextAnswerComponent implements OnChanges {
   @Input('question') question: any;
   @Output('result') result: EventEmitter<any> = new EventEmitter();
   answer: string[] = [];
+  isClickChecked: boolean = false;
 
-  ngOnInit() {
-    this.answer = this.createArrayWithNullElements(
-      this.question.questionName.length
-    );
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['question']) {
+      this.answer = this.createArrayWithNullElements(
+        this.question.questionName.length
+      );
+      this.isClickChecked = false;
+
+      let index = 0;
+      let id = 'answer-' + index;
+      this.answer.forEach((answer: any) => {
+        let id = 'answer-' + index;
+        const inputElement = document.getElementById(id);
+        if (inputElement) {
+          inputElement.style.color = 'white';
+          inputElement.style.borderColor = 'white';
+        }
+        index++;
+      });
+    }
   }
 
   createArrayWithNullElements(count: number) {
@@ -41,8 +65,7 @@ export class WriteTextAnswerComponent implements OnInit {
   }
 
   onCheckAnswer() {
-    let button = document.getElementById('checkButton') as HTMLButtonElement;
-    if (button) button.disabled = true;
+    this.isClickChecked = true;
 
     let index = 0;
     let countCorrect = 0;
@@ -66,15 +89,9 @@ export class WriteTextAnswerComponent implements OnInit {
     });
 
     if (countCorrect == this.question.answer.length) {
-      this.result.emit({
-        result: true,
-        point: 100,
-      });
+      this.result.emit(true);
     } else {
-      this.result.emit({
-        result: false,
-        point: Math.round((100 / this.question.answer.length) * countCorrect),
-      });
+      this.result.emit(false);
     }
   }
 }

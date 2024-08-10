@@ -6,7 +6,7 @@ import { CauHoiOnTapItemButtonComponent } from '../../../../components/buttons/c
 import { ChooseCorrectAnswerComponent } from '../../../../components/question-types/choose-correct-answer/choose-correct-answer.component';
 import { WriteAnswerQuestionComponent } from '../../../../components/question-types/write-answer-question/write-answer-question.component';
 import { YesNoQuestionComponent } from '../../../../components/question-types/yes-no-question/yes-no-question.component';
-import { WriteTextAnswerComponent } from '../../../../components/question-types/write-text-anser/write-text-answer.component';
+import { WriteTextAnswerComponent } from '../../../../components/question-types/write-text-answer/write-text-answer.component';
 
 @Component({
   selector: 'app-cau-hoi-on-tap-item',
