@@ -1,4 +1,4 @@
-<div class="ke-hoach-bai-day" (click)="downloadFile()">
+<a class="ke-hoach-bai-day" [href]="downloadUrl" download target="_blank">
   <img [src]="imgUrl" alt="" />
   <div class="content">
     <p class="book-name">
@@ -12,4 +12,4 @@
       alt=""
     />
   </div>
-</div>
+</a>
