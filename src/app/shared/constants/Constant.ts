@@ -4365,4 +4365,30 @@ export default class {
       'public/images/Tuần 1_Bài 2_Tiết 1_Toán 5_KNTT.png',
     ],
   };
+
+  static readonly FILE_PATH = {
+    files: [
+      'public/files/canh-dieu/e-book/SGK Tập 1.pdf',
+      'public/files/canh-dieu/e-book/SGK Tập 2.pdf',
+      'public/files/canh-dieu/e-book/Tài liệu tập huấn.pdf',
+      'public/files/chan-troi-sang-tao/e-book/Giới thiệu SGK Toán 5.pdf',
+      'public/files/chan-troi-sang-tao/e-book/Sách giáo viên.pdf',
+      'public/files/chan-troi-sang-tao/e-book/Sách KHBD.pdf',
+      'public/files/chan-troi-sang-tao/e-book/Tài liệu tập huấn.pdf',
+      'public/files/ket-noi-tri-thuc/e-book/SGK Tập 1.pdf',
+      'public/files/ket-noi-tri-thuc/e-book/SGK Tập 2.pdf',
+      'public/files/ket-noi-tri-thuc/e-book/Sách giáo viên.pdf',
+      'public/files/ket-noi-tri-thuc/e-book/Sách KHBD.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  1.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  10.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  2.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  7.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  8.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần  9.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 3.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 4.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 5.pdf',
+      'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 6.pdf',
+    ],
+  };
 }

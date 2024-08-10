@@ -41,6 +41,7 @@ export class PhieuBaiTapComponent implements OnInit {
         if (this.bookName == 'ket-noi-tri-thuc') {
           this.listFiles();
         } else {
+          this.isLoadingFiles = false;
           this.getListTempFiles();
         }
       });

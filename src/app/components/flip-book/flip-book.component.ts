@@ -38,12 +38,16 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
         x.includes(this.folderPath)
       );
       this.sortImagePathsByNumber(this.listImgs);
-      this.downloadUrl =
-        'files/' + this.getFileDOwnloadPath(this.folderPath) + '.pdf';
+      this.downloadUrl = Constant.FILE_PATH.files
+        .filter((x) =>
+          x.includes('files/' + this.getFileDownloadPath(this.folderPath))
+        )[0]
+        .split('public/')[1];
+      console.log(this.downloadUrl);
     }
   }
 
-  getFileDOwnloadPath(filePath: string): string {
+  getFileDownloadPath(filePath: string): string {
     // Split the path into parts
     const parts = filePath.split('/');
 
@@ -54,7 +58,7 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
     const fileName = parts[parts.length - 1];
 
     // Combine the root and the file name
-    return `${root}/${fileName}`;
+    return `${root}/${parts[1]}/${fileName}`;
   }
 
   ngAfterViewInit(): void {

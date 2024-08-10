@@ -1,4 +1,4 @@
-<div class="phieu-bai-tap" (click)="downloadFile()">
+<a class="phieu-bai-tap" [href]="downloadUrl" download target="_blank">
   <img [src]="imgUrl" alt="" />
   <div class="content">
     <p class="book-name">
@@ -12,4 +12,4 @@
       alt=""
     />
   </div>
-</div>
+</a>

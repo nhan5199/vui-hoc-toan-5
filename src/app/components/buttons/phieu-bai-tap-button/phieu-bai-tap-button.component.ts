@@ -13,6 +13,7 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
   imgUrl: string = 'images/images/';
+  downloadUrl: string = '';
   constructor(
     private readonly fileService: FileService,
     private readonly router: Router
@@ -27,13 +28,10 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
       } else {
         this.imgUrl += 'chan-troi-sang-tao-icon.jpg';
       }
-    }
-  }
 
-  downloadFile(): void {
-    const link = document.createElement('a');
-    link.href = `/files/${this.folderPath}`; // Replace with your file path
-    link.download = `${this.buttonName}`; // Replace with the desired file name
-    link.click();
+      this.downloadUrl = `files/${this.folderPath.split('//')[1]}/${
+        this.buttonName
+      }`;
+    }
   }
 }
