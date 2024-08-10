@@ -38,7 +38,23 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
         x.includes(this.folderPath)
       );
       this.sortImagePathsByNumber(this.listImgs);
+      this.downloadUrl =
+        'files/' + this.getFileDOwnloadPath(this.folderPath) + '.pdf';
     }
+  }
+
+  getFileDOwnloadPath(filePath: string): string {
+    // Split the path into parts
+    const parts = filePath.split('/');
+
+    // Get the first part (e.g., "chan-troi-sang-tao")
+    const root = parts[0];
+
+    // Get the last part (e.g., "Sách KHBD.pdf")
+    const fileName = parts[parts.length - 1];
+
+    // Combine the root and the file name
+    return `${root}/${fileName}`;
   }
 
   ngAfterViewInit(): void {

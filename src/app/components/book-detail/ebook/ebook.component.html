@@ -1,7 +1,10 @@
 <div class="e-book">
   <p class="menu-title">{{ getTitle() }}</p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
-  <div class="e-book-container">
+  <div class="loading-file" *ngIf="isLoadingFile">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="e-book-container" [class.hidden]="isLoadingFile">
     <app-ebook-button
       *ngFor="let file of files"
       [buttonName]="file.name"

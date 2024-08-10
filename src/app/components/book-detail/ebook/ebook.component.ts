@@ -4,6 +4,7 @@ import { FileData, FileService } from '../../../services/file.service';
 import { EBookButtonComponent } from '../../buttons/ebook-button/ebook-button.component';
 import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../flip-book/flip-book.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-ebook',
@@ -21,6 +22,8 @@ export class EBookComponent implements OnInit {
   currentImgPath: string = '';
   currentDownloadUrl: string = '';
   isDisplayFlipBook: boolean = false;
+
+  isLoadingFile: boolean = true;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -41,12 +44,16 @@ export class EBookComponent implements OnInit {
   }
 
   listFiles(): void {
+    this.isLoadingFile = true;
     this.files = [];
-    this.fileService.getFilesList(this.folderPath).subscribe((files) => {
-      files.forEach((file: any) => {
-        this.files.push(file);
+    this.fileService
+      .getFilesList(this.folderPath)
+      .pipe(finalize(() => (this.isLoadingFile = false)))
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
       });
-    });
   }
 
   getTitle() {
