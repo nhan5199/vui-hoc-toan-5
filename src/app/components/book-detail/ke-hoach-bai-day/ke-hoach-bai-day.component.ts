@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { KeHoachBaiDayButtonComponent } from '../../buttons/ke-hoach-bai-day-button/ke-hoach-bai-day-button.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-ke-hoach-bai-day',
@@ -30,6 +31,7 @@ export class KeHoachBaiDayComponent implements OnInit {
     private readonly fileService: FileService
   ) {}
 
+  isLoadingFile: boolean = true;
   ngOnInit(): void {
     this.bookName = this.route.snapshot.paramMap.get('bookName')!;
     this.bookIconUrl = `images/images/${this.bookName}-icon.jpg`;
@@ -51,6 +53,7 @@ export class KeHoachBaiDayComponent implements OnInit {
     if (this.bookName != 'ket-noi-tri-thuc') {
       this.listFiles();
     } else {
+      this.isLoadingFile = false;
       if (this.selectedSemester == 'hoc-ki-2') {
         this.files = [
           {
@@ -234,6 +237,7 @@ export class KeHoachBaiDayComponent implements OnInit {
   }
 
   getListTempFiles() {
+    this.isLoadingFile = false;
     this.files = [
       {
         name: 'Tuần 1',
@@ -325,9 +329,11 @@ export class KeHoachBaiDayComponent implements OnInit {
   }
 
   listFiles(): void {
+    this.isLoadingFile = true;
     this.files = [];
     this.fileService
       .getFilesList(this.folderPath + `/${this.selectedSemester}`)
+      .pipe(finalize(() => (this.isLoadingFile = false)))
       .subscribe((files) => {
         files.forEach((file: any) => {
           this.files.push(file);

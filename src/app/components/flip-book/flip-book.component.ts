@@ -43,7 +43,6 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
           x.includes('files/' + this.getFileDownloadPath(this.folderPath))
         )[0]
         .split('public/')[1];
-      console.log(this.downloadUrl);
     }
   }
 
@@ -132,7 +131,6 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
 
   flipPage(index: number, page: HTMLDivElement) {
     if (!page) return;
-
     if (index % 2 === 0) {
       // Even pages
       page.classList.toggle('flipped');
@@ -144,6 +142,7 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
           nextPage.classList.remove('flipped');
         }
       }
+      this.currentPageIndex += 2;
     } else {
       // Odd pages
       page.classList.toggle('flipped');
@@ -155,6 +154,7 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
           prevPage.classList.remove('flipped');
         }
       }
+      this.currentPageIndex -= 2;
     }
   }
 

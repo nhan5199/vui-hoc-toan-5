@@ -5,9 +5,11 @@
   </p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
   <div class="search">
-    <img src="icons/search-icon.png" alt="" />
+    <label for="selectSemester">
+      <img src="icons/search-icon.png" alt="" />
+    </label>
     <select
-      id="exampleSelect"
+      id="selectSemester"
       [(ngModel)]="selectedSemester"
       (change)="onChangeSemester()"
     >
@@ -16,7 +18,11 @@
       </option>
     </select>
   </div>
-  <div class="ke-hoach-bai-day-container">
+
+  <div class="loading-file" *ngIf="isLoadingFile">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="ke-hoach-bai-day-container" [class.hidden]="isLoadingFile">
     <app-ke-hoach-bai-day-button
       *ngFor="let file of files"
       [buttonName]="file.name"
