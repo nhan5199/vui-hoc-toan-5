@@ -1,6 +1,4 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FileService } from '../../../services/file.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-phieu-bai-tap-button',
@@ -12,12 +10,10 @@ import { Router } from '@angular/router';
 export class PhieuBaiTapButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
+  @Input('selectedSemester') selectedSemester: string = '';
   imgUrl: string = 'images/images/';
   downloadUrl: string = '';
-  constructor(
-    private readonly fileService: FileService,
-    private readonly router: Router
-  ) {}
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {
@@ -30,8 +26,8 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
       }
 
       this.downloadUrl = `files/${this.folderPath.split('//')[1]}/${
-        this.buttonName
-      }`;
+        this.selectedSemester
+      }/${this.buttonName}`;
     }
   }
 }
