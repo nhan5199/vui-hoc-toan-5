@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FileService } from '../../../services/file.service';
+import { FileData, FileService } from '../../../services/file.service';
 import { GiaoAnDienTuButtonComponent } from '../../buttons/giao-an-dien-tu-button/giao-an-dien-tu-button.component';
 
 @Component({
@@ -86,6 +86,8 @@ export class GiaoAnDienTuComponent implements OnInit {
       files.forEach((file: any) => {
         this.files.push(file);
       });
+
+      this.sortFilesByName(this.files);
     });
   }
 
@@ -148,5 +150,18 @@ export class GiaoAnDienTuComponent implements OnInit {
     } else {
       return this.defaultImgUrl;
     }
+  }
+
+  sortFilesByName(files: FileData[]) {
+    this.files = files.sort((a, b) => {
+      const numA = this.extractNumber(a.name);
+      const numB = this.extractNumber(b.name);
+      return numA - numB;
+    });
+  }
+
+  extractNumber(name: string): number {
+    const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
+    return +number;
   }
 }

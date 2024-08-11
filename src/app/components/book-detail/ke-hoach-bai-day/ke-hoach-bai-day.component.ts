@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileService } from '../../../services/file.service';
+import { FileData, FileService } from '../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { KeHoachBaiDayButtonComponent } from '../../buttons/ke-hoach-bai-day-button/ke-hoach-bai-day-button.component';
 import { FormsModule } from '@angular/forms';
@@ -338,6 +338,8 @@ export class KeHoachBaiDayComponent implements OnInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
+
+        this.sortFilesByName(this.files);
       });
   }
 
@@ -349,5 +351,18 @@ export class KeHoachBaiDayComponent implements OnInit {
     } else {
       return 'Kết nối tri thức với cuộc sống';
     }
+  }
+
+  sortFilesByName(files: FileData[]) {
+    this.files = files.sort((a, b) => {
+      const numA = this.extractNumber(a.name);
+      const numB = this.extractNumber(b.name);
+      return numA - numB;
+    });
+  }
+
+  extractNumber(name: string): number {
+    const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
+    return +number;
   }
 }
