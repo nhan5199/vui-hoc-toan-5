@@ -13,7 +13,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 65svh;
+  max-height: 60svh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -22,13 +22,15 @@
 }
 
 .flash-card {
-  width: 25%;
+  width: 15%;
   position: relative;
+  border-radius: 15px;
 }
 
 .flash-card img {
   width: 100%;
   transition: 0.75s ease;
+  border-radius: 15px;
 }
 
 .flash-card:hover img {
@@ -48,6 +50,7 @@
   background-color: var(--background-transparent-black);
   transition: 0.5s ease;
   opacity: 0;
+  border-radius: 15px;
 }
 
 .download-content:hover {

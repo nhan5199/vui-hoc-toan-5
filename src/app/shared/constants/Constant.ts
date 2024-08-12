@@ -4416,6 +4416,12 @@ export default class {
       'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 4.pdf',
       'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 5.pdf',
       'public/files/ket-noi-tri-thuc/phieu-bai-tap/Toán 5 - Tuần 6.pdf',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/10 kiến thức về số tự nhiên.rar',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/5 thủ thuật tính nhẩm siêu tốc.rar',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/Chu vi và diện tích các hình (1).png',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/Chu vi và diện tích các hình.png',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/Hệ thống kiến thức chủ đề đại lượng.rar',
+      'public/files/tai-nguyen/cong-cu-ho-tro/flash-card/tong-hop-cong-thuc/Tổng hợp công thức toán lớp 1 - 5.rar',
     ],
   };
 }

@@ -4,7 +4,9 @@
     <div *ngFor="let file of files" class="flash-card">
       <img [src]="file.url" alt="" />
       <div class="download-content">
-        <a [href]="file.url" download target="_blank">Tải xuống </a>
+        <a [href]="getDownloadUrl(file.name)" download target="_blank"
+          >Tải xuống
+        </a>
       </div>
     </div>
   </div>

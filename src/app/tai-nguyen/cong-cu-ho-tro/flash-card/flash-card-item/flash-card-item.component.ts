@@ -9,6 +9,8 @@ import { FileData, FileService } from '../../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ImageLoaderService } from '../../../../services/image-loader.service';
+import { constants } from 'node:buffer';
+import Constant from '../../../../shared/constants/Constant';
 
 @Component({
   selector: 'app-flash-card-item',
@@ -66,5 +68,12 @@ export class FlashCardItemComponent implements OnInit {
         this.cdRef.detectChanges();
       }
     );
+  }
+
+  getDownloadUrl(fileName: string) {
+    let downloadUrl = Constant.FILE_PATH.files.filter((x) =>
+      x.includes(this.currentPath.split('//')[1] + `/${fileName.split('.')[0]}`)
+    );
+    return downloadUrl[0].split('public/')[1];
   }
 }
