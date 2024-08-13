@@ -19,7 +19,7 @@
 }
 
 .phieu-bai-tap:hover .download {
-  transform: scaleX(-1);
+  transform: scale(1.1);
 }
 
 .phieu-bai-tap .download {
