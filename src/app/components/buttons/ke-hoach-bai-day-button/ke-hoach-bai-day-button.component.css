@@ -19,7 +19,7 @@
 }
 
 .ke-hoach-bai-day:hover .download {
-  transform: scaleX(-1);
+  transform: scale(1.1);
 }
 
 .ke-hoach-bai-day .download {

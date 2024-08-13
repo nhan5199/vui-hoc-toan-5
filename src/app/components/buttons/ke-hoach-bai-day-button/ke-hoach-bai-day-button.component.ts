@@ -11,6 +11,7 @@ export class KeHoachBaiDayButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
   @Input('selectedSemester') selectedSemester: string = '';
+  @Input('fileDownloadUrl') fileDownloadUrl: string = '';
 
   imgUrl: string = 'images/images/';
   downloadUrl: string = '';
@@ -27,9 +28,17 @@ export class KeHoachBaiDayButtonComponent implements OnChanges {
         this.imgUrl += 'chan-troi-sang-tao-icon.jpg';
       }
 
-      this.downloadUrl = `files/${this.folderPath.split('//')[1]}/${
-        this.selectedSemester
-      }/${this.buttonName}`;
+      if (
+        this.buttonName?.includes('pdf') ||
+        this.buttonName.includes('png') ||
+        this.buttonName.includes('jpeg')
+      ) {
+        this.downloadUrl = `files/${this.folderPath.split('//')[1]}/${
+          this.selectedSemester
+        }/${this.buttonName}`;
+      } else {
+        this.downloadUrl = this.fileDownloadUrl;
+      }
     }
   }
 }
