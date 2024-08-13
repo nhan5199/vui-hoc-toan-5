@@ -1,7 +1,7 @@
 .giao-an-dien-tu {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 10px;
   background-color: white;
@@ -18,7 +18,7 @@
 }
 
 .giao-an-dien-tu:hover .download {
-  transform: scaleX(-1);
+  transform: scale(1.1);
 }
 
 .giao-an-dien-tu .download {
@@ -27,7 +27,7 @@
 }
 
 .giao-an-dien-tu img {
-  width: 150px;
+  width: 40%;
   max-height: 150px;
 }
 

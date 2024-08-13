@@ -1,6 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FileService } from '../../../services/file.service';
-import { Router } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-giao-an-dien-tu-button',
@@ -13,11 +18,11 @@ export class GiaoAnDienTuButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
   @Input('urlImg') urlImg: string = '';
+  @Input('downloadUrl') downloadUrl: string = '';
+
+  @Output('viewSlide') viewSlide: EventEmitter<any> = new EventEmitter<any>();
   imgUrl: string = 'images/images/';
-  constructor(
-    private readonly fileService: FileService,
-    private readonly router: Router
-  ) {}
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {
@@ -31,10 +36,10 @@ export class GiaoAnDienTuButtonComponent implements OnChanges {
     }
   }
 
-  downloadFile(): void {
-    const link = document.createElement('a');
-    link.href = `/files/${this.folderPath}`; // Replace with your file path
-    link.download = `${this.buttonName}`; // Replace with the desired file name
-    link.click();
+  onClickSlide() {
+    this.viewSlide.emit({
+      name: this.buttonName,
+      url: this.downloadUrl,
+    });
   }
 }

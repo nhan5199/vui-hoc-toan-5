@@ -64,7 +64,11 @@ export class SlideComponent implements OnInit, AfterViewInit {
   }
 
   onCloseViewSlide(event: boolean) {
-    if (event) this.isDisplayViewSlide = false;
+    if (event) {
+      this.isDisplayViewSlide = false;
+      this.slideName = '';
+      this.slideDownloadUrl = '';
+    }
   }
 
   isLoading = true;

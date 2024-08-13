@@ -54,20 +54,10 @@ export class XemSlideComponent implements OnChanges {
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
     const clickedInside = this.el.nativeElement
-      .querySelector('.slide .slide-container')
+      .querySelector('.slide .slide-container .content img')
       .contains(event.target as Node);
     if (!clickedInside) {
       this.closeSlide.emit(true);
-    }
-  }
-  activeImg: number = 0;
-  setActiveImg(action: number) {
-    this.activeImg += action;
-
-    if (this.activeImg < 0) {
-      this.activeImg = this.slides.length - 1;
-    } else if (this.activeImg >= this.slides.length) {
-      this.activeImg = 0;
     }
   }
 }

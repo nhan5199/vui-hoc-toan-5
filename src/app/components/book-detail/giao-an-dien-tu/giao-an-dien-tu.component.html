@@ -31,37 +31,24 @@
       </select>
     </div>
   </div>
-  <div class="giao-an-dien-tu-container">
-    <!-- <app-giao-an-dien-tu-button
+  <div class="loading-file" *ngIf="isLoadingFile">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="giao-an-dien-tu-container" [class.hidden]="isLoadingFile">
+    <app-giao-an-dien-tu-button
       *ngFor="let file of files"
-      [buttonName]="file.name"
+      [buttonName]="file.name.split('.')[0]"
       [folderPath]="folderPath"
-      [urlImg]="file.url"
-    ></app-giao-an-dien-tu-button> -->
-    <app-giao-an-dien-tu-button
-      [buttonName]="'Bài 1 (Tiết 1)'"
-      [folderPath]="folderPath"
-      [urlImg]="getImgUrl1()"
-    ></app-giao-an-dien-tu-button>
-    <app-giao-an-dien-tu-button
-      [buttonName]="'Bài 1 (Tiết 2)'"
-      [folderPath]="folderPath"
-      [urlImg]="getImgUrl2()"
-    ></app-giao-an-dien-tu-button>
-    <app-giao-an-dien-tu-button
-      [buttonName]="'Bài 2 (Tiết 1)'"
-      [folderPath]="folderPath"
-      [urlImg]="getImgUrl3()"
-    ></app-giao-an-dien-tu-button>
-    <app-giao-an-dien-tu-button
-      [buttonName]="'Bài 2 (Tiết 2)'"
-      [folderPath]="folderPath"
-      [urlImg]="getImgUrl4()"
-    ></app-giao-an-dien-tu-button>
-    <app-giao-an-dien-tu-button
-      [buttonName]="'Bài 3 (Tiết 1)'"
-      [folderPath]="folderPath"
-      [urlImg]="getImgUrl5()"
+      [urlImg]="getImgUrl(file.name)"
+      [downloadUrl]="file.url"
+      (viewSlide)="onViewSlide($event)"
     ></app-giao-an-dien-tu-button>
   </div>
 </div>
+
+<app-xem-slide
+  *ngIf="isDisplayViewSlide"
+  [slideName]="slideName"
+  [downloadUrl]="slideDownloadUrl"
+  (closeSlide)="onCloseViewSlide($event)"
+></app-xem-slide>

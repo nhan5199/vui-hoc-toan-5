@@ -4,11 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FileData, FileService } from '../../../services/file.service';
 import { GiaoAnDienTuButtonComponent } from '../../buttons/giao-an-dien-tu-button/giao-an-dien-tu-button.component';
+import Constant from '../../../shared/constants/Constant';
+import { XemSlideComponent } from '../../xem-slide/xem-slide.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-giao-an-dien-tu',
   standalone: true,
-  imports: [GiaoAnDienTuButtonComponent, FormsModule, CommonModule],
+  imports: [
+    GiaoAnDienTuButtonComponent,
+    FormsModule,
+    CommonModule,
+    XemSlideComponent,
+  ],
   templateUrl: './giao-an-dien-tu.component.html',
   styleUrl: './giao-an-dien-tu.component.css',
 })
@@ -16,7 +24,8 @@ export class GiaoAnDienTuComponent implements OnInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
-  // files: FileData[] = [];
+  defaultImgUrl = '';
+  isLoadingFile: boolean = true;
 
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
@@ -60,8 +69,7 @@ export class GiaoAnDienTuComponent implements OnInit {
         this.folderPath +=
           '/' + urlSegment.map((segment) => segment.path).join('/');
 
-        // this.listFiles();
-        this.getListTempFiles();
+        this.listFiles();
       });
     });
 
@@ -74,21 +82,31 @@ export class GiaoAnDienTuComponent implements OnInit {
     }
   }
 
-  onChangeSemester() {}
+  onChangeSemester() {
+    this.listFiles();
+  }
 
-  onChangeWeek() {}
+  onChangeWeek() {
+    this.listFiles();
+  }
 
   getListTempFiles() {}
 
   listFiles(): void {
     this.files = [];
-    this.fileService.getFilesList(this.folderPath).subscribe((files) => {
-      files.forEach((file: any) => {
-        this.files.push(file);
-      });
+    this.isLoadingFile = true;
+    this.fileService
+      .getFilesList(
+        this.folderPath + `/${this.selectedSemester}/${this.selectedWeek}`
+      )
+      .pipe(finalize(() => (this.isLoadingFile = false)))
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
 
-      this.sortFilesByName(this.files);
-    });
+        this.sortFilesByName(this.files);
+      });
   }
 
   getTitle() {
@@ -101,55 +119,16 @@ export class GiaoAnDienTuComponent implements OnInit {
     }
   }
 
-  defaultImgUrl = '';
-  getImgUrl1() {
-    if (this.bookName == 'canh-dieu') {
-      return 'images/Tuan1_Bai1_Tiet1_Toan5_CD.png';
-    } else if (this.bookName == 'chan-troi-sang-tao') {
-      return 'images/Tuan1_Bai1_Tiet1_Toan5_KNTT.png';
-    } else {
-      return this.defaultImgUrl;
-    }
-  }
-
-  getImgUrl2() {
-    if (this.bookName == 'canh-dieu') {
-      return 'images/Tuan1_Bai1_Tiet2_Toan5_CD.png';
-    } else if (this.bookName == 'chan-troi-sang-tao') {
-      return 'images/Tuan1_Bai1_Tiet2_Toan5_KNTT.png';
-    } else {
-      return this.defaultImgUrl;
-    }
-  }
-
-  getImgUrl3() {
-    if (this.bookName == 'canh-dieu') {
-      return this.defaultImgUrl;
-    } else if (this.bookName == 'chan-troi-sang-tao') {
-      return 'images/Tuần 1_Bài 2_Tiết 1_Toán 5_KNTT.png';
-    } else {
-      return this.defaultImgUrl;
-    }
-  }
-
-  getImgUrl4() {
-    if (this.bookName == 'canh-dieu') {
-      return this.defaultImgUrl;
-    } else if (this.bookName == 'chan-troi-sang-tao') {
-      return 'images/Tuan1_Bài 2_Tiết 2_Toan5_KNTT.png';
-    } else {
-      return this.defaultImgUrl;
-    }
-  }
-
-  getImgUrl5() {
-    if (this.bookName == 'canh-dieu') {
-      return this.defaultImgUrl;
-    } else if (this.bookName == 'chan-troi-sang-tao') {
-      return this.defaultImgUrl;
-    } else {
-      return this.defaultImgUrl;
-    }
+  getImgUrl(fileName: string) {
+    let imgUrl = Constant.IMAGE_PATHS.images.filter((x) =>
+      x.includes(
+        this.folderPath.split('//')[1] +
+          `/${this.selectedSemester}/${this.selectedWeek}/${
+            fileName.split('.')[0]
+          }`
+      )
+    );
+    return imgUrl[0].split('public/')[1];
   }
 
   sortFilesByName(files: FileData[]) {
@@ -161,7 +140,23 @@ export class GiaoAnDienTuComponent implements OnInit {
   }
 
   extractNumber(name: string): number {
-    const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
+    const number = name?.toLowerCase().split('.')[0];
     return +number;
+  }
+
+  slideName: string = '';
+  slideDownloadUrl: string = '';
+  isDisplayViewSlide: boolean = false;
+
+  onViewSlide(event: any) {
+    this.isDisplayViewSlide = true;
+    this.slideDownloadUrl = event.url;
+    this.slideName = event.name;
+  }
+
+  onCloseViewSlide(event: any) {
+    this.isDisplayViewSlide = false;
+    this.slideDownloadUrl = '';
+    this.slideName = '';
   }
 }
