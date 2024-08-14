@@ -79,13 +79,13 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
   handleClick(event: Event) {
     const clickedInside = this.el.nativeElement
       .querySelector('.pdf .pdf-container .content img')
-      .contains(event.target as Node);
+      ?.contains(event.target as Node);
     const clickedScrollToTop = this.el.nativeElement
       .querySelector('.pdf .scroll-to-top img')
-      .contains(event.target as Node);
+      ?.contains(event.target as Node);
     const clickedDownload = this.el.nativeElement
       .querySelector('.slide a')
-      .contains(event.target as Node);
+      ?.contains(event.target as Node);
     if (!clickedInside && !clickedScrollToTop && !clickedDownload) {
       this.closepdf.emit(true);
     }
