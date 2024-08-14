@@ -1,0 +1,25 @@
+<div class="pdf">
+  <a [href]="downloadUrl" download target="_blank"
+    ><img
+      class="download-img"
+      title="Tải file"
+      src="icons/download-icon.png"
+      alt=""
+  /></a>
+  <div class="pdf-container">
+    <div class="content">
+      <img *ngFor="let pdf of pdfs" [src]="pdf.split('public/')[1]" alt="" />
+    </div>
+  </div>
+  <div
+    class="scroll-to-top"
+    [ngClass]="{ show: showScrollToTop }"
+    (click)="scrollToTop()"
+  >
+    <img
+      src="icons/scroll-to-top-icon.png"
+      alt="Scroll to Top"
+      title="Scroll to Top"
+    />
+  </div>
+</div>

@@ -146,3 +146,7 @@ body {
   height: auto;
 }
 /*-----------End Loading file --------------------*/
+
+html {
+  scroll-behavior: smooth;
+}

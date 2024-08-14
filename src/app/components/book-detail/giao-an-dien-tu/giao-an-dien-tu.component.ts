@@ -27,6 +27,10 @@ export class GiaoAnDienTuComponent implements OnInit {
   defaultImgUrl = '';
   isLoadingFile: boolean = true;
 
+  slideName: string = '';
+  slideDownloadUrl: string = '';
+  isDisplayViewSlide: boolean = false;
+
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
   semesterOptions = [
@@ -90,8 +94,6 @@ export class GiaoAnDienTuComponent implements OnInit {
     this.listFiles();
   }
 
-  getListTempFiles() {}
-
   listFiles(): void {
     this.files = [];
     this.isLoadingFile = true;
@@ -144,10 +146,6 @@ export class GiaoAnDienTuComponent implements OnInit {
     return +number;
   }
 
-  slideName: string = '';
-  slideDownloadUrl: string = '';
-  isDisplayViewSlide: boolean = false;
-
   onViewSlide(event: any) {
     this.isDisplayViewSlide = true;
     this.slideDownloadUrl = event.url;
@@ -155,8 +153,10 @@ export class GiaoAnDienTuComponent implements OnInit {
   }
 
   onCloseViewSlide(event: any) {
-    this.isDisplayViewSlide = false;
-    this.slideDownloadUrl = '';
-    this.slideName = '';
+    if (event) {
+      this.isDisplayViewSlide = false;
+      this.slideDownloadUrl = '';
+      this.slideName = '';
+    }
   }
 }

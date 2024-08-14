@@ -10,11 +10,12 @@ import { FileData, FileService } from '../../../services/file.service';
 import { RouterLink } from '@angular/router';
 import { ImageLoaderService } from '../../../services/image-loader.service';
 import Constant from '../../../shared/constants/Constant';
+import { XemSlideComponent } from '../../../components/xem-slide/xem-slide.component';
 
 @Component({
   selector: 'app-ban-can-biet',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, XemSlideComponent],
   templateUrl: './ban-can-biet.component.html',
   styleUrl: './ban-can-biet.component.css',
 })
@@ -23,6 +24,10 @@ export class BanCanBietComponent implements OnInit {
 
   currentUrl: number = 0;
   downloadUrl: string = '';
+
+  slideName: string = '';
+  slideDownloadUrl: string = '';
+  isDisplayViewSlide: boolean = false;
 
   constructor(
     private readonly fileService: FileService,
@@ -53,9 +58,23 @@ export class BanCanBietComponent implements OnInit {
 
   getCoverUrl(fileName: string) {
     let cover!: string | undefined;
+    console.log(fileName?.split('.')[0]);
     cover = Constant.IMAGE_PATHS.images.find(
-      (x) => x.includes(fileName?.split('.')[0]) && x.includes('image-0')
+      (x) => x.includes(fileName?.split('.')[0]) && x.includes('images-0')
     );
     return cover?.split('public/')[1];
+  }
+  onViewFile(event: any) {
+    this.isDisplayViewSlide = true;
+    this.slideDownloadUrl = event.url;
+    this.slideName = event.name;
+  }
+
+  onCloseViewSlide(event: any) {
+    if (event) {
+      this.isDisplayViewSlide = false;
+      this.slideDownloadUrl = '';
+      this.slideName = '';
+    }
   }
 }

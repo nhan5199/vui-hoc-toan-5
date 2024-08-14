@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-ke-hoach-bai-day-button',
@@ -12,6 +19,7 @@ export class KeHoachBaiDayButtonComponent implements OnChanges {
   @Input('folderPath') folderPath: string = '';
   @Input('selectedSemester') selectedSemester: string = '';
   @Input('fileDownloadUrl') fileDownloadUrl: string = '';
+  @Output('viewpdf') viewpdf: EventEmitter<any> = new EventEmitter<any>();
 
   imgUrl: string = 'images/images/';
   downloadUrl: string = '';
@@ -40,5 +48,12 @@ export class KeHoachBaiDayButtonComponent implements OnChanges {
         this.downloadUrl = this.fileDownloadUrl;
       }
     }
+  }
+
+  onClickpdf() {
+    this.viewpdf.emit({
+      name: this.buttonName,
+      url: this.downloadUrl,
+    });
   }
 }

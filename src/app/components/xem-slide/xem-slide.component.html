@@ -1,12 +1,12 @@
 <div class="slide">
+  <a [href]="downloadUrl" download target="_blank"
+    ><img
+      class="download-img"
+      title="Tải file"
+      src="icons/download-icon.png"
+      alt=""
+  /></a>
   <div class="slide-container">
-    <a [href]="downloadUrl" download target="_blank"
-      ><img
-        class="download-img"
-        title="Tải file"
-        src="icons/download-icon.png"
-        alt=""
-    /></a>
     <div class="content">
       <img
         *ngFor="let slide of slides"
@@ -14,5 +14,16 @@
         alt=""
       />
     </div>
+  </div>
+  <div
+    class="scroll-to-top"
+    [ngClass]="{ show: showScrollToTop }"
+    (click)="scrollToTop()"
+  >
+    <img
+      src="icons/scroll-to-top-icon.png"
+      alt="Scroll to Top"
+      title="Scroll to Top"
+    />
   </div>
 </div>

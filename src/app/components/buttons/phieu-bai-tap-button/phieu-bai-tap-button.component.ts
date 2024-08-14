@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-phieu-bai-tap-button',
@@ -11,6 +18,8 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
   @Input('buttonName') buttonName: string = '';
   @Input('folderPath') folderPath: string = '';
   @Input('selectedSemester') selectedSemester: string = '';
+  @Input('fileDownloadUrl') fileDownloadUrl: string = '';
+  @Output('viewpdf') viewpdf: EventEmitter<any> = new EventEmitter<any>();
   imgUrl: string = 'images/images/';
   downloadUrl: string = '';
   constructor() {}
@@ -29,5 +38,12 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
         this.selectedSemester
       }/${this.buttonName}`;
     }
+  }
+
+  onClickpdf() {
+    this.viewpdf.emit({
+      name: this.buttonName,
+      url: this.downloadUrl,
+    });
   }
 }

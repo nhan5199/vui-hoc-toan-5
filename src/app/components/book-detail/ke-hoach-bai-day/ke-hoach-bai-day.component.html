@@ -29,6 +29,16 @@
       [folderPath]="folderPath"
       [selectedSemester]="selectedSemester"
       [fileDownloadUrl]="file.url"
+      (viewpdf)="onViewpdf($event)"
     ></app-ke-hoach-bai-day-button>
   </div>
 </div>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewpdf"
+  [pdfName]="pdfName"
+  [downloadUrl]="pdfDownloadUrl"
+  [bookName]="folderPath.split('//')[1]"
+  [selectedSemester]="selectedSemester"
+  (closepdf)="onCloseViewpdf($event)"
+></app-xem-pdf>

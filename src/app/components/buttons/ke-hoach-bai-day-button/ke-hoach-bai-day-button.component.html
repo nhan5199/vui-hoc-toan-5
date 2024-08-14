@@ -1,9 +1,9 @@
-<a class="ke-hoach-bai-day" [href]="downloadUrl" download target="_blank">
+<a class="ke-hoach-bai-day" (click)="onClickpdf()">
   <img [src]="imgUrl" alt="" />
   <div class="content">
     <p class="book-name">
       <span class="default">KHBD</span> <br />
-      <span style="font-family: 'anton'">{{ buttonName }}</span>
+      <span style="font-family: 'anton'">{{ buttonName.split(".")[0] }}</span>
     </p>
     <img
       class="download"

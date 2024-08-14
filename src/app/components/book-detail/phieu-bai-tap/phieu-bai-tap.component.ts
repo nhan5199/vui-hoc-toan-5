@@ -5,11 +5,17 @@ import { PhieuBaiTapButtonComponent } from '../../buttons/phieu-bai-tap-button/p
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
+import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
 
 @Component({
   selector: 'app-phieu-bai-tap',
   standalone: true,
-  imports: [PhieuBaiTapButtonComponent, CommonModule, FormsModule],
+  imports: [
+    PhieuBaiTapButtonComponent,
+    CommonModule,
+    FormsModule,
+    XemPdfComponent,
+  ],
   templateUrl: './phieu-bai-tap.component.html',
   styleUrl: './phieu-bai-tap.component.css',
 })
@@ -17,7 +23,10 @@ export class PhieuBaiTapComponent implements OnInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
-  // files: FileData[] = [];
+
+  pdfName: string = '';
+  pdfDownloadUrl: string = '';
+  isDisplayViewpdf: boolean = false;
 
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
@@ -85,5 +94,19 @@ export class PhieuBaiTapComponent implements OnInit {
   extractNumber(name: string): number {
     const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
     return +number;
+  }
+
+  onViewpdf(event: any) {
+    this.isDisplayViewpdf = true;
+    this.pdfDownloadUrl = event.url;
+    this.pdfName = event.name;
+  }
+
+  onCloseViewpdf(event: any) {
+    if (event) {
+      this.isDisplayViewpdf = false;
+      this.pdfDownloadUrl = '';
+      this.pdfName = '';
+    }
   }
 }

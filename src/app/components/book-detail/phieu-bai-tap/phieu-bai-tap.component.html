@@ -25,6 +25,16 @@
       [buttonName]="file.name"
       [folderPath]="folderPath"
       [selectedSemester]="selectedSemester"
+      (viewpdf)="onViewpdf($event)"
     ></app-phieu-bai-tap-button>
   </div>
 </div>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewpdf"
+  [pdfName]="pdfName"
+  [downloadUrl]="pdfDownloadUrl"
+  [bookName]="folderPath.split('//')[1]"
+  [selectedSemester]="selectedSemester"
+  (closepdf)="onCloseViewpdf($event)"
+></app-xem-pdf>

@@ -1,0 +1,75 @@
+.pdf {
+  width: 100%;
+  height: 100vh; /* Changed from 100svh to 100vh for consistency */
+  background-color: var(--background-transparent-black);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.pdf-container {
+  width: 100%;
+  max-height: 90vh; /* Changed svh to vh for consistency */
+  overflow-y: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  scroll-behavior: smooth;
+}
+
+.pdf-container .content {
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.pdf-container .content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem; /* Added margin for spacing between images */
+}
+
+.download-img {
+  position: fixed;
+  width: 10rem;
+  cursor: pointer;
+  transition: 0.5s ease;
+  top: 5%;
+  right: 5%;
+  z-index: 1000; /* Increased z-index to ensure it's above other content */
+}
+
+.download-img:hover {
+  transform: scale(1.1);
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 10%;
+  width: 5rem;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1000; /* Ensure it's above other content */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.scroll-to-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+.scroll-to-top:hover img {
+  transform: scale(1.1);
+}
+
+.scroll-to-top.show {
+  opacity: 1; /* Show when user scrolls down */
+}

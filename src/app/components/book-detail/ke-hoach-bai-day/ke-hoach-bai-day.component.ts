@@ -5,11 +5,17 @@ import { KeHoachBaiDayButtonComponent } from '../../buttons/ke-hoach-bai-day-but
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
+import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
 
 @Component({
   selector: 'app-ke-hoach-bai-day',
   standalone: true,
-  imports: [KeHoachBaiDayButtonComponent, FormsModule, CommonModule],
+  imports: [
+    KeHoachBaiDayButtonComponent,
+    FormsModule,
+    CommonModule,
+    XemPdfComponent,
+  ],
   templateUrl: './ke-hoach-bai-day.component.html',
   styleUrl: './ke-hoach-bai-day.component.css',
 })
@@ -17,7 +23,10 @@ export class KeHoachBaiDayComponent implements OnInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
-  // files: FileData[] = [];
+
+  pdfName: string = '';
+  pdfDownloadUrl: string = '';
+  isDisplayViewpdf: boolean = false;
 
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
@@ -364,5 +373,19 @@ export class KeHoachBaiDayComponent implements OnInit {
   extractNumber(name: string): number {
     const number = name?.toLowerCase().split('toán 5 - tuần ')[1].split('.')[0];
     return +number;
+  }
+
+  onViewpdf(event: any) {
+    this.isDisplayViewpdf = true;
+    this.pdfDownloadUrl = event.url;
+    this.pdfName = event.name;
+  }
+
+  onCloseViewpdf(event: any) {
+    if (event) {
+      this.isDisplayViewpdf = false;
+      this.pdfDownloadUrl = '';
+      this.pdfName = '';
+    }
   }
 }

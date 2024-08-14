@@ -50,5 +50,8 @@
   *ngIf="isDisplayViewSlide"
   [slideName]="slideName"
   [downloadUrl]="slideDownloadUrl"
+  [selectedSemester]="selectedSemester"
+  [selectedWeek]="selectedWeek"
+  [bookName]="folderPath.split('//')[1]"
   (closeSlide)="onCloseViewSlide($event)"
 ></app-xem-slide>
