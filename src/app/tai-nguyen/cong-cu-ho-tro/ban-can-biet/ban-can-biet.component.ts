@@ -58,7 +58,6 @@ export class BanCanBietComponent implements OnInit {
 
   getCoverUrl(fileName: string) {
     let cover!: string | undefined;
-    console.log(fileName?.split('.')[0]);
     cover = Constant.IMAGE_PATHS.images.find(
       (x) => x.includes(fileName?.split('.')[0]) && x.includes('images-0')
     );

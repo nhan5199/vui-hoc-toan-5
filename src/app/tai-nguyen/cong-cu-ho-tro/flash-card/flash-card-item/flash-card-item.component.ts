@@ -53,7 +53,6 @@ export class FlashCardItemComponent implements OnInit {
   listFiles(): void {
     this.files = [];
     this.isLoadingFile = true;
-    console.log(this.currentPath);
     this.fileService
       .getFilesList(this.currentPath.split('//')[1])
       .pipe(finalize(() => (this.isLoadingFile = false)))

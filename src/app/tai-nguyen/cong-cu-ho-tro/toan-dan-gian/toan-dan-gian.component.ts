@@ -65,7 +65,6 @@ export class ToanDanGianComponent implements AfterViewInit, OnInit {
   listFiles(): void {
     this.files = [];
     this.isLoadingFile = true;
-    console.log(this.currentPath);
     this.fileService
       .getFilesList(this.currentPath.split('//')[1])
       .pipe(finalize(() => (this.isLoadingFile = false)))
@@ -73,8 +72,6 @@ export class ToanDanGianComponent implements AfterViewInit, OnInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
-
-        console.log(this.files);
       });
   }
 
