@@ -15,7 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 2rem;
   max-height: 65svh;
@@ -39,7 +39,8 @@
 }
 
 app-video-minh-hoa-button {
-  width: 18%;
+  width: 15%;
+  height: 100%;
   transition: 0.5s ease;
 }
 

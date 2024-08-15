@@ -3,7 +3,7 @@
   <div class="video-container">
     <app-video-minh-hoa-button
       *ngFor="let file of files"
-      [buttonName]="file.name"
+      [buttonName]="file.name.split('.')[0]"
       [downloadUrl]="file.url"
       (viewVideo)="onViewVideo($event)"
     ></app-video-minh-hoa-button>
