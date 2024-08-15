@@ -1,30 +1,26 @@
 <div class="loading" *ngIf="isLoading"></div>
 <div class="toan-dan-gian" [class.hidden]="isLoading" #toanDanGianContainer>
-  <div class="toan-dan-gian-container">
-    <app-toan-dan-gian-button
-      [buttonName]="'Học hình qua thơ'"
-      [navigateUrl]="'hoc-hinh-qua-tho'"
-      [buttonIcon]="''"
-    ></app-toan-dan-gian-button>
-    <app-toan-dan-gian-button
-      [buttonName]="'Thơ hay về công thức toán'"
-      [navigateUrl]="'tho-hay-ve-cong-thuc-toan'"
-      [buttonIcon]="''"
-    ></app-toan-dan-gian-button>
-    <app-toan-dan-gian-button
-      [buttonName]="'Học quy tắc giải toán bằng thơ'"
-      [navigateUrl]="'hoc-quy-tac-giai-toan-bang-tho'"
-      [buttonIcon]="''"
-    ></app-toan-dan-gian-button>
-    <app-toan-dan-gian-button
-      [buttonName]="'Học thuộc công thức hình học qua thơ'"
-      [navigateUrl]="'hoc-thuoc-cong-thuc-hinh-hoc-qua-tho'"
-      [buttonIcon]="''"
-    ></app-toan-dan-gian-button>
-    <app-toan-dan-gian-button
-      [buttonName]="'Học phân số qua thơ'"
-      [navigateUrl]="'hoc-phan-so-qua-tho'"
-      [buttonIcon]="''"
-    ></app-toan-dan-gian-button>
+  <div class="loading-file" *ngIf="isLoadingFile">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="toan-dan-gian-container" [class.hidden]="isLoadingFile">
+    <div
+      *ngFor="let file of files"
+      class="toan-dan-gian-item"
+      (click)="onViewFile(file)"
+    >
+      <img [src]="getImgCover(file)" alt="" />
+      <div class="download-content">
+        <a (click)="onViewFile(file)" download target="_blank">Xem chi tiết</a>
+      </div>
+    </div>
   </div>
 </div>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewpdf"
+  [pdfName]="pdfName"
+  [downloadUrl]="pdfDownloadUrl"
+  [bookName]="currentPath.split('//')[1]"
+  (closepdf)="onCloseViewpdf($event)"
+></app-xem-pdf>

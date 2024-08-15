@@ -38,13 +38,13 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
     if (changes['slideName'] && this.slideName?.length > 0) {
       let imgsPath = '';
       if (this.selectedSemester?.length <= 0) {
-        imgsPath = `${this.bookName}/${this.slideName?.split('.')[0]}`;
+        imgsPath = `${this.bookName}/${this.slideName?.split('.')[0]}/`;
       } else {
         imgsPath = `${this.bookName}/${this.selectedSemester}/${
           this.selectedWeek
-        }/${this.slideName?.split('.')[0]}`;
+        }/${this.slideName?.split('.')[0]}/`;
       }
-      console.log('data: ', imgsPath);
+
       this.slides = Constant.IMAGE_PATHS.images.filter((x: any) =>
         x.includes(imgsPath)
       );
