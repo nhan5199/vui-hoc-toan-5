@@ -22,7 +22,7 @@
 }
 
 .flash-card {
-  width: 15%;
+  width: 20%;
   position: relative;
   border-radius: 15px;
 }
@@ -71,4 +71,6 @@
   top: 30%;
   transform: translate(-50%, -50%);
   transition: 0.75s ease;
+  font-size: 0.8rem;
+  cursor: pointer;
 }

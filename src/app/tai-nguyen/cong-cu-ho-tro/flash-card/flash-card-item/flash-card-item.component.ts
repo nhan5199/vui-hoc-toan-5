@@ -11,11 +11,13 @@ import { CommonModule } from '@angular/common';
 import { ImageLoaderService } from '../../../../services/image-loader.service';
 import { constants } from 'node:buffer';
 import Constant from '../../../../shared/constants/Constant';
+import { XemSlideComponent } from '../../../../components/xem-slide/xem-slide.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-flash-card-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, XemSlideComponent],
   templateUrl: './flash-card-item.component.html',
   styleUrl: './flash-card-item.component.css',
 })
@@ -23,10 +25,12 @@ export class FlashCardItemComponent implements OnInit {
   currentPath: string = '';
   files: FileData[] = [];
 
-  isDisplayViewSlide: boolean = false;
   slideName: string = '';
   slideDownloadUrl: string = '';
+  isDisplayViewSlide: boolean = false;
 
+  isLoadingFile: boolean = true;
+  isLoading = true;
   constructor(
     private route: ActivatedRoute,
     private fileService: FileService,
@@ -48,8 +52,11 @@ export class FlashCardItemComponent implements OnInit {
   // List files
   listFiles(): void {
     this.files = [];
+    this.isLoadingFile = true;
+    console.log(this.currentPath);
     this.fileService
       .getFilesList(this.currentPath.split('//')[1])
+      .pipe(finalize(() => (this.isLoadingFile = false)))
       .subscribe((files) => {
         files.forEach((file: any) => {
           this.files.push(file);
@@ -57,7 +64,18 @@ export class FlashCardItemComponent implements OnInit {
       });
   }
 
-  isLoading = true;
+  getImgCover(file: FileData) {
+    let imgPath = '';
+    imgPath = Constant.IMAGE_PATHS.images.filter((x) =>
+      x.includes(
+        'images/images/' +
+          this.currentPath.split('//')[1] +
+          `/${file.name.split('.')[0]}`
+      )
+    )[0];
+    return imgPath.split('public/')[1];
+  }
+
   @ViewChild('flashCardItemContainer', { static: true })
   flashCardItemContainer!: ElementRef;
   ngAfterViewInit(): void {
@@ -75,5 +93,19 @@ export class FlashCardItemComponent implements OnInit {
       x.includes(this.currentPath.split('//')[1] + `/${fileName.split('.')[0]}`)
     );
     return downloadUrl[0].split('public/')[1];
+  }
+
+  onViewFile(event: any) {
+    this.isDisplayViewSlide = true;
+    this.slideDownloadUrl = event.url;
+    this.slideName = event.name;
+  }
+
+  onCloseViewSlide(event: any) {
+    if (event) {
+      this.isDisplayViewSlide = false;
+      this.slideDownloadUrl = '';
+      this.slideName = '';
+    }
   }
 }

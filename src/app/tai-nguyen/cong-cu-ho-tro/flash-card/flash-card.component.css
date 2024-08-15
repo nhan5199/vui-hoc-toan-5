@@ -8,7 +8,7 @@
 
 .flash-card-container {
   position: absolute;
-  top: 65%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -17,7 +17,14 @@
   width: 90%;
   max-height: 65%;
   overflow-y: auto;
-  justify-content: center;
+  overflow-x: hidden;
+  justify-content: stretch;
   align-items: center;
-  gap: 5rem;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+app-flash-card-button {
+  flex: 1;
+  min-width: 20%;
 }

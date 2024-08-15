@@ -1,13 +1,26 @@
-<div class="loading" *ngIf="isLoading"></div>
-<div class="flash-card-item" [class.hidden]="isLoading" #flashCardItemContainer>
-  <div class="flash-card-item-container">
+<div class="loading" *ngIf="isLoadingFile"></div>
+<div
+  class="flash-card-item"
+  [class.hidden]="isLoadingFile"
+  #flashCardItemContainer
+>
+  <div class="loading-file" *ngIf="isLoadingFile">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="flash-card-item-container" [class.hidden]="isLoadingFile">
     <div *ngFor="let file of files" class="flash-card">
-      <img [src]="file.url" alt="" />
+      <img [src]="getImgCover(file)" alt="" />
       <div class="download-content">
-        <a [href]="getDownloadUrl(file.name)" download target="_blank"
-          >Tải xuống
-        </a>
+        <a (click)="onViewFile(file)" download target="_blank">Xem chi tiết</a>
       </div>
     </div>
   </div>
 </div>
+
+<app-xem-slide
+  *ngIf="isDisplayViewSlide"
+  [slideName]="slideName"
+  [downloadUrl]="slideDownloadUrl"
+  [bookName]="currentPath.split('//')[1]"
+  (closeSlide)="onCloseViewSlide($event)"
+></app-xem-slide>

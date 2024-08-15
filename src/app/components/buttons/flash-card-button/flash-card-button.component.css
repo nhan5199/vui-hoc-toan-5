@@ -45,10 +45,6 @@ a {
   background-position: left bottom;
 }
 
-.flash-card-button:hover img {
-  width: 8rem;
-}
-
 .flash-card-button:hover a {
   color: #eef30e;
 }
