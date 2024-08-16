@@ -9,7 +9,7 @@
       <img src="icons/phan-mem-toan-hoc-icon.png" alt="" />
       <div class="content">
         <p class="title">{{ file.name }}</p>
-        <a [href]="file.url" target="_blank">Nhấn để tải</a>
+        <a [href]="getDownloadUrl(file)">Nhấn để tải</a>
       </div>
     </div>
   </div>

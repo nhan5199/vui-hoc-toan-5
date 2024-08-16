@@ -172,7 +172,10 @@ export class FlipBookComponent implements AfterViewInit, OnChanges {
     const clickedInside = this.el.nativeElement
       .querySelector('.flip-book .book')
       .contains(event.target as Node);
-    if (!clickedInside) {
+    const clickedDownload = this.el.nativeElement
+      .querySelector('.flip-book .download')
+      .contains(event.target as Node);
+    if (!clickedInside && !clickedDownload) {
       this.closeFlipBook.emit(true);
     }
   }

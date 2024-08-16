@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-stem-button',
@@ -10,4 +10,12 @@ import { Component, Input } from '@angular/core';
 export class StemButtonComponent {
   @Input('buttonName') buttonName: string = '';
   @Input('downloadUrl') downloadUrl: string = '';
+  @Output('viewFile') viewFile: EventEmitter<any> = new EventEmitter<any>();
+
+  onViewFile() {
+    this.viewFile.emit({
+      name: this.buttonName,
+      url: this.downloadUrl,
+    });
+  }
 }

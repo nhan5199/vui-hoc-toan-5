@@ -19,7 +19,7 @@
   justify-content: center;
   gap: 2rem;
   padding: 10px;
-  align-items: center;
+  align-items: stretch;
 }
 
 app-stem-button {

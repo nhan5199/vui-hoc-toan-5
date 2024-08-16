@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FileData, FileService } from '../../../services/file.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ImageLoaderService } from '../../../services/image-loader.service';
 import Constant from '../../../shared/constants/Constant';
 import { XemSlideComponent } from '../../../components/xem-slide/xem-slide.component';
@@ -22,7 +22,7 @@ import { XemSlideComponent } from '../../../components/xem-slide/xem-slide.compo
 export class BanCanBietComponent implements OnInit {
   files: FileData[] = [];
 
-  currentUrl: number = 0;
+  folderPath: string = '';
   downloadUrl: string = '';
 
   slideName: string = '';
@@ -32,11 +32,17 @@ export class BanCanBietComponent implements OnInit {
   constructor(
     private readonly fileService: FileService,
     private readonly imageLoaderService: ImageLoaderService,
-    private readonly cdRef: ChangeDetectorRef
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    let fileDownload: FileData[] = [];
+    this.route.pathFromRoot.forEach((route) => {
+      route.url.subscribe((urlSegment) => {
+        this.folderPath +=
+          '/' + urlSegment.map((segment) => segment.path).join('/');
+      });
+    });
     this.fileService
       .getFilesList('tai-nguyen/cong-cu-ho-tro/ban-can-biet')
       .subscribe((files) => {
@@ -65,7 +71,9 @@ export class BanCanBietComponent implements OnInit {
   }
   onViewFile(event: any) {
     this.isDisplayViewSlide = true;
-    this.slideDownloadUrl = event.url;
+    this.slideDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
+      event.name
+    }`;
     this.slideName = event.name;
   }
 

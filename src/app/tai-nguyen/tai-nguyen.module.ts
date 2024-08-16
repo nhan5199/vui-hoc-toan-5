@@ -7,7 +7,6 @@ import { FlashCardItemComponent } from './cong-cu-ho-tro/flash-card/flash-card-i
 import { FlashCardComponent } from './cong-cu-ho-tro/flash-card/flash-card.component';
 import { QuizzComponent } from './cong-cu-ho-tro/quizz/quizz.component';
 import { SlideComponent } from './cong-cu-ho-tro/slide/slide.component';
-import { ToanDanGianItemComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian-item/toan-dan-gian-item.component';
 import { ToanDanGianComponent } from './cong-cu-ho-tro/toan-dan-gian/toan-dan-gian.component';
 import { CauHoiOnTapItemComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap-item/cau-hoi-on-tap-item.component';
 import { CauHoiOnTapComponent } from './game-tuong-tac/cau-hoi-on-tap/cau-hoi-on-tap.component';
@@ -85,10 +84,6 @@ export const routes: Routes = [
   {
     path: 'cong-cu-ho-tro/toan-dan-gian',
     component: ToanDanGianComponent,
-  },
-  {
-    path: 'cong-cu-ho-tro/toan-dan-gian/:item',
-    component: ToanDanGianItemComponent,
   },
 ];
 

@@ -7,6 +7,7 @@ a {
   align-items: center;
   position: relative;
   transition: 0.5s ease;
+  width: 100%;
 }
 
 .stem-button:hover {
@@ -19,8 +20,8 @@ a {
 
 .stem-button button {
   word-break: break-word;
-  padding: 15px 20px;
-  font-size: 1.3rem;
+  padding: 10px 20px;
+  font-size: 1rem;
   font-family: var(--lobster-font);
   transition: 0.75s ease;
   border: 5px solid #5271ff;
@@ -31,6 +32,8 @@ a {
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
   background-size: 200% 100%;
   background-position: right bottom;
+  width: 100%;
+  min-height: 12svh;
 }
 .stem-button button p {
   width: 70%;
@@ -50,10 +53,10 @@ a {
   transition: 0.5s ease;
 }
 .left {
-  width: 7rem;
+  width: 6rem;
   left: -5%;
 }
 .right {
-  width: 3.5rem;
+  width: 3rem;
   right: 5%;
 }

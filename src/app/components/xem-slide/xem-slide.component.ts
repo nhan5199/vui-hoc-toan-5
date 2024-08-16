@@ -44,7 +44,6 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
           this.selectedWeek
         }/${this.slideName?.split('.')[0]}/`;
       }
-
       this.slides = Constant.IMAGE_PATHS.images.filter((x: any) =>
         x.includes(imgsPath)
       );

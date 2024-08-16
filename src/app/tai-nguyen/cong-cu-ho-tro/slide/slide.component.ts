@@ -59,7 +59,9 @@ export class SlideComponent implements OnInit, AfterViewInit {
 
   onViewSlide(event: any) {
     this.slideName = event.name;
-    this.slideDownloadUrl = event.url;
+    this.slideDownloadUrl = `files/${this.currentPath.split('//')[1]}/${
+      event.name
+    }`;
     this.isDisplayViewSlide = true;
   }
 

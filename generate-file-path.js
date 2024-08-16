@@ -14,7 +14,9 @@ function getfilePaths(dir) {
 
     if (stat.isDirectory()) {
       filePaths = filePaths.concat(getfilePaths(filePath));
-    } else if (/\.(pdf|docx|doc|pptx|png|jpeg|rar|7z)$/.test(file)) {
+    } else if (
+      /\.(pdf|docx|doc|pptx|png|jpeg|rar|7z|gsp|mp4|tmp|zip)$/.test(file)
+    ) {
       filePaths.push(
         filePath.replace(__dirname, "").replace(/\\/g, "/").substring(1)
       );

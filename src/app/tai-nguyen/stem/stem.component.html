@@ -5,6 +5,23 @@
       *ngFor="let file of files"
       [buttonName]="file.name"
       [downloadUrl]="file.url"
+      (viewFile)="onViewFile($event)"
     ></app-stem-button>
   </div>
 </div>
+
+<app-xem-slide
+  *ngIf="isDisplayViewfile && !isPdfFile"
+  [slideName]="fileName"
+  [downloadUrl]="fileDownloadUrl"
+  [bookName]="folderPath.split('//')[1]"
+  (closeSlide)="onCloseViewFile($event)"
+></app-xem-slide>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewfile && isPdfFile"
+  [pdfName]="fileName"
+  [downloadUrl]="fileDownloadUrl"
+  [bookName]="folderPath.split('//')[1]"
+  (closepdf)="onCloseViewFile($event)"
+></app-xem-pdf>

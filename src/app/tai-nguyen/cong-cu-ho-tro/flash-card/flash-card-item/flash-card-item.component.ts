@@ -96,7 +96,9 @@ export class FlashCardItemComponent implements OnInit {
 
   onViewFile(event: any) {
     this.isDisplayViewSlide = true;
-    this.slideDownloadUrl = event.url;
+    this.slideDownloadUrl = `files/${this.currentPath.split('//')[1]}/${
+      event.name
+    }`;
     this.slideName = event.name;
   }
 

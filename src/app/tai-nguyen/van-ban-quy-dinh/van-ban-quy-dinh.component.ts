@@ -56,7 +56,9 @@ export class VanBanQUyDinhComponent implements OnInit {
 
   onViewFile(event: any) {
     this.currentImgPath = event?.name?.split('//')[1];
-    this.currentDownloadUrl = event?.url;
+    this.currentDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
+      event.name
+    }`;
     this.isDisplayFlipBook = true;
   }
 

@@ -59,4 +59,8 @@ export class PhanMemToanHocComponent implements OnInit {
       }
     );
   }
+
+  getDownloadUrl(file: FileData) {
+    return `files/${this.folderPath.split('//')[1]}/${file.name}`;
+  }
 }

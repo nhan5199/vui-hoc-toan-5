@@ -37,7 +37,7 @@
   <div class="giao-an-dien-tu-container" [class.hidden]="isLoadingFile">
     <app-giao-an-dien-tu-button
       *ngFor="let file of files"
-      [buttonName]="file.name.split('.')[0]"
+      [buttonName]="file.name"
       [folderPath]="folderPath"
       [urlImg]="getImgUrl(file.name)"
       [downloadUrl]="file.url"

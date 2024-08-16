@@ -77,7 +77,9 @@ export class ToanDanGianComponent implements AfterViewInit, OnInit {
 
   onViewFile(event: any) {
     this.isDisplayViewpdf = true;
-    this.pdfDownloadUrl = event.url;
+    this.pdfDownloadUrl = `files/${this.currentPath.split('//')[1]}/${
+      event.name
+    }`;
     this.pdfName = event.name;
   }
 
