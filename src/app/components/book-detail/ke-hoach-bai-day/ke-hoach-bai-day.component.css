@@ -21,8 +21,7 @@
 
 .ke-hoach-bai-day-container {
   padding: 10px;
-  margin: 3rem auto 0;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -31,7 +30,7 @@
   max-height: 55svh;
   overflow-y: auto;
   position: absolute;
-  top: 60%;
+  top: 67%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -46,11 +45,11 @@ app-ke-hoach-bai-day-button {
 }
 .search {
   position: absolute;
-  top: 27%;
+  top: 30%;
   right: 15%;
 }
 .search img {
-  width: 3.5rem;
+  width: 3rem;
   position: absolute;
   right: -10%;
   top: 0%;
@@ -64,7 +63,7 @@ app-ke-hoach-bai-day-button {
   border-radius: 20px;
   color: #2c63ff;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .default {

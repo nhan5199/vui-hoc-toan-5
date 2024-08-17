@@ -1,0 +1,9 @@
+<div class="cac-mon-khac">
+  <p class="menu-title">Các môn khác <br />{{ titleName }}</p>
+  <img [src]="bookIconUrl" alt="" class="book-logo" />
+  <div class="empty-file" *ngIf="files.length <= 0">
+    <img src="images/images/dang-phat-trien.png" alt="" />
+    <p>Tính năng đang phát triển</p>
+  </div>
+  <div class="cac-mon-khac-container" [class.hidden]="files.length <= 0"></div>
+</div>

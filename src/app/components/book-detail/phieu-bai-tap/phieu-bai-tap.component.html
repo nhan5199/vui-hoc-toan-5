@@ -19,7 +19,14 @@
   <div class="loading-file" *ngIf="isLoadingFiles">
     <img src="images/images/file-loading.gif" alt="" />
   </div>
-  <div class="phieu-bai-tap-container" [class.hidden]="isLoadingFiles">
+  <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFiles">
+    <img src="images/images/dang-phat-trien.png" alt="" />
+    <p>Tính năng đang phát triển</p>
+  </div>
+  <div
+    class="phieu-bai-tap-container"
+    [class.hidden]="isLoadingFiles || files.length <= 0"
+  >
     <app-phieu-bai-tap-button
       *ngFor="let file of files"
       [buttonName]="file.name"

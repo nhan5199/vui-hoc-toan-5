@@ -6,6 +6,8 @@ import { KeHoachBaiDayComponent } from './components/book-detail/ke-hoach-bai-da
 import { PhieuBaiTapComponent } from './components/book-detail/phieu-bai-tap/phieu-bai-tap.component';
 import { SlideDisplayComponent } from './components/slide-display/slide-display.component';
 import { HomeComponent } from './home/home.component';
+import { CacMonKhacComponent } from './components/book-detail/cac-mon-khac/cac-mon-khac.component';
+import { PhanPhoiChuongTrinhComponent } from './components/book-detail/phan-phoi-chuong-trinh/phan-phoi-chuong-trinh.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -59,6 +61,16 @@ export const routes: Routes = [
   {
     path: ':bookName/phieu-bai-tap',
     component: PhieuBaiTapComponent,
+  },
+
+  {
+    path: ':bookName/phan-phoi-chuong-trinh',
+    component: PhanPhoiChuongTrinhComponent,
+  },
+
+  {
+    path: ':bookName/cac-mon-khac',
+    component: CacMonKhacComponent,
   },
 ];
 

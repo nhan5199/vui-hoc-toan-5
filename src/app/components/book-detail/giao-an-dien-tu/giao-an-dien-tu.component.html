@@ -34,7 +34,14 @@
   <div class="loading-file" *ngIf="isLoadingFile">
     <img src="images/images/file-loading.gif" alt="" />
   </div>
-  <div class="giao-an-dien-tu-container" [class.hidden]="isLoadingFile">
+  <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFile">
+    <img src="images/images/dang-phat-trien.png" alt="" />
+    <p>Tính năng đang phát triển</p>
+  </div>
+  <div
+    class="giao-an-dien-tu-container"
+    [class.hidden]="isLoadingFile || files.length <= 0"
+  >
     <app-giao-an-dien-tu-button
       *ngFor="let file of files"
       [buttonName]="file.name"
