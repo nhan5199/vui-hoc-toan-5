@@ -70,15 +70,21 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
   }
 
   onViewPdf(fileName: string) {
-    this.isDisplayViewpdf = true;
     let filePath = Constant.FILE_PATH.files
       .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
       .split('public/')[1];
-    this.pdfDownloadUrl = filePath;
 
-    this.pdfName = filePath
-      .slice(0, filePath.lastIndexOf('.'))
-      .split('phan-phoi-chuong-trinh')[1];
+    if (filePath.includes('xlsx')) {
+      this.downloadFile(fileName);
+    } else {
+      this.isDisplayViewpdf = true;
+
+      this.pdfDownloadUrl = filePath;
+
+      this.pdfName = filePath
+        .slice(0, filePath.lastIndexOf('.'))
+        .split('phan-phoi-chuong-trinh')[1];
+    }
   }
 
   onCloseViewPdf(event: any) {
@@ -87,5 +93,21 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
       this.pdfDownloadUrl = '';
       this.pdfName = '';
     }
+  }
+
+  downloadFile(fileName: string): void {
+    const fileUrl = Constant.FILE_PATH.files
+      .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
+      .split('public/')[1];
+    const link = document.createElement('a');
+    link.href = fileUrl;
+
+    let filePath = Constant.FILE_PATH.files
+      .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
+      .split('public/')[1];
+
+    let filePathParts = filePath.split('/');
+    link.download = filePathParts[filePathParts.length - 1];
+    link.click();
   }
 }
