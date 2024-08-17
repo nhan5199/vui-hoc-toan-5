@@ -1,5 +1,7 @@
 <div class="phan-phoi-chuong-trinh">
-  <p class="menu-title">Phân phối chương trình <br />{{ titleName }}</p>
+  <p class="menu-title">
+    Phân phối chương trình <br /><span>{{ titleName }}</span>
+  </p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
 
   <div class="empty-file" *ngIf="files.length <= 0">
@@ -9,5 +11,21 @@
   <div
     class="phan-phoi-chuong-trinh-container"
     [class.hidden]="files.length <= 0"
-  ></div>
+  >
+    <img
+      (click)="onViewPdf(file)"
+      class="button"
+      [src]="getImgCover(file)"
+      alt=""
+      *ngFor="let file of files"
+    />
+  </div>
 </div>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewpdf"
+  [pdfName]="pdfName"
+  [downloadUrl]="pdfDownloadUrl"
+  [bookName]="folderPath"
+  (closepdf)="onCloseViewPdf($event)"
+></app-xem-pdf>

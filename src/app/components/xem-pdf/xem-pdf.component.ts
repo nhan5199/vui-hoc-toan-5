@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -7,10 +9,8 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  AfterViewInit,
 } from '@angular/core';
 import Constant from '../../shared/constants/Constant';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-xem-pdf',
@@ -36,13 +36,19 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pdfName'] && this.pdfName?.length > 0) {
       let imgsPath = '';
+
       if (this.bookName.includes('tai-nguyen')) {
         imgsPath = `${this.bookName}/${this.pdfName?.split('.')[0]}/`;
       } else {
-        imgsPath = `${this.bookName}/${this.selectedSemester}/${
-          this.pdfName?.split('.')[0]
-        }/`;
+        if (this.selectedSemester?.length > 0) {
+          imgsPath = `${this.bookName}/${this.selectedSemester}/${
+            this.pdfName?.split('.')[0]
+          }/`;
+        } else {
+          imgsPath = `${this.bookName}${this.pdfName}`;
+        }
       }
+
       this.pdfs = Constant.IMAGE_PATHS.images.filter((x: any) =>
         x.includes(imgsPath)
       );

@@ -36,7 +36,7 @@
       [folderPath]="folderPath"
       [selectedSemester]="selectedSemester"
       [fileDownloadUrl]="file.url"
-      (viewpdf)="onViewpdf($event)"
+      (viewpdf)="onViewPdf($event)"
     ></app-ke-hoach-bai-day-button>
   </div>
 </div>
@@ -47,5 +47,5 @@
   [downloadUrl]="pdfDownloadUrl"
   [bookName]="folderPath.split('//')[1]"
   [selectedSemester]="selectedSemester"
-  (closepdf)="onCloseViewpdf($event)"
+  (closepdf)="onCloseViewPdf($event)"
 ></app-xem-pdf>

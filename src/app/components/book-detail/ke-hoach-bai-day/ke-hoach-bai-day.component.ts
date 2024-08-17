@@ -96,13 +96,13 @@ export class KeHoachBaiDayComponent implements OnInit {
     return +number;
   }
 
-  onViewpdf(event: any) {
+  onViewPdf(event: any) {
     this.isDisplayViewpdf = true;
     this.pdfDownloadUrl = event.url;
     this.pdfName = event.name;
   }
 
-  onCloseViewpdf(event: any) {
+  onCloseViewPdf(event: any) {
     if (event) {
       this.isDisplayViewpdf = false;
       this.pdfDownloadUrl = '';

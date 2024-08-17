@@ -1,7 +1,7 @@
 .phan-phoi-chuong-trinh {
   width: 100%;
   height: 100svh;
-  background-image: url("/images/images/menu-background.gif");
+  background-image: url("/images/images/detail-background.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -15,5 +15,38 @@
 
 .menu-title {
   color: yellow;
+  font-family: var(--anton-font);
+  color: #f1673c;
+}
+
+.menu-title span {
   font-family: var(--pacifico-font);
+  color: #2d64f3;
+}
+
+.phan-phoi-chuong-trinh-container {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-height: 55svh;
+  overflow-y: auto;
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  width: 15%;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.05);
 }
