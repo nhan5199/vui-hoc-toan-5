@@ -4,13 +4,16 @@
   </p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
 
-  <div class="empty-file" *ngIf="files.length <= 0">
+  <div class="loading-file" *ngIf="isLoadingFiles">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFiles">
     <img src="images/images/dang-phat-trien.png" alt="" />
     <p>Tính năng đang phát triển</p>
   </div>
   <div
     class="phan-phoi-chuong-trinh-container"
-    [class.hidden]="files.length <= 0"
+    [class.hidden]="files.length <= 0 || isLoadingFiles"
   >
     <img
       (click)="onViewPdf(file)"

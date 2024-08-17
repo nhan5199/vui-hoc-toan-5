@@ -21,6 +21,7 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
   isDisplayViewpdf: boolean = false;
 
   files: string[] = [];
+  isLoadingFiles: boolean = true;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
   }
 
   getListFolder() {
+    this.isLoadingFiles = true;
     this.files = Array.from(
       new Set(
         Constant.FILE_PATH.files.map((path) => {
@@ -55,6 +57,10 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
         })
       )
     ).filter((x) => x.length > 0);
+
+    setTimeout(() => {
+      this.isLoadingFiles = false;
+    }, 500);
   }
 
   getImgCover(fileName: string) {
