@@ -1,7 +1,7 @@
 <div class="slide-button" (click)="onClickSlide()">
   <img [src]="imgUrl[0]" alt="" />
   <div class="content">
-    <p class="title">{{ buttonName }}</p>
+    <p class="title">{{ buttonName.split(".")[0] }}</p>
     <button>Xem slide</button>
   </div>
 </div>
