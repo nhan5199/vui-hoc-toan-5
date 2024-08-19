@@ -31,7 +31,7 @@ export class PhanPhoiChuongTrinhComponent implements OnInit {
       });
 
       if (this.folderPath.includes('canh-dieu')) {
-        this.titleName = 'Cánh diều';
+        this.titleName = 'Cánh Diều';
         this.bookIconUrl = 'images/images/canh-dieu-icon.jpg';
       } else if (this.folderPath.includes('ket-noi-tri-thuc')) {
         this.titleName = 'Kết nối tri thức với cuộc sống';
