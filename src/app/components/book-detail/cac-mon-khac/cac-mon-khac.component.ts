@@ -38,9 +38,9 @@ export class CacMonKhacComponent implements OnInit {
         this.titleName = 'Chân trời sáng tạo';
         this.bookIconUrl = 'images/images/chan-troi-sang-tao-icon.jpg';
       }
-
-      this.getListFolder();
     });
+
+    this.getListFolder();
   }
 
   getListFolder() {
@@ -49,9 +49,10 @@ export class CacMonKhacComponent implements OnInit {
       new Set(
         Constant.FILE_PATH.files.map((path) => {
           if (path.includes(this.folderPath)) {
-            const parts = path.split('/');
-            return parts[parts.length - 2];
-          } else return '';
+            return path;
+          } else {
+            return '';
+          }
         })
       )
     ).filter((x) => x.length > 0);
@@ -81,5 +82,15 @@ export class CacMonKhacComponent implements OnInit {
     let filePathParts = filePath.split('/');
     link.download = filePathParts[filePathParts.length - 1];
     link.click();
+  }
+
+  checkExistFile(fileName: string) {
+    let isExist = false;
+    this.files.forEach((x) => {
+      if (x.includes(fileName)) {
+        isExist = true;
+      }
+    });
+    return isExist;
   }
 }

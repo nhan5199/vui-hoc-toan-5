@@ -12,56 +12,67 @@
   </div>
   <div class="cac-mon-khac-container" [class.hidden]="files.length <= 0">
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('toan-5')"
       [buttonName]="'TOÁN'"
       [downloadUrl]="getDownloadUrl('toan-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('tieng-viet-5')"
       [buttonName]="'TIẾNG VIỆT'"
       [downloadUrl]="getDownloadUrl('tieng-viet-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('khoa-hoc-5')"
       [buttonName]="'KHOA HỌC'"
       [downloadUrl]="getDownloadUrl('khoa-hoc-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('lich-su-va-dia-li-5')"
       [buttonName]="'LỊCH SỬ VÀ ĐỊA LÍ'"
       [downloadUrl]="getDownloadUrl('lich-su-va-dia-li-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('dao-duc-5')"
       [buttonName]="'ĐẠO ĐỨC'"
       [downloadUrl]="getDownloadUrl('dao-duc-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('cong-nghe-5')"
       [buttonName]="'CÔNG NGHỆ'"
       [downloadUrl]="getDownloadUrl('cong-nghe-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('tin-hoc-5')"
       [buttonName]="'TIN HỌC'"
       [downloadUrl]="getDownloadUrl('tin-hoc-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('mi-thuat-5')"
       [buttonName]="'MĨ THUẬT'"
       [downloadUrl]="getDownloadUrl('mi-thuat-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('am-nhac-5')"
       [buttonName]="'ÂM NHẠC'"
       [downloadUrl]="getDownloadUrl('am-nhac-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('hoat-dong-trai-nghiem-5')"
       [buttonName]="'HĐ TRẢI NGHIỆM'"
       [downloadUrl]="getDownloadUrl('hoat-dong-trai-nghiem-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
     ></app-cac-mon-khac-button>
     <app-cac-mon-khac-button
+      *ngIf="checkExistFile('giao-duc-the-chat-5')"
       [buttonName]="'GIÁO DỤC THỂ CHẤT'"
       [downloadUrl]="getDownloadUrl('giao-duc-the-chat-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"

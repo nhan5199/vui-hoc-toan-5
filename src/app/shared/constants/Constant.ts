@@ -6079,6 +6079,7 @@ export default class {
       'public/files/chan-troi-sang-tao/phieu-bai-tap/hoc-ki-1/Toán 5 - Tuần 3.pdf',
       'public/files/chan-troi-sang-tao/phieu-bai-tap/hoc-ki-1/Toán 5 - Tuần 4.pdf',
       'public/files/chan-troi-sang-tao/phieu-bai-tap/hoc-ki-1/Toán 5 - Tuần 5.pdf',
+      'public/files/ket-noi-tri-thuc/cac-mon-khac/toan-5.rar',
       'public/files/ket-noi-tri-thuc/e-book/SGK Tập 1.pdf',
       'public/files/ket-noi-tri-thuc/e-book/SGK Tập 2.pdf',
       'public/files/ket-noi-tri-thuc/e-book/Sách giáo viên.pdf',
