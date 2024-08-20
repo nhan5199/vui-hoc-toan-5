@@ -6015,6 +6015,7 @@ export default class {
       'public/files/canh-dieu/cac-mon-khac/am-nhac-5.rar',
       'public/files/canh-dieu/cac-mon-khac/cong-nghe-5.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/giao-duc-the-chat-5.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5.rar',
