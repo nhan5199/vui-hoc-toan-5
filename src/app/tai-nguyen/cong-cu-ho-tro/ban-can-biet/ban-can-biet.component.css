@@ -47,6 +47,7 @@
   transition: 0.5s ease;
   opacity: 0;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .download-content:hover {
