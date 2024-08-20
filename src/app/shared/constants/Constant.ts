@@ -6012,6 +6012,16 @@ export default class {
 
   static readonly FILE_PATH = {
     files: [
+      'public/files/canh-dieu/cac-mon-khac/am-nhac-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/cong-nghe-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/dao-duc-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/mi-thuat-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/tieng-viet-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/tin-hoc-5.rar',
+      'public/files/canh-dieu/cac-mon-khac/toan-5.rar',
       'public/files/canh-dieu/e-book/SGK Tập 1.pdf',
       'public/files/canh-dieu/e-book/SGK Tập 2.pdf',
       'public/files/canh-dieu/e-book/Tài liệu tập huấn.pdf',

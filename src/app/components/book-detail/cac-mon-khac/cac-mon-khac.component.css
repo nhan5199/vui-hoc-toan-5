@@ -13,7 +13,32 @@
   width: 7rem;
 }
 
+.cac-mon-khac-container {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-height: 55svh;
+  overflow-y: auto;
+  gap: 3rem;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .menu-title {
   color: yellow;
+  font-family: var(--anton-font);
+}
+
+.menu-title span {
   font-family: var(--pacifico-font);
+}
+
+app-cac-mon-khac-button {
+  min-width: 20%;
 }

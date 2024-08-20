@@ -1,9 +1,70 @@
 <div class="cac-mon-khac">
-  <p class="menu-title">Các môn khác <br />{{ titleName }}</p>
+  <p class="menu-title">
+    Giáo án các môn học lớp 5 <br /><span>{{ titleName }}</span>
+  </p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
-  <div class="empty-file" *ngIf="files.length <= 0">
+  <div class="loading-file" *ngIf="isLoadingFiles">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFiles">
     <img src="images/images/dang-phat-trien.png" alt="" />
     <p>Tính năng đang phát triển</p>
   </div>
-  <div class="cac-mon-khac-container" [class.hidden]="files.length <= 0"></div>
+  <div class="cac-mon-khac-container" [class.hidden]="files.length <= 0">
+    <app-cac-mon-khac-button
+      [buttonName]="'TOÁN'"
+      [downloadUrl]="getDownloadUrl('toan-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'TIẾNG VIỆT'"
+      [downloadUrl]="getDownloadUrl('tieng-viet-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'KHOA HỌC'"
+      [downloadUrl]="getDownloadUrl('khoa-hoc-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'LỊCH SỬ VÀ ĐỊA LÍ'"
+      [downloadUrl]="getDownloadUrl('lich-su-va-dia-li-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'ĐẠO ĐỨC'"
+      [downloadUrl]="getDownloadUrl('dao-duc-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'CÔNG NGHỆ'"
+      [downloadUrl]="getDownloadUrl('cong-nghe-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'TIN HỌC'"
+      [downloadUrl]="getDownloadUrl('tin-hoc-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'MĨ THUẬT'"
+      [downloadUrl]="getDownloadUrl('mi-thuat-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'ÂM NHẠC'"
+      [downloadUrl]="getDownloadUrl('am-nhac-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'HĐ TRẢI NGHIỆM'"
+      [downloadUrl]="getDownloadUrl('hoat-dong-trai-nghiem-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'GIÁO DỤC THỂ CHẤT'"
+      [downloadUrl]="getDownloadUrl('giao-duc-the-chat-5')"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+  </div>
 </div>
