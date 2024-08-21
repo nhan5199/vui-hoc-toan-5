@@ -2,49 +2,58 @@
 .giao-an-dien-tu-cac-mon-khac-button {
   position: relative;
   opacity: 1;
-  /* width: 520px; */
   text-align: center;
   color: black;
   font-size: 1.5rem;
   font-weight: bold;
-  /* border: 6px solid white; */
-  border-radius: 15px;
-  padding: 15px 25px;
+  border-radius: 40px;
+  padding: 15px;
+  text-align: center;
+  color: #5271ff;
+  font-family: var(--anton-font);
+  margin-left: 10%;
+  background-color: yellow;
   cursor: pointer;
-  transition: 0.75s ease;
-  border: 6px solid #5271ff;
-  background-color: #eef30e;
-  background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
+  color: #e9353f;
+  transition: 0.5s ease;
+  border: 4px solid black;
 }
 
 .giao-an-dien-tu-cac-mon-khac-button:hover {
   transform: scale(1.1);
 }
 
-a {
-  text-decoration: none;
+.giao-an-dien-tu-cac-mon-khac-button:hover button {
+  color: yellow;
+}
+
+.content {
+  margin-right: -10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.content button {
+  border: none;
+  background-color: #0361ff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 1rem;
+  transition: 0.5s ease;
+}
+p {
+  margin: 0;
 }
 
 .giao-an-dien-tu-cac-mon-khac-button img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: -8%;
-  width: 6.5rem;
+  left: -10%;
+  width: 7rem;
   transition: 0.75s ease;
-}
-
-.giao-an-dien-tu-cac-mon-khac-button {
-  text-align: center;
-  color: #5271ff;
-  font-family: var(--anton-font);
-  margin-left: 10%;
-}
-.giao-an-dien-tu-cac-mon-khac-button:hover {
-  color: #eef30e;
-  border: 6px solid #eef30e;
-  background-position: left bottom;
-  transform: scale(1.1);
 }

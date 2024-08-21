@@ -31,7 +31,10 @@
     <img src="images/images/dang-phat-trien.png" alt="" />
     <p>SẮP RA MẮT</p>
   </div>
-  <div class="giao-an-dien-tu-container" [class.hidden]="files.length <= 0">
+  <div
+    class="giao-an-dien-tu-container"
+    [class.hidden]="files.length <= 0 || isLoadingFiles"
+  >
     <app-giao-an-dien-tu-cac-mon-khac-button
       *ngFor="let file of files"
       [buttonName]="getButtonName(file)"
