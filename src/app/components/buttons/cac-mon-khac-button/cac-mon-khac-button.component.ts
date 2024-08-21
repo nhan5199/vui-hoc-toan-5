@@ -15,10 +15,12 @@ export class CacMonKhacButtonComponent {
   @Input('buttonIcon') buttonIcon: string = '';
 
   downloadFile(): void {
-    const link = document.createElement('a');
-    link.href = this.downloadUrl;
-    let filePathParts = this.downloadUrl.split('/');
-    link.download = filePathParts[filePathParts.length - 1];
-    link.click();
+    if (this.downloadUrl?.length > 0) {
+      const link = document.createElement('a');
+      link.href = this.downloadUrl;
+      let filePathParts = this.downloadUrl.split('/');
+      link.download = filePathParts[filePathParts.length - 1];
+      link.click();
+    }
   }
 }

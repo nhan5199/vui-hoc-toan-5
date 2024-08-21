@@ -1,0 +1,42 @@
+<div class="loading" *ngIf="isLoading"></div>
+<div class="giao-an-dien-tu" [class.hidden]="isLoading" #giaoAnDienTuContainer>
+  <div class="title">
+    <img
+      src="images/images/giao-an-dien-tu-cac-mon-khac-title-icon.png"
+      alt=""
+    />
+    <p class="menu-title">Thư viện giáo án điện tử</p>
+  </div>
+  <img [src]="bookIconUrl" alt="" class="book-logo" />
+
+  <div class="search">
+    <div class="search-item">
+      <img src="icons/search-icon.png" alt="" />
+      <select
+        id="exampleSelect"
+        [(ngModel)]="selectedWeek"
+        (change)="onChangeWeek()"
+      >
+        <option *ngFor="let option of weekOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="loading-file" *ngIf="isLoadingFiles">
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFiles">
+    <img src="images/images/dang-phat-trien.png" alt="" />
+    <p>SẮP RA MẮT</p>
+  </div>
+  <div class="giao-an-dien-tu-container" [class.hidden]="files.length <= 0">
+    <app-giao-an-dien-tu-cac-mon-khac-button
+      *ngFor="let file of files"
+      [buttonName]="getButtonName(file)"
+      (click)="goToSubject(file)"
+    >
+    </app-giao-an-dien-tu-cac-mon-khac-button>
+  </div>
+</div>

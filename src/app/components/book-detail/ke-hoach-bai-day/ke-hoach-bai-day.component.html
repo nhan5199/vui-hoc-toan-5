@@ -1,4 +1,9 @@
-<div class="ke-hoach-bai-day">
+<div class="loading" *ngIf="isLoading"></div>
+<div
+  class="ke-hoach-bai-day"
+  [class.hidden]="isLoading"
+  #keHoachBaiDayContainer
+>
   <p class="menu-title">
     <span class="default">Kế hoạch bài dạy</span><br />
     {{ getTitle() }}
@@ -24,7 +29,7 @@
   </div>
   <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFile">
     <img src="images/images/dang-phat-trien.png" alt="" />
-    <p>Tính năng đang phát triển</p>
+    <p>SẮP RA MẮT</p>
   </div>
   <div
     class="ke-hoach-bai-day-container"

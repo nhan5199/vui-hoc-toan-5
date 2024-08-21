@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FileData, FileService } from '../../../services/file.service';
 import { EBookButtonComponent } from '../../buttons/ebook-button/ebook-button.component';
 import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../flip-book/flip-book.component';
 import { finalize } from 'rxjs';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-ebook',
@@ -13,7 +21,7 @@ import { finalize } from 'rxjs';
   templateUrl: './ebook.component.html',
   styleUrl: './ebook.component.css',
 })
-export class EBookComponent implements OnInit {
+export class EBookComponent implements OnInit, AfterViewInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
@@ -24,10 +32,13 @@ export class EBookComponent implements OnInit {
   isDisplayFlipBook: boolean = false;
 
   isLoadingFile: boolean = true;
+  isLoading: boolean = true;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly fileService: FileService
+    private readonly fileService: FileService,
+    private imageLoaderService: ImageLoaderService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -76,5 +87,14 @@ export class EBookComponent implements OnInit {
 
   onCloseFlipBook(event: any) {
     if (event) this.isDisplayFlipBook = false;
+  }
+
+  @ViewChild('ebookContainer', { static: true })
+  ebookContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(this.ebookContainer, () => {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

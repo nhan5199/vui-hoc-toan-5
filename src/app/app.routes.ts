@@ -8,6 +8,7 @@ import { SlideDisplayComponent } from './components/slide-display/slide-display.
 import { HomeComponent } from './home/home.component';
 import { CacMonKhacComponent } from './components/book-detail/cac-mon-khac/cac-mon-khac.component';
 import { PhanPhoiChuongTrinhComponent } from './components/book-detail/phan-phoi-chuong-trinh/phan-phoi-chuong-trinh.component';
+import { GiaoAnDienTuCacMonKhacComponent } from './components/book-detail/cac-mon-khac/giao-an-dien-tu-cac-mon-khac/giao-an-dien-tu-cac-mon-khac.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -71,6 +72,11 @@ export const routes: Routes = [
   {
     path: ':bookName/cac-mon-khac',
     component: CacMonKhacComponent,
+  },
+
+  {
+    path: ':bookName/cac-mon-khac/giao-an-dien-tu',
+    component: GiaoAnDienTuCacMonKhacComponent,
   },
 ];
 

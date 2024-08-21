@@ -1,4 +1,5 @@
-<div class="e-book">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="e-book" [class.hidden]="isLoading" #ebookContainer>
   <p class="menu-title">{{ getTitle() }}</p>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
   <div class="loading-file" *ngIf="isLoadingFile">

@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FileData, FileService } from '../../../services/file.service';
@@ -7,6 +14,7 @@ import { GiaoAnDienTuButtonComponent } from '../../buttons/giao-an-dien-tu-butto
 import Constant from '../../../shared/constants/Constant';
 import { XemSlideComponent } from '../../xem-slide/xem-slide.component';
 import { finalize } from 'rxjs';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-giao-an-dien-tu',
@@ -20,7 +28,7 @@ import { finalize } from 'rxjs';
   templateUrl: './giao-an-dien-tu.component.html',
   styleUrl: './giao-an-dien-tu.component.css',
 })
-export class GiaoAnDienTuComponent implements OnInit {
+export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
@@ -30,6 +38,8 @@ export class GiaoAnDienTuComponent implements OnInit {
   slideName: string = '';
   slideDownloadUrl: string = '';
   isDisplayViewSlide: boolean = false;
+
+  isLoading: boolean = true;
 
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
@@ -62,7 +72,9 @@ export class GiaoAnDienTuComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly fileService: FileService
+    private readonly fileService: FileService,
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly imageLoaderService: ImageLoaderService
   ) {}
 
   ngOnInit(): void {
@@ -160,5 +172,17 @@ export class GiaoAnDienTuComponent implements OnInit {
       this.slideDownloadUrl = '';
       this.slideName = '';
     }
+  }
+
+  @ViewChild('giaoAnDienTuContainer', { static: true })
+  giaoAnDienTuContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(
+      this.giaoAnDienTuContainer,
+      () => {
+        this.isLoading = false;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 }

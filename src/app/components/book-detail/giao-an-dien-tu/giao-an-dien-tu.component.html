@@ -1,4 +1,5 @@
-<div class="giao-an-dien-tu">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="giao-an-dien-tu" [class.hidden]="isLoading" #giaoAnDienTuContainer>
   <p class="menu-title">
     <span class="dèault">Thư viện bài giảng điện tử</span> <br />
     {{ getTitle() }}
@@ -36,7 +37,7 @@
   </div>
   <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFile">
     <img src="images/images/dang-phat-trien.png" alt="" />
-    <p>Tính năng đang phát triển</p>
+    <p>SẮP RA MẮT</p>
   </div>
   <div
     class="giao-an-dien-tu-container"

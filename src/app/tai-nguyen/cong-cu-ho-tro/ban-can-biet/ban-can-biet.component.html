@@ -1,23 +1,5 @@
 <div class="loading" *ngIf="isLoading"></div>
 <div class="ban-can-biet" [class.hidden]="isLoading" #banCanBietContainer>
-  <!-- <a [href]="downloadUrl" download target="_blank">
-    <img class="download" title="Tải file" src="icons/download-icon.png" alt=""
-  /></a>
-  <div class="ban-can-biet-container">
-    <img
-      class="left-arrow"
-      src="icons/left-arrow.png"
-      alt=""
-      (click)="onClick(-1)"
-    />
-    <img
-      class="right-arrow"
-      src="icons/right-arrow.png"
-      alt=""
-      (click)="onClick(+1)"
-    />
-    <img class="content" [src]="imgUrls[currentUrl]" alt="" />
-  </div> -->
   <div class="ban-can-biet-container">
     <div class="ban-can-biet-item" *ngFor="let file of files">
       <img [src]="getCoverUrl(file.name)" alt="" />

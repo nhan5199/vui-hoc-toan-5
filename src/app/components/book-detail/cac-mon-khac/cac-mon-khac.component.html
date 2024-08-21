@@ -1,4 +1,5 @@
-<div class="cac-mon-khac">
+<div class="loading" *ngIf="isLoading"></div>
+<div class="cac-mon-khac" [class.hidden]="isLoading" #cacMonKhacContainer>
   <p class="menu-title">
     Giáo án các môn học lớp 5 <br /><span>{{ titleName }}</span>
   </p>
@@ -8,7 +9,7 @@
   </div>
   <div class="empty-file" *ngIf="files.length <= 0 && !isLoadingFiles">
     <img src="images/images/dang-phat-trien.png" alt="" />
-    <p>Tính năng đang phát triển</p>
+    <p>SẮP RA MẮT</p>
   </div>
   <div class="cac-mon-khac-container" [class.hidden]="files.length <= 0">
     <app-cac-mon-khac-button
@@ -76,6 +77,12 @@
       [buttonName]="'GIÁO DỤC THỂ CHẤT'"
       [downloadUrl]="getDownloadUrl('giao-duc-the-chat-5')"
       [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+    ></app-cac-mon-khac-button>
+    <app-cac-mon-khac-button
+      [buttonName]="'GIÁO ÁN ĐIỆN TỬ'"
+      [downloadUrl]="''"
+      [buttonIcon]="'images/images/buttons/cac-mon-khac-button-icon.gif'"
+      (click)="goToGiaoAnDienTu()"
     ></app-cac-mon-khac-button>
   </div>
 </div>

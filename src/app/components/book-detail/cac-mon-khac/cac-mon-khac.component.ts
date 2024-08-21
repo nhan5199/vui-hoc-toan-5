@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileData } from '../../../services/database.service';
 import { CommonModule } from '@angular/common';
 import Constant from '../../../shared/constants/Constant';
 import { CacMonKhacButtonComponent } from '../../buttons/cac-mon-khac-button/cac-mon-khac-button.component';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-cac-mon-khac',
@@ -12,15 +20,21 @@ import { CacMonKhacButtonComponent } from '../../buttons/cac-mon-khac-button/cac
   templateUrl: './cac-mon-khac.component.html',
   styleUrl: './cac-mon-khac.component.css',
 })
-export class CacMonKhacComponent implements OnInit {
+export class CacMonKhacComponent implements OnInit, AfterViewInit {
   folderPath: string = '';
   bookIconUrl: string = '';
   titleName: string = '';
 
   files: any[] = [];
   isLoadingFiles: boolean = false;
+  isLoading: boolean = true;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private imageLoaderService: ImageLoaderService,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.route.pathFromRoot.forEach((route) => {
@@ -92,5 +106,18 @@ export class CacMonKhacComponent implements OnInit {
       }
     });
     return isExist;
+  }
+
+  goToGiaoAnDienTu() {
+    this.router.navigateByUrl(`${this.folderPath}/giao-an-dien-tu`);
+  }
+
+  @ViewChild('cacMonKhacContainer', { static: true })
+  cacMonKhacContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(this.cacMonKhacContainer, () => {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

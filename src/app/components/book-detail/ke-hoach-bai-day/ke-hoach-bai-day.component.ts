@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FileData, FileService } from '../../../services/file.service';
 import { ActivatedRoute } from '@angular/router';
 import { KeHoachBaiDayButtonComponent } from '../../buttons/ke-hoach-bai-day-button/ke-hoach-bai-day-button.component';
@@ -6,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
 import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
+import { ImageLoaderService } from '../../../services/image-loader.service';
 
 @Component({
   selector: 'app-ke-hoach-bai-day',
@@ -19,7 +27,7 @@ import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
   templateUrl: './ke-hoach-bai-day.component.html',
   styleUrl: './ke-hoach-bai-day.component.css',
 })
-export class KeHoachBaiDayComponent implements OnInit {
+export class KeHoachBaiDayComponent implements OnInit, AfterViewInit {
   bookName: string = '';
   bookIconUrl: string = '';
   folderPath: string = '';
@@ -27,6 +35,8 @@ export class KeHoachBaiDayComponent implements OnInit {
   pdfName: string = '';
   pdfDownloadUrl: string = '';
   isDisplayViewpdf: boolean = false;
+
+  isLoading: boolean = true;
 
   files: any[] = [];
   selectedSemester = 'hoc-ki-1';
@@ -37,7 +47,9 @@ export class KeHoachBaiDayComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly fileService: FileService
+    private readonly fileService: FileService,
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly imageLoaderService: ImageLoaderService
   ) {}
 
   isLoadingFile: boolean = true;
@@ -108,5 +120,17 @@ export class KeHoachBaiDayComponent implements OnInit {
       this.pdfDownloadUrl = '';
       this.pdfName = '';
     }
+  }
+
+  @ViewChild('keHoachBaiDayContainer', { static: true })
+  keHoachBaiDayContainer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.imageLoaderService.checkImagesLoaded(
+      this.keHoachBaiDayContainer,
+      () => {
+        this.isLoading = false;
+        this.cdRef.detectChanges();
+      }
+    );
   }
 }
