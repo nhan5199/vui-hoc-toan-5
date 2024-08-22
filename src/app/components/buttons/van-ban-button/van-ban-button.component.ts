@@ -52,8 +52,14 @@ export class VanBanButtonComponent implements OnChanges {
 
   onClickFile() {
     this.viewFile.emit({
-      name: this.imgFolderPath + '/' + this.buttonName?.split('.')[0],
+      name: this.imgFolderPath + '/' + this.buttonName?.split('.pdf')[0],
       url: this.fileDownloadUrl,
     });
+  }
+
+  getButtonDisplayName() {
+    return this.buttonName.split('.pdf')[0]?.length >= 37
+      ? this.buttonName.split('.pdf')[0].slice(0, 36) + '...'
+      : this.buttonName.split('.pdf')[0];
   }
 }

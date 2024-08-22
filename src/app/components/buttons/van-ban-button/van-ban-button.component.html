@@ -1,9 +1,9 @@
-<a (click)="onClickFile()" title="Xem chi tiết">
+<a (click)="onClickFile()" [title]="buttonName.split('.pdf')[0]">
   <div class="van-ban-button">
     <div class="img-icon">
       <img [src]="buttonIcon" alt="" />
       <p class="img-name">{{ getButtonIconName() }}</p>
     </div>
-    <a>{{ buttonName.split(".")[0] }}</a>
+    <a>{{ getButtonDisplayName() }}</a>
   </div>
 </a>

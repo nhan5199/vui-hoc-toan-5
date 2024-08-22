@@ -11,11 +11,17 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../components/flip-book/flip-book.component';
 import { ImageLoaderService } from '../../services/image-loader.service';
+import { XemPdfComponent } from '../../components/xem-pdf/xem-pdf.component';
 
 @Component({
   selector: 'app-van-ban-quy-dinh',
   standalone: true,
-  imports: [VanBanButtonComponent, CommonModule, FlipBookComponent],
+  imports: [
+    VanBanButtonComponent,
+    CommonModule,
+    FlipBookComponent,
+    XemPdfComponent,
+  ],
   templateUrl: './van-ban-quy-dinh.component.html',
   styleUrl: './van-ban-quy-dinh.component.css',
 })
@@ -26,6 +32,10 @@ export class VanBanQUyDinhComponent implements OnInit {
   isDisplayFlipBook: boolean = false;
   currentImgPath: string = '';
   currentDownloadUrl: string = '';
+
+  pdfName: string = '';
+  pdfDownloadUrl: string = '';
+  isDisplayViewpdf: boolean = false;
 
   constructor(
     private readonly fileService: FileService,
@@ -55,11 +65,19 @@ export class VanBanQUyDinhComponent implements OnInit {
   }
 
   onViewFile(event: any) {
-    this.currentImgPath = event?.name?.split('//')[1];
-    this.currentDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
-      event.name
-    }`;
-    this.isDisplayFlipBook = true;
+    debugger;
+    if (
+      event.name.includes('Tai-lieu-Giao-duc-Ki-nang-Cong-dan-so-17.04.24') ||
+      event.name.includes('4670qdbgddttai-lieu-kem-theo')
+    ) {
+      this.onViewPdf(event);
+    } else {
+      this.currentImgPath = event?.name?.split('//')[1];
+      this.currentDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
+        event.name
+      }`;
+      this.isDisplayFlipBook = true;
+    }
   }
 
   onCloseFlipBook(event: any) {
@@ -77,5 +95,19 @@ export class VanBanQUyDinhComponent implements OnInit {
         this.cdRef.detectChanges();
       }
     );
+  }
+
+  onViewPdf(event: any) {
+    this.isDisplayViewpdf = true;
+    this.pdfDownloadUrl = event.url;
+    this.pdfName = event.name;
+  }
+
+  onCloseViewPdf(event: any) {
+    if (event) {
+      this.isDisplayViewpdf = false;
+      this.pdfDownloadUrl = '';
+      this.pdfName = '';
+    }
   }
 }
