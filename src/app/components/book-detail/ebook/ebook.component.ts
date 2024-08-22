@@ -13,11 +13,17 @@ import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../flip-book/flip-book.component';
 import { finalize } from 'rxjs';
 import { ImageLoaderService } from '../../../services/image-loader.service';
+import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
 
 @Component({
   selector: 'app-ebook',
   standalone: true,
-  imports: [EBookButtonComponent, CommonModule, FlipBookComponent],
+  imports: [
+    EBookButtonComponent,
+    CommonModule,
+    FlipBookComponent,
+    XemPdfComponent,
+  ],
   templateUrl: './ebook.component.html',
   styleUrl: './ebook.component.css',
 })
@@ -33,6 +39,10 @@ export class EBookComponent implements OnInit, AfterViewInit {
 
   isLoadingFile: boolean = true;
   isLoading: boolean = true;
+
+  pdfName: string = '';
+  pdfDownloadUrl: string = '';
+  isDisplayViewpdf: boolean = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -80,9 +90,13 @@ export class EBookComponent implements OnInit, AfterViewInit {
   }
 
   onViewBook(event: any) {
-    this.currentImgPath = event?.name;
-    this.currentDownloadUrl = event?.url;
-    this.isDisplayFlipBook = true;
+    if (event.name.includes('SGK')) {
+      this.currentImgPath = event?.name;
+      this.currentDownloadUrl = event?.url;
+      this.isDisplayFlipBook = true;
+    } else {
+      this.onViewPdf(event);
+    }
   }
 
   onCloseFlipBook(event: any) {
@@ -96,5 +110,19 @@ export class EBookComponent implements OnInit, AfterViewInit {
       this.isLoading = false;
       this.cdRef.detectChanges();
     });
+  }
+
+  onViewPdf(event: any) {
+    this.isDisplayViewpdf = true;
+    this.pdfDownloadUrl = event.url;
+    this.pdfName = event.name;
+  }
+
+  onCloseViewPdf(event: any) {
+    if (event) {
+      this.isDisplayViewpdf = false;
+      this.pdfDownloadUrl = '';
+      this.pdfName = '';
+    }
   }
 }

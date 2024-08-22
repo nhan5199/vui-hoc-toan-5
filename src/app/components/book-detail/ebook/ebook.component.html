@@ -22,3 +22,11 @@
   [downloadUrl]="currentDownloadUrl"
   (closeFlipBook)="onCloseFlipBook($event)"
 ></app-flip-book>
+
+<app-xem-pdf
+  *ngIf="isDisplayViewpdf"
+  [pdfName]="pdfName"
+  [downloadUrl]="pdfDownloadUrl"
+  [bookName]="''"
+  (closepdf)="onCloseViewPdf($event)"
+></app-xem-pdf>

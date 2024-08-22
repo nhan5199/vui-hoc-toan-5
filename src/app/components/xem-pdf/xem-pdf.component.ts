@@ -36,7 +36,6 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pdfName'] && this.pdfName?.length > 0) {
       let imgsPath = '';
-      debugger;
       if (this.bookName.includes('tai-nguyen')) {
         imgsPath = `${this.bookName}/${this.pdfName?.split('.')[0]}/`;
       } else {
@@ -48,7 +47,7 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
           imgsPath = `${this.bookName}${this.pdfName}`;
         }
       }
-      console.log(imgsPath);
+
       this.pdfs = Constant.IMAGE_PATHS.images.filter((x: any) =>
         x.includes(imgsPath)
       );
