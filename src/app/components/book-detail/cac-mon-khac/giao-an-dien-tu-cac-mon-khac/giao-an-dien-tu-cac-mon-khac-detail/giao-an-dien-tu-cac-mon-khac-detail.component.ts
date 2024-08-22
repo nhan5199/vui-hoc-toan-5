@@ -43,7 +43,6 @@ export class GiaoAnDienTuCacMonKhacDetailComponent
         this.folderPath += urlSegment.map((segment) => segment.path).join('/');
       });
 
-      console.log(this.folderPath);
       if (this.folderPath.includes('canh-dieu')) {
         this.bookIconUrl = 'images/images/canh-dieu-icon.jpg';
       } else if (this.folderPath.includes('ket-noi-tri-thuc')) {

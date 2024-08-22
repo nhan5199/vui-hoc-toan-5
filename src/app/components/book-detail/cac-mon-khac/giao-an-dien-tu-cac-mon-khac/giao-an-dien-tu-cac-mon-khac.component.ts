@@ -80,7 +80,6 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
 
   getListFolder() {
     this.isLoadingFiles = true;
-    console.log(`${this.folderPath}/${this.selectedWeek}`);
     this.files = Array.from(
       new Set(
         Constant.FILE_PATH.files.map((path) => {
