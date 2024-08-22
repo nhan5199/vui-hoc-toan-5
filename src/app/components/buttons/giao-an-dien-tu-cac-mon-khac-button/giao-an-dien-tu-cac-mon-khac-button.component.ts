@@ -9,10 +9,4 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class GiaoAnDIenTuCacMonKhacButtonComponent {
   @Input('buttonName') buttonName: string = '';
-  @Input('folderPath') folderPath: string = '';
-  @Output('viewFile') viewFile: EventEmitter<any> = new EventEmitter<any>();
-
-  onViewFile() {
-    this.viewFile.emit(`${this.folderPath}/${this.buttonName}`);
-  }
 }

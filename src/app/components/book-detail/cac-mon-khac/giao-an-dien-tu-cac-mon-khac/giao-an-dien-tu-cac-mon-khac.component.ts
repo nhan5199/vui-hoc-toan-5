@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -6,11 +7,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ImageLoaderService } from '../../../../services/image-loader.service';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { FileService } from '../../../../services/file.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ImageLoaderService } from '../../../../services/image-loader.service';
 import Constant from '../../../../shared/constants/Constant';
 import { GiaoAnDIenTuCacMonKhacButtonComponent } from '../../../buttons/giao-an-dien-tu-cac-mon-khac-button/giao-an-dien-tu-cac-mon-khac-button.component';
 
@@ -54,9 +53,9 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly fileService: FileService,
     private readonly cdRef: ChangeDetectorRef,
-    private readonly imageLoaderService: ImageLoaderService
+    private readonly imageLoaderService: ImageLoaderService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -150,5 +149,7 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
     return '';
   }
 
-  goToSubject(fileName: string) {}
+  goToSubject(fileName: string) {
+    this.router.navigateByUrl(`${this.folderPath}/${fileName}`);
+  }
 }
