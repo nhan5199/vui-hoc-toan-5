@@ -13,9 +13,10 @@
   cursor: pointer;
   transition: 0.75s ease;
   background-color: #fd9eab;
-  /* background: linear-gradient(to left, #fff 50%, orange 50%);
-  background-size: 200% 100%;
-  background-position: right bottom; */
+}
+
+.van-ban-button:hover {
+  transform: scale(1.1);
 }
 
 .van-ban-button .img-icon {
@@ -49,7 +50,7 @@ a {
   text-align: center;
   color: white;
   font-family: var(--lobster-font);
-  margin-left: 50px;
+  margin-left: 2rem;
 }
 .van-ban-button:hover {
   transform: scale(1.1);
@@ -57,4 +58,18 @@ a {
 
 .van-ban-button:hover a {
   color: #5271ff;
+}
+
+@media screen and (max-width: 450px) {
+  .van-ban-button .img-icon img {
+    width: 4rem;
+  }
+
+  .van-ban-button .img-icon .img-name {
+    font-size: 0.8rem;
+  }
+
+  .van-ban-button {
+    font-size: 1rem;
+  }
 }

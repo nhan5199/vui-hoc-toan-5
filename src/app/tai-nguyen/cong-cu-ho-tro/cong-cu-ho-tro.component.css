@@ -31,3 +31,25 @@ app-cong-cu-button {
   width: 40%;
   transition: 0.5s ease;
 }
+
+@media screen and (max-width: 450px) {
+  .cong-cu-ho-tro {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+  app-cong-cu-button {
+    width: 80%;
+  }
+
+  .cong-cu-ho-tro-container {
+    width: 100%;
+    max-width: 60svh;
+    overflow-y: auto;
+    top: 55%;
+    padding: 1rem;
+    gap: 3rem;
+  }
+}

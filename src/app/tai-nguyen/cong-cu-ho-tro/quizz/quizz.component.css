@@ -43,6 +43,7 @@
 
 .quizz-card img {
   width: 50%;
+  border-radius: 10px;
 }
 
 .download {
@@ -74,4 +75,24 @@
 }
 .download button:hover {
   background-color: #00a9ff;
+}
+
+@media screen and (max-width: 450px) {
+  .quizz {
+    background-position: center;
+  }
+
+  .quizz-container {
+    width: 100%;
+    top: 50%;
+  }
+
+  .quizz-card {
+    width: 45%;
+  }
+
+  .download {
+    font-size: 0.5rem;
+    padding: 5px 10px;
+  }
 }

@@ -74,3 +74,22 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+@media screen and (max-width: 450px) {
+  .flash-card-item {
+    background-position: center;
+  }
+
+  .flash-card-item-container {
+    width: 100%;
+  }
+
+  .flash-card {
+    width: 40%;
+  }
+
+  .download-content a {
+    font-size: 0.6rem;
+    padding: 5px 10px;
+  }
+}

@@ -39,3 +39,22 @@ app-cau-hoi-on-tap-button {
   transform: translateX(-50%);
   color: #2c63ff;
 }
+
+@media screen and (max-width: 450px) {
+  .cau-hoi-on-tap {
+    background-position: center;
+  }
+
+  app-cau-hoi-on-tap-button {
+    width: 80%;
+  }
+
+  .cau-hoi-on-tap-container {
+    width: 100%;
+    max-width: 60svh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 1rem;
+  }
+}

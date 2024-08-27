@@ -70,3 +70,20 @@
   border: 6px solid #eef30e;
   background-position: left bottom;
 }
+
+@media screen and (max-width: 450px) {
+  .content {
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .content button {
+    font-size: 0.5rem;
+    border-width: 3px;
+    padding: 5px 10px;
+  }
+}

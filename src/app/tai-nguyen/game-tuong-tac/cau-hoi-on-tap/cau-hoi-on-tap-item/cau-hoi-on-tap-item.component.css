@@ -274,3 +274,21 @@ app-cau-hoi-on-tap-item-button {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 450px) {
+  .cau-hoi-on-tap-item {
+    background-position: center;
+  }
+
+  app-cau-hoi-on-tap-item-button {
+    width: 80%;
+    margin-left: 3rem;
+  }
+
+  .cau-hoi-on-tap-item-container {
+    left: 50%;
+    width: 100%;
+    max-height: 60svh;
+    overflow-y: auto;
+  }
+}

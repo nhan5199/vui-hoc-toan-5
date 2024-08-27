@@ -99,3 +99,22 @@
 .cau-hoi-on-tap-item-button:hover .inside .content {
   opacity: 1;
 }
+
+@media screen and (max-width: 450px) {
+  .cau-hoi-on-tap-item-button {
+    width: 70%;
+    height: 25svh;
+  }
+
+  .outside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .cau-hoi-on-tap-item-button img {
+    width: 70%;
+  }
+}

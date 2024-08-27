@@ -26,3 +26,12 @@
 app-game-tuong-tac-button {
   width: 30%;
 }
+
+@media screen and (max-width: 450px) {
+  .game-tuong-tac {
+    background-position: center;
+  }
+  app-game-tuong-tac-button {
+    width: 70%;
+  }
+}

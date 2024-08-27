@@ -92,3 +92,23 @@
   transition: 0.75s ease;
   font-size: 0.8rem;
 }
+
+@media screen and (max-width: 450px) {
+  .ban-can-biet {
+    background-position: center;
+  }
+
+  .ban-can-biet-container {
+    top: 50%;
+    width: 100%;
+  }
+
+  .ban-can-biet-item {
+    width: 40%;
+  }
+
+  .download-content a {
+    font-size: 0.5rem;
+    padding: 5px 10px;
+  }
+}

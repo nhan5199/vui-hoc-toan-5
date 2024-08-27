@@ -28,3 +28,17 @@ app-flash-card-button {
   flex: 1;
   min-width: 20%;
 }
+
+@media screen and (max-width: 450px) {
+  .flash-card {
+    background-position: center;
+  }
+
+  .flash-card-container {
+    width: 100%;
+  }
+
+  app-flash-card-button {
+    min-width: 80%;
+  }
+}

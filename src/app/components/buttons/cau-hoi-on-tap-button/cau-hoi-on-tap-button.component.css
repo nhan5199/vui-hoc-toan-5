@@ -49,7 +49,6 @@ a {
   text-align: center;
   color: white;
   font-family: var(--lobster-font);
-  margin-left: 50px;
 }
 .cau-hoi-on-tap-button:hover {
   transform: scale(1.05);

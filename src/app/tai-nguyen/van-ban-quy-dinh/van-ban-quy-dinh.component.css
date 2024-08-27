@@ -26,15 +26,12 @@
   top: 10%;
   left: 50%;
   transform: translate(-50%, -10%);
+  padding-top: 3.5rem;
 }
 
 app-van-ban-button {
   width: 40%;
   transition: 0.5s ease;
-}
-
-app-van-ban-button:hover {
-  width: 40.5%;
 }
 
 .footer {
@@ -45,4 +42,21 @@ app-van-ban-button:hover {
   left: 50%;
   transform: translateX(-50%);
   color: #2c63ff;
+}
+
+@media screen and (max-width: 450px) {
+  .menu-title {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .van-ban-quy-dinh-container {
+    gap: 2rem;
+    width: 100%;
+  }
+
+  app-van-ban-button {
+    width: 80%;
+  }
 }

@@ -74,3 +74,22 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+@media screen and (max-width: 450px) {
+  .toan-dan-gian {
+    background-position: center;
+  }
+
+  .toan-dan-gian-container {
+    width: 100%;
+  }
+
+  .toan-dan-gian-item {
+    width: 45%;
+  }
+
+  .download-content a {
+    font-size: 0.5rem;
+    padding: 5px 10px;
+  }
+}

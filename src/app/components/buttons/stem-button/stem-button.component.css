@@ -60,3 +60,18 @@ a {
   width: 3rem;
   right: 5%;
 }
+
+@media screen and (max-width: 450px) {
+  .left {
+    width: 4rem;
+  }
+
+  .right {
+    width: 2rem;
+  }
+
+  .stem-button button {
+    min-height: 8svh;
+    padding: 0;
+  }
+}

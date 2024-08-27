@@ -49,3 +49,14 @@ a {
 .cong-cu-ho-tro-button:hover a {
   color: #eef30e;
 }
+
+@media screen and (max-width: 450px) {
+  .cong-cu-ho-tro-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .cong-cu-ho-tro-button img {
+    width: 3.5rem;
+  }
+}

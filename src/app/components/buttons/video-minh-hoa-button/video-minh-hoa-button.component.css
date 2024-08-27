@@ -56,3 +56,18 @@
   border: 6px solid #eef30e;
   background-position: left bottom;
 }
+
+@media screen and (max-width: 450px) {
+  .title {
+    font-size: 1rem;
+  }
+
+  .video-button button {
+    font-size: 1rem;
+    padding: 7px 10px;
+  }
+
+  .video-button img {
+    width: 70%;
+  }
+}
