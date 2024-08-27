@@ -48,3 +48,13 @@ a {
 .book-button:hover a {
   color: #eef30e;
 }
+
+@media screen and (max-width: 450px) {
+  .book-button {
+    font-size: 1rem;
+  }
+
+  .book-button img {
+    width: 4rem;
+  }
+}

@@ -176,3 +176,17 @@ html {
   color: white;
   font-family: var(--pacifico-font);
 }
+
+@media screen and (max-width: 450px) {
+  .back-icon {
+    width: 2rem;
+    left: 60px;
+  }
+  .empty-file {
+    width: 90%;
+  }
+
+  .loading-file {
+    width: 80%;
+  }
+}

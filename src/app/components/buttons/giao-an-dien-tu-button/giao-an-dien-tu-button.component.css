@@ -72,3 +72,23 @@
 .default {
   color: #2c63ff;
 }
+
+@media screen and (max-width: 450px) {
+  .content button {
+    padding: 5px 10px;
+  }
+
+  .giao-an-dien-tu .content .book-name {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .giao-an-dien-tu img {
+    width: 6.5rem;
+  }
+
+  .giao-an-dien-tu .download {
+    width: 4rem;
+  }
+}

@@ -85,3 +85,35 @@ app-menu-button {
   width: 40%;
   transition: 0.5s ease;
 }
+
+@media screen and (max-width: 450px) {
+  app-menu-button {
+    width: 90%;
+  }
+
+  .menu-container {
+    gap: 3rem;
+  }
+
+  .home {
+    background-position: center;
+  }
+
+  .home-button img {
+    width: 10rem;
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    transform: translate(15%, -55%);
+  }
+
+  .home-button button {
+    font-size: 2rem;
+    padding: 0.5rem 3rem;
+    width: 100%;
+  }
+
+  .menu {
+    background-position: center;
+  }
+}

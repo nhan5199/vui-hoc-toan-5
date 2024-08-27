@@ -69,3 +69,42 @@ app-ke-hoach-bai-day-button {
 .default {
   color: #f3663c;
 }
+
+@media screen and (max-width: 450px) {
+  .ke-hoach-bai-day {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  .search {
+    top: 26%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .search img {
+    width: 2rem;
+  }
+
+  .search select {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  app-ke-hoach-bai-day-button {
+    width: 100%;
+  }
+
+  .ke-hoach-bai-day-container {
+    top: 65%;
+    gap: 1rem;
+    max-height: 65svh;
+  }
+}

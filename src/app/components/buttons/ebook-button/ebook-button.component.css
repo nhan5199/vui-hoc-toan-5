@@ -4,7 +4,7 @@
 }
 
 .ebook:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateX(50%);
 }
 .ebook:hover .content button {
   padding: 12px 17px;

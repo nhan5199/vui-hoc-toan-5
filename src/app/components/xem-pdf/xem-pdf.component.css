@@ -74,3 +74,22 @@
 .scroll-to-top.show {
   opacity: 1; /* Show when user scrolls down */
 }
+
+@media screen and (max-width: 450px) {
+  .pdf-container .content {
+    width: 70%;
+  }
+
+  .pdf-container {
+    top: 55%;
+  }
+
+  .download-img {
+    width: 6rem;
+  }
+
+  .scroll-to-top {
+    right: 2%;
+    width: 3rem;
+  }
+}

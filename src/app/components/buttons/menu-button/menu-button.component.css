@@ -46,3 +46,17 @@ a {
   background-position: left bottom;
   transform: scale(1.1);
 }
+
+@media screen and (max-width: 450px) {
+  .menu-button img {
+    width: 4.5rem;
+  }
+
+  .menu-button {
+    font-size: 1.3rem;
+  }
+
+  .menu-button a {
+    margin-left: 20%;
+  }
+}

@@ -53,6 +53,16 @@
 
 @media screen and (max-width: 500px) {
   .home-button img {
-    width: 110px;
+    width: 10rem;
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    transform: translate(15%, -55%);
+  }
+
+  .home-button button {
+    font-size: 2rem;
+    padding: 0.5rem 3rem;
+    width: 100%;
   }
 }

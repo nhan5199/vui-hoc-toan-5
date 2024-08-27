@@ -34,3 +34,29 @@ app-book-button {
   width: 40%;
   transition: 0.5s ease;
 }
+
+@media screen and (max-width: 450px) {
+  .canh-dieu {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  .chan-troi-sang-tao-container {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 90%;
+    gap: 2rem;
+  }
+
+  app-book-button {
+    width: 90%;
+  }
+}

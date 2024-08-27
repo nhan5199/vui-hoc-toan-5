@@ -72,3 +72,22 @@
 .default {
   color: #2c63ff;
 }
+
+@media screen and (max-width: 450px) {
+  .content button {
+    padding: 5px 10px;
+  }
+
+  .phieu-bai-tap .content .book-name {
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .phieu-bai-tap img {
+    width: 5rem;
+  }
+
+  .phieu-bai-tap {
+    padding: 0;
+  }
+}

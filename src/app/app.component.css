@@ -10,9 +10,16 @@ app-menu {
   position: fixed;
   top: 0;
   left: 0;
+  width: 450px;
   z-index: 3000;
 }
 
 .back-icon {
   z-index: 2000;
+}
+
+@media screen and (max-width: 450px) {
+  app-menu {
+    width: 100%;
+  }
 }

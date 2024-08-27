@@ -31,3 +31,21 @@ app-book-button {
 app-book-button {
   width: 41%;
 }
+
+@media screen and (max-width: 450px) {
+  app-book-button {
+    width: 80%;
+  }
+
+  .tai-nguyen-container {
+    max-height: 80svh;
+    overflow-y: auto;
+    width: 100%;
+    gap: 2rem;
+    top: 60%;
+  }
+
+  .tai-nguyen {
+    background-position: center;
+  }
+}

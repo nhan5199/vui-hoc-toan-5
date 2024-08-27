@@ -70,3 +70,42 @@ app-phieu-bai-tap-button {
 .default {
   font-size: 2.5rem;
 }
+
+@media screen and (max-width: 450px) {
+  .phieu-bai-tap {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  .search {
+    top: 26%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .search img {
+    width: 2rem;
+  }
+
+  .search select {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  app-phieu-bai-tap-button {
+    width: 100%;
+  }
+
+  .phieu-bai-tap-container {
+    top: 65%;
+    gap: 1rem;
+    max-height: 65svh;
+  }
+}
