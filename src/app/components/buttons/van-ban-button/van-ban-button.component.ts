@@ -1,3 +1,4 @@
+import { ScreenSizeService } from './../../../services/screen-size.service';
 import {
   Component,
   Input,
@@ -23,13 +24,14 @@ export class VanBanButtonComponent implements OnChanges {
   @Input('buttonIcon') buttonIcon: string = '';
   @Output('viewFile') viewFile: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(
-    private readonly router: Router,
-    private readonly fileService: FileService
-  ) {}
+  isMobileScreen: boolean = false;
+  constructor(private readonly screenSizeService: ScreenSizeService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {
+      this.screenSizeService.isMobileScreen$.subscribe((isMobile) => {
+        this.isMobileScreen = isMobile;
+      });
       this.getButtonIconName();
     }
   }
@@ -58,8 +60,11 @@ export class VanBanButtonComponent implements OnChanges {
   }
 
   getButtonDisplayName() {
-    return this.buttonName.split('.pdf')[0]?.length >= 37
-      ? this.buttonName.split('.pdf')[0].slice(0, 36) + '...'
+    return this.buttonName.split('.pdf')[0]?.length >=
+      (this.isMobileScreen ? 28 : 37)
+      ? this.buttonName
+          .split('.pdf')[0]
+          .slice(0, this.isMobileScreen ? 27 : 36) + '...'
       : this.buttonName.split('.pdf')[0];
   }
 }

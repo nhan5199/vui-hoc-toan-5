@@ -90,6 +90,7 @@ app-video-minh-hoa-button {
 @media screen and (max-width: 450px) {
   .video-minh-hoa {
     background-position: center;
+    background-image: url("/images/images/menu-background.gif");
   }
 
   .video-container {

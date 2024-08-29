@@ -79,7 +79,8 @@
 
 @media screen and (max-width: 450px) {
   .phan-mem-toan-hoc {
-    background-position: 65%;
+    background-position: center;
+    background-image: url("/images/images/menu-background.gif");
   }
 
   .phan-mem-toan-hoc-container {

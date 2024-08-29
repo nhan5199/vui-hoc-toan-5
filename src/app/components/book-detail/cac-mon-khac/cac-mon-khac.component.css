@@ -42,3 +42,32 @@
 app-cac-mon-khac-button {
   min-width: 20%;
 }
+
+@media screen and (max-width: 450px) {
+  .cac-mon-khac {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  .cac-mon-khac-container {
+    top: 60%;
+    width: 90%;
+    gap: 2rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    max-height: 60svh;
+  }
+
+  app-cac-mon-khac-button {
+    min-width: 80%;
+  }
+}

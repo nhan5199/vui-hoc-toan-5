@@ -78,6 +78,7 @@
 @media screen and (max-width: 450px) {
   .toan-dan-gian {
     background-position: center;
+    background-image: url("/images/images/menu-background.gif");
   }
 
   .toan-dan-gian-container {

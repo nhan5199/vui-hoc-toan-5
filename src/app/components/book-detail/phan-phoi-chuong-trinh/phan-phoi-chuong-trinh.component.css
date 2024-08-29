@@ -50,3 +50,28 @@
 .button:hover {
   transform: scale(1.05);
 }
+
+@media screen and (max-width: 450px) {
+  .phan-phoi-chuong-trinh {
+    background-position: center;
+  }
+
+  .menu-title {
+    font-size: 2.5rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  .phan-phoi-chuong-trinh-container {
+    top: 50%;
+    width: 90%;
+    gap: 2rem;
+  }
+
+  .phan-phoi-chuong-trinh-container img {
+    width: 45%;
+  }
+}

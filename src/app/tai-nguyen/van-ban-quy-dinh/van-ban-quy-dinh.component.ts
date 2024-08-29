@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { FlipBookComponent } from '../../components/flip-book/flip-book.component';
 import { ImageLoaderService } from '../../services/image-loader.service';
 import { XemPdfComponent } from '../../components/xem-pdf/xem-pdf.component';
+import { ScreenSizeService } from '../../services/screen-size.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-van-ban-quy-dinh',
@@ -28,6 +30,7 @@ import { XemPdfComponent } from '../../components/xem-pdf/xem-pdf.component';
 export class VanBanQUyDinhComponent implements OnInit {
   folderPath: string = '';
   files: FileData[] = [];
+  isLoadingFiles: boolean = true;
 
   isDisplayFlipBook: boolean = false;
   currentImgPath: string = '';
@@ -36,12 +39,14 @@ export class VanBanQUyDinhComponent implements OnInit {
   pdfName: string = '';
   pdfDownloadUrl: string = '';
   isDisplayViewpdf: boolean = false;
+  isMobileScreen: boolean = false;
 
   constructor(
     private readonly fileService: FileService,
     private readonly route: ActivatedRoute,
     private readonly cdRef: ChangeDetectorRef,
-    private readonly imageLoaderService: ImageLoaderService
+    private readonly imageLoaderService: ImageLoaderService,
+    private screenSizeService: ScreenSizeService
   ) {}
 
   ngOnInit(): void {
@@ -53,22 +58,35 @@ export class VanBanQUyDinhComponent implements OnInit {
         this.listFiles();
       });
     });
-  }
 
-  listFiles(): void {
-    this.files = [];
-    this.fileService.getFilesList(this.folderPath).subscribe((files) => {
-      files.forEach((file: any) => {
-        this.files.push(file);
-      });
+    //detect mobile screen
+    this.screenSizeService.isMobileScreen$.subscribe((isMobile) => {
+      this.isMobileScreen = isMobile;
+    });
+
+    this.screenSizeService.orientation$.subscribe((orientation: string) => {
+      console.log(`Current orientation: ${orientation}`);
     });
   }
 
+  listFiles(): void {
+    this.isLoadingFiles = true;
+    this.files = [];
+    this.fileService
+      .getFilesList(this.folderPath)
+      .pipe(finalize(() => (this.isLoadingFiles = false)))
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
+      });
+  }
+
   onViewFile(event: any) {
-    debugger;
     if (
       event.name.includes('Tai-lieu-Giao-duc-Ki-nang-Cong-dan-so-17.04.24') ||
-      event.name.includes('4670qdbgddttai-lieu-kem-theo')
+      event.name.includes('4670qdbgddttai-lieu-kem-theo') ||
+      this.isMobileScreen
     ) {
       this.onViewPdf(event);
     } else {

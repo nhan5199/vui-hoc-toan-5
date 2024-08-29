@@ -80,6 +80,7 @@
 @media screen and (max-width: 450px) {
   .quizz {
     background-position: center;
+    background-image: url("/images/images/menu-background.gif");
   }
 
   .quizz-container {

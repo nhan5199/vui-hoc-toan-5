@@ -5,7 +5,8 @@
   #vanBanQuyDinhContainer
 >
   <p class="menu-title">VĂN BẢN QUY ĐỊNH</p>
-  <div class="van-ban-quy-dinh-container">
+  <div class="loading" *ngIf="isLoadingFiles"></div>
+  <div class="van-ban-quy-dinh-container" [class.hidden]="isLoadingFiles">
     <app-van-ban-button
       *ngFor="let file of files"
       [buttonName]="file.name"

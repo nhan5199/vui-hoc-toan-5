@@ -30,6 +30,7 @@ app-game-tuong-tac-button {
 @media screen and (max-width: 450px) {
   .game-tuong-tac {
     background-position: center;
+    background-image: url("/images/images/menu-background.gif");
   }
   app-game-tuong-tac-button {
     width: 70%;

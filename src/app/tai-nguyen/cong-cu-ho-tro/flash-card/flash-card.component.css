@@ -31,6 +31,7 @@ app-flash-card-button {
 
 @media screen and (max-width: 450px) {
   .flash-card {
+    background-image: url("/images/images/menu-background.gif");
     background-position: center;
   }
 
