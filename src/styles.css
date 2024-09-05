@@ -177,11 +177,14 @@ html {
   font-family: var(--pacifico-font);
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 900px) {
   .back-icon {
     width: 2rem;
-    left: 60px;
+    left: 80px;
   }
+}
+
+@media screen and (max-width: 450px) {
   .empty-file {
     width: 90%;
   }

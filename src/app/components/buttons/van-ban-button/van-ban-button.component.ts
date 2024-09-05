@@ -1,14 +1,13 @@
-import { ScreenSizeService } from './../../../services/screen-size.service';
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   Output,
   SimpleChanges,
-  EventEmitter,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { FileService } from '../../../services/file.service';
+import { RouterLink } from '@angular/router';
+import { ScreenSizeService } from './../../../services/screen-size.service';
 
 @Component({
   selector: 'app-van-ban-button',

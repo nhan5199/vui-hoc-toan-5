@@ -59,6 +59,12 @@ app-side-menu-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .menu-icon {
+    left: 5px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .menu {
     width: 100%;

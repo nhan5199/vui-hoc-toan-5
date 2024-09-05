@@ -47,7 +47,11 @@ export class VanBanQUyDinhComponent implements OnInit {
     private readonly cdRef: ChangeDetectorRef,
     private readonly imageLoaderService: ImageLoaderService,
     private screenSizeService: ScreenSizeService
-  ) {}
+  ) {
+    this.screenSizeService.orientation$.subscribe((orientation: string) => {
+      debugger;
+    });
+  }
 
   ngOnInit(): void {
     this.route.pathFromRoot.forEach((route) => {
@@ -62,10 +66,6 @@ export class VanBanQUyDinhComponent implements OnInit {
     //detect mobile screen
     this.screenSizeService.isMobileScreen$.subscribe((isMobile) => {
       this.isMobileScreen = isMobile;
-    });
-
-    this.screenSizeService.orientation$.subscribe((orientation: string) => {
-      console.log(`Current orientation: ${orientation}`);
     });
   }
 

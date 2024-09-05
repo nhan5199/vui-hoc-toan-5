@@ -30,21 +30,30 @@
   height: 100svh;
   object-fit: fill;
 
-  background-image: url("/assets/imgs/home/background.jpg");
+  background-image: url("/images/images/detail-background.gif");
   background-size: cover;
+  background-position: center;
 }
 
 .flip-phone {
-  width: 50%;
-  margin: 0 auto;
-  height: 30%;
+  width: 80%;
   position: absolute;
+  height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 15px;
-  border: 5px solid black;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.instruction {
+  font-size: 1.5rem;
+  font-family: var(--pacifico-font);
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  color: white;
 }
 
 img.background {
@@ -75,12 +84,15 @@ button {
 
 .konvajs-content {
   width: 50%;
-  height: 100svh;
+  height: 100svh; /* Fix to 100% screen height */
+  overflow: hidden; /* Prevent overflow */
+  position: relative; /* Ensure correct positioning */
 }
 
 canvas {
   width: 100% !important;
-  height: 100svh;
+  height: 100svh !important; /* Fix the height to 100% screen height */
+  display: block; /* Ensure the canvas takes up the full width and height */
 }
 
 .buttons {
@@ -112,16 +124,15 @@ button {
 
 .buttons button.square img {
   width: 50px;
+  height: auto;
 }
 
 .buttons button img:hover {
-  width: 70px;
-  height: 58.3px;
+  transform: scale(1.1);
 }
 
 .buttons button.square img:hover {
-  width: 70px;
-  height: 70px;
+  transform: scale(1.1);
 }
 
 .left {
@@ -134,14 +145,13 @@ button {
   bottom: 15%;
   transform: translateX(-50%);
   width: 70px;
+  height: auto;
   z-index: 1000;
   transition: 0.5s ease;
 }
 
 .change-pic:hover {
-  width: 80px;
-  left: 49.8%;
-  transform: translateX(-49.8%);
+  transform: translateX(-50%) scale(1.1);
 }
 
 .puzzle {
@@ -157,6 +167,7 @@ button {
   top: 15%;
   right: 15%;
   width: 60px;
+  height: auto;
   z-index: 1000;
 }
 
@@ -166,7 +177,7 @@ button {
 }
 
 .info img:hover {
-  width: 70px;
+  transform: scale(1.1);
 }
 
 .change-pic img,
@@ -193,23 +204,17 @@ button {
   }
 
   .buttons button img:hover {
-    width: 50px;
-    height: 43px;
+    transform: scale(1.1);
   }
 
   .buttons button.square img:hover {
-    width: 50px;
-    height: 50px;
+    transform: scale(1.1);
   }
   .puzzle {
     width: 200px;
   }
   .change-pic {
     width: 40px;
-  }
-
-  .change-pic:hover {
-    width: 50px;
   }
 }
 
@@ -231,22 +236,16 @@ button {
   }
 
   .buttons button img:hover {
-    width: 40px;
-    height: 26.7px;
+    transform: scale(1.1);
   }
 
   .buttons button.square img:hover {
-    width: 40px;
-    height: 40px;
+    transform: scale(1.1);
   }
   .puzzle {
     width: 170px;
   }
   .change-pic {
     width: 30px;
-  }
-
-  .change-pic:hover {
-    width: 40px;
   }
 }

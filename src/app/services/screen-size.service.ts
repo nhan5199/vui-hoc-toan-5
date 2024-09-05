@@ -1,4 +1,4 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -16,22 +16,22 @@ export class ScreenSizeService {
   orientation$ = this.orientationSubject.asObservable();
 
   constructor() {
-    window.screen.orientation.addEventListener('change', () => {
-      this.checkOrientation();
+    // Listen for both screen orientation changes and window resize events
+    window.addEventListener('resize', () => this.handleScreenChange());
+    window.addEventListener('orientationchange', () =>
+      this.handleScreenChange()
+    );
+  }
 
-      this.mobileScreenSubject.next(this.isMobileScreen());
-    });
+  private handleScreenChange() {
+    // Update orientation and mobile screen state
+    this.orientationSubject.next(this.getOrientation());
+    this.mobileScreenSubject.next(this.isMobileScreen());
   }
 
   // Method to check if the screen width is less than or equal to 500px
   private isMobileScreen(): boolean {
     return window.innerWidth <= 500;
-  }
-
-  // Method to get the current orientation
-  // Method to get the current orientation and log it
-  private checkOrientation(): void {
-    const orientation = this.getOrientation();
   }
 
   // Method to determine the current orientation

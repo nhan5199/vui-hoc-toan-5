@@ -1,8 +1,14 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 
 import Konva from 'konva';
 import { ShapeInfoComponent } from './shape-info/shape-info.component';
 import { CommonModule, Location } from '@angular/common';
+import { ScreenSizeService } from '../../../services/screen-size.service';
 
 @Component({
   selector: 'app-tangram',
@@ -33,26 +39,22 @@ export class TangramComponent implements OnInit, AfterViewInit {
 
   isDisplayInfo: boolean = false;
 
-  constructor(private readonly _location: Location) {
+  constructor(
+    private readonly _location: Location,
+    private readonly screenSizeService: ScreenSizeService,
+    private readonly cdRef: ChangeDetectorRef
+  ) {
     this.picUrl = `/assets/imgs/puzzle/${this.selectedPic}.png`;
   }
 
   ngOnInit(): void {
-    if (window.screen.width < 800) {
-      if (window.orientation === 90 || window.orientation === -90) {
-        let flipbook = document.getElementById('flipbook');
-        if (flipbook) {
-          flipbook.style.display = 'flex';
-        }
+    this.screenSizeService.orientation$.subscribe((orientation: string) => {
+      if (orientation === 'landscape') {
         this.isPhoneAndOrientation = false;
-      } else {
-        let flipbook = document.getElementById('flipbook');
-        if (flipbook) {
-          flipbook.style.display = 'none';
-        }
+      } else if (orientation === 'portrait') {
         this.isPhoneAndOrientation = true;
       }
-    }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -80,6 +82,8 @@ export class TangramComponent implements OnInit, AfterViewInit {
     this.stage.on('click tap', (e: any) => this.handleClick(e));
 
     this.isLoading = false;
+
+    this.cdRef.detectChanges();
   }
 
   handleMouseDown(e: any) {

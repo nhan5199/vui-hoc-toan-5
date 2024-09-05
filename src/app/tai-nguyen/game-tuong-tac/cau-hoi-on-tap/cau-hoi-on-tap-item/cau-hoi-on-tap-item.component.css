@@ -6,6 +6,37 @@
   background-repeat: no-repeat;
 }
 
+.orientation {
+  width: 100%;
+  height: 100svh;
+  object-fit: fill;
+
+  background-image: url("/images/images/detail-background.gif");
+  background-size: cover;
+  background-position: center;
+}
+
+.flip-phone {
+  width: 80%;
+  position: absolute;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.instruction {
+  font-size: 1.5rem;
+  font-family: var(--pacifico-font);
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  color: white;
+}
+
 .cau-hoi-on-tap-item-container {
   width: 90%;
   height: 65svh;
@@ -290,5 +321,26 @@ app-cau-hoi-on-tap-item-button {
     width: 100%;
     max-height: 60svh;
     overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  app-cau-hoi-on-tap-item-button {
+    width: 25%;
+  }
+
+  .welcome-page-title {
+    font-size: 3rem;
+  }
+
+  .start-question {
+    font-size: 1.5rem;
+    border-width: 5px;
+    padding: 10px 25px;
+  }
+
+  .quit-welcome-page {
+    top: 2rem;
+    right: 10rem;
   }
 }

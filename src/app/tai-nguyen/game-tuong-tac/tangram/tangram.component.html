@@ -1,7 +1,11 @@
 <ng-container *ngIf="isPhoneAndOrientation">
   <div class="orientation">
-    <img class="flip-phone" src="/assets/flip-phone.png" alt="" /></div
-></ng-container>
+    <img class="flip-phone" src="images/images/flip-phone.png" alt="" />
+    <p class="instruction">
+      Vui lòng xoay ngang điện thoại để có trải nghiệm tốt nhất
+    </p>
+  </div>
+</ng-container>
 <ng-container *ngIf="!isPhoneAndOrientation">
   <div class="game-loading" [class.disappear]="!isLoading"></div>
   <div>

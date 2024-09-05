@@ -7,6 +7,7 @@ import { ChooseCorrectAnswerComponent } from '../../../../components/question-ty
 import { WriteAnswerQuestionComponent } from '../../../../components/question-types/write-answer-question/write-answer-question.component';
 import { YesNoQuestionComponent } from '../../../../components/question-types/yes-no-question/yes-no-question.component';
 import { WriteTextAnswerComponent } from '../../../../components/question-types/write-text-answer/write-text-answer.component';
+import { ScreenSizeService } from '../../../../services/screen-size.service';
 
 @Component({
   selector: 'app-cau-hoi-on-tap-item',
@@ -25,7 +26,8 @@ import { WriteTextAnswerComponent } from '../../../../components/question-types/
 export class CauHoiOnTapItemComponent implements OnInit {
   constructor(
     private readonly databaseService: DatabaseService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly screenSizeService: ScreenSizeService
   ) {}
 
   topicUrl: string = '';
@@ -36,6 +38,8 @@ export class CauHoiOnTapItemComponent implements OnInit {
   rightAnswersCount: number = 0;
   wrongAnswersCount: number = 0;
 
+  isPhoneAndOrientation: boolean = false;
+
   ngOnInit(): void {
     this.topicUrl = this.route.snapshot.paramMap.get('topic')!;
     this.listCauHoiOnTapItem = this.databaseService.getQuestionAnswers();
@@ -44,6 +48,14 @@ export class CauHoiOnTapItemComponent implements OnInit {
         (x: any) => x.topicUrl == this.topicUrl
       )[0].content.listExercises;
     }
+
+    this.screenSizeService.orientation$.subscribe((orientation: string) => {
+      if (orientation === 'landscape') {
+        this.isPhoneAndOrientation = false;
+      } else if (orientation === 'portrait') {
+        this.isPhoneAndOrientation = true;
+      }
+    });
   }
 
   activeQuestion: number = 0;

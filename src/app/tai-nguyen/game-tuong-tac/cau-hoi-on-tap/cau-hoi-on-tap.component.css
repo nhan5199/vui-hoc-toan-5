@@ -40,6 +40,22 @@ app-cau-hoi-on-tap-button {
   color: #2c63ff;
 }
 
+@media screen and (max-width: 900px) {
+  .cau-hoi-on-tap-container {
+    width: 100%;
+    max-height: 50svh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 1rem;
+    justify-content: space-evenly;
+  }
+
+  app-cau-hoi-on-tap-button {
+    width: 25%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .cau-hoi-on-tap {
     background-position: center;
@@ -51,10 +67,7 @@ app-cau-hoi-on-tap-button {
 
   .cau-hoi-on-tap-container {
     width: 100%;
-    max-width: 60svh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-height: 60svh;
     gap: 1rem;
   }
 }
