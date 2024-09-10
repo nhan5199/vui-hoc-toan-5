@@ -27,6 +27,7 @@ p {
   border-radius: 10px;
   height: auto;
   width: 40%;
+  max-height: 50svh;
   object-fit: fill;
 }
 
@@ -93,19 +94,26 @@ input::-webkit-inner-spin-button {
   -moz-appearance: textfield;
 } */
 
-@media screen and (max-width: 1000px) {
-  .answer-img {
-    width: 150px;
-    height: 100px;
+@media screen and (max-width: 900px) {
+  .question-name {
+    font-size: 1rem;
+    margin: 2rem;
   }
 
-  p,
-  .answer input {
-    font-size: 15px;
+  .answer-input {
+    font-size: 1rem;
+  }
+
+  .answer-input input {
+    font-size: 1rem;
+  }
+
+  .check {
+    margin: 1rem;
   }
 
   .check button {
-    font-size: 12px;
-    padding: 7px 12px;
+    font-size: 1rem;
+    padding: 5px 10px;
   }
 }

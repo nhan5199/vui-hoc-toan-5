@@ -39,7 +39,7 @@
 
 .cau-hoi-on-tap-item-container {
   width: 90%;
-  height: 65svh;
+  max-height: 65svh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -53,6 +53,8 @@
 
 app-cau-hoi-on-tap-item-button {
   width: 20%;
+  display: flex;
+  justify-content: center;
 }
 
 .tra-loi-cau-hoi {
@@ -326,7 +328,12 @@ app-cau-hoi-on-tap-item-button {
 
 @media screen and (max-width: 900px) {
   app-cau-hoi-on-tap-item-button {
-    width: 25%;
+    width: 15%;
+  }
+
+  .cau-hoi-on-tap-item-container {
+    width: 100%;
+    top: 60%;
   }
 
   .welcome-page-title {
@@ -342,5 +349,59 @@ app-cau-hoi-on-tap-item-button {
   .quit-welcome-page {
     top: 2rem;
     right: 10rem;
+  }
+
+  .point-container img {
+    width: 3rem;
+    right: -15%;
+  }
+
+  .point-container .point,
+  .point-content .temp-point {
+    font-size: 1rem;
+  }
+
+  .quit-list-question {
+    width: 2rem;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+
+  .ket-qua {
+    width: 50%;
+  }
+
+  .ket-qua-content {
+    gap: 1rem;
+  }
+
+  .ket-qua-point p,
+  .ket-qua-right p,
+  .ket-qua-wrong p {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  .ket-qua-point img,
+  .ket-qua-right img,
+  .ket-qua-wrong img {
+    width: 4rem;
+  }
+
+  .action-button button {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  app-cau-hoi-on-tap-item-button {
+    width: 40%;
+    margin-left: 0;
+  }
+
+  .cau-hoi-on-tap-item-container {
+    top: 40%;
+    gap: 2rem;
   }
 }

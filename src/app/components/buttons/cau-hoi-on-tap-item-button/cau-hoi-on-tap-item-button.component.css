@@ -2,7 +2,6 @@
   position: relative;
   width: 80%;
   height: 35svh;
-
   perspective: 1000px; /* Enables 3D effect */
 }
 
@@ -102,22 +101,23 @@
 
 @media screen and (max-width: 900px) {
   .cau-hoi-title {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0;
-    bottom: 0;
+    bottom: 15%;
   }
 
   .inside .content button {
     border-width: 4px;
-    font-size: 0.8rem;
-    right: 10%;
+    font-size: 0.6rem;
+    right: 5%;
+    padding: 5px 10px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .cau-hoi-on-tap-item-button {
     width: 70%;
-    height: 25svh;
+    height: 15svh;
   }
 
   .outside {
@@ -129,6 +129,6 @@
   }
 
   .cau-hoi-on-tap-item-button img {
-    width: 70%;
+    width: 100%;
   }
 }

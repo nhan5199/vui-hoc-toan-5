@@ -27,6 +27,7 @@
   border-radius: 10px;
   height: auto;
   width: 40%;
+  max-height: 50svh;
   object-fit: fill;
 }
 
@@ -134,4 +135,43 @@
 .decorate {
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .question {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+
+  .question img {
+    width: 35%;
+  }
+
+  .list-answers {
+    gap: 1rem;
+    max-height: 50svh;
+    justify-content: baseline;
+  }
+
+  .answer {
+    gap: 0.5rem;
+  }
+
+  .list-answers .opinion p {
+    font-size: 1rem;
+  }
+
+  .list-answers .answer .value button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .check {
+    margin: 1rem;
+  }
+
+  .check button {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
 }

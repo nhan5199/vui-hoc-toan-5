@@ -107,19 +107,31 @@ p {
   background-color: #f17c0c;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   .answer-img {
-    width: 150px;
-    height: 100px;
+    width: 10rem;
+    max-height: 50svh;
   }
 
-  p,
+  .question {
+    margin: 1rem;
+  }
+
+  .answer-content {
+    gap: 0.5rem;
+  }
+
+  .answer p,
   .answer input {
-    font-size: 15px;
+    font-size: 1rem;
   }
 
-  .check-button {
-    font-size: 12px;
-    padding: 7px 12px;
+  .check button {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  .check {
+    margin: 1rem;
   }
 }

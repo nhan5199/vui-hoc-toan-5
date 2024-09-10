@@ -22,7 +22,7 @@
         *ngFor="let answer of question.choices"
         (click)="checkAnswer(answer.value, $event)"
       >
-        <img [src]="answer.name" />
+        <img [src]="'images/images/cau-hoi/' + answer.name" />
       </span>
     </ng-container>
   </div>

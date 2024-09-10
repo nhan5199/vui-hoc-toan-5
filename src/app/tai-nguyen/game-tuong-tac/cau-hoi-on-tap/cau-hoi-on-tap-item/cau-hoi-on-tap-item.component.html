@@ -23,6 +23,7 @@
   </ng-container>
   <ng-container *ngIf="!isPhoneAndOrientation">
     <img
+      *ngIf="activeQuestion > 0"
       (click)="onQuitQuestion()"
       src="images/images/cau-hoi/return.png"
       alt=""

@@ -15,7 +15,11 @@ export class ChooseCorrectAnswerComponent implements OnInit {
   isAnswerWithImage: boolean = false;
 
   ngOnInit(): void {
-    if (this.question.choices[0].name.includes('https')) {
+    if (
+      this.question.choices[0].name.includes('png') ||
+      this.question.choices[0].name.includes('jpeg') ||
+      this.question.choices[0].name.includes('jpg')
+    ) {
       this.isAnswerWithImage = true;
     }
   }
