@@ -60,6 +60,20 @@ a {
   color: #5271ff;
 }
 
+@media screen and (max-width: 900px) {
+  .van-ban-button .img-icon img {
+    width: 4rem;
+  }
+
+  .van-ban-button .img-icon .img-name {
+    font-size: 0.8rem;
+  }
+
+  .van-ban-button {
+    font-size: 0.88rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .van-ban-button .img-icon img {
     width: 4rem;

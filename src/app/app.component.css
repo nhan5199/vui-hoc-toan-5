@@ -18,6 +18,12 @@ app-menu {
   z-index: 2000;
 }
 
+@media screen and (max-width: 900px) {
+  app-menu {
+    width: 400px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   app-menu {
     width: 100%;

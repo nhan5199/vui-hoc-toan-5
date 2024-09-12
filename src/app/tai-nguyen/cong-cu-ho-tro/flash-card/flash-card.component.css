@@ -29,6 +29,12 @@ app-flash-card-button {
   min-width: 20%;
 }
 
+@media screen and (max-width: 900px) {
+  .flash-card-container {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .flash-card {
     background-image: url("/images/images/menu-background.gif");
@@ -37,6 +43,7 @@ app-flash-card-button {
 
   .flash-card-container {
     width: 100%;
+    top: 50%;
   }
 
   app-flash-card-button {

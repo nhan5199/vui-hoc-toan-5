@@ -93,6 +93,26 @@
   font-size: 0.8rem;
 }
 
+@media screen and (max-width: 900px) {
+  .ban-can-biet-container {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .content-title {
+    font-size: 0.8rem;
+  }
+
+  .download-content a {
+    font-size: 0.5rem;
+    padding: 5px;
+  }
+
+  .download-content:hover button {
+    bottom: 0;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .ban-can-biet {
     background-position: center;
@@ -101,7 +121,6 @@
 
   .ban-can-biet-container {
     top: 50%;
-    width: 100%;
   }
 
   .ban-can-biet-item {
@@ -110,6 +129,9 @@
 
   .download-content a {
     font-size: 0.5rem;
-    padding: 5px 10px;
+  }
+
+  .download-content:hover button {
+    bottom: 15%;
   }
 }

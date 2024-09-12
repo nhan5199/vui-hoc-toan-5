@@ -27,6 +27,13 @@ app-stem-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .stem-container {
+    width: 100%;
+    gap: 2rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .stem {
     background-position: center;

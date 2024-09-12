@@ -32,6 +32,12 @@ app-cong-cu-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .cong-cu-ho-tro-container {
+    gap: 1.5rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .cong-cu-ho-tro {
     background-position: center;

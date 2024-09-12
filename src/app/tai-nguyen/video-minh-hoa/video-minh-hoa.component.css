@@ -87,6 +87,17 @@ app-video-minh-hoa-button {
   font-family: var(--pacifico-font);
 }
 
+@media screen and (max-width: 900px) {
+  .video-container {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  app-video-minh-hoa-button {
+    width: 20%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .video-minh-hoa {
     background-position: center;

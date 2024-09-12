@@ -77,6 +77,25 @@
   font-family: var(--pacifico-font);
 }
 
+@media screen and (max-width: 900px) {
+  .phan-mem {
+    width: 50%;
+  }
+
+  .phan-mem-toan-hoc-container {
+    justify-content: flex-start;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .content a {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .phan-mem-toan-hoc {
     background-position: center;

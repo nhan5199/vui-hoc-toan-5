@@ -74,6 +74,16 @@
   opacity: 1; /* Show when user scrolls down */
 }
 
+@media screen and (max-width: 900px) {
+  .download-img {
+    width: 6rem;
+  }
+
+  .scroll-to-top {
+    width: 3rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .slide-container .content {
     width: 70%;
@@ -83,12 +93,7 @@
     top: 55%;
   }
 
-  .download-img {
-    width: 6rem;
-  }
-
   .scroll-to-top {
     right: 2%;
-    width: 3rem;
   }
 }

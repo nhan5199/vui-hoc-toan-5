@@ -71,19 +71,28 @@
   background-position: left bottom;
 }
 
-@media screen and (max-width: 450px) {
-  .content {
-    gap: 0.5rem;
-  }
-
+@media screen and (max-width: 900px) {
   .title {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     margin: 0;
   }
 
-  .content button {
+  .slide-button .content button {
     font-size: 0.5rem;
     border-width: 3px;
     padding: 5px 10px;
+  }
+
+  .slide-button .content button:hover,
+  .slide-button:hover .content button {
+    font-size: 0.5rem;
+    border-width: 3px;
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .content {
+    gap: 0.5rem;
   }
 }

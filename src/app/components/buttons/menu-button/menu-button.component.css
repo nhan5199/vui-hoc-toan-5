@@ -47,6 +47,16 @@ a {
   transform: scale(1.1);
 }
 
+@media screen and (max-width: 900px) {
+  .menu-button img {
+    width: 4rem;
+  }
+
+  .menu-button {
+    font-size: 1rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .menu-button img {
     width: 4.5rem;

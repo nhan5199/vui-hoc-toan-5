@@ -47,11 +47,7 @@ export class VanBanQUyDinhComponent implements OnInit {
     private readonly cdRef: ChangeDetectorRef,
     private readonly imageLoaderService: ImageLoaderService,
     private screenSizeService: ScreenSizeService
-  ) {
-    this.screenSizeService.orientation$.subscribe((orientation: string) => {
-      debugger;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.pathFromRoot.forEach((route) => {

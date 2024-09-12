@@ -32,6 +32,12 @@ app-book-button {
   width: 41%;
 }
 
+@media screen and (max-width: 900px) {
+  .tai-nguyen-container {
+    gap: 1.5rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   app-book-button {
     width: 80%;

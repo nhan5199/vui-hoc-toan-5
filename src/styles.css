@@ -180,7 +180,12 @@ html {
 @media screen and (max-width: 900px) {
   .back-icon {
     width: 2rem;
-    left: 80px;
+    left: 60px;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+    padding-top: 4rem;
   }
 }
 

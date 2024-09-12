@@ -42,12 +42,14 @@
 
 @media screen and (max-width: 900px) {
   .home-button img {
-    width: 120px;
+    width: 6rem;
+    left: -25%;
+    top: -30%;
   }
   .home-button button {
-    font-size: 25px;
+    font-size: 1.5rem;
     width: 150px;
-    border: 7px solid;
+    border: 6px solid;
   }
 }
 

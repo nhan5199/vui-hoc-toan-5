@@ -61,7 +61,7 @@ a {
   right: 5%;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 900px) {
   .left {
     width: 4rem;
   }
@@ -70,6 +70,12 @@ a {
     width: 2rem;
   }
 
+  .stem-button {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
   .stem-button button {
     min-height: 8svh;
     padding: 0;

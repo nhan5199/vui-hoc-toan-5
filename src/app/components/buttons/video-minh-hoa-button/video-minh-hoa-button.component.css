@@ -57,7 +57,7 @@
   background-position: left bottom;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 900px) {
   .title {
     font-size: 1rem;
   }
@@ -66,7 +66,12 @@
     font-size: 1rem;
     padding: 7px 10px;
   }
+}
 
+@media screen and (max-width: 450px) {
+  .video-button button {
+    padding: 5px 10px;
+  }
   .video-button img {
     width: 70%;
   }

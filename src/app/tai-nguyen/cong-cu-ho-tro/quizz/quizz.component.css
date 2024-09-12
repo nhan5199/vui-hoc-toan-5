@@ -17,6 +17,8 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  max-height: 60svh;
+  overflow-y: auto;
 }
 
 .quizz-card {
@@ -77,6 +79,13 @@
   background-color: #00a9ff;
 }
 
+@media screen and (max-width: 900px) {
+  .download {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .quizz {
     background-position: center;
@@ -94,6 +103,5 @@
 
   .download {
     font-size: 0.5rem;
-    padding: 5px 10px;
   }
 }

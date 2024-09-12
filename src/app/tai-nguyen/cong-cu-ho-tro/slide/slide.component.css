@@ -28,6 +28,12 @@ app-slide-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .slide-container {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .slide {
     background-position: center;
@@ -36,7 +42,6 @@ app-slide-button {
 
   .slide-container {
     top: 55%;
-    width: 100%;
   }
 
   app-slide-button {

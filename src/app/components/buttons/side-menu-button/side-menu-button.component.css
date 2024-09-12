@@ -47,3 +47,13 @@ a {
   transform: scale(1.05);
   background-position: left bottom;
 }
+
+@media screen and (max-width: 900px) {
+  .side-menu-button {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+  .side-menu-button img {
+    width: 4rem;
+  }
+}

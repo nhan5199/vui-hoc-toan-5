@@ -44,6 +44,16 @@ app-van-ban-button {
   color: #2c63ff;
 }
 
+@media screen and (max-width: 900px) {
+  .van-ban-quy-dinh-container {
+    width: 90%;
+    gap: 1rem;
+    max-height: 40svh;
+    top: 57%;
+    overflow-y: auto;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .menu-title {
     width: 100%;

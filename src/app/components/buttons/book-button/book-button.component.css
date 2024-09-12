@@ -49,7 +49,7 @@ a {
   color: #eef30e;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 900px) {
   .book-button {
     font-size: 1rem;
   }
