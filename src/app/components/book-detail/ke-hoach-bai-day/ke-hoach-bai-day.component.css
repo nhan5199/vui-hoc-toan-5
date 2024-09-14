@@ -70,18 +70,28 @@ app-ke-hoach-bai-day-button {
   color: #f3663c;
 }
 
+@media screen and (max-width: 900px) {
+  .search {
+    top: 27%;
+  }
+
+  .search img {
+    width: 2rem;
+  }
+
+  .search select {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  app-ke-hoach-bai-day-button {
+    width: 30%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .ke-hoach-bai-day {
     background-position: center;
-  }
-
-  .menu-title {
-    font-size: 2rem;
-  }
-
-  .book-logo {
-    width: 3rem;
-    right: 20px;
   }
 
   .search {

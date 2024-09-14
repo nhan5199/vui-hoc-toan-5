@@ -26,6 +26,8 @@
   align-items: center;
   justify-content: center;
   gap: 10rem;
+  max-height: 55svh;
+  overflow-y: auto;
 }
 
 .menu-title {
@@ -37,26 +39,23 @@ app-ebook-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .e-book-container {
+    max-height: 70svh;
+    gap: 4rem;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .e-book {
     background-position: center;
   }
-
-  .menu-title {
-    font-size: 2rem;
-  }
-
-  .book-logo {
-    width: 3rem;
-    right: 20px;
-  }
-
   app-ebook-button {
     width: 50%;
   }
 
   .e-book-container {
-    width: 100%;
     gap: 2rem;
     padding: 10px;
     max-height: 75svh;

@@ -35,6 +35,22 @@ app-book-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .ket-noi-tri-thuc-container {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  app-book-button {
+    width: 35%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .ket-noi-tri-thuc {
     background-position: center;
@@ -53,6 +69,7 @@ app-book-button {
     flex-wrap: nowrap;
     flex-direction: column;
     width: 90%;
+    top: 55%;
     gap: 2rem;
   }
 

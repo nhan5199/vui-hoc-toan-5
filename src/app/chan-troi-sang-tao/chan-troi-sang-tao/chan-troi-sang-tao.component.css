@@ -35,6 +35,22 @@ app-book-button {
   transition: 0.5s ease;
 }
 
+@media screen and (max-width: 900px) {
+  .chan-troi-sang-tao-container {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .book-logo {
+    width: 3rem;
+    right: 20px;
+  }
+
+  app-book-button {
+    width: 35%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .chan-troi-sang-tao {
     background-position: center;
@@ -54,6 +70,7 @@ app-book-button {
     flex-direction: column;
     width: 90%;
     gap: 2rem;
+    top: 55%;
   }
 
   app-book-button {

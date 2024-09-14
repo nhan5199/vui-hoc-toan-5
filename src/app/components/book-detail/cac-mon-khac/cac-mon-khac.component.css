@@ -43,6 +43,15 @@ app-cac-mon-khac-button {
   min-width: 20%;
 }
 
+@media screen and (max-width: 900px) {
+  .cac-mon-khac-container {
+    top: 65%;
+    width: 100%;
+    gap: 2rem;
+    max-height: 60svh;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .cac-mon-khac {
     background-position: center;
@@ -59,15 +68,13 @@ app-cac-mon-khac-button {
 
   .cac-mon-khac-container {
     top: 60%;
-    width: 90%;
-    gap: 2rem;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: start;
-    max-height: 60svh;
+    max-height: 70svh;
   }
 
   app-cac-mon-khac-button {
-    min-width: 80%;
+    min-width: 60%;
   }
 }

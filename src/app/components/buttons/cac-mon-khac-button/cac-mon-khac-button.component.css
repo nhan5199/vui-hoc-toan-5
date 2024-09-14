@@ -52,3 +52,24 @@ a {
 .cac-mon-khac-button:hover a {
   color: #eef30e;
 }
+
+@media screen and (max-width: 900px) {
+  .cac-mon-khac-button {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  .cac-mon-khac-button img {
+    width: 3rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .cac-mon-khac-button {
+    padding: 10px 20px;
+  }
+
+  .cac-mon-khac-button img {
+    width: 4rem;
+  }
+}

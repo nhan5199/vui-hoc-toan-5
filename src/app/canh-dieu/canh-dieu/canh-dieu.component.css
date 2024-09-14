@@ -35,13 +35,10 @@ app-book-button {
   transition: 0.5s ease;
 }
 
-@media screen and (max-width: 450px) {
-  .canh-dieu {
-    background-position: center;
-  }
-
-  .menu-title {
-    font-size: 2.5rem;
+@media screen and (max-width: 900px) {
+  .canh-dieu-container {
+    width: 100%;
+    gap: 1rem;
   }
 
   .book-logo {
@@ -49,11 +46,22 @@ app-book-button {
     right: 20px;
   }
 
+  app-book-button {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .canh-dieu {
+    background-position: center;
+  }
+
   .canh-dieu-container {
     flex-wrap: nowrap;
     flex-direction: column;
     width: 90%;
     gap: 2rem;
+    top: 55%;
   }
 
   app-book-button {

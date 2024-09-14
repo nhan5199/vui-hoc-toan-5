@@ -185,7 +185,23 @@ html {
 
   .menu-title {
     font-size: 2rem;
-    padding-top: 4rem;
+    padding-top: 3.5rem;
+  }
+
+  .loading-file {
+    top: 55%;
+  }
+
+  .empty-file {
+    top: 65%;
+  }
+
+  .empty-file p {
+    font-size: 1rem;
+  }
+
+  .book-logo {
+    width: 3.5rem !important;
   }
 }
 
@@ -196,5 +212,15 @@ html {
 
   .loading-file {
     width: 80%;
+  }
+
+  .book-logo {
+    width: 3rem !important;
+    right: 20px !important;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+    padding-top: 7rem !important;
   }
 }

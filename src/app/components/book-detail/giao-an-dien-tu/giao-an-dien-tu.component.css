@@ -79,18 +79,31 @@ app-giao-an-dien-tu-button {
   font-size: 2.5rem;
 }
 
+@media screen and (max-width: 900px) {
+  .search {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .search-item img {
+    width: 2rem;
+  }
+
+  .search-item select {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .giao-an-dien-tu-container {
+    top: 70%;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .giao-an-dien-tu {
     background-position: center;
-  }
-
-  .menu-title {
-    font-size: 2rem;
-  }
-
-  .book-logo {
-    width: 3rem;
-    right: 20px;
   }
 
   .search {

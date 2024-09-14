@@ -14,6 +14,7 @@ import { FlipBookComponent } from '../../flip-book/flip-book.component';
 import { finalize } from 'rxjs';
 import { ImageLoaderService } from '../../../services/image-loader.service';
 import { XemPdfComponent } from '../../xem-pdf/xem-pdf.component';
+import { ScreenSizeService } from '../../../services/screen-size.service';
 
 @Component({
   selector: 'app-ebook',
@@ -44,11 +45,14 @@ export class EBookComponent implements OnInit, AfterViewInit {
   pdfDownloadUrl: string = '';
   isDisplayViewpdf: boolean = false;
 
+  isMobileScreen: boolean = false;
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly fileService: FileService,
     private imageLoaderService: ImageLoaderService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private screenSizeService: ScreenSizeService
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +65,10 @@ export class EBookComponent implements OnInit, AfterViewInit {
 
         this.listFiles();
       });
+    });
+
+    this.screenSizeService.isMobileScreen$.subscribe((isMobile) => {
+      this.isMobileScreen = isMobile;
     });
   }
 
@@ -90,7 +98,7 @@ export class EBookComponent implements OnInit, AfterViewInit {
   }
 
   onViewBook(event: any) {
-    if (event.name.includes('SGK')) {
+    if (event.name.includes('SGK') && !this.isMobileScreen) {
       this.currentImgPath = event?.name;
       this.currentDownloadUrl = event?.url;
       this.isDisplayFlipBook = true;

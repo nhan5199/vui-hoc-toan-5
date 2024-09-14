@@ -211,3 +211,15 @@ body {
 .ebook:hover .back {
   transform: rotateY(-20deg);
 }
+
+@media screen and (max-width: 900px) {
+  .book {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .book {
+    height: 250px;
+  }
+}

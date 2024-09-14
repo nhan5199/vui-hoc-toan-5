@@ -51,24 +51,22 @@
   transform: scale(1.05);
 }
 
+@media screen and (max-width: 900px) {
+  .phan-phoi-chuong-trinh-container {
+    gap: 2rem;
+    width: 100%;
+    top: 65%;
+    max-height: 60svh;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .phan-phoi-chuong-trinh {
     background-position: center;
   }
 
-  .menu-title {
-    font-size: 2.5rem;
-  }
-
-  .book-logo {
-    width: 3rem;
-    right: 20px;
-  }
-
   .phan-phoi-chuong-trinh-container {
-    top: 50%;
-    width: 90%;
-    gap: 2rem;
+    top: 60%;
   }
 
   .phan-phoi-chuong-trinh-container img {

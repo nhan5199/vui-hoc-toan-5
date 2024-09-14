@@ -73,11 +73,21 @@
   color: #2c63ff;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 900px) {
   .content button {
     padding: 5px 10px;
   }
 
+  .ke-hoach-bai-day .content .book-name {
+    font-size: 0.8rem;
+  }
+
+  .ke-hoach-bai-day img {
+    width: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
   .ke-hoach-bai-day .content .book-name {
     margin: 0;
     margin-bottom: 0.5rem;

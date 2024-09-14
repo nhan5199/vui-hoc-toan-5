@@ -120,6 +120,7 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
         });
 
         this.sortFilesByName(this.files);
+        console.log(this.files);
       });
   }
 
@@ -154,7 +155,7 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   }
 
   extractNumber(name: string): number {
-    const number = name?.toLowerCase().split('.')[0];
+    const number = name?.toLowerCase().split('bài ')[1].split(' (')[0];
     return +number;
   }
 
