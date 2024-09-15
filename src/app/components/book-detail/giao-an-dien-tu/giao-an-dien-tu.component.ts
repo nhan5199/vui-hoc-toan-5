@@ -135,6 +135,12 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   }
 
   getImgUrl(fileName: string) {
+    console.log(
+      this.folderPath.split('//')[1] +
+        `/${this.selectedSemester}/${this.selectedWeek}/${
+          fileName.split('.')[0]
+        }`
+    );
     let imgUrl = Constant.IMAGE_PATHS.images.filter((x) =>
       x.includes(
         this.folderPath.split('//')[1] +

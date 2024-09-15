@@ -6,8 +6,18 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Calistoga&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Tilt+Prism&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Poppins", sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -216,11 +226,11 @@ html {
 
   .book-logo {
     width: 3rem !important;
-    right: 20px !important;
+    right: 35px !important;
   }
 
   .menu-title {
-    font-size: 2rem;
+    font-size: 2rem !important;
     padding-top: 7rem !important;
   }
 }
