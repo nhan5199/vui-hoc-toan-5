@@ -137,7 +137,7 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .question {
     font-size: 1rem;
     margin: 1rem;

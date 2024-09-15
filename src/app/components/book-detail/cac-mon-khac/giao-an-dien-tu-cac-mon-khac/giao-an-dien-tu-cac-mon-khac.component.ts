@@ -28,28 +28,29 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
   bookIconUrl: string = '';
 
   files: any[] = [];
+  subjectName: string | null = '';
 
-  selectedWeek: string = 'tuan-1';
-  weekOptions = [
-    { value: 'tuan-1', label: 'Tuần 1' },
-    { value: 'tuan-2', label: 'Tuần 2' },
-    { value: 'tuan-3', label: 'Tuần 3' },
-    { value: 'tuan-4', label: 'Tuần 4' },
-    { value: 'tuan-5', label: 'Tuần 5' },
-    { value: 'tuan-6', label: 'Tuần 6' },
-    { value: 'tuan-7', label: 'Tuần 7' },
-    { value: 'tuan-8', label: 'Tuần 8' },
-    { value: 'tuan-9', label: 'Tuần 9' },
-    { value: 'tuan-10', label: 'Tuần 10' },
-    { value: 'tuan-11', label: 'Tuần 11' },
-    { value: 'tuan-12', label: 'Tuần 12' },
-    { value: 'tuan-13', label: 'Tuần 13' },
-    { value: 'tuan-14', label: 'Tuần 14' },
-    { value: 'tuan-15', label: 'Tuần 15' },
-    { value: 'tuan-16', label: 'Tuần 16' },
-    { value: 'tuan-17', label: 'Tuần 17' },
-    { value: 'tuan-18', label: 'Tuần 18' },
-  ];
+  // selectedWeek: string = 'tuan-1';
+  // weekOptions = [
+  //   { value: 'tuan-1', label: 'Tuần 1' },
+  //   { value: 'tuan-2', label: 'Tuần 2' },
+  //   { value: 'tuan-3', label: 'Tuần 3' },
+  //   { value: 'tuan-4', label: 'Tuần 4' },
+  //   { value: 'tuan-5', label: 'Tuần 5' },
+  //   { value: 'tuan-6', label: 'Tuần 6' },
+  //   { value: 'tuan-7', label: 'Tuần 7' },
+  //   { value: 'tuan-8', label: 'Tuần 8' },
+  //   { value: 'tuan-9', label: 'Tuần 9' },
+  //   { value: 'tuan-10', label: 'Tuần 10' },
+  //   { value: 'tuan-11', label: 'Tuần 11' },
+  //   { value: 'tuan-12', label: 'Tuần 12' },
+  //   { value: 'tuan-13', label: 'Tuần 13' },
+  //   { value: 'tuan-14', label: 'Tuần 14' },
+  //   { value: 'tuan-15', label: 'Tuần 15' },
+  //   { value: 'tuan-16', label: 'Tuần 16' },
+  //   { value: 'tuan-17', label: 'Tuần 17' },
+  //   { value: 'tuan-18', label: 'Tuần 18' },
+  // ];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -73,6 +74,9 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
       }
     });
 
+    this.subjectName = this.route.snapshot.paramMap.get('subject');
+    console.log(this.folderPath);
+
     this.getListFolder();
   }
 
@@ -83,7 +87,7 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
     this.files = Array.from(
       new Set(
         Constant.FILE_PATH.files.map((path) => {
-          if (path.includes(`${this.folderPath}/${this.selectedWeek}`)) {
+          if (path.includes(`${this.folderPath}`)) {
             return path;
           } else {
             return '';
@@ -94,12 +98,11 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
 
     const mergedSegments = this.files.map((file) => {
       const parts = file.split('/');
-      return `${parts[5]}/${parts[6]}`;
+      return `${parts[5]}`;
     });
 
     // Get distinct values
     this.files = Array.from(new Set(mergedSegments));
-
     setTimeout(() => {
       this.isLoadingFiles = false;
     }, 500);
@@ -122,30 +125,7 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
   }
 
   getButtonName(fileName: string): string {
-    if (fileName.includes('toan-5')) {
-      return 'Toán';
-    } else if (fileName.includes('tieng-viet-5')) {
-      return 'Tiếng Việt';
-    } else if (fileName.includes('khoa học-5')) {
-      return 'khoa-hoc';
-    } else if (fileName.includes('lich-su-va-dia-li-5')) {
-      return 'Lịch sử và Địa lí';
-    } else if (fileName.includes('cong-nghe-5')) {
-      return 'Công nghệ';
-    } else if (fileName.includes('tin-hoc-5')) {
-      return 'Tin học';
-    } else if (fileName.includes('dao-duc-5')) {
-      return 'Đạo đức';
-    } else if (fileName.includes('giao-duc-the-chat-5')) {
-      return 'Giáo dục thể chất';
-    } else if (fileName.includes('hoat-dong-trai-nghiem-5')) {
-      return 'HĐ trải nghiệm';
-    } else if (fileName.includes('mi-thuat-5')) {
-      return 'Mĩ thuật';
-    } else if (fileName.includes('anh-van-5')) {
-      return 'Anh văn';
-    }
-    return '';
+    return 'Tuần ' + fileName.split('-')[1]?.split('.')[0];
   }
 
   goToSubject(fileName: string) {

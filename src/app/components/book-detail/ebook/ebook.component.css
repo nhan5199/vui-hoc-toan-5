@@ -39,7 +39,7 @@ app-ebook-button {
   transition: 0.5s ease;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .e-book-container {
     max-height: 70svh;
     gap: 4rem;

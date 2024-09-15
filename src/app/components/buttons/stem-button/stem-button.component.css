@@ -61,7 +61,7 @@ a {
   right: 5%;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .left {
     width: 4rem;
   }

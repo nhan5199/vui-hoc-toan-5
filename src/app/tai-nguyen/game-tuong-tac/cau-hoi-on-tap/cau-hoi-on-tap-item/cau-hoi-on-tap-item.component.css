@@ -326,7 +326,7 @@ app-cau-hoi-on-tap-item-button {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   app-cau-hoi-on-tap-item-button {
     width: 15%;
   }

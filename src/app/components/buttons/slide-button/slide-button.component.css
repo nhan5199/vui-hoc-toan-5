@@ -71,7 +71,7 @@
   background-position: left bottom;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .title {
     font-size: 0.6rem;
     margin: 0;

@@ -94,7 +94,7 @@ input::-webkit-inner-spin-button {
   -moz-appearance: textfield;
 } */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .question-name {
     font-size: 1rem;
     margin: 2rem;

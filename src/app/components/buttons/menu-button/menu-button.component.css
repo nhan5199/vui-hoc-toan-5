@@ -47,7 +47,7 @@ a {
   transform: scale(1.1);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .menu-button img {
     width: 4rem;
   }

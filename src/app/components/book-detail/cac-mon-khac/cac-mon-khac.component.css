@@ -43,7 +43,7 @@ app-cac-mon-khac-button {
   min-width: 20%;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .cac-mon-khac-container {
     top: 65%;
     width: 100%;

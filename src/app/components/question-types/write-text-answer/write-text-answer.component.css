@@ -107,7 +107,7 @@ p {
   background-color: #f17c0c;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .answer-img {
     width: 10rem;
     max-height: 50svh;

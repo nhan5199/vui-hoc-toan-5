@@ -49,7 +49,7 @@ a {
   color: #eef30e;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .flash-card-button {
     font-size: 0.8rem;
   }

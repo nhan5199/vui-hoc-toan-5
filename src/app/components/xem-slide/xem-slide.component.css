@@ -74,7 +74,7 @@
   opacity: 1; /* Show when user scrolls down */
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .download-img {
     width: 6rem;
   }

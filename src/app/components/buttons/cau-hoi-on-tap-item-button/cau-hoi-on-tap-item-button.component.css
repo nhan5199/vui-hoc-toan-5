@@ -99,7 +99,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .cau-hoi-title {
     font-size: 0.8rem;
     margin: 0;

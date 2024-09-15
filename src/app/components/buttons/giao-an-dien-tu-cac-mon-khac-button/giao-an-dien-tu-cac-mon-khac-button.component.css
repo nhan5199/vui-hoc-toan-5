@@ -1,26 +1,27 @@
 /*----------- Menu button --------------------*/
 .giao-an-dien-tu-cac-mon-khac-button {
-  position: relative;
   opacity: 1;
   text-align: center;
   color: black;
   font-size: 1.5rem;
   font-weight: bold;
   border-radius: 40px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   color: #5271ff;
   font-family: var(--anton-font);
-  margin-left: 10%;
   background-color: yellow;
   cursor: pointer;
   color: #e9353f;
   transition: 0.5s ease;
-  border: 4px solid black;
+  border: 6px solid black;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
 }
 
 .giao-an-dien-tu-cac-mon-khac-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .giao-an-dien-tu-cac-mon-khac-button:hover button {
@@ -28,19 +29,19 @@
 }
 
 .content {
-  margin-right: -20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 10px;
+  width: 70%;
 }
 
 .content button {
   border: none;
   background-color: #0361ff;
   color: white;
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 20px;
   font-size: 1rem;
   transition: 0.5s ease;
@@ -50,10 +51,22 @@ p {
 }
 
 .giao-an-dien-tu-cac-mon-khac-button img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: -10%;
-  width: 7rem;
+  width: 30%;
+  transform: translateX(10%);
   transition: 0.75s ease;
+}
+
+@media screen and (max-width: 950px) {
+  .content button {
+    font-size: 0.8rem;
+  }
+
+  .giao-an-dien-tu-cac-mon-khac-button {
+    font-size: 1rem;
+    gap: 1.5rem;
+    border-radius: 25px;
+  }
+}
+
+@media screen and (max-width: 450px) {
 }

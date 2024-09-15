@@ -8,8 +8,7 @@
 
 .menu-title {
   color: #2c63ff;
-  margin-top: -5%;
-  margin-left: -8%;
+  transform: translate(-15%, -15%);
   font-family: var(--pacifico-font);
 }
 
@@ -70,18 +69,52 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 5rem;
   align-items: center;
   justify-content: center;
-  max-height: 55svh;
+  max-height: 60svh;
   overflow-y: auto;
   position: absolute;
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 1rem 5rem;
+  padding: 2rem;
 }
 
 app-giao-an-dien-tu-cac-mon-khac-button {
-  width: 25%;
+  width: 20%;
+}
+
+@media screen and (max-width: 950px) {
+  app-giao-an-dien-tu-cac-mon-khac-button {
+    width: 25%;
+  }
+
+  .giao-an-dien-tu-container {
+    width: 100%;
+    top: 55%;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .title {
+    width: 90%;
+    top: 5%;
+  }
+
+  .menu-title {
+    font-size: 1.5rem !important;
+    margin: 0;
+    transform: translate(-15%, -30%);
+  }
+
+  app-giao-an-dien-tu-cac-mon-khac-button {
+    width: 80%;
+  }
+
+  .giao-an-dien-tu-container {
+    top: 50%;
+    max-height: 60svh;
+  }
 }

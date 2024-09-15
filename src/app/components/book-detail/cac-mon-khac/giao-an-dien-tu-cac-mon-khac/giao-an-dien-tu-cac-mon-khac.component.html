@@ -9,7 +9,7 @@
   </div>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
 
-  <div class="search">
+  <!-- <div class="search">
     <div class="search-item">
       <img src="icons/search-icon.png" alt="" />
       <select
@@ -22,7 +22,7 @@
         </option>
       </select>
     </div>
-  </div>
+  </div> -->
 
   <div class="loading-file" *ngIf="isLoadingFiles">
     <img src="images/images/file-loading.gif" alt="" />
@@ -38,7 +38,7 @@
     <app-giao-an-dien-tu-cac-mon-khac-button
       *ngFor="let file of files"
       [buttonName]="getButtonName(file)"
-      (click)="goToSubject(file)"
+      [folderPath]="this.folderPath"
     >
     </app-giao-an-dien-tu-cac-mon-khac-button>
   </div>

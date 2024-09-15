@@ -86,7 +86,7 @@ app-menu-button {
   transition: 0.5s ease;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .menu-container {
     gap: 2rem;
   }

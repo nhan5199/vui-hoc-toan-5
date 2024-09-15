@@ -35,7 +35,7 @@ app-book-button {
   transition: 0.5s ease;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .chan-troi-sang-tao-container {
     width: 100%;
     gap: 1rem;

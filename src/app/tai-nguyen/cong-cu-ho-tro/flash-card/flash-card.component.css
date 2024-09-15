@@ -29,7 +29,7 @@ app-flash-card-button {
   min-width: 20%;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .flash-card-container {
     width: 100%;
   }

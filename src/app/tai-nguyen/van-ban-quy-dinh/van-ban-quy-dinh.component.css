@@ -44,7 +44,7 @@ app-van-ban-button {
   color: #2c63ff;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .van-ban-quy-dinh-container {
     width: 90%;
     gap: 1rem;

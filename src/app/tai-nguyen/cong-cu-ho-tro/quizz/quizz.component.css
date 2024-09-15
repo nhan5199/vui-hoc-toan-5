@@ -79,7 +79,7 @@
   background-color: #00a9ff;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .download {
     font-size: 0.8rem;
     padding: 5px 10px;
