@@ -76,28 +76,6 @@ export class CacMonKhacComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
-  getDownloadUrl(fileName: string) {
-    return Constant.FILE_PATH.files
-      .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
-      ?.split('public/')[1];
-  }
-
-  downloadFile(fileName: string): void {
-    const fileUrl = Constant.FILE_PATH.files
-      .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
-      .split('public/')[1];
-    const link = document.createElement('a');
-    link.href = fileUrl;
-
-    let filePath = Constant.FILE_PATH.files
-      .filter((x) => x.includes(`files/${this.folderPath}/${fileName}`))[0]
-      .split('public/')[1];
-
-    let filePathParts = filePath.split('/');
-    link.download = filePathParts[filePathParts.length - 1];
-    link.click();
-  }
-
   checkExistFile(fileName: string) {
     let isExist = false;
     this.files.forEach((x) => {

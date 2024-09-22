@@ -5,7 +5,12 @@
       src="images/images/giao-an-dien-tu-cac-mon-khac-title-icon.png"
       alt=""
     />
-    <p class="menu-title">Thư viện giáo án điện tử</p>
+    <p class="menu-title">
+      Thư viện giáo án điện tử
+      <span style="display: block" *ngIf="subjectName != null">{{
+        subjectName
+      }}</span>
+    </p>
   </div>
   <img [src]="bookIconUrl" alt="" class="book-logo" />
 
@@ -37,8 +42,9 @@
   >
     <app-giao-an-dien-tu-cac-mon-khac-button
       *ngFor="let file of files"
-      [buttonName]="getButtonName(file)"
+      [buttonName]="getButtonName(file.name)"
       [folderPath]="this.folderPath"
+      [downloadUrl]="file.url"
     >
     </app-giao-an-dien-tu-cac-mon-khac-button>
   </div>

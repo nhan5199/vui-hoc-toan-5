@@ -12,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageLoaderService } from '../../../../services/image-loader.service';
 import Constant from '../../../../shared/constants/Constant';
 import { GiaoAnDIenTuCacMonKhacButtonComponent } from '../../../buttons/giao-an-dien-tu-cac-mon-khac-button/giao-an-dien-tu-cac-mon-khac-button.component';
+import { FileService } from '../../../../services/file.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-giao-an-dien-tu-cac-mon-khac',
@@ -28,35 +30,17 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
   bookIconUrl: string = '';
 
   files: any[] = [];
+  subjectUrlName: string | null = '';
   subjectName: string | null = '';
 
-  // selectedWeek: string = 'tuan-1';
-  // weekOptions = [
-  //   { value: 'tuan-1', label: 'Tuần 1' },
-  //   { value: 'tuan-2', label: 'Tuần 2' },
-  //   { value: 'tuan-3', label: 'Tuần 3' },
-  //   { value: 'tuan-4', label: 'Tuần 4' },
-  //   { value: 'tuan-5', label: 'Tuần 5' },
-  //   { value: 'tuan-6', label: 'Tuần 6' },
-  //   { value: 'tuan-7', label: 'Tuần 7' },
-  //   { value: 'tuan-8', label: 'Tuần 8' },
-  //   { value: 'tuan-9', label: 'Tuần 9' },
-  //   { value: 'tuan-10', label: 'Tuần 10' },
-  //   { value: 'tuan-11', label: 'Tuần 11' },
-  //   { value: 'tuan-12', label: 'Tuần 12' },
-  //   { value: 'tuan-13', label: 'Tuần 13' },
-  //   { value: 'tuan-14', label: 'Tuần 14' },
-  //   { value: 'tuan-15', label: 'Tuần 15' },
-  //   { value: 'tuan-16', label: 'Tuần 16' },
-  //   { value: 'tuan-17', label: 'Tuần 17' },
-  //   { value: 'tuan-18', label: 'Tuần 18' },
-  // ];
+  patternRegex = /\/(\w+-\d+)\//;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly cdRef: ChangeDetectorRef,
     private readonly imageLoaderService: ImageLoaderService,
-    private readonly router: Router
+    private readonly router: Router,
+    private fileService: FileService
   ) {}
 
   ngOnInit(): void {
@@ -74,38 +58,52 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.subjectName = this.route.snapshot.paramMap.get('subject');
-    console.log(this.folderPath);
+    this.subjectUrlName = this.route.snapshot.paramMap.get('subject');
+    this.getSubjectName();
 
     this.getListFolder();
   }
 
-  patternRegex = /\/(\w+-\d+)\//;
+  getSubjectName() {
+    switch (this.subjectUrlName) {
+      case 'cong-nghe-5':
+        this.subjectName = 'Công nghệ 5';
+        break;
+      case 'dao-duc-5':
+        this.subjectName = 'Đạo đức 5';
+        break;
+      case 'hoat-dong-trai-nghiem-5':
+        this.subjectName = 'Hoạt động trải nghiệm 5';
+        break;
+      case 'khoa-hoc-5':
+        this.subjectName = 'Khoa học 5';
+        break;
+      case 'lich-su-dia-li-5':
+        this.subjectName = 'Lịch sử và Địa lí 5';
+        break;
+      case 'mi-thuat-5':
+        this.subjectName = 'Mĩ thuật 5';
+        break;
+      case 'tieng-viet-5':
+        this.subjectName = 'Tiếng Việt 5';
+        break;
+      default:
+        this.subjectName = '';
+        break;
+    }
+  }
 
   getListFolder() {
     this.isLoadingFiles = true;
-    this.files = Array.from(
-      new Set(
-        Constant.FILE_PATH.files.map((path) => {
-          if (path.includes(`${this.folderPath}`)) {
-            return path;
-          } else {
-            return '';
-          }
-        })
-      )
-    ).filter((x) => x.length > 0);
-
-    const mergedSegments = this.files.map((file) => {
-      const parts = file.split('/');
-      return `${parts[5]}`;
-    });
-
-    // Get distinct values
-    this.files = Array.from(new Set(mergedSegments));
-    setTimeout(() => {
-      this.isLoadingFiles = false;
-    }, 500);
+    this.files = [];
+    this.fileService
+      .getFilesList(this.folderPath)
+      .pipe(finalize(() => (this.isLoadingFiles = false)))
+      .subscribe((files) => {
+        files.forEach((file: any) => {
+          this.files.push(file);
+        });
+      });
   }
 
   onChangeWeek() {
@@ -125,7 +123,7 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
   }
 
   getButtonName(fileName: string): string {
-    return 'Tuần ' + fileName.split('-')[1]?.split('.')[0];
+    return 'Tuần ' + fileName.split('.')[0]?.split('-')[1];
   }
 
   goToSubject(fileName: string) {

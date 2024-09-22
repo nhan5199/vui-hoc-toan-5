@@ -1,10 +1,12 @@
-<div class="giao-an-dien-tu-cac-mon-khac-button" (click)="downloadFile()">
-  <img
-    src="images/images/buttons/giao-an-dien-tu-cac-mon-khac-button-icon.png"
-    alt=""
-  />
-  <div class="content">
-    <p>{{ buttonName }}</p>
-    <button>Tải xuống</button>
+<a [href]="downloadUrl">
+  <div class="giao-an-dien-tu-cac-mon-khac-button">
+    <img
+      src="images/images/buttons/giao-an-dien-tu-cac-mon-khac-button-icon.png"
+      alt=""
+    />
+    <div class="content">
+      <p>{{ buttonName }}</p>
+      <button>Tải xuống</button>
+    </div>
   </div>
-</div>
+</a>

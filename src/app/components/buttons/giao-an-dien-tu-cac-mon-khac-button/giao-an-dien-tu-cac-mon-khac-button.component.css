@@ -20,6 +20,10 @@
   gap: 2rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 .giao-an-dien-tu-cac-mon-khac-button:hover {
   transform: scale(1.05);
 }
