@@ -96,6 +96,8 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
   getListFolder() {
     this.isLoadingFiles = true;
     this.files = [];
+
+    console.log(this.folderPath);
     this.fileService
       .getFilesList(this.folderPath)
       .pipe(finalize(() => (this.isLoadingFiles = false)))
