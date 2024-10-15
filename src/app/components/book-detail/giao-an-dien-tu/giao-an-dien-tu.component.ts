@@ -159,10 +159,9 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   }
 
   onViewSlide(event: any) {
+    console.log(event);
     this.isDisplayViewSlide = true;
-    this.slideDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
-      this.selectedSemester
-    }/${this.selectedWeek}/${event.name}`;
+    this.slideDownloadUrl = event.url;
     this.slideName = event.name;
   }
 
