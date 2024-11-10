@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageLoaderService } from '../../../../services/image-loader.service';
 import Constant from '../../../../shared/constants/Constant';
 import { GiaoAnDIenTuCacMonKhacButtonComponent } from '../../../buttons/giao-an-dien-tu-cac-mon-khac-button/giao-an-dien-tu-cac-mon-khac-button.component';
-import { FileService } from '../../../../services/file.service';
+import { FileData, FileService } from '../../../../services/file.service';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -97,7 +97,6 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
     this.isLoadingFiles = true;
     this.files = [];
 
-    console.log(this.folderPath);
     this.fileService
       .getFilesList(this.folderPath)
       .pipe(finalize(() => (this.isLoadingFiles = false)))
@@ -105,11 +104,26 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
+
+        this.sortFilesByName(this.files);
       });
   }
 
   onChangeWeek() {
     this.getListFolder();
+  }
+
+  sortFilesByName(files: FileData[]) {
+    this.files = files.sort((a, b) => {
+      const numA = this.extractNumber(a.name);
+      const numB = this.extractNumber(b.name);
+      return numA - numB;
+    });
+  }
+
+  extractNumber(name: string): number {
+    const number = name?.toLowerCase().split('tuan-')[1].split('.rar')[0];
+    return +number;
   }
 
   @ViewChild('giaoAnDienTuContainer', { static: true })
