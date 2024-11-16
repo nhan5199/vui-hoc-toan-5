@@ -8712,9 +8712,11 @@ export default class {
 
   static readonly FILE_PATH = {
     files: [
+      'public/files/canh-dieu/cac-mon-khac/cong-nghe-5/tuan-12.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-1.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-10.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-11.rar',
+      'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-12.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-2.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-4.rar',
       'public/files/canh-dieu/cac-mon-khac/dao-duc-5/tuan-5.rar',
@@ -8725,6 +8727,7 @@ export default class {
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-1.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-10.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-11.rar',
+      'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-12.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-2.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-3.rar',
       'public/files/canh-dieu/cac-mon-khac/hoat-dong-trai-nghiem-5/tuan-4.rar',
@@ -8736,6 +8739,7 @@ export default class {
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-1.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-10.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-11.rar',
+      'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-12.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-2.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-3.rar',
       'public/files/canh-dieu/cac-mon-khac/khoa-hoc-5/tuan-4.rar',
@@ -8747,6 +8751,7 @@ export default class {
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-1.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-10.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-11.rar',
+      'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-12.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-2.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-3.rar',
       'public/files/canh-dieu/cac-mon-khac/lich-su-dia-li-5/tuan-4.rar',
