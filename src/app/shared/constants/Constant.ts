@@ -8873,6 +8873,7 @@ export default class {
       'public/files/canh-dieu/cac-mon-khac/tieng-viet-5/tuan-10.rar',
       'public/files/canh-dieu/cac-mon-khac/tieng-viet-5/tuan-11.rar',
       'public/files/canh-dieu/cac-mon-khac/tieng-viet-5/tuan-12.rar',
+      'public/files/canh-dieu/cac-mon-khac/tieng-viet-5/tuan-14.rar',
       'public/files/canh-dieu/e-book/SGK Tập 1.pdf',
       'public/files/canh-dieu/e-book/SGK Tập 2.pdf',
       'public/files/canh-dieu/e-book/Tài liệu tập huấn.pdf',
