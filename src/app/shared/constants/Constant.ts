@@ -1178,7 +1178,6 @@ export default class {
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-16.jpg',
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-17.jpg',
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-18.jpg',
-      'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-19.jpg',
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-2.jpg',
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-3.jpg',
       'public/images/images/canh-dieu/giao-an-dien-tu/hoc-ki-1/tuan-3/Bài 6 (Tiết 1)/Bài 6 (Tiết 1)-images-4.jpg',
