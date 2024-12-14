@@ -53,7 +53,7 @@ export default class {
 
   static readonly IMAGE_PATHS = {
     images: [
-      'public/images/downl  oad-icon.png',
+      'public/images/download-icon.png',
       'public/images/images/ban-can-biet-background.gif',
       'public/images/images/buttons/ban-can-biet-button-icon.png',
       'public/images/images/buttons/cac-mon-khac-button-icon.gif',
