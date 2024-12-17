@@ -49,7 +49,9 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   ];
 
   selectedWeek: string = 'tuan-1';
-  weekOptions = [
+  weekOptions: any[] = [];
+
+  weekOptions1 = [
     { value: 'tuan-1', label: 'Tuần 1' },
     { value: 'tuan-2', label: 'Tuần 2' },
     { value: 'tuan-3', label: 'Tuần 3' },
@@ -70,6 +72,27 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
     { value: 'tuan-18', label: 'Tuần 18' },
   ];
 
+  weekOptions2 = [
+    { value: 'tuan-19', label: 'Tuần 19' },
+    { value: 'tuan-20', label: 'Tuần 20' },
+    { value: 'tuan-21', label: 'Tuần 21' },
+    { value: 'tuan-22', label: 'Tuần 22' },
+    { value: 'tuan-23', label: 'Tuần 23' },
+    { value: 'tuan-24', label: 'Tuần 24' },
+    { value: 'tuan-25', label: 'Tuần 25' },
+    { value: 'tuan-26', label: 'Tuần 26' },
+    { value: 'tuan-27', label: 'Tuần 27' },
+    { value: 'tuan-28', label: 'Tuần 28' },
+    { value: 'tuan-29', label: 'Tuần 29' },
+    { value: 'tuan-30', label: 'Tuần 30' },
+    { value: 'tuan-31', label: 'Tuần 31' },
+    { value: 'tuan-32', label: 'Tuần 32' },
+    { value: 'tuan-33', label: 'Tuần 33' },
+    { value: 'tuan-34', label: 'Tuần 34' },
+    { value: 'tuan-35', label: 'Tuần 35' },
+    { value: 'tuan-36', label: 'Tuần 36' },
+  ];
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly fileService: FileService,
@@ -78,6 +101,7 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.weekOptions = this.weekOptions1;
     this.bookName = this.route.snapshot.paramMap.get('bookName')!;
     this.bookIconUrl = `images/images/${this.bookName}-icon.jpg`;
     this.route.pathFromRoot.forEach((route) => {
@@ -99,6 +123,13 @@ export class GiaoAnDienTuComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSemester() {
+    if (this.selectedSemester == 'hoc-ki-2') {
+      this.weekOptions = this.weekOptions2;
+      this.selectedWeek = 'tuan-19';
+    } else {
+      this.weekOptions = this.weekOptions1;
+      this.selectedWeek = 'tuan-1';
+    }
     this.listFiles();
   }
 
