@@ -54,6 +54,8 @@ export class SlideComponent implements OnInit, AfterViewInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
+
+        this.files = this.files.sort((x, y) => x.name.localeCompare(y.name));
       });
   }
 
