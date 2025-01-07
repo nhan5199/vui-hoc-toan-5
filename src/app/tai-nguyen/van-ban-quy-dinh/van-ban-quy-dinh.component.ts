@@ -79,19 +79,20 @@ export class VanBanQUyDinhComponent implements OnInit {
   }
 
   onViewFile(event: any) {
-    if (
-      event.name.includes('Tai-lieu-Giao-duc-Ki-nang-Cong-dan-so-17.04.24') ||
-      event.name.includes('4670qdbgddttai-lieu-kem-theo') ||
-      this.isMobileScreen
-    ) {
-      this.onViewPdf(event);
-    } else {
-      this.currentImgPath = event?.name?.split('//')[1];
-      this.currentDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
-        event.name
-      }`;
-      this.isDisplayFlipBook = true;
-    }
+    // if (
+    //   event.name.includes('Tai-lieu-Giao-duc-Ki-nang-Cong-dan-so-17.04.24') ||
+    //   event.name.includes('4670qdbgddttai-lieu-kem-theo') ||
+    //   this.isMobileScreen
+    // ) {
+    //   this.onViewPdf(event);
+    // } else {
+    //   this.currentImgPath = event?.name?.split('//')[1];
+    //   this.currentDownloadUrl = `files/${this.folderPath.split('//')[1]}/${
+    //     event.name
+    //   }`;
+    //   this.isDisplayFlipBook = true;
+    // }
+    this.onViewPdf(event);
   }
 
   onCloseFlipBook(event: any) {
