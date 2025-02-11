@@ -15,6 +15,7 @@
   background: linear-gradient(to left, #fd9eab 50%, #5271ff 50%);
   background-size: 200% 100%;
   background-position: right bottom;
+  letter-spacing: 1.5px;
 }
 
 .menu-button img {
