@@ -1,0 +1,14 @@
+<!-- questions.component.html -->
+
+<!-- <div #pdfContent id="pdf-content">
+  <h2>Questions and Answers</h2>
+  <div *ngFor="let item of questions">
+    <p><strong>Q:</strong> {{ item.question }}</p>
+    <p><strong>A:</strong> {{ item.answer }}</p>
+    <hr />
+  </div>
+</div>
+
+<button (click)="download()">Download as PDF</button> -->
+
+<input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />
