@@ -1,0 +1,11 @@
+<button (click)="onClick()">Click me</button>
+
+<div class="container-popup">
+  <app-bai-doc-popup
+    *ngIf="displayPopup"
+    [displayPopup]="displayPopup"
+    (closePopup)="onClosePopup()"
+  />
+</div>
+
+<!-- <div #viewer class="viewer-container"></div> -->

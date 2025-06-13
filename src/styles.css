@@ -215,6 +215,19 @@ html {
   }
 }
 
+.container-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+}
+
+.hidden {
+  display: none;
+}
+
 @media screen and (max-width: 450px) {
   .empty-file {
     width: 90%;

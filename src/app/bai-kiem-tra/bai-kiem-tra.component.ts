@@ -1,10 +1,9 @@
-import { BaiKiemTraService } from './../shared/bai-kiem-tra.service';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import html2pdf from 'html2pdf.js';
 import { PdfDownloadService } from '../shared/pdf-download/pdf-download.service';
 import { ExcelReaderService } from '../shared/excel-reader.service';
+import { BaiKiemTraService } from '../shared/bai-kiem-tra.service';
 
 @Component({
   selector: 'app-bai-kiem-tra',
@@ -13,7 +12,7 @@ import { ExcelReaderService } from '../shared/excel-reader.service';
   templateUrl: './bai-kiem-tra.component.html',
   styleUrl: './bai-kiem-tra.component.css',
 })
-export class BaiKiemTraComponent {
+export class BaiKiemTraComponent implements OnInit {
   @ViewChild('pdfContent') pdfContent!: ElementRef;
 
   questions = [
@@ -31,6 +30,13 @@ export class BaiKiemTraComponent {
     private baiKiemTraService: BaiKiemTraService
   ) {}
 
+  ngOnInit(): void {
+    this.baiKiemTraService.getAllData().subscribe((data) => {
+      // this.baiKiemTraData = data;
+      console.log('Fetched data:', data);
+    });
+  }
+
   download() {
     const element = this.pdfContent.nativeElement;
     this.pdfService.downloadPdf(element, {
@@ -38,18 +44,14 @@ export class BaiKiemTraComponent {
     });
   }
 
-  onFileChange(event: Event) {
+  onFileChange(event: any) {
     const input = event.target as HTMLInputElement;
-
     if (input?.files?.length) {
       const file = input.files[0];
-
       this.excelService
         .readFile(file)
         .then((data) => {
-          console.log('Parsed data:', data);
-          this.baiKiemTraService.addData(data);
-
+          this.baiKiemTraService.pushData(data);
           // use the array of objects here
         })
         .catch((error) => {
