@@ -32,6 +32,8 @@ body {
   --lobster-font: "Lobster", sans-serif;
   --tilt-prism-font: "Tilt Prism", sans-serif;
   --pacifico-font: "Pacifico", cursive;
+  --border-radius: 12px;
+  --border-color: #dedddd;
 }
 /* You can add global styles to this file, and also import other style files */
 body {
@@ -187,6 +189,29 @@ html {
   font-family: var(--pacifico-font);
 }
 
+/* Popup css */
+.popup-title {
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.popup-description {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.clickable {
+  color: #0000ffb5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  border-bottom: 1px solid #0000ffb5;
+}
+
 @media screen and (max-width: 950px) {
   .back-icon {
     width: 2rem;
@@ -213,15 +238,6 @@ html {
   .book-logo {
     width: 3.5rem !important;
   }
-}
-
-.container-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
 }
 
 .hidden {

@@ -1,0 +1,16 @@
+<!-- <div class="popup-canvas">
+  <p class="popup-title">{{ this.title }}</p>
+  <div #viewer class="viewer-container"></div>
+
+  <p class="popup-description">{{ this.description }}</p>
+  <button class="close-button" (click)="onClosePopup()">×</button>
+</div> -->
+
+<div class="popup-canvas">
+  <div class="popup-scroll-content">
+    <p class="popup-title">{{ title }}</p>
+    <div #viewer class="viewer-container"></div>
+    <p class="popup-description">{{ description }}</p>
+    <button class="close-button" (click)="onClosePopup()">×</button>
+  </div>
+</div>

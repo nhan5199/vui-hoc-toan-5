@@ -10,7 +10,9 @@ import { CacMonKhacComponent } from './components/book-detail/cac-mon-khac/cac-m
 import { PhanPhoiChuongTrinhComponent } from './components/book-detail/phan-phoi-chuong-trinh/phan-phoi-chuong-trinh.component';
 import { GiaoAnDienTuCacMonKhacComponent } from './components/book-detail/cac-mon-khac/giao-an-dien-tu-cac-mon-khac/giao-an-dien-tu-cac-mon-khac.component';
 import { BaiKiemTraComponent } from './bai-kiem-tra/bai-kiem-tra.component';
-import { BaiDocComponent } from './bai-doc/bai-doc.component';
+import { BaiDocComponent } from './danh-sach-bai-doc/bai-doc/bai-doc.component';
+import { DanhSachBaiDocComponent } from './danh-sach-bai-doc/danh-sach-bai-doc.component';
+import { DanhSachCauHoiComponent } from './bai-kiem-tra/danh-sach-cau-hoi/danh-sach-cau-hoi.component';
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '', component: HomeComponent },
@@ -84,7 +86,15 @@ export const routes: Routes = [
     component: BaiKiemTraComponent,
   },
   {
-    path: 'bai-doc',
+    path: 'bai-kiem-tra/danh-sach-cau-hoi',
+    component: DanhSachCauHoiComponent,
+  },
+  {
+    path: 'danh-sach-bai-doc',
+    component: DanhSachBaiDocComponent,
+  },
+  {
+    path: 'danh-sach-bai-doc/:bai-doc',
     component: BaiDocComponent,
   },
 ];

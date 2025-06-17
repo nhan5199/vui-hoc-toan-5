@@ -1,0 +1,27 @@
+<div class="loading" *ngIf="isLoading"></div>
+<div #contentContainer class="content"></div>
+
+<div class="backdrop" *ngIf="displayPopup" (click)="onBackdropClick($event)">
+  <div class="container-popup">
+    <ng-container *ngIf="is360Img">
+      <app-bai-doc-360-popup
+        [displayPopup]="displayPopup"
+        (closePopup)="onClosePopup()"
+        [imgUrl]="this.popupImgUrl"
+        [title]="this.popupTitle"
+        [description]="this.popupDescription"
+      />
+    </ng-container>
+    <ng-container *ngIf="!is360Img"
+      ><app-bai-doc-popup
+        [displayPopup]="displayPopup"
+        (closePopup)="onClosePopup()"
+        [imgUrl]="this.popupImgUrl"
+        [title]="this.popupTitle"
+        [description]="this.popupDescription"
+      />
+    </ng-container>
+  </div>
+</div>
+
+<!-- <div #viewer class="viewer-container"></div> -->

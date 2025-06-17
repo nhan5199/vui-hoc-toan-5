@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { map, Observable } from 'rxjs';
 
+export interface BaiKiemTraData {}
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +17,7 @@ export class BaiKiemTraService {
     });
   }
 
-  getAllData(): Observable<any[]> {
+  getAllData(): Observable<BaiKiemTraData[]> {
     return this.db
       .object<any>('bai-kiem-tra')
       .valueChanges()

@@ -1,14 +1,52 @@
-<!-- questions.component.html -->
+<div class="loading" *ngIf="isLoading"></div>
+<ng-container *ngIf="!isLoading">
+  <div class="question-container">
+    <h2>Danh sách câu hỏi</h2>
+    <div class="table-header d-flex flex-row align-items-center">
+      <p class="text-center">Nội dung câu hỏi</p>
+      <p class="text-center">Loại câu hỏi</p>
+      <p class="text-center">Độ khó</p>
+    </div>
+    <ng-container *ngIf="listTestData.length > 0">
+      <div
+        class="table-data test d-flex flex-row align-items-center"
+        *ngFor="let item of listTestData"
+      >
+        <p>{{ item.question }}</p>
+        <p>{{ item.questionType }}</p>
+        <p>{{ item.level }}</p>
+      </div>
+    </ng-container>
 
-<!-- <div #pdfContent id="pdf-content">
-  <h2>Questions and Answers</h2>
-  <div *ngFor="let item of questions">
-    <p><strong>Q:</strong> {{ item.question }}</p>
-    <p><strong>A:</strong> {{ item.answer }}</p>
-    <hr />
+    <ng-container *ngIf="listTestData.length <= 0">
+      <p class="text-center">Không có câu hỏi</p>
+    </ng-container>
   </div>
-</div>
 
-<button (click)="download()">Download as PDF</button> -->
+  <button (click)="createListOrganizedQuestions()">Tạo bài kiểm tra</button
+  ><br />
+  <button (click)="download()">Download as PDF</button>
 
-<input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />
+  <div #pdfContent class="question-container pdfContent">
+    <h2>Danh sách câu hỏi</h2>
+    <div class="table-header d-flex flex-row align-items-center">
+      <p class="text-center">Nội dung câu hỏi</p>
+      <p class="text-center">Loại câu hỏi</p>
+      <p class="text-center">Độ khó</p>
+    </div>
+    <ng-container *ngIf="organizedTestData.length > 0">
+      <div
+        class="table-data test d-flex flex-row align-items-center"
+        *ngFor="let item of organizedTestData"
+      >
+        <p>{{ item.question }}</p>
+        <p>{{ item.questionType }}</p>
+        <p>{{ item.level }}</p>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="organizedTestData.length <= 0">
+      <p class="text-center">Không có câu hỏi</p>
+    </ng-container>
+  </div>
+</ng-container>

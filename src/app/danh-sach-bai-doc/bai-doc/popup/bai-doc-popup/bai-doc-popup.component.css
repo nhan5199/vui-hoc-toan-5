@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px grey;
+  max-height: 90vh;
+  min-height: 500px;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  padding: 0; /* remove default padding here */
+}
+
+/* Add padding inside the scrollable content */
+.popup-scroll-content {
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+/* Set fixed height on .viewer-container based on screen width */
+img {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 700;
+}
+
+.close-button:hover {
+  color: red;
+}

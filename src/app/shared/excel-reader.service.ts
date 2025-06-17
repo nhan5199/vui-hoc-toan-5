@@ -8,7 +8,9 @@ import * as XLSX from 'xlsx';
 export class ExcelReaderService {
   constructor() {}
 
-  readFile(file: File): Promise<any[]> {
+  readFileReading(
+    file: File
+  ): Promise<{ contentData: any[]; interpreterData: any[] }> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -16,13 +18,48 @@ export class ExcelReaderService {
         const data = new Uint8Array(e.target?.result as ArrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
 
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
+        const contentSheet = workbook.Sheets['content'];
+        const interpreter = workbook.Sheets['interpreter'];
 
-        // Convert the sheet to JSON
-        const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+        if (!contentSheet || !interpreter) {
+          return reject('Sheet names are not valid');
+        }
 
-        resolve(jsonData);
+        const contentData = XLSX.utils.sheet_to_json(contentSheet, {
+          defval: '',
+        });
+        const interpreterData = XLSX.utils.sheet_to_json(interpreter, {
+          defval: '',
+        });
+
+        resolve({ contentData, interpreterData });
+      };
+
+      reader.onerror = (error) => reject(error);
+
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  readFileTest(file: File): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const data = new Uint8Array(e.target?.result as ArrayBuffer);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        const test = workbook.Sheets['test'];
+
+        if (!test) {
+          return reject('Sheet name is not valid');
+        }
+
+        const testData = XLSX.utils.sheet_to_json(test, {
+          defval: '',
+        });
+
+        resolve(testData);
       };
 
       reader.onerror = (error) => reject(error);

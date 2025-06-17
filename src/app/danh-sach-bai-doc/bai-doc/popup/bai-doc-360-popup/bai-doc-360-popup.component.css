@@ -1,0 +1,75 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.popup-canvas {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px grey;
+  max-height: 90vh;
+  min-height: 500px;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  padding: 0; /* remove default padding here */
+}
+
+/* Add padding inside the scrollable content */
+.popup-scroll-content {
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+/* Responsive height for canvas/viewer */
+.viewer-container canvas {
+  width: 100%;
+  border-radius: var(--border-radius);
+  display: block;
+  height: 100%;
+}
+
+/* Set fixed height on .viewer-container based on screen width */
+.viewer-container {
+  width: 100%;
+  aspect-ratio: 2/1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 700;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+/* @media (max-width: 990px) {
+  .viewer-container {
+    height: 300px;
+  }
+}
+
+@media (min-width: 991px) {
+  .viewer-container {
+    height: 400px;
+  }
+} */

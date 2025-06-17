@@ -1,25 +1,31 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
+  OnDestroy,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
-  selector: 'app-bai-doc-popup',
+  selector: 'app-bai-doc-360-popup',
   standalone: true,
   imports: [],
-  templateUrl: './bai-doc-popup.component.html',
-  styleUrl: './bai-doc-popup.component.css',
+  templateUrl: './bai-doc-360-popup.component.html',
+  styleUrl: './bai-doc-360-popup.component.css',
 })
-export class BaiDocPopupComponent {
+export class BaiDoc360PopupComponent implements OnChanges, OnDestroy {
   @ViewChild('viewer') viewerRef!: ElementRef;
   @Input() displayPopup: boolean = false;
   @Output() closePopup: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input() imgUrl: string = '';
+  @Input() description: string = '';
+  @Input() title: string = '';
 
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -33,62 +39,69 @@ export class BaiDocPopupComponent {
   private lat = 0;
   private phi = 0;
   private theta = 0;
-  private textureLoaded = false;
   private animationFrameId: any;
 
   private targetLon = 0;
   private targetLat = 0;
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      const container = this.viewerRef.nativeElement;
-      if (container.clientHeight === 0 || container.clientWidth === 0) {
-        console.warn('Viewer container has no size');
+    if (this.imgUrl) {
+      this.initScene(this.imgUrl);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['imgUrl'] && !changes['imgUrl'].firstChange) {
+      this.disposeRenderer();
+      if (this.imgUrl) {
+        this.initScene(this.imgUrl);
       }
-      this.initScene();
-      this.animate();
-    }, 0); // Let Angular finish layout
+    }
   }
 
   ngOnDestroy(): void {
-    cancelAnimationFrame(this.animationFrameId);
-    this.renderer.dispose();
+    this.disposeRenderer();
   }
 
-  initScene(): void {
+  private disposeRenderer(): void {
+    cancelAnimationFrame(this.animationFrameId);
+    if (this.renderer) {
+      this.renderer.dispose();
+      const canvas = this.renderer.domElement;
+      if (canvas && canvas.parentElement) {
+        canvas.parentElement.removeChild(canvas);
+      }
+    }
+  }
+
+  initScene(imgUrl: string): void {
     const container = this.viewerRef.nativeElement;
+    const padding = 0;
 
-    this.camera = new THREE.PerspectiveCamera(
-      75,
-      container.clientWidth / container.clientHeight,
-      1,
-      1100
-    );
+    const width = container.clientWidth - padding;
+    const height = container.clientHeight - padding;
+
+    this.renderer = new THREE.WebGLRenderer();
+    this.renderer.setSize(width, height);
+    this.renderer.domElement.style.borderRadius = '12px'; // optional
+    container.appendChild(this.renderer.domElement);
+
+    this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 1100);
     this.camera.position.set(0, 0, 0);
-    this.scene = new THREE.Scene();
 
+    this.scene = new THREE.Scene();
     const geometry = new THREE.SphereGeometry(500, 60, 40);
     geometry.scale(-1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load(
-      'images/images/bai-doc/360-image.jpg',
-      () => {
-        this.textureLoaded = true;
-        this.animate(); // Start animation AFTER image loads
-      }
-    );
+    const texture = new THREE.TextureLoader().load(imgUrl, () => {
+      this.animate();
+    });
 
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const mesh = new THREE.Mesh(geometry, material);
     this.scene.add(mesh);
 
-    this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(this.renderer.domElement);
-
     const canvas = this.renderer.domElement;
-
-    // Mouse events
     canvas.addEventListener('mousedown', this.onPointerDown.bind(this), false);
     canvas.addEventListener('mousemove', this.onPointerMove.bind(this), false);
     canvas.addEventListener(
@@ -96,8 +109,6 @@ export class BaiDocPopupComponent {
       () => (this.isUserInteracting = false),
       false
     );
-
-    // Touch events
     canvas.addEventListener('touchstart', this.onTouchStart.bind(this), false);
     canvas.addEventListener('touchmove', this.onTouchMove.bind(this), false);
     canvas.addEventListener(
@@ -106,7 +117,6 @@ export class BaiDocPopupComponent {
       false
     );
 
-    // Wheel zoom
     container.addEventListener('wheel', (e: WheelEvent) => {
       e.preventDefault();
       this.camera.fov += e.deltaY * 0.05;
@@ -114,15 +124,15 @@ export class BaiDocPopupComponent {
       this.camera.updateProjectionMatrix();
     });
 
-    // Resize
     window.addEventListener('resize', () => {
-      this.camera.aspect = container.clientWidth / container.clientHeight;
+      const newWidth = container.clientWidth - padding;
+      const newHeight = container.clientHeight - padding;
+      this.camera.aspect = newWidth / newHeight;
       this.camera.updateProjectionMatrix();
-      this.renderer.setSize(container.clientWidth, container.clientHeight);
+      this.renderer.setSize(newWidth, newHeight);
     });
   }
 
-  // Mouse handlers
   onPointerDown(event: MouseEvent): void {
     this.isUserInteracting = true;
     this.onPointerDownPointerX = event.clientX;
@@ -142,7 +152,6 @@ export class BaiDocPopupComponent {
     }
   }
 
-  // Touch handlers
   onTouchStart(event: TouchEvent): void {
     if (event.touches.length === 1) {
       this.isUserInteracting = true;
@@ -156,7 +165,7 @@ export class BaiDocPopupComponent {
 
   onTouchMove(event: TouchEvent): void {
     if (this.isUserInteracting && event.touches.length === 1) {
-      event.preventDefault(); // Prevent scroll
+      event.preventDefault();
       const touch = event.touches[0];
       const deltaX = touch.clientX - this.onPointerDownPointerX;
       const deltaY = touch.clientY - this.onPointerDownPointerY;
@@ -171,7 +180,6 @@ export class BaiDocPopupComponent {
     this.animationFrameId = requestAnimationFrame(() => this.animate());
 
     this.lat = Math.max(-85, Math.min(85, this.lat));
-
     this.phi = THREE.MathUtils.degToRad(90 - this.lat);
     this.theta = THREE.MathUtils.degToRad(this.lon);
 
@@ -180,11 +188,10 @@ export class BaiDocPopupComponent {
     const z = 500 * Math.sin(this.phi) * Math.sin(this.theta);
 
     this.camera.lookAt(x, y, z);
-
     this.renderer.render(this.scene, this.camera);
   }
 
-  onClosePopup() {
+  onClosePopup(): void {
     this.closePopup.emit(true);
   }
 }

@@ -15,26 +15,47 @@ import { BaiKiemTraService } from '../shared/bai-kiem-tra.service';
 export class BaiKiemTraComponent implements OnInit {
   @ViewChild('pdfContent') pdfContent!: ElementRef;
 
-  questions = [
-    {
-      question: 'What is Angular?',
-      answer: 'A front-end framework by Google.',
-    },
-    { question: 'What is TypeScript?', answer: 'A superset of JavaScript.' },
-    // Add more Q&A as needed
-  ];
-
+  listTestData: any[] = [];
+  organizedTestData: any[] = [];
+  isLoading: boolean = true;
   constructor(
     private pdfService: PdfDownloadService,
-    private excelService: ExcelReaderService,
+
     private baiKiemTraService: BaiKiemTraService
   ) {}
 
   ngOnInit(): void {
     this.baiKiemTraService.getAllData().subscribe((data) => {
-      // this.baiKiemTraData = data;
-      console.log('Fetched data:', data);
+      this.listTestData = data;
+      this.isLoading = false;
     });
+  }
+
+  createListOrganizedQuestions() {
+    this.organizedTestData = [];
+
+    const levelAmountMap = [1, 2, 3, 4];
+
+    for (const level in levelAmountMap) {
+      debugger;
+      let count = levelAmountMap[level];
+      const matchingItems = this.listTestData.filter(
+        (item) => item.level === +level + 1
+      );
+
+      // Shuffle matchingItems using Fisher-Yates
+      for (let i = matchingItems.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [matchingItems[i], matchingItems[j]] = [
+          matchingItems[j],
+          matchingItems[i],
+        ];
+      }
+
+      this.organizedTestData.push(...matchingItems.slice(0, count));
+    }
+
+    console.log('data: ', this.organizedTestData);
   }
 
   download() {
@@ -42,21 +63,5 @@ export class BaiKiemTraComponent implements OnInit {
     this.pdfService.downloadPdf(element, {
       filename: 'questions-and-answers.pdf',
     });
-  }
-
-  onFileChange(event: any) {
-    const input = event.target as HTMLInputElement;
-    if (input?.files?.length) {
-      const file = input.files[0];
-      this.excelService
-        .readFile(file)
-        .then((data) => {
-          this.baiKiemTraService.pushData(data);
-          // use the array of objects here
-        })
-        .catch((error) => {
-          console.error('Failed to read Excel file:', error);
-        });
-    }
   }
 }
