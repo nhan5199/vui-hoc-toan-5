@@ -212,6 +212,24 @@ html {
   border-bottom: 1px solid #0000ffb5;
 }
 
+.selected-correct {
+  color: #3498db !important; /* blue */
+  font-weight: 700;
+  color: white;
+}
+
+.selected-wrong {
+  color: #e74c3c !important; /* red */
+  font-weight: 700;
+  color: white;
+}
+
+.correct-answer {
+  color: #2ecc71 !important; /* green */
+  font-weight: 700;
+  color: white;
+}
+
 @media screen and (max-width: 950px) {
   .back-icon {
     width: 2rem;

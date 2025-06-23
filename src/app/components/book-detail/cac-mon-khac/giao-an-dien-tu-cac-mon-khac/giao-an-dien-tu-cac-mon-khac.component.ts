@@ -104,7 +104,6 @@ export class GiaoAnDienTuCacMonKhacComponent implements OnInit, AfterViewInit {
         files.forEach((file: any) => {
           this.files.push(file);
         });
-        console.log(this.files);
         this.sortFilesByName(this.files);
       });
   }

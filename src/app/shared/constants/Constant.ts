@@ -14604,3 +14604,8 @@ export default class {
     ],
   };
 }
+
+export enum QuestionType {
+  MultipleChoice = 1,
+  YesNo = 2,
+}

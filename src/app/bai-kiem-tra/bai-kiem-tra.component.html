@@ -25,28 +25,35 @@
 
   <button (click)="createListOrganizedQuestions()">Tạo bài kiểm tra</button
   ><br />
-  <button (click)="download()">Download as PDF</button>
+  <button (click)="downloadAnwser()">Download answer as PDF</button>
+
+  <button (click)="downloadTest()">Download Test as PDF</button>
 
   <div #pdfContent class="question-container pdfContent">
-    <h2>Danh sách câu hỏi</h2>
-    <div class="table-header d-flex flex-row align-items-center">
-      <p class="text-center">Nội dung câu hỏi</p>
-      <p class="text-center">Loại câu hỏi</p>
-      <p class="text-center">Độ khó</p>
-    </div>
+    <h2>Bài kiểm tra</h2>
+
     <ng-container *ngIf="organizedTestData.length > 0">
       <div
         class="table-data test d-flex flex-row align-items-center"
         *ngFor="let item of organizedTestData"
       >
-        <p>{{ item.question }}</p>
+        <ng-container *ngIf="item.questionType == questionType.MultipleChoice">
+          <app-cau-hoi-trac-nghiem [testData]="item"></app-cau-hoi-trac-nghiem>
+        </ng-container>
+
+        <ng-container *ngIf="item.questionType == questionType.YesNo">
+          <app-cau-hoi-dung-sai [testData]="item"></app-cau-hoi-dung-sai>
+        </ng-container>
+        <!-- <p>{{ item.question }}</p>
         <p>{{ item.questionType }}</p>
-        <p>{{ item.level }}</p>
+        <p>{{ item.level }}</p> -->
       </div>
     </ng-container>
 
     <ng-container *ngIf="organizedTestData.length <= 0">
       <p class="text-center">Không có câu hỏi</p>
     </ng-container>
+
+    <button (click)="onSubmitTest()">Kiểm tra kết quả</button>
   </div>
 </ng-container>
