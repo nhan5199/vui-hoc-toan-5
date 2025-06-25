@@ -1,25 +1,29 @@
-<div class="test">
-  <h3 class="question">{{ testData.question }}</h3>
-
-  <div class="answer-container">
-    <div class="answer-box" *ngFor="let item of listAnswers">
+<div class="test row">
+  <div class="col-8"></div>
+  <div
+    class="col-4 d-flex flex-row align-items-center justify-content-center g-1"
+  >
+    <div class="col-6">Đúng</div>
+    <div class="col-6">Sai</div>
+  </div>
+</div>
+<div class="answer-container row">
+  <div class="col-8">
+    <h3 class="question">{{ testData.question }}</h3>
+  </div>
+  <div
+    class="col-4 d-flex flex-row align-items-center justify-content-center g-1"
+  >
+    <div class="col-6" *ngFor="let item of listAnswers">
       <input
         type="radio"
         [name]="questionKey"
         [id]="questionKey + item.key"
         [value]="item.key"
-        (click)="receiveValue(item.key)"
-        [checked]="this.testData.correctAnswer.toUpperCase() == item.key"
-      />
-      <label
-        [for]="questionKey + item.key"
-        [ngClass]="
-          this.testData.correctAnswer.toUpperCase() == item.key
-            ? 'correct-answer'
-            : ''
+        [checked]="
+          this.testData.correctAnswer.toUpperCase() == item.key.toUpperCase()
         "
-        >{{ item.value }}</label
-      >
+      />
     </div>
   </div>
 </div>

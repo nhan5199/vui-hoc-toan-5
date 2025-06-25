@@ -44,3 +44,8 @@ input[type="radio"]:checked::before {
   border-radius: 50%;
   background-color: black;
 }
+
+app-cau-hoi-dung-sai,
+app-cau-hoi-trac-nghiem {
+  width: 100%;
+}

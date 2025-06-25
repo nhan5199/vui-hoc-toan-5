@@ -1,1 +1,20 @@
+.answer-container {
+  display: grid;
+  gap: 12px;
+}
 
+.layout-1-row {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.layout-2-rows {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.layout-4-rows {
+  grid-template-columns: 1fr;
+}
+
+input {
+  pointer-events: none;
+}

@@ -22,11 +22,11 @@ export class CauHoiDungSaiComponent implements OnChanges {
     if (changes['testData']) {
       this.listAnswers = [
         {
-          key: 'A',
+          key: 'd',
           value: this.testData.answerA,
         },
         {
-          key: 'B',
+          key: 's',
           value: this.testData.answerB,
         },
       ];
