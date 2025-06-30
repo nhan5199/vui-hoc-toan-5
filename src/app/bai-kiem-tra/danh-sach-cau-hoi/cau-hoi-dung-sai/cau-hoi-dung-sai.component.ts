@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class CauHoiDungSaiComponent implements OnChanges {
   @Input() testData!: any;
+  @Input() questionNumber: number = 1;
   selectedAnswer: string = '';
-  listAnswers: any[] = [];
   hasCheckedAnser: boolean = false;
   questionKey: string = '';
 
@@ -20,16 +20,22 @@ export class CauHoiDungSaiComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['testData']) {
-      this.listAnswers = [
-        {
-          key: 'd',
-          value: this.testData.answerA,
-        },
-        {
-          key: 's',
-          value: this.testData.answerB,
-        },
-      ];
+      this.testData.listQuestions.forEach((item: any) => {
+        let listAnswers = [
+          {
+            key: 'd',
+            value: item.answerA,
+          },
+          {
+            key: 's',
+            value: item.answerB,
+          },
+        ];
+
+        item.listAnswers = listAnswers;
+      });
+
+      console.log('data: ', this.testData);
 
       this.questionKey = this.generateComponentKey();
     }

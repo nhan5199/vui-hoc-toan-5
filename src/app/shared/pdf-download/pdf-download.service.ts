@@ -45,8 +45,14 @@ export class PdfDownloadService {
       el.style.setProperty('color', 'black', 'important');
     });
 
+    //set all elements with class yes-no-question to display none
+    const elements = clone.querySelectorAll('.yes-no-answer');
+    elements.forEach((el) => {
+      (el as HTMLElement).style.display = 'none';
+    });
+
     // Remove all buttons
-    clone.querySelectorAll('button').forEach((btn) => btn.remove());
+    // clone.querySelectorAll('button').forEach((btn) => btn.remove());
 
     // Create a wrapper div for the clone
     const wrapper = document.createElement('div');

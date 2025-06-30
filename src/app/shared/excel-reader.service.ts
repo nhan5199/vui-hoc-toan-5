@@ -48,18 +48,73 @@ export class ExcelReaderService {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         const data = new Uint8Array(e.target?.result as ArrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
+        const sheet = workbook.Sheets['test'];
 
-        const test = workbook.Sheets['test'];
-
-        if (!test) {
+        if (!sheet) {
           return reject('Sheet name is not valid');
         }
 
-        const testData = XLSX.utils.sheet_to_json(test, {
+        const rawData = XLSX.utils.sheet_to_json<any>(sheet, {
           defval: '',
         });
 
-        resolve(testData);
+        const result: any[] = [];
+        let currentGroup: any = null;
+
+        rawData.forEach((item) => {
+          if (item.questionType === 1) {
+            // Push previous group if exists
+            if (currentGroup) {
+              result.push(currentGroup);
+              currentGroup = null;
+            }
+            result.push({
+              question: item.question,
+              questionType: 1,
+              answerA: item.answerA,
+              answerB: item.answerB,
+              answerC: item.answerC,
+              answerD: item.answerD,
+              correctAnswer: item.correctAnswer,
+              level: item.level,
+            });
+          } else if (item.questionType === 2) {
+            // Push previous group if exists
+            if (currentGroup) {
+              result.push(currentGroup);
+            }
+            currentGroup = {
+              questionType: 2,
+              listQuestions: [],
+              level: item.level,
+            };
+            currentGroup.listQuestions.push({
+              question: item.question,
+              answerA: item.answerA,
+              answerB: item.answerB,
+              answerC: item.answerC,
+              answerD: item.answerD,
+              correctAnswer: item.correctAnswer,
+            });
+          } else {
+            if (currentGroup && currentGroup.questionType === 2) {
+              currentGroup.listQuestions.push({
+                question: item.question,
+                answerA: item.answerA,
+                answerB: item.answerB,
+                answerC: item.answerC,
+                answerD: item.answerD,
+                correctAnswer: item.correctAnswer,
+              });
+            }
+          }
+        });
+
+        if (currentGroup) {
+          result.push(currentGroup);
+        }
+
+        resolve(result);
       };
 
       reader.onerror = (error) => reject(error);

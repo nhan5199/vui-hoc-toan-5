@@ -22,8 +22,8 @@ p {
 }
 
 /* Apply this CSS before exporting to PDF */
-input[type="radio"] {
-  appearance: none; /* Remove native styling */
+/* input[type="radio"] {
+  appearance: none;
   -webkit-appearance: none;
   background-color: white;
   border: 2px solid #000;
@@ -43,9 +43,35 @@ input[type="radio"]:checked::before {
   height: 8px;
   border-radius: 50%;
   background-color: black;
-}
+} */
 
 app-cau-hoi-dung-sai,
 app-cau-hoi-trac-nghiem {
   width: 100%;
+}
+
+@media print {
+  .question-container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 20mm;
+    box-sizing: border-box;
+    page-break-after: always;
+  }
+
+  .table-data {
+    page-break-inside: avoid;
+  }
+}
+
+/* Optional: for on-screen preview */
+.question-container {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 20px auto;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20mm;
+  box-sizing: border-box;
 }

@@ -1,29 +1,56 @@
-<div class="test row">
+Câu {{ questionNumber }}.
+<div class="test row w-100">
   <div class="col-8"></div>
   <div
-    class="col-4 d-flex flex-row align-items-center justify-content-center g-1"
+    class="col-4 header d-flex flex-row align-items-center justify-content-center g-1"
   >
-    <div class="col-6">Đúng</div>
-    <div class="col-6">Sai</div>
+    <div class="col-6 text-center">Đúng</div>
+    <div class="col-6 text-center">Sai</div>
   </div>
 </div>
-<div class="answer-container row">
+<div
+  class="answer-container row w-100"
+  *ngFor="let item of testData.listQuestions"
+>
   <div class="col-8">
-    <h3 class="question">{{ testData.question }}</h3>
+    <p class="question" class="question">
+      {{ item.question }}
+    </p>
   </div>
   <div
     class="col-4 d-flex flex-row align-items-center justify-content-center g-1"
   >
-    <div class="col-6" *ngFor="let item of listAnswers">
-      <input
-        type="radio"
-        [name]="questionKey"
-        [id]="questionKey + item.key"
-        [value]="item.key"
-        [checked]="
-          this.testData.correctAnswer.toUpperCase() == item.key.toUpperCase()
+    <div class="col-6 text-center">
+      <label
+        class="yes-no-answer"
+        *ngIf="
+          item.correctAnswer.toUpperCase() ==
+          item.listAnswers[0].key.toUpperCase()
         "
-      />
+        >Đ</label
+      >
+      <label
+        *ngIf="
+          item.correctAnswer.toUpperCase() !=
+          item.listAnswers[0].key.toUpperCase()
+        "
+      ></label>
+    </div>
+    <div class="col-6 text-center">
+      <label
+        class="yes-no-answer"
+        *ngIf="
+          item.correctAnswer.toUpperCase() ==
+          item.listAnswers[1].key.toUpperCase()
+        "
+        >S</label
+      >
+      <label
+        *ngIf="
+          item.correctAnswer.toUpperCase() !=
+          item.listAnswers[1].key.toUpperCase()
+        "
+      ></label>
     </div>
   </div>
 </div>

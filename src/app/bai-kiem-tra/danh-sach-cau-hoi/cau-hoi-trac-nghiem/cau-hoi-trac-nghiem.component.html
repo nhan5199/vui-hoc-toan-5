@@ -1,22 +1,22 @@
 <div class="test">
-  <h3 class="question">{{ testData.question }}</h3>
+  <p class="question">Câu {{ questionNumber }}. {{ testData.question }}</p>
 
   <div class="answer-container" [ngClass]="layoutClass">
     <div class="answer-box" *ngFor="let item of listAnswers">
-      <input
+      <!-- <input
         type="radio"
         [id]="questionKey + item.key"
         [value]="item.key"
         [name]="questionKey"
         [checked]="this.testData.correctAnswer.toUpperCase() == item.key"
-      />
+      /> -->
       <label
         [ngClass]="
           this.testData.correctAnswer.toUpperCase() == item.key
             ? 'correct-answer'
             : ''
         "
-        >{{ item.value }}</label
+        >{{ item.key.toUpperCase() }}. {{ item.value }}</label
       >
     </div>
   </div>

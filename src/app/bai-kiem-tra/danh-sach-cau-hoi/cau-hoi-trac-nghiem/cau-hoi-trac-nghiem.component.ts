@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CauHoiTracNghiemComponent implements OnChanges, AfterViewInit {
   @Input() testData!: any;
+  @Input() questionNumber: number = 1;
 
   @ViewChildren('answerBox') answerBoxes!: QueryList<ElementRef>;
 
