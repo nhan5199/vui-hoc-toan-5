@@ -35,8 +35,6 @@ export class CauHoiDungSaiComponent implements OnChanges {
         item.listAnswers = listAnswers;
       });
 
-      console.log('data: ', this.testData);
-
       this.questionKey = this.generateComponentKey();
     }
   }

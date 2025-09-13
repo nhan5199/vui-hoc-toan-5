@@ -29,36 +29,32 @@
 
   <button (click)="downloadTest()">Download Test as PDF</button>
 
-  <ng-container *ngIf="organizedTestData.length > 0">
-    <div #pdfContent class="question-container pdfContent">
-      <h2>Bài kiểm tra</h2>
+  <div class="test-container w-100">
+    <ng-container *ngIf="organizedTestData.length > 0">
+      <div #pdfContent class="question-container pdfContent">
+        <ng-container *ngFor="let item of organizedTestData; let i = index">
+          <div class="question-block">
+            <ng-container
+              *ngIf="item.questionType === questionType.MultipleChoice"
+            >
+              <app-cau-hoi-trac-nghiem
+                [testData]="item"
+                [questionNumber]="i + 1"
+              ></app-cau-hoi-trac-nghiem>
+            </ng-container>
 
-      <div
-        class="table-data test d-flex flex-row align-items-center mt-2"
-        *ngFor="let item of organizedTestData; let i = index"
-      >
-        <ng-container *ngIf="item.questionType == questionType.MultipleChoice">
-          <app-cau-hoi-trac-nghiem
-            [testData]="item"
-            [questionNumber]="i + 1"
-          ></app-cau-hoi-trac-nghiem>
+            <ng-container *ngIf="item.questionType === questionType.YesNo">
+              <app-cau-hoi-dung-sai
+                [testData]="item"
+                [questionNumber]="i + 1"
+              ></app-cau-hoi-dung-sai>
+            </ng-container>
+          </div>
         </ng-container>
-
-        <ng-container *ngIf="item.questionType == questionType.YesNo">
-          <app-cau-hoi-dung-sai
-            [testData]="item"
-            [questionNumber]="i + 1"
-          ></app-cau-hoi-dung-sai>
-        </ng-container>
-        <!-- <p>{{ item.question }}</p>
-        <p>{{ item.questionType }}</p>
-        <p>{{ item.level }}</p> -->
       </div>
-
-      <!-- <button (click)="onSubmitTest()">Kiểm tra kết quả</button> -->
-    </div>
-  </ng-container>
-  <ng-container *ngIf="organizedTestData.length <= 0">
-    <p class="text-center">Không có câu hỏi</p>
-  </ng-container>
+    </ng-container>
+    <ng-container *ngIf="organizedTestData.length <= 0">
+      <p class="text-center">Không có câu hỏi</p>
+    </ng-container>
+  </div>
 </ng-container>

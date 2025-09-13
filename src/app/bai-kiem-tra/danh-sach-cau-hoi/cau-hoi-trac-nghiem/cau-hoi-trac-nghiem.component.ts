@@ -93,10 +93,8 @@ export class CauHoiTracNghiemComponent implements OnChanges, AfterViewInit {
 
     //Kiểm tra đáp án và hiển thị đúng sai
     if (this.answerBoxes.length > 0) {
-      console.log('answerBoxes count:', this.answerBoxes.length);
       this.answerBoxes.forEach((box: ElementRef) => {
         const key = box.nativeElement.querySelector('input')?.id;
-        console.log('data: ', key);
         // Clear old classes
         this.renderer.removeClass(box.nativeElement, 'selected-correct');
         this.renderer.removeClass(box.nativeElement, 'selected-wrong');

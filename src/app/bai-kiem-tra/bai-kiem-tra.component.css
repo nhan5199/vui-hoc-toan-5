@@ -51,27 +51,40 @@ app-cau-hoi-trac-nghiem {
 }
 
 @media print {
-  .question-container {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
     width: 210mm;
-    min-height: 297mm;
-    margin: 0 auto;
-    padding: 20mm;
-    box-sizing: border-box;
-    page-break-after: always;
+    height: 297mm;
   }
 
-  .table-data {
-    page-break-inside: avoid;
+  .pdfContent {
+    width: 170mm; /* leave 20mm left + 20mm right */
+    margin: 0 auto;
+    padding: 0 !important;
+    box-sizing: border-box;
   }
+}
+
+.question-block {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  display: block;
+  margin-bottom: 20px;
 }
 
 /* Optional: for on-screen preview */
 .question-container {
   width: 210mm;
   min-height: 297mm;
-  margin: 20px auto;
+  margin: 0 auto;
   background: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  padding: 20mm;
+  padding: 10mm 20mm;
   box-sizing: border-box;
+}
+
+.test-container {
+  background-color: red;
 }
