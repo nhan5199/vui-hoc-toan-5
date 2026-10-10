@@ -297,7 +297,26 @@ p.question {
 /* Shared interaction timing; scale preserves each card's own transforms. */
 /* Reference-style white pill fields, shared across legacy and new screens. */
 /* Repeated :root beats Angular's scoped ancestor + field selectors. */
-:root:root body .body :is(select, textarea, input:where(:not([type="radio"], [type="checkbox"], [type="range"], [type="color"], [type="hidden"], [type="button"], [type="submit"], [type="reset"], [type="image"]))) {
+:root:root
+  body
+  .body
+  :is(
+    select,
+    textarea,
+    input:where(
+      :not(
+        [type="radio"],
+        [type="checkbox"],
+        [type="range"],
+        [type="color"],
+        [type="hidden"],
+        [type="button"],
+        [type="submit"],
+        [type="reset"],
+        [type="image"]
+      )
+    )
+  ) {
   box-sizing: border-box;
   min-height: 60px;
   max-width: 100%;
@@ -312,7 +331,10 @@ p.question {
   line-height: 1.4;
   outline: none;
   box-shadow: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 :root:root body .body :is(select:not([multiple]), input[type="search"]) {
   appearance: none;
@@ -325,9 +347,17 @@ p.question {
 :root:root body .body select:not([multiple]) {
   cursor: pointer;
 }
-:root:root body .body input[type="search"]::-webkit-search-cancel-button { margin-right:4px; }
-:root:root body .body :is(input, textarea)::placeholder { color: #7189b0; opacity: 1; }
-:root:root body .body :is(input, select, textarea):hover:not(:disabled) { border-color: #1685eb; background-color: #fff; }
+:root:root body .body input[type="search"]::-webkit-search-cancel-button {
+  margin-right: 4px;
+}
+:root:root body .body :is(input, textarea)::placeholder {
+  color: #7189b0;
+  opacity: 1;
+}
+:root:root body .body :is(input, select, textarea):hover:not(:disabled) {
+  border-color: #1685eb;
+  background-color: #fff;
+}
 :root:root body .body :is(input, select, textarea):focus {
   outline: none;
   border-color: #1748aa;
@@ -338,64 +368,252 @@ p.question {
   outline: none;
   box-shadow: inset 0 0 0 2px #ffe28a;
 }
-:root:root body .body :is(input, select, textarea):disabled { opacity: .65; cursor: not-allowed; }
-:root:root body .body :is(input, select, textarea)[aria-invalid="true"] { border-color: #dc526b; }
-:root:root body .body textarea { min-height: 112px; resize: vertical; }
-:root:root body .body input[type="file"] { font-size: 1rem; }
+:root:root body .body :is(input, select, textarea):disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+:root:root body .body :is(input, select, textarea)[aria-invalid="true"] {
+  border-color: #dc526b;
+}
+:root:root body .body textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+:root:root body .body input[type="file"] {
+  font-size: 1rem;
+}
 :root:root body .body input[type="file"]::file-selector-button {
-  border: 0; border-radius: 12px; padding: 8px 12px; margin-right: 12px;
-  background: #e8f2ff; color: #1453bb; font: inherit; cursor: pointer;
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-right: 12px;
+  background: #e8f2ff;
+  color: #1453bb;
+  font: inherit;
+  cursor: pointer;
 }
 @media (max-width: 600px) {
-  :root:root body .body :is(select, textarea, input:where(:not([type="radio"], [type="checkbox"], [type="range"], [type="color"], [type="hidden"], [type="button"], [type="submit"], [type="reset"], [type="image"]))) {
-    min-height: 52px; font-size: 1rem; padding-top: 9px; padding-bottom: 9px;
+  :root:root
+    body
+    .body
+    :is(
+      select,
+      textarea,
+      input:where(
+        :not(
+          [type="radio"],
+          [type="checkbox"],
+          [type="range"],
+          [type="color"],
+          [type="hidden"],
+          [type="button"],
+          [type="submit"],
+          [type="reset"],
+          [type="image"]
+        )
+      )
+    ) {
+    min-height: 52px;
+    font-size: 1rem;
+    padding-top: 9px;
+    padding-bottom: 9px;
   }
-  :root:root body .body :is(select:not([multiple]), input[type="search"]) { background-size:44px 44px; padding-right:54px; }
+  :root:root body .body :is(select:not([multiple]), input[type="search"]) {
+    background-size: 44px 44px;
+    padding-right: 54px;
+  }
 }
-:root { --interaction-easing: cubic-bezier(.2,.8,.2,1); }
-button, [appPressable], a[href], .back-icon, .download, .download-img {
-  transition: scale 120ms var(--interaction-easing), transform 180ms var(--interaction-easing), opacity 180ms ease, background-color 180ms ease, color 180ms ease;
+:root {
+  --interaction-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+button,
+[appPressable],
+a[href],
+.back-icon,
+.download,
+.download-img {
+  transition:
+    scale 120ms var(--interaction-easing),
+    transform 180ms var(--interaction-easing),
+    opacity 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
-button:active, [appPressable]:active, a[href]:active { scale: .98; }
-button:focus-visible, [appPressable]:focus-visible, a[href]:focus-visible, select:focus-visible {
+button:active,
+[appPressable]:active,
+a[href]:active {
+  scale: 0.98;
+}
+button:focus-visible,
+[appPressable]:focus-visible,
+a[href]:focus-visible,
+select:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 4px;
 }
-.route-loading { position:fixed; inset:0; z-index:2000; }
-.request-error { margin:1rem auto; padding:1rem; max-width:40rem; border-radius:12px; color:#172554; background:#fff; text-align:center; }
-.request-error button { border:0; border-radius:8px; padding:.5rem 1rem; background:#2563eb; color:#fff; }
-.document-empty { padding:2rem; color:white; text-align:center; }
+.route-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+.request-error {
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 40rem;
+  border-radius: 12px;
+  color: #172554;
+  background: #fff;
+  text-align: center;
+}
+.request-error button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: #fff;
+}
+.document-empty {
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
 /* Shared cartoon surfaces; page images and legacy illustrated cards stay readable. */
 :root body .body .ui-card {
-  background:var(--ui-cream); border:3px solid #c5e3ff; border-radius:var(--ui-radius);
-  box-shadow:0 5px 0 #c5e3ff; color:#243451;
+  background: var(--ui-cream);
+  border: 3px solid #c5e3ff;
+  border-radius: var(--ui-radius);
+  box-shadow: 0 5px 0 #c5e3ff;
+  color: #243451;
 }
 :root body .body .ui-button {
-  display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
-  min-height:48px; padding:.65rem 1rem; border:2px solid #1748aa; border-radius:16px;
-  background:var(--ui-blue); color:white; font-family:var(--ui-font); font-weight:500;
-  text-decoration:none; cursor:pointer; box-shadow:0 4px 0 #1748aa;
-  transition:background-color 180ms ease,box-shadow 180ms ease,transform 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 48px;
+  padding: 0.65rem 1rem;
+  border: 2px solid #1748aa;
+  border-radius: 16px;
+  background: var(--ui-blue);
+  color: white;
+  font-family: var(--ui-font);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #1748aa;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
-:root body .body .ui-button:hover:not(:disabled) { background:#146bd0; transform:translateY(-1px); }
-:root body .body .ui-button:active:not(:disabled) { transform:translateY(2px); box-shadow:0 1px 0 #1748aa; }
-:root body .body .ui-button.secondary { background:#e7f3ff; color:var(--ui-ink); border-color:#85bff7; box-shadow:0 4px 0 #85bff7; }
-:root body .body .ui-button.secondary:hover:not(:disabled) { background:#d6eaff; }
-:root body .body .ui-button:disabled { opacity:.5; cursor:not-allowed; transform:none; }
-:root body .body .ui-alert { background:#fff5d7; border:3px solid var(--ui-yellow); border-radius:18px; color:#594616; padding:1rem; }
-:root body .body .request-error { border:3px solid #ffc1bc; background:#fff5f0; border-radius:18px; }
-:root body .body .ui-badge { display:inline-block; padding:.2rem .6rem; border-radius:10px; background:#e7f3ff; color:var(--ui-ink); font-size:.85rem; font-weight:700; }
-:root body .body :is(app-teacher-library,app-student-home) :is(h1,h2,nav) { font-family:var(--ui-font); }
-:root body .body :is(app-teacher-library,app-student-home) nav a { text-decoration:none; color:var(--ui-ink); padding:.4rem .8rem; background:#e7f3ff; border-radius:12px; }
-:root body .body app-menu-button .menu-button { border-radius:24px; box-shadow:0 6px 0 #1748aa; }
-:root body .body app-side-menu-button .side-menu-button { border-radius:20px; box-shadow:0 4px 0 #1748aa; }
-:root body .body app-student-home section h2::before { content:'✦'; color:#ba7300; background:var(--ui-yellow); display:inline-grid; place-items:center; width:36px; height:36px; margin-right:.6rem; border-radius:12px; }
-.document-toolbar { display:flex; align-items:center; gap:.75rem; padding:1rem; background:var(--ui-cream); border-bottom:3px solid #c5e3ff; color:var(--ui-ink); flex-shrink:0; }
-.document-toolbar span { flex:1; min-width:0; overflow-wrap:anywhere; font-family:var(--ui-font); }
-@media(max-width:600px) { .document-toolbar { flex-wrap:wrap; padding:.6rem; } .document-toolbar span { flex-basis:100%; } }
+:root body .body .ui-button:hover:not(:disabled) {
+  background: #146bd0;
+  transform: translateY(-1px);
+}
+:root body .body .ui-button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #1748aa;
+}
+:root body .body .ui-button.secondary {
+  background: #e7f3ff;
+  color: var(--ui-ink);
+  border-color: #85bff7;
+  box-shadow: 0 4px 0 #85bff7;
+}
+:root body .body .ui-button.secondary:hover:not(:disabled) {
+  background: #d6eaff;
+}
+:root body .body .ui-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+:root body .body .ui-alert {
+  background: #fff5d7;
+  border: 3px solid var(--ui-yellow);
+  border-radius: 18px;
+  color: #594616;
+  padding: 1rem;
+}
+:root body .body .request-error {
+  border: 3px solid #ffc1bc;
+  background: #fff5f0;
+  border-radius: 18px;
+}
+:root body .body .ui-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  background: #e7f3ff;
+  color: var(--ui-ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+:root body .body :is(app-teacher-library, app-student-home) :is(h1, h2, nav) {
+  font-family: var(--ui-font);
+}
+:root body .body :is(app-teacher-library, app-student-home) nav a {
+  text-decoration: none;
+  color: var(--ui-ink);
+  padding: 0.4rem 0.8rem;
+  background: #e7f3ff;
+  border-radius: 12px;
+}
+:root body .body app-menu-button .menu-button {
+  border-radius: 24px;
+  box-shadow: 0 6px 0 #1748aa;
+}
+:root body .body app-side-menu-button .side-menu-button {
+  border-radius: 20px;
+  box-shadow: 0 4px 0 #1748aa;
+}
+:root body .body app-student-home section h2::before {
+  content: "✦";
+  color: #ba7300;
+  background: var(--ui-yellow);
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 0.6rem;
+  border-radius: 12px;
+}
+.document-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  justify-content: end;
+  color: var(--ui-ink);
+  flex-shrink: 0;
+}
+.document-toolbar span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--ui-font);
+}
+@media (max-width: 600px) {
+  .document-toolbar {
+    flex-wrap: wrap;
+    padding: 0.6rem;
+  }
+  .document-toolbar span {
+    flex-basis: 100%;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
-  html { scroll-behavior:auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -1,11 +1,49 @@
-﻿<div class="pdf" role="dialog" aria-modal="true" [attr.aria-busy]="isLoading" aria-label="Xem tài liệu">
-  <header class="document-toolbar"><span>{{ pdfName }}</span><a class="ui-button" *ngIf="downloadUrl" [href]="downloadUrl" download>Tải tài liệu</a><button class="ui-button secondary" (click)="closepdf.emit(true)" aria-label="Đóng tài liệu">Đóng ✕</button></header>
-  <div class="loading-file" *ngIf="isLoading" role="status" aria-label="Đang tải tài liệu"><img src="images/images/file-loading.gif" alt="" /></div>
-  <p class="document-empty" *ngIf="!pdfs.length">Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.</p>
+﻿<div
+  class="pdf"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-busy]="isLoading"
+  aria-label="Xem tài liệu"
+>
+  <header class="document-toolbar">
+    <a class="ui-button" *ngIf="downloadUrl" [href]="downloadUrl" download
+      >Tải tài liệu</a
+    ><button
+      class="ui-button secondary"
+      (click)="closepdf.emit(true)"
+      aria-label="Đóng tài liệu"
+    >
+      Đóng ✕
+    </button>
+  </header>
+  <div
+    class="loading-file"
+    *ngIf="isLoading"
+    role="status"
+    aria-label="Đang tải tài liệu"
+  >
+    <img src="images/images/file-loading.gif" alt="" />
+  </div>
+  <p class="document-empty" *ngIf="!pdfs.length">
+    Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.
+  </p>
   <div class="pdf-container" (scroll)="onPdfContainerScroll()">
     <div class="content">
-      <app-document-page *ngFor="let pdf of pdfs; let i = index; trackBy: trackPage" [src]="pdf.split('public/')[1]" [eager]="i === 0" [alt]="'Trang ' + (i + 1)" (settled)="i === 0 && (isLoading = false)" />
+      <app-document-page
+        *ngFor="let pdf of pdfs; let i = index; trackBy: trackPage"
+        [src]="pdf.split('public/')[1]"
+        [eager]="i === 0"
+        [alt]="'Trang ' + (i + 1)"
+        (settled)="i === 0 && (isLoading = false)"
+      />
     </div>
   </div>
-  <button class="scroll-to-top ui-button secondary" *ngIf="showScrollToTop" (click)="scrollToTop()" aria-label="Về đầu tài liệu">↑</button>
+  <button
+    class="scroll-to-top ui-button secondary"
+    *ngIf="showScrollToTop"
+    (click)="scrollToTop()"
+    aria-label="Về đầu tài liệu"
+  >
+    ↑
+  </button>
 </div>
