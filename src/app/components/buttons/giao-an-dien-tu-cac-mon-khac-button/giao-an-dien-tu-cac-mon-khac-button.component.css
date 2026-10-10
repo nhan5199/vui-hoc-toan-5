@@ -13,7 +13,7 @@
   background-color: yellow;
   cursor: pointer;
   color: #e9353f;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 6px solid black;
   display: flex;
   flex-direction: row;
@@ -24,11 +24,11 @@ a {
   text-decoration: none;
 }
 
-.giao-an-dien-tu-cac-mon-khac-button:hover {
+.giao-an-dien-tu-cac-mon-khac-button:is(:hover, :focus-within) {
   transform: scale(1.05);
 }
 
-.giao-an-dien-tu-cac-mon-khac-button:hover button {
+.giao-an-dien-tu-cac-mon-khac-button:is(:hover, :focus-within) button {
   color: yellow;
 }
 
@@ -48,7 +48,7 @@ a {
   padding: 5px 20px;
   border-radius: 20px;
   font-size: 1rem;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 p {
   margin: 0;
@@ -57,7 +57,7 @@ p {
 .giao-an-dien-tu-cac-mon-khac-button img {
   width: 30%;
   transform: translateX(10%);
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 @media screen and (max-width: 950px) {

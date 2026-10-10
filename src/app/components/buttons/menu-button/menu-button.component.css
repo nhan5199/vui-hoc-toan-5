@@ -10,7 +10,7 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   background-color: #fd9eab;
   background: linear-gradient(to left, #fd9eab 50%, #5271ff 50%);
   background-size: 200% 100%;
@@ -24,7 +24,7 @@
   transform: translateY(-50%);
   left: -5%;
   width: 5.8rem;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 a {
@@ -35,17 +35,17 @@ a {
   text-align: center;
   color: white;
   font-family: var(--anton-font);
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-.menu-button:hover a {
+.menu-button:is(:hover, :focus-within) a {
   color: #eef30e;
 }
 
-.menu-button:hover {
+.menu-button:is(:hover, :focus-within) {
   color: #5271ff;
   background-position: left bottom;
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 @media screen and (max-width: 950px) {

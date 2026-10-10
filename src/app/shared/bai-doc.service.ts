@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
+import { ReadCacheService } from '../services/read-cache.service';
 
 export interface InterPreterData {
   is360Img: number;
@@ -22,45 +23,41 @@ export interface ContentData {
   providedIn: 'root',
 })
 export class BaiDocService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private cache: ReadCacheService) {}
 
   pushContentData(data: ContentData[]) {
     const ref = this.db.list('bai-doc');
     data.forEach((item: ContentData) => {
-      ref.push(item);
+      void ref.push(item).then(() => this.cache.invalidate('bai-doc'));
     });
   }
 
   pushInterpreterData(item: InterPreterData, readingUrl: string) {
     const ref = this.db.list(`chu-thich/${readingUrl}`);
-    ref.push(item);
+    void ref.push(item).then(() => this.cache.invalidate(`chu-thich/${readingUrl}`));
   }
 
   getAllInterpreterData(readingUrl: string): Observable<InterPreterData[]> {
-    return this.db
-      .object<any>(`chu-thich/${readingUrl}`)
-      .valueChanges()
-      .pipe(
+    return this.cache.read(`chu-thich/${readingUrl}`, () => this.db.object<any>(`chu-thich/${readingUrl}`).valueChanges().pipe(
+        take(1),
         map((data) => {
           if (Array.isArray(data)) {
             return data;
           }
           return data ? Object.values(data) : [];
         })
-      );
+      ));
   }
 
   getAllContentData(): Observable<ContentData[]> {
-    return this.db
-      .object<any>(`bai-doc`)
-      .valueChanges()
-      .pipe(
+    return this.cache.read(`bai-doc`, () => this.db.object<any>(`bai-doc`).valueChanges().pipe(
+        take(1),
         map((data) => {
           if (Array.isArray(data)) {
             return data;
           }
           return data ? Object.values(data) : [];
         })
-      );
+      ));
   }
 }

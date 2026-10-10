@@ -35,13 +35,9 @@ export class VideoMinhHoaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.pathFromRoot.forEach((route) => {
-      route.url.subscribe((urlSegment) => {
-        this.currentPath +=
-          '/' + urlSegment.map((segment) => segment.path).join('/');
-        this.listFiles();
-      });
-    });
+    this.currentPath = '//' + this.route.snapshot.pathFromRoot
+      .flatMap(route => route.url.map(segment => segment.path)).join('/');
+    this.listFiles();
   }
 
   // List files

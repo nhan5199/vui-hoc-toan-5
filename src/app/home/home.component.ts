@@ -10,11 +10,12 @@ import {
 import { MenuButtonComponent } from '../components/buttons/menu-button/menu-button.component';
 import { HomeButtonComponent } from '../components/buttons/home-button/home-button.component';
 import { ImageLoaderService } from '../services/image-loader.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MenuButtonComponent, HomeButtonComponent],
+  imports: [CommonModule, MenuButtonComponent, HomeButtonComponent, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

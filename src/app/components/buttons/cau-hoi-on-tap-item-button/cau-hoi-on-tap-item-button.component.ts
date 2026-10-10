@@ -1,10 +1,11 @@
+import { PressableDirective } from '../../../shared/pressable.directive';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cau-hoi-on-tap-item-button',
   standalone: true,
-  imports: [RouterLink],
+  imports: [PressableDirective, RouterLink],
   templateUrl: './cau-hoi-on-tap-item-button.component.html',
   styleUrl: './cau-hoi-on-tap-item-button.component.css',
 })

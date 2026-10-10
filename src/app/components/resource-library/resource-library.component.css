@@ -1,0 +1,23 @@
+﻿:host { display: block; }
+:host > div { min-height:100svh; padding:2rem 1rem; background:url('/images/images/menu-background.gif') center/cover no-repeat; }
+.menu-title { text-align:center; color:yellow; font-family:var(--pacifico-font); font-size:clamp(1.8rem,4vw,3rem); padding:1rem 6rem; }
+.book-logo { position:absolute; top:2rem; right:2rem; width:5rem; }
+.search { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin:1.5rem auto; }
+.search label { display:flex; align-items:center; gap:.5rem; color:white; font-weight:700; }
+.search select { padding:.6rem; border:3px solid #329af9; border-radius:14px; color:#1748aa; background:white; min-height:44px; }
+.e-book-container,.ke-hoach-bai-day-container,.giao-an-dien-tu-container,.phieu-bai-tap-container { width:min(1100px,100%); margin:2rem auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:center; justify-items:center; gap:2rem; }
+app-ebook-button,app-ke-hoach-bai-day-button,app-giao-an-dien-tu-button,app-phieu-bai-tap-button { display:block; width:100%; }
+app-ebook-button { max-width:180px; }
+.empty-file { text-align:center; color:white; }
+.empty-file img { width:min(250px,60vw); }
+.load-more { display:block; margin:1.5rem auto; padding:.8rem 1.5rem; border-radius:1rem; border:0; background:#1748aa; color:white; transition:transform 180ms ease; }
+.load-more:hover { transform:translateY(-2px); }
+.load-more:disabled { opacity:.5; }
+@media(max-width:800px) { .e-book-container,.ke-hoach-bai-day-container,.giao-an-dien-tu-container,.phieu-bai-tap-container { grid-template-columns:repeat(2,minmax(0,1fr)); } .menu-title { padding:4rem 0 1rem; } .book-logo { width:4rem; top:1rem; right:1rem; } }
+@media(max-width:480px) { .e-book-container,.ke-hoach-bai-day-container,.giao-an-dien-tu-container,.phieu-bai-tap-container { grid-template-columns:minmax(0,1fr); } }
+.storage-warning { max-width:1000px; margin:1rem auto; padding:1rem; background:#fff4ce; color:#433500; border-radius:12px; }
+.preview-cards { max-width:1100px; margin:1rem auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+.preview-cards article { background:white; padding:1rem; border-radius:14px; color:#243451; }
+.preview-cards img { width:100%; height:160px; object-fit:contain; }
+.preview-cards h2 { font-size:1.1rem; }
+.preview-cards button { border:0; border-radius:8px; padding:.7rem; background:#1748aa; color:white; }

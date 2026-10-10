@@ -1,11 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Tilt+Prism&family=Twinkle+Star&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Black+Ops+One&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Single+Day&family=Tilt+Prism&family=Twinkle+Star&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Baloo+Bhai+2:wght@400;500&family=Black+Ops+One&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Single+Day&family=Tilt+Prism&family=Twinkle+Star&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Calistoga&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Tilt+Prism&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&family=Calistoga&family=Kablammo&family=Lobster&family=Mea+Culpa&family=Pacifico&family=Pattaya&family=Praise&family=Tilt+Prism&family=Twinkle+Star&family=Black+Ops+One&family=Single+Day&family=Anton&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -293,4 +286,74 @@ p.question {
     font-size: 2rem !important;
     padding-top: 7rem !important;
   }
+}
+
+/* Shared interaction timing; scale preserves each card's own transforms. */
+/* Toy-like fields. Root specificity also overrides legacy scoped field styles. */
+:root body .body :is(select, textarea, input:where(:not([type="radio"], [type="checkbox"], [type="range"], [type="color"], [type="hidden"], [type="button"], [type="submit"], [type="reset"], [type="image"]))) {
+  box-sizing: border-box;
+  min-height: 56px;
+  max-width: 100%;
+  padding: 10px 18px;
+  border: 4px solid #329af9;
+  border-radius: 22px 26px 22px 24px;
+  background-color: #fffef8;
+  color: #1453bb;
+  font-family: "Baloo Bhai 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+  outline: none;
+  box-shadow: 0 5px 0 #2476c4, inset 0 3px 0 #fff;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+:root body .body select:not([multiple]) {
+  appearance: none;
+  padding-right: 54px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Ccircle cx='15' cy='15' r='14' fill='%23e2f2ff'/%3E%3Cpath d='m10 13 5 5 5-5' fill='none' stroke='%231453bb' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+:root body .body :is(input, textarea)::placeholder { color: #7189b0; opacity: 1; }
+:root body .body :is(input, select, textarea):hover:not(:disabled) { border-color: #1685eb; background-color: #fff; }
+:root body .body :is(input, select, textarea):focus {
+  outline: none;
+}
+:root body .body :is(input, select, textarea):focus-visible {
+  border-color: #1748aa;
+  outline: none;
+  box-shadow: 0 3px 0 #1748aa, inset 0 0 0 2px #ffe28a;
+}
+:root body .body :is(input, select, textarea):disabled { opacity: .65; cursor: not-allowed; }
+:root body .body :is(input, select, textarea)[aria-invalid="true"] { border-color: #dc526b; }
+:root body .body textarea { min-height: 112px; resize: vertical; }
+:root body .body input[type="file"] { font-size: 1rem; }
+:root body .body input[type="file"]::file-selector-button {
+  border: 0; border-radius: 12px; padding: 8px 12px; margin-right: 12px;
+  background: #e8f2ff; color: #1453bb; font: inherit; cursor: pointer;
+}
+@media (max-width: 600px) {
+  :root body .body :is(select, textarea, input:where(:not([type="radio"], [type="checkbox"], [type="range"], [type="color"], [type="hidden"], [type="button"], [type="submit"], [type="reset"], [type="image"]))) {
+    min-height: 52px; font-size: 1rem; padding-top: 9px; padding-bottom: 9px;
+  }
+}
+:root { --interaction-easing: cubic-bezier(.2,.8,.2,1); }
+button, [appPressable], a[href], .back-icon, .download, .download-img {
+  transition: scale 120ms var(--interaction-easing), transform 180ms var(--interaction-easing), opacity 180ms ease, background-color 180ms ease, color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button:active, [appPressable]:active, a[href]:active { scale: .98; }
+button:focus-visible, [appPressable]:focus-visible, a[href]:focus-visible, select:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+.route-loading { position:fixed; inset:0; z-index:2000; }
+.request-error { margin:1rem auto; padding:1rem; max-width:40rem; border-radius:12px; color:#172554; background:#fff; text-align:center; }
+.request-error button { border:0; border-radius:8px; padding:.5rem 1rem; background:#2563eb; color:#fff; }
+.document-empty { padding:2rem; color:white; text-align:center; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+  html { scroll-behavior:auto; }
 }

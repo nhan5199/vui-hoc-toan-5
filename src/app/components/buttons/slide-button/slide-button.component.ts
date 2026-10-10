@@ -1,3 +1,4 @@
+import { PressableDirective } from '../../../shared/pressable.directive';
 import {
   Component,
   EventEmitter,
@@ -11,7 +12,7 @@ import Constant from '../../../shared/constants/Constant';
 @Component({
   selector: 'app-slide-button',
   standalone: true,
-  imports: [],
+  imports: [PressableDirective, ],
   templateUrl: './slide-button.component.html',
   styleUrl: './slide-button.component.css',
 })
@@ -24,9 +25,7 @@ export class SlideButtonComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {
-      this.imgUrl = Constant.IMAGE_PATHS.images.filter((x: any) =>
-        x.includes(this.buttonName.split('.')[0])
-      );
+      this.imgUrl = Constant.findImages(this.buttonName.replace(/\.[^.]+$/, ''));
 
       this.imgUrl[0] = this.imgUrl[0]?.split('public/')[1];
     }

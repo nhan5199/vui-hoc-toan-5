@@ -10,10 +10,10 @@
   background-color: #6d85ff;
   cursor: pointer;
   gap: 10px;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-.video-button:hover {
+.video-button:is(:hover, :focus-within) {
   transform: scale(1.05);
 }
 
@@ -40,7 +40,7 @@
   border-radius: 15px;
   padding: 13px 18px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 6px solid #5271ff;
   background-color: #eef30e;
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
@@ -48,8 +48,8 @@
   background-position: right bottom;
 }
 
-.video-button button:hover,
-.video-button:hover button {
+.video-button button:is(:hover, :focus-within),
+.video-button:is(:hover, :focus-within) button {
   padding: 15px 20px;
   /* width: 550px; */
   color: #eef30e;

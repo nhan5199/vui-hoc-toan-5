@@ -1,26 +1,14 @@
-<div class="flip-book">
-  <a [href]="downloadUrl" download>
-    <img class="download" title="Tải file" src="icons/download-icon.png" alt=""
-  /></a>
-  <div class="loading-file" *ngIf="isLoading">
-    <img src="images/images/file-loading.gif" alt="" />
-  </div>
-  <div class="book" [class.disappear]="isLoading">
-    <img
-      class="left-arrow"
-      src="icons/left-arrow.png"
-      alt=""
-      (click)="onClick(-1)"
-    />
-    <img
-      class="right-arrow"
-      src="icons/right-arrow.png"
-      alt=""
-      (click)="onClick(+1)"
-    />
+﻿<div class="flip-book" (click)="closeBackdrop($event)" role="dialog" aria-label="Xem sách" aria-modal="true">
+  <a [href]="downloadUrl" download aria-label="Tải tài liệu"><img class="download" src="icons/download-icon.png" alt="Tải file" /></a>
+  <div class="loading-file" *ngIf="isLoading" role="status" aria-label="Đang tải trang"><img src="images/images/file-loading.gif" alt="" /></div>
+  <div class="request-error" *ngIf="hasPageError" role="alert">Không tải được trang sách. <button (click)="retry()">Thử lại</button></div>
+  <p class="document-empty" *ngIf="!listImgs.length">Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.</p>
+  <div class="book" [attr.aria-busy]="isLoading">
+    <button class="left-arrow" [disabled]="currentPageIndex === 0" (click)="onClick(-1)" aria-label="Trang trước"><img src="icons/left-arrow.png" alt="" /></button>
+    <button class="right-arrow" [disabled]="currentPageIndex + 2 > listImgs.length" (click)="onClick(1)" aria-label="Trang sau"><img src="icons/right-arrow.png" alt="" /></button>
     <div id="pages" class="pages">
-      <div class="page" *ngFor="let img of listImgs; let i = index">
-        <img [src]="img.split('public/')[1]" alt="" />
+      <div class="page" *ngFor="let img of listImgs; let i = index" [class.flipped]="i < currentPageIndex" [style.z-index]="i % 2 === 0 ? listImgs.length - i : i" (click)="flipPage(i)">
+        <img *ngIf="shouldLoadPage(i) && !failedPages.has(i)" [src]="previews.url(img)" decoding="async" [attr.fetchpriority]="visiblePages.includes(i) ? 'high' : 'low'" [alt]="'Trang ' + (i + 1)" (load)="pageLoaded(i, $event)" (error)="pageFailed(i)" />
       </div>
     </div>
   </div>

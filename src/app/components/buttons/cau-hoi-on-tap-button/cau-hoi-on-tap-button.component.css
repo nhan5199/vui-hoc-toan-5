@@ -11,7 +11,7 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   background-color: #fd9eab;
   /* background: linear-gradient(to left, #fff 50%, orange 50%);
   background-size: 200% 100%;
@@ -27,7 +27,7 @@
 
 .cau-hoi-on-tap-button .img-icon img {
   width: 7rem;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .cau-hoi-on-tap-button .img-icon .img-name {
@@ -38,7 +38,7 @@
   font-size: 1.5rem;
   color: red;
   font-family: var(--anton-font);
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 a {
@@ -50,13 +50,13 @@ a {
   color: white;
   font-family: var(--lobster-font);
 }
-.cau-hoi-on-tap-button:hover {
+.cau-hoi-on-tap-button:is(:hover, :focus-within) {
   transform: scale(1.05);
   /* color: white;
   background-position: left bottom; */
 }
 
-.cau-hoi-on-tap-button:hover a {
+.cau-hoi-on-tap-button:is(:hover, :focus-within) a {
   color: #5271ff;
 }
 

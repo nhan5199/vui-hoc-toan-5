@@ -36,13 +36,9 @@ export class SlideComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.pathFromRoot.forEach((route) => {
-      route.url.subscribe((urlSegment) => {
-        this.currentPath +=
-          '/' + urlSegment.map((segment) => segment.path).join('/');
-        this.listFiles();
-      });
-    });
+    this.currentPath = '//' + this.route.snapshot.pathFromRoot
+      .flatMap(route => route.url.map(segment => segment.path)).join('/');
+    this.listFiles();
   }
 
   // List files
@@ -61,9 +57,7 @@ export class SlideComponent implements OnInit, AfterViewInit {
 
   onViewSlide(event: any) {
     this.slideName = event.name;
-    this.slideDownloadUrl = `files/${this.currentPath.split('//')[1]}/${
-      event.name
-    }`;
+    this.slideDownloadUrl = event.url;
     this.isDisplayViewSlide = true;
   }
 

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FileService } from '../../services/file.service';
 import { CommonModule, Location } from '@angular/common';
 import Constant from '../../shared/constants/Constant';
+import { PreviewService } from '../../services/preview.service';
 
 @Component({
   selector: 'app-slide-display',
@@ -17,8 +18,21 @@ export class SlideDisplayComponent implements OnInit {
   content: any[] = [];
 
   loading: boolean = true;
+  loadError = false;
+  async imageLoaded(event: Event): Promise<void> {
+    const index = this.activeImg;
+    const img = event.target as HTMLImageElement;
+    try { await img.decode(); } catch { }
+    if (index === this.activeImg) { this.loading = false; this.cdr.markForCheck(); }
+  }
+  imageFailed(): void { this.loading = false; this.loadError = true; }
+  retryImage(): void {
+    this.loadError = false;
+    this.loading = true;
+  }
 
   constructor(
+    public previews: PreviewService,
     private readonly fileService: FileService,
     private cdr: ChangeDetectorRef,
     private readonly location: Location
@@ -28,15 +42,14 @@ export class SlideDisplayComponent implements OnInit {
     this.imageFolderPath = this.fileService.getImageFolderPath();
     this.imageDownloadUrl = this.fileService.getImageDownloadUrl();
     if (this.imageFolderPath?.length > 0) {
-      this.listImagePaths = Constant.IMAGE_PATHS.images.filter((x) =>
-        x.includes(this.imageFolderPath)
-      );
+      this.listImagePaths = Constant.findImages(this.imageFolderPath);
 
       let path = `${this.imageFolderPath}`;
       this.listImagePaths = this.listImagePaths.filter((x) => x.includes(path));
 
       this.sortImagePathsByNumber(this.listImagePaths);
     }
+    this.loading = this.listImagePaths.length > 0;
   }
 
   sortImagePathsByNumber(paths: string[]) {
@@ -55,6 +68,9 @@ export class SlideDisplayComponent implements OnInit {
 
   activeImg: number = 0;
   setActiveImg(action: number) {
+    if (!this.listImagePaths.length) return;
+    this.loading = true;
+    this.loadError = false;
     this.activeImg += action;
 
     if (this.activeImg < 0) {

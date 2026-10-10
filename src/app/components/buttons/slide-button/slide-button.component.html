@@ -1,5 +1,5 @@
-<div class="slide-button" (click)="onClickSlide()">
-  <img [src]="imgUrl[0]" alt="" />
+<div appPressable class="slide-button" (click)="onClickSlide()">
+  <img loading="lazy" decoding="async" [src]="imgUrl[0]" alt="" />
   <div class="content">
     <p class="title">{{ buttonName.split(".")[0] }}</p>
     <button>Xem slide</button>

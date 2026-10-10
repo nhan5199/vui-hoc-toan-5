@@ -1,4 +1,6 @@
 <div class="body" style="position: relative">
+  <div *ngIf="navigating" class="loading route-loading" role="status" aria-label="Đang tải nội dung"></div>
+  <div *ngIf="navigationFailed" class="request-error" role="alert">Không tải được nội dung. <button (click)="retryNavigation()">Thử lại</button></div>
   <app-menu></app-menu>
   <img
     class="back-icon"

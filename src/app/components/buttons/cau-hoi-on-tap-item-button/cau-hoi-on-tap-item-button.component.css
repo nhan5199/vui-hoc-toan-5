@@ -16,7 +16,7 @@
   border: 4px solid black;
   border-radius: 10px;
   padding: 10px;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   transform-origin: left center; /* Set origin to the left edge */
   transition: transform 0.5s ease; /* Smooth transition */
 }
@@ -48,7 +48,7 @@
   background-color: white;
   border: 4px solid black;
   border-radius: 10px;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .inside .content {
@@ -58,10 +58,10 @@
   background-color: var(--background-transparent-black);
   z-index: 5;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-.inside .content:hover button {
+.inside .content:is(:hover, :focus-within) button {
   border: 6px solid #eef30e;
   background-position: left bottom;
   color: #eef30e;
@@ -75,7 +75,7 @@
   text-decoration: none;
   border-radius: 15px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 3px solid #5271ff;
   background-color: #eef30e;
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
@@ -87,15 +87,15 @@
   transform: translate(-20%, -50%);
 }
 
-.cau-hoi-on-tap-item-button:hover .outside {
+.cau-hoi-on-tap-item-button:is(:hover, :focus-within) .outside {
   transform: rotateY(-75deg); /* Flip 45 degrees to the left */
 }
 
-.cau-hoi-on-tap-item-button:hover .inside {
+.cau-hoi-on-tap-item-button:is(:hover, :focus-within) .inside {
   transform: translate(10%, 5%);
 }
 
-.cau-hoi-on-tap-item-button:hover .inside .content {
+.cau-hoi-on-tap-item-button:is(:hover, :focus-within) .inside .content {
   opacity: 1;
 }
 

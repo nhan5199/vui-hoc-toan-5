@@ -1,0 +1,29 @@
+<main>
+  <nav><a routerLink="/">Trang chủ</a><a routerLink="/hoc-sinh">Góc học sinh</a></nav>
+  <h1>Thư viện giáo viên</h1>
+  <p>Tìm tài liệu, xem trước và tải bản gốc để chuẩn bị bài dạy.</p>
+  <section class="filters" aria-label="Lọc tài liệu">
+    <label class="query">Tên hoặc chủ đề<input type="search" [(ngModel)]="query" (ngModelChange)="applyFilters()" placeholder="Ví dụ: phân số, hình học..." /></label>
+    <label>Bộ sách<select [(ngModel)]="book" (ngModelChange)="applyFilters()"><option value="">Tất cả bộ sách</option><option *ngFor="let option of books" [value]="option.value">{{ option.label }}</option></select></label>
+    <label>Loại tài liệu<select [(ngModel)]="kind" (ngModelChange)="applyFilters()"><option value="">Tất cả tài liệu</option><option *ngFor="let option of kinds" [value]="option.value">{{ option.label }}</option></select></label>
+    <label>Học kì<select [(ngModel)]="semester" (ngModelChange)="applyFilters()"><option value="">Cả năm</option><option value="hoc-ki-1">Học kì 1</option><option value="hoc-ki-2">Học kì 2</option></select></label>
+    <label>Tuần<select [(ngModel)]="week" (ngModelChange)="applyFilters()"><option value="">Tất cả tuần</option><option *ngFor="let n of weeks" [value]="n">Tuần {{ n }}</option></select></label>
+    <label>Định dạng<select [(ngModel)]="extension" (ngModelChange)="applyFilters()"><option value="">Tất cả định dạng</option><option *ngFor="let ext of extensions" [value]="ext">{{ ext.toUpperCase() }}</option></select></label>
+    <button (click)="reset()">Xóa bộ lọc</button>
+  </section>
+  <p role="status">{{ filtered.length }} tài liệu</p>
+  <app-empty-state *ngIf="!loading && !error && !filtered.length" title="Chưa tìm thấy bài học này!" message="Bạn thử từ khóa khác hoặc xóa bộ lọc nhé. Chú sách nhỏ sẽ giúp bạn tìm tiếp!" actionLabel="Xóa bộ lọc" (retry)="reset()" />
+  <section class="resources" aria-label="Danh sách tài liệu">
+    <article *ngFor="let resource of visible; trackBy: trackResource">
+      <img *ngIf="resource.thumbnailUrl" class="thumbnail" [src]="resource.thumbnailUrl" [alt]="resource.title" loading="lazy" decoding="async" />
+      <span class="format">{{ resource.extension.toUpperCase() }}</span>
+      <h2>{{ resource.title }}</h2><p>{{ size(resource.sizeBytes) }}</p>
+      <div class="actions"><button (click)="preview(resource)" [disabled]="loading">Xem trước</button><a [href]="resource.downloadUrl" download>Tải tài liệu</a></div>
+    </article>
+  </section>
+  <button class="more" *ngIf="visible.length < filtered.length" (click)="more()">Xem thêm tài liệu</button>
+  <section class="browse"><h2>Tài liệu theo bộ sách</h2><p>Chọn bộ sách để xem thêm bài giảng và kế hoạch bài dạy.</p><div *ngFor="let option of books"><strong>{{ option.label }}</strong><a *ngFor="let category of kinds" [routerLink]="['/', option.value, category.value]">{{ category.label }}</a></div></section>
+  <div *ngIf="loading" class="loading-file" role="status" aria-label="Đang tải bản xem trước"><img src="images/images/file-loading.gif" alt="" /></div>
+  <p *ngIf="error" role="alert">Không tải được tài liệu. <button (click)="loadCatalog()">Thử lại</button></p>
+</main>
+<app-resource-preview *ngIf="selected as resource" [resource]="resource" (close)="selected = undefined" />

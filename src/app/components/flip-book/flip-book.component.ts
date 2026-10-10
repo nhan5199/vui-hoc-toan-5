@@ -1,182 +1,79 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import Constant from '../../shared/constants/Constant';
+﻿import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnChanges, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import Constant from '../../shared/constants/Constant';
+import { PreviewService } from '../../services/preview.service';
 
 @Component({
-  selector: 'app-flip-book',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './flip-book.component.html',
-  styleUrl: './flip-book.component.css',
+  selector: 'app-flip-book', standalone: true, imports: [CommonModule],
+  templateUrl: './flip-book.component.html', styleUrl: './flip-book.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlipBookComponent implements AfterViewInit, OnChanges {
-  @Input('folderPath') folderPath: string = '';
-  @Input('downloadUrl') downloadUrl: string = '';
-  @Output('closeFlipBook')
-  closeFlipBook: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+export class FlipBookComponent implements OnChanges, OnDestroy {
+  @Input() folderPath = '';
+  @Input() downloadUrl = '';
+  @Output() closeFlipBook = new EventEmitter<boolean>();
   listImgs: string[] = [];
-  isLoading: boolean = true;
+  currentPageIndex = 0;
+  private readyPages = new Set<number>();
+  failedPages = new Set<number>();
+  private revision = 0;
+  private destroyed = false;
+  prefetch = false;
+  private departing: number[] = [];
+  private turnTimer?: ReturnType<typeof setTimeout>;
+  constructor(public previews: PreviewService, private cd: ChangeDetectorRef) {}
 
-  currentPageIndex: number = 0; // Track the current page index
-
-  constructor(private readonly el: ElementRef) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['folderPath'] && this.folderPath?.length > 0) {
-      this.listImgs = Constant.IMAGE_PATHS.images.filter((x) =>
-        x.includes(this.folderPath)
-      );
-      this.sortImagePathsByNumber(this.listImgs);
-      this.downloadUrl = Constant.FILE_PATH.files
-        .filter((x) =>
-          x.includes('files/' + this.getFileDownloadPath(this.folderPath))
-        )[0]
-        .split('public/')[1];
-    }
+  // The cover is zero. After turning a leaf the visible spread is i-1, i.
+  get visiblePages(): number[] {
+    return this.currentPageIndex === 0 ? [0] : [this.currentPageIndex - 1, this.currentPageIndex].filter(i => i < this.listImgs.length);
   }
-
-  getFileDownloadPath(filePath: string): string {
-    // Split the path into parts
-    const parts = filePath.split('/');
-
-    // Get the first part (e.g., "chan-troi-sang-tao")
-    const root = parts[0];
-
-    // Get the last part (e.g., "Sách KHBD.pdf")
-    const fileName = parts[parts.length - 1];
-
-    // Combine the root and the file name
-    return `${root}/${parts[1]}/${fileName}`;
+  get isLoading(): boolean { return this.visiblePages.some(i => i < this.listImgs.length && !this.readyPages.has(i)); }
+  get hasPageError(): boolean { return this.visiblePages.some(i => this.failedPages.has(i)); }
+  ngOnChanges(): void {
+    clearTimeout(this.turnTimer); this.departing = [];
+    this.revision++;
+    this.currentPageIndex = 0;
+    this.prefetch = false;
+    this.readyPages.clear(); this.failedPages.clear();
+    this.listImgs = Constant.findImages(this.folderPath).sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
   }
-
-  ngAfterViewInit(): void {
-    const pages = document.querySelectorAll<HTMLDivElement>('.book .page');
-    for (let i = 0; i < pages.length; i++) {
-      const page = pages[i];
-      if (i % 2 === 0) {
-        page.style.zIndex = (pages.length - i).toString();
-      }
-    }
-
-    pages.forEach((page, index) => {
-      page.addEventListener('click', () => {
-        this.flipPage(index, page);
-      });
-    });
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
+  shouldLoadPage(index: number): boolean {
+    return this.departing.includes(index) || this.visiblePages.includes(index) || (this.prefetch && index > this.currentPageIndex && index <= this.currentPageIndex + 2);
   }
-
-  sortImagePathsByNumber(paths: string[]) {
-    paths.sort((a, b) => {
-      const numA = this.extractNumber(a);
-      const numB = this.extractNumber(b);
-      return numA - numB;
-    });
+  async pageLoaded(index: number, event: Event): Promise<void> {
+    const revision = this.revision;
+    try { await (event.target as HTMLImageElement).decode(); } catch { }
+    if (this.destroyed || revision !== this.revision) return;
+    this.readyPages.add(index);
+    if (!this.isLoading) this.prefetch = true;
+    this.cd.markForCheck();
   }
-
-  extractNumber(path: string): number {
-    const regex = /-images-(\d+)\.jpg$/;
-    const match = path.match(regex);
-    return match ? parseInt(match[1], 10) : 0;
+  pageFailed(index: number): void {
+    this.failedPages.add(index); this.readyPages.add(index);
+    if (!this.isLoading) this.prefetch = true;
   }
-
-  onClick(direction: number) {
-    const pages = document.querySelectorAll<HTMLDivElement>('.book .page');
-
-    // Calculate the next page pair index based on the current page pair index and the direction
-    let nextPagePairIndex = this.currentPageIndex + direction * 2;
-
-    if (nextPagePairIndex < 0 || nextPagePairIndex >= pages.length) {
-      return; // Do nothing if the next page pair index is out of bounds
-    }
-
-    // Flip the pages in pairs
-    if (direction === -1 && this.currentPageIndex > 0) {
-      this.flipPagePair(this.currentPageIndex - 2, pages);
-      this.currentPageIndex -= 2;
-    } else if (direction === 1 && this.currentPageIndex < pages.length - 2) {
-      this.flipPagePair(this.currentPageIndex, pages);
-      this.currentPageIndex += 2;
-    }
+  retry(): void {
+    for (const i of this.visiblePages) { this.failedPages.delete(i); this.readyPages.delete(i); }
   }
-
-  flipPagePair(index: number, pages: NodeListOf<HTMLDivElement>) {
-    if (index < 0 || index >= pages.length) return;
-
-    // Flip the even page and the next odd page together
-    const evenPage = pages[index];
-    const oddPage = pages[index + 1];
-
-    if (evenPage) {
-      evenPage.classList.toggle('flipped');
-    }
-    if (oddPage) {
-      oddPage.classList.toggle('flipped');
-    }
+  onClick(direction: number): void {
+    const next = this.currentPageIndex + direction * 2;
+    if (next < 0 || next > this.listImgs.length || !this.listImgs.length) return;
+    clearTimeout(this.turnTimer);
+    this.departing = this.visiblePages;
+    this.currentPageIndex = next;
+    this.prefetch = !this.isLoading;
+    this.turnTimer = setTimeout(() => { this.departing = []; this.cd.markForCheck(); }, 450);
   }
-
-  flipPage(index: number, page: HTMLDivElement) {
-    if (!page) return;
-    if (index % 2 === 0) {
-      // Even pages
-      page.classList.toggle('flipped');
-      const nextPage = page.nextElementSibling as HTMLDivElement;
-      if (nextPage) {
-        if (page.classList.contains('flipped')) {
-          nextPage.classList.add('flipped');
-        } else {
-          nextPage.classList.remove('flipped');
-        }
-      }
-      this.currentPageIndex += 2;
-    } else {
-      // Odd pages
-      page.classList.toggle('flipped');
-      const prevPage = page.previousElementSibling as HTMLDivElement;
-      if (prevPage) {
-        if (page.classList.contains('flipped')) {
-          prevPage.classList.add('flipped');
-        } else {
-          prevPage.classList.remove('flipped');
-        }
-      }
-      this.currentPageIndex -= 2;
-    }
-  }
-
+  flipPage(index: number): void { this.onClick(index % 2 === 0 ? 1 : -1); }
   @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === 'ArrowLeft') {
-      this.onClick(-1);
-    } else if (event.key === 'ArrowRight') {
-      this.onClick(+1);
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape') this.closeFlipBook.emit(true);
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); this.onClick(event.key === 'ArrowLeft' ? -1 : 1);
     }
   }
-
-  @HostListener('document:click', ['$event'])
-  handleClick(event: Event) {
-    const clickedInside = this.el.nativeElement
-      .querySelector('.flip-book .book')
-      .contains(event.target as Node);
-    const clickedDownload = this.el.nativeElement
-      .querySelector('.flip-book .download')
-      .contains(event.target as Node);
-    if (!clickedInside && !clickedDownload) {
-      this.closeFlipBook.emit(true);
-    }
+  closeBackdrop(event: MouseEvent): void {
+    if (event.target === event.currentTarget) this.closeFlipBook.emit(true);
   }
+  ngOnDestroy(): void { this.destroyed = true; this.revision++; clearTimeout(this.turnTimer); }
 }

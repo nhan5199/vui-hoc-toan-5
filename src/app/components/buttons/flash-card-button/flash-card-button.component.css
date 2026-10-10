@@ -10,7 +10,7 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 6px solid #5271ff;
   background-color: #eef30e;
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
@@ -28,7 +28,7 @@ a {
   transform: translateY(-50%);
   left: -8%;
   width: 7.5rem;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .flash-card-button a {
@@ -37,15 +37,15 @@ a {
   font-family: var(--anton-font);
   margin-left: 5%;
 }
-.flash-card-button:hover {
-  transform: scale(1.1);
+.flash-card-button:is(:hover, :focus-within) {
+  transform: scale(1.03);
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;
   background-position: left bottom;
 }
 
-.flash-card-button:hover a {
+.flash-card-button:is(:hover, :focus-within) a {
   color: #eef30e;
 }
 

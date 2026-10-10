@@ -1,5 +1,10 @@
 <div class="loading" *ngIf="isLoading"></div>
 <div class="home-container" [class.hidden]="isLoading" #homeContainer>
+  <!-- do not publich for not, have not checkeds -->
+  <!-- <nav class="audience" aria-label="Chọn góc học tập">
+    <a routerLink="/hoc-sinh">Góc học sinh</a
+    ><a routerLink="/giao-vien">Góc giáo viên</a>
+  </nav> -->
   <div [class.disappear]="disappearHomeImg" class="home">
     <home-button (clickHome)="onDisappear()"></home-button>
   </div>

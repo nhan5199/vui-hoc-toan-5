@@ -1,10 +1,11 @@
+import { PressableDirective } from '../../../shared/pressable.directive';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { XemVideoComponent } from '../../xem-video/xem-video.component';
 
 @Component({
   selector: 'app-video-minh-hoa-button',
   standalone: true,
-  imports: [XemVideoComponent],
+  imports: [PressableDirective, XemVideoComponent],
   templateUrl: './video-minh-hoa-button.component.html',
   styleUrl: './video-minh-hoa-button.component.css',
 })

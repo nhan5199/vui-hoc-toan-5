@@ -1,7 +1,7 @@
 .home-button {
   align-items: center;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .home-button img {
@@ -27,17 +27,17 @@
   background: linear-gradient(to left, #fff 50%, #ff8d64 50%);
   background-size: 200% 100%;
   background-position: right bottom;
-  transition: all 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-.home-button:hover .button {
+.home-button:is(:hover, :focus-within) .button {
   background-position: left bottom;
   color: #f9ead3;
   border-color: #f9ead3;
 }
 
-.home-button:hover {
-  transform: scale(1.1);
+.home-button:is(:hover, :focus-within) {
+  transform: scale(1.03);
 }
 
 @media screen and (max-width: 950px) {

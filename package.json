@@ -6,7 +6,15 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "assets:generate": "node scripts/generate-asset-catalog.cjs",
+    "assets:optimize": "npm run assets:generate && node scripts/optimize-previews.cjs && npm run assets:generate",
+    "prestart": "npm run assets:optimize",
+    "prebuild": "npm run assets:optimize",
+    "assets:verify": "node scripts/verify-asset-catalog.cjs",
+    "test:cache": "ng test --configuration cache --watch=false --browsers=ChromeHeadless --include=src/app/services/read-cache.service.spec.ts",
+    "test:performance": "ng test --configuration cache --watch=false --browsers=ChromeHeadless --include=src/app/services/*.spec.ts --include=src/app/components/document-page/*.spec.ts --include=src/app/components/flip-book/*.spec.ts --include=src/app/teacher-library/*.spec.ts",
+    "test:smoke": "node scripts/browser-smoke.cjs"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +56,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "sharp": "^0.35.5",
     "typescript": "~5.5.2"
   }
 }

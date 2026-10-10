@@ -51,14 +51,9 @@ export class ToanDanGianComponent implements AfterViewInit, OnInit {
   isLoadingFile: boolean = true;
 
   ngOnInit(): void {
-    this.route.pathFromRoot.forEach((route) => {
-      route.url.subscribe((urlSegment) => {
-        this.currentPath +=
-          '/' + urlSegment.map((segment) => segment.path).join('/');
-
-        this.listFiles();
-      });
-    });
+    this.currentPath = '//' + this.route.snapshot.pathFromRoot
+      .flatMap(route => route.url.map(segment => segment.path)).join('/');
+    this.listFiles();
   }
 
   // List files
@@ -93,13 +88,9 @@ export class ToanDanGianComponent implements AfterViewInit, OnInit {
 
   getImgCover(file: FileData) {
     let imgPath = '';
-    imgPath = Constant.IMAGE_PATHS.images.filter((x) =>
-      x.includes(
-        'images/images/' +
+    imgPath = Constant.findImages('images/images/' +
           this.currentPath.split('//')[1] +
-          `/${file.name.split('.')[0]}`
-      )
-    )[0];
+          `/${file.name.split('.')[0]}`)[0];
     return imgPath.split('public/')[1];
   }
 }

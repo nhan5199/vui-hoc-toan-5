@@ -66,7 +66,7 @@ p {
   width: 35vw;
   height: 90svh;
   transform-origin: 0 0;
-  transition: transform 1.4s;
+  transition: transform 420ms cubic-bezier(.2,.7,.2,1);
   backface-visibility: hidden;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -81,7 +81,7 @@ p {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0);
-  transition: background 0.7s;
+  transition: background 180ms ease;
   z-index: 2;
 }
 .book .page:nth-child(odd) {
@@ -173,14 +173,14 @@ body {
   position: fixed;
   width: 10rem;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms ease;
   top: 50px;
   right: 50px;
   z-index: 10;
 }
 
 .download:hover {
-  width: 11rem;
+  transform: scale(1.03);
 }
 
 .left-arrow,
@@ -191,12 +191,19 @@ body {
   width: 50px;
   z-index: 10;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms ease;
+  border: 0;
+  padding: 0;
+  background: transparent;
 }
 .left-arrow:hover,
 .right-arrow:hover {
-  width: 60px;
+  transform: translateY(-50%) scale(1.06);
 }
+.left-arrow img, .right-arrow img { width: 100%; }
+.left-arrow:disabled, .right-arrow:disabled { opacity: .35; cursor: default; }
+.page img { object-fit: contain; }
+@media (prefers-reduced-motion: reduce) { .book .page { transition: none; } }
 
 .left-arrow {
   left: -10%;

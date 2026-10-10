@@ -1,9 +1,10 @@
+import { PressableDirective } from '../../../shared/pressable.directive';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-stem-button',
   standalone: true,
-  imports: [],
+  imports: [PressableDirective, ],
   templateUrl: './stem-button.component.html',
   styleUrl: './stem-button.component.css',
 })

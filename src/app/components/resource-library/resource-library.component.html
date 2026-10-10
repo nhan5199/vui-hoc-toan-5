@@ -1,0 +1,35 @@
+﻿<div [class]="kind">
+  <p class="menu-title">{{ title }}</p>
+  <img [src]="bookIcon" alt="" class="book-logo" />
+  <div class="search" *ngIf="kind !== 'e-book'">
+    <label>Học kì <select [(ngModel)]="semester" (ngModelChange)="changeSemester()"><option value="hoc-ki-1">Học kì 1</option><option value="hoc-ki-2">Học kì 2</option></select></label>
+    <label *ngIf="kind === 'giao-an-dien-tu'">Tuần <select [(ngModel)]="week" (ngModelChange)="reload()"><option *ngFor="let n of weeks" [value]="'tuan-' + n">Tuần {{ n }}</option></select></label>
+  </div>
+  <div class="request-error" *ngIf="error" role="alert">Không tải được danh sách tài liệu. <button (click)="reload()">Thử lại</button></div>
+  <div class="loading-file" *ngIf="loading" role="status" aria-label="Đang tải tài liệu"><img src="images/images/file-loading.gif" alt="" /></div>
+  <app-empty-state *ngIf="!loading && !error && !unavailable && !files.length" (retry)="retryDownloads()" />
+  <div [class]="kind + '-container'" [attr.aria-busy]="loading" [ngSwitch]="kind">
+    <ng-container *ngSwitchCase="'e-book'"><app-ebook-button *ngFor="let file of availableFiles; trackBy: trackFile" [buttonName]="file.name" [folderPath]="legacyPath" [folderDownloadUrl]="file.url" (viewBook)="open($event)" /></ng-container>
+    <ng-container *ngSwitchCase="'ke-hoach-bai-day'"><app-ke-hoach-bai-day-button *ngFor="let file of availableFiles; trackBy: trackFile" [buttonName]="file.name" [folderPath]="legacyPath" [selectedSemester]="semester" [fileDownloadUrl]="file.url" (viewpdf)="open($event)" /></ng-container>
+    <ng-container *ngSwitchCase="'phieu-bai-tap'"><app-phieu-bai-tap-button *ngFor="let file of availableFiles; trackBy: trackFile" [buttonName]="file.name" [folderPath]="legacyPath" [selectedSemester]="semester" [fileDownloadUrl]="file.url" (viewpdf)="open($event)" /></ng-container>
+    <ng-container *ngSwitchCase="'giao-an-dien-tu'"><app-giao-an-dien-tu-button *ngFor="let file of availableFiles; trackBy: trackFile" [buttonName]="file.name" [folderPath]="legacyPath" [urlImg]="thumbnail(file)" [downloadUrl]="file.url" (viewSlide)="open($event)" /></ng-container>
+  </div>
+  <button class="load-more" *ngIf="nextPageToken" [disabled]="loading" (click)="more()">Xem thêm tài liệu</button>
+  <div class="storage-warning" *ngIf="unavailable && files.length" role="status">Chưa tải được bản gốc từ kho tài liệu. Bạn vẫn có thể xem các trang có sẵn. <button (click)="retryDownloads()">Thử lại</button></div>
+  <app-empty-state *ngIf="!loading && unavailable && !files.length" title="Kho tài liệu đang nghỉ một chút!" message="Chúng mình chưa kết nối được với tài liệu. Bạn thử lại sau một lát nhé." (retry)="retryDownloads()" />
+  <div class="preview-cards">
+    <article *ngFor="let file of unavailableFiles; trackBy: trackFile">
+      <img *ngIf="file.previewFolder" [src]="thumbnail(file)" [alt]="file.name" loading="lazy" />
+      <h2>{{ file.name }}</h2>
+      <button *ngIf="file.previewFolder" (click)="openLocal(file)">Xem trước</button>
+      <p>Bản tải xuống hiện chưa khả dụng.</p>
+    </article>
+  </div>
+</div>
+<app-resource-preview *ngIf="localPreview as preview" [resource]="preview" (close)="localPreview = undefined" />
+<ng-container *ngIf="selection as selected">
+  <app-flip-book *ngIf="viewer === 'flip'" [folderPath]="selected.name" [downloadUrl]="selected.url" (closeFlipBook)="selection = undefined" />
+  <app-xem-pdf *ngIf="viewer === 'pdf'" [pdfName]="selected.name" [downloadUrl]="selected.url" [bookName]="kind === 'e-book' ? '' : path" [selectedSemester]="kind === 'e-book' ? '' : semester" (closepdf)="selection = undefined" />
+  <app-xem-slide *ngIf="viewer === 'slide'" [slideName]="selected.name" [downloadUrl]="selected.url" [bookName]="path" [selectedSemester]="semester" [selectedWeek]="week" (closeSlide)="selection = undefined" />
+</ng-container>
+

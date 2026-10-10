@@ -6,15 +6,15 @@ a {
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   width: 100%;
 }
 
-.stem-button:hover {
+.stem-button:is(:hover, :focus-within) {
   transform: scale(1.05);
 }
 
-.stem-button:hover .right {
+.stem-button:is(:hover, :focus-within) .right {
   transform: rotateY(180deg);
 }
 
@@ -23,7 +23,7 @@ a {
   padding: 10px 20px;
   font-size: 1rem;
   font-family: var(--lobster-font);
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 5px solid #5271ff;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
@@ -40,7 +40,7 @@ a {
   margin: 0 auto;
 }
 
-.stem-button button:hover {
+.stem-button button:is(:hover, :focus-within) {
   /* width: 550px; */
   color: #eef30e;
   border: 6px solid #eef30e;
@@ -50,7 +50,7 @@ a {
 .left,
 .right {
   position: absolute;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 .left {
   width: 6rem;

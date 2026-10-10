@@ -7,7 +7,8 @@ export class ImageLoaderService {
   constructor() {}
 
   checkImagesLoaded(container: ElementRef, callback: () => void): void {
-    const images = container.nativeElement.querySelectorAll('img');
+    const images = Array.from(container.nativeElement.querySelectorAll('img') as NodeListOf<HTMLImageElement>)
+      .filter(img => img.loading !== 'lazy' && !!img.getAttribute('src'));
     const bgImages = this.getBackgroundImages(container);
     const totalImages = images.length + bgImages.length;
     let loadedImages = 0;
@@ -18,10 +19,20 @@ export class ImageLoaderService {
       return;
     }
 
+    let finished = false;
+    const cleanup: (() => void)[] = [];
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
+      cleanup.forEach(remove => remove());
+      callback();
+    };
+    const timeout = setTimeout(finish, 8000);
     const imageLoaded = () => {
       loadedImages++;
       if (loadedImages === totalImages) {
-        callback();
+        finish();
       }
     };
 
@@ -29,18 +40,25 @@ export class ImageLoaderService {
       if (img.complete) {
         imageLoaded();
       } else {
-        img.addEventListener('load', imageLoaded);
+        const settled = () => {
+          img.removeEventListener('load', settled);
+          img.removeEventListener('error', settled);
+          imageLoaded();
+        };
+        img.addEventListener('load', settled);
+        img.addEventListener('error', settled);
+        cleanup.push(() => { img.removeEventListener('load', settled); img.removeEventListener('error', settled); });
       }
     });
 
     bgImages.forEach((url: string) => {
       const bgImg = new Image();
-      bgImg.src = url;
-      if (bgImg.complete) {
+      bgImg.onload = bgImg.onerror = () => {
+        bgImg.onload = bgImg.onerror = null;
         imageLoaded();
-      } else {
-        bgImg.onload = imageLoaded;
-      }
+      };
+      cleanup.push(() => { bgImg.onload = bgImg.onerror = null; });
+      bgImg.src = url;
     });
   }
 

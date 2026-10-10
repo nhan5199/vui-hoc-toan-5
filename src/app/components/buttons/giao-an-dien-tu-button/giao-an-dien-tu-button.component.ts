@@ -1,3 +1,4 @@
+import { PressableDirective } from '../../../shared/pressable.directive';
 import {
   Component,
   EventEmitter,
@@ -10,7 +11,7 @@ import {
 @Component({
   selector: 'app-giao-an-dien-tu-button',
   standalone: true,
-  imports: [],
+  imports: [PressableDirective, ],
   templateUrl: './giao-an-dien-tu-button.component.html',
   styleUrl: './giao-an-dien-tu-button.component.css',
 })

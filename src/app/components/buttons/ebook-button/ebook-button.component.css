@@ -1,13 +1,12 @@
 .ebook {
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   position: relative;
 }
 
-.ebook:hover {
+.ebook:is(:hover, :focus-within) {
   transform: scale(1.05) translateX(50%);
 }
-.ebook:hover .content button {
-  padding: 12px 17px;
+.ebook:is(:hover, :focus-within) .content button {
   color: #eef30e;
   background-position: left bottom;
 }
@@ -25,7 +24,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   cursor: pointer;
 }
 
@@ -50,15 +49,15 @@
   transition: bottom 1s ease;
 }
 
-.ebook:hover .content {
+.ebook:is(:hover, :focus-within) .content {
   opacity: 1;
 }
 
-.ebook:hover .content p {
+.ebook:is(:hover, :focus-within) .content p {
   top: 35%;
 }
 
-.ebook:hover .content button {
+.ebook:is(:hover, :focus-within) .content button {
   bottom: 35%;
 }
 .content button {
@@ -69,7 +68,7 @@
   /* border: 6px solid white; */
   border-radius: 15px;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: none;
   outline: none;
   background-color: #eef30e;
@@ -78,8 +77,7 @@
   background-position: right bottom;
 }
 
-.content button:hover {
-  padding: 12px 17px;
+.content button:is(:hover, :focus-within) {
   color: #eef30e;
   background-position: left bottom;
 }
@@ -173,42 +171,42 @@ body {
   background: #fdfdfd;
 }
 
-.ebook:hover .front {
+.ebook:is(:hover, :focus-within) .front {
   transform: rotateY(-160deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page1 {
+.ebook:is(:hover, :focus-within) .page1 {
   transform: rotateY(-150deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page2 {
+.ebook:is(:hover, :focus-within) .page2 {
   transform: rotateY(-30deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page3 {
+.ebook:is(:hover, :focus-within) .page3 {
   transform: rotateY(-140deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page4 {
+.ebook:is(:hover, :focus-within) .page4 {
   transform: rotateY(-40deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page5 {
+.ebook:is(:hover, :focus-within) .page5 {
   transform: rotateY(-130deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .page6 {
+.ebook:is(:hover, :focus-within) .page6 {
   transform: rotateY(-50deg);
   box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
 }
 
-.ebook:hover .back {
+.ebook:is(:hover, :focus-within) .back {
   transform: rotateY(-20deg);
 }
 
@@ -223,3 +221,15 @@ body {
     height: 250px;
   }
 }
+
+.ebook { transition:transform 220ms cubic-bezier(.2,.8,.2,1); }
+.ebook:is(:hover, :focus-within) { transform:scale(1.025); }
+.ebook .content { width:100%; left:0; pointer-events:none; }
+.ebook:is(:hover, :focus-within) .content { pointer-events:auto; }
+.ebook .content p, .ebook:is(:hover, :focus-within) .content p { top:35%; }
+.ebook .content p { transform:translate(-50%,-35%); transition:transform 220ms ease, opacity 220ms ease; }
+.ebook:is(:hover, :focus-within) .content p { transform:translate(-50%,-50%); }
+.ebook .content button, .ebook:is(:hover, :focus-within) .content button { bottom:30%; }
+.ebook .content button { transform:translate(-50%,8px); transition:transform 220ms ease; }
+.ebook:is(:hover, :focus-within) .content button { transform:translate(-50%,0); }
+@media (hover:none) { .ebook .content { opacity:1; pointer-events:auto; } }

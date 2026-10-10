@@ -6,11 +6,12 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { PressableDirective } from '../../../shared/pressable.directive';
 
 @Component({
   selector: 'app-phieu-bai-tap-button',
   standalone: true,
-  imports: [],
+  imports: [PressableDirective],
   templateUrl: './phieu-bai-tap-button.component.html',
   styleUrl: './phieu-bai-tap-button.component.css',
 })
@@ -26,6 +27,7 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['buttonName'] && this.buttonName?.length > 0) {
+      this.imgUrl = 'images/images/';
       if (this.folderPath.includes('canh-dieu')) {
         this.imgUrl += 'canh-dieu-icon.jpg';
       } else if (this.folderPath.includes('ket-noi-tri-thuc')) {
@@ -34,7 +36,7 @@ export class PhieuBaiTapButtonComponent implements OnChanges {
         this.imgUrl += 'chan-troi-sang-tao-icon.jpg';
       }
 
-      this.downloadUrl = `files/${this.folderPath.split('//')[1]}/${
+      this.downloadUrl = this.fileDownloadUrl || `files/${this.folderPath.split('//')[1]}/${
         this.selectedSemester
       }/${this.buttonName}`;
     }

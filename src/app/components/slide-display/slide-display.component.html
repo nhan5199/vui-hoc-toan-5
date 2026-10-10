@@ -1,4 +1,7 @@
 <div class="slide-display-container">
+  <div class="loading-file" *ngIf="loading" role="status" aria-label="Đang tải trang"><img src="images/images/file-loading.gif" alt="" /></div>
+  <div class="request-error" *ngIf="loadError" role="alert">Không tải được trang. <button (click)="retryImage()">Thử lại</button></div>
+  <p class="document-empty" *ngIf="!listImagePaths.length">Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.</p>
   <img
     class="back-icon"
     title="Trở về"
@@ -22,11 +25,12 @@
       (click)="setActiveImg(1)"
       alt=""
     />
-    <div class="image" *ngFor="let image of listImagePaths; let i = index">
+    <div class="image" *ngIf="listImagePaths.length && !loadError">
       <img
-        [class.active-img]="i == activeImg"
-        [src]="image.split('public/')[1]"
-        alt=""
+        [class.active-img]="!loading"
+        [src]="previews.url(listImagePaths[activeImg])"
+        decoding="async"
+        [alt]="'Trang ' + (activeImg + 1)" (load)="imageLoaded($event)" (error)="imageFailed()"
       />
     </div>
   </div>

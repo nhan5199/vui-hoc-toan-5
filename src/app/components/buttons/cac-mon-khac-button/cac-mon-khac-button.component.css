@@ -11,7 +11,7 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 6px solid #5271ff;
   background-color: #eef30e;
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
@@ -19,8 +19,8 @@
   background-position: right bottom;
 }
 
-.cac-mon-khac-button:hover {
-  transform: scale(1.1);
+.cac-mon-khac-button:is(:hover, :focus-within) {
+  transform: scale(1.03);
 }
 
 a {
@@ -33,7 +33,7 @@ a {
   transform: translateY(-50%);
   left: -10%;
   width: 6.5rem;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .cac-mon-khac-button a {
@@ -42,14 +42,14 @@ a {
   font-family: var(--anton-font);
   margin-left: 10%;
 }
-.cac-mon-khac-button:hover {
+.cac-mon-khac-button:is(:hover, :focus-within) {
   color: #eef30e;
   border: 6px solid #eef30e;
   background-position: left bottom;
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
-.cac-mon-khac-button:hover a {
+.cac-mon-khac-button:is(:hover, :focus-within) a {
   color: #eef30e;
 }
 

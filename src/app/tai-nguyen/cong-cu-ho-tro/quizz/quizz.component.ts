@@ -36,13 +36,9 @@ export class QuizzComponent implements AfterViewInit, OnInit {
   slideDownloadUrl: string = '';
 
   ngOnInit(): void {
-    this.route.pathFromRoot.forEach((route) => {
-      route.url.subscribe((urlSegment) => {
-        this.folderPath +=
-          '/' + urlSegment.map((segment) => segment.path).join('/');
-        this.listFiles();
-      });
-    });
+    this.folderPath = '//' + this.route.snapshot.pathFromRoot
+      .flatMap(route => route.url.map(segment => segment.path)).join('/');
+    this.listFiles();
   }
 
   // List files

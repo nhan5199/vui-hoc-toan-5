@@ -30,6 +30,7 @@ export class CauHoiOnTapItemComponent implements OnInit {
     private readonly screenSizeService: ScreenSizeService
   ) {}
 
+  loadError = false;
   topicUrl: string = '';
   listCauHoiOnTapItem: any[] = [];
 
@@ -42,12 +43,12 @@ export class CauHoiOnTapItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.topicUrl = this.route.snapshot.paramMap.get('topic')!;
-    this.listCauHoiOnTapItem = this.databaseService.getQuestionAnswers();
-    if (this.listCauHoiOnTapItem) {
-      this.listCauHoiOnTapItem = this.listCauHoiOnTapItem.filter(
-        (x: any) => x.topicUrl == this.topicUrl
-      )[0].content.listExercises;
-    }
+    this.databaseService.getQuestionAnswers().subscribe({
+      next: data => {
+        this.listCauHoiOnTapItem = data.find(x => x.topicUrl === this.topicUrl)?.content?.listExercises ?? [];
+      },
+      error: () => { this.loadError = true; }
+    });
 
     this.screenSizeService.orientation$.subscribe((orientation: string) => {
       if (orientation === 'landscape') {

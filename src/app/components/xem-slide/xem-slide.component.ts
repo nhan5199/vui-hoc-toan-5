@@ -10,12 +10,13 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import Constant from '../../shared/constants/Constant';
+import { DocumentPageComponent } from '../document-page/document-page.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-xem-slide',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DocumentPageComponent],
   templateUrl: './xem-slide.component.html',
   styleUrl: './xem-slide.component.css',
 })
@@ -30,6 +31,8 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
     new EventEmitter<boolean>();
 
   slides: string[] = [];
+  isLoading = true;
+  trackPage = (_: number, path: string) => path;
   showScrollToTop: boolean = false;
   slideContainer!: HTMLElement;
   constructor(private el: ElementRef) {}
@@ -38,16 +41,15 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
     if (changes['slideName'] && this.slideName?.length > 0) {
       let imgsPath = '';
       if (this.selectedSemester?.length <= 0) {
-        imgsPath = `${this.bookName}/${this.slideName?.split('.')[0]}/`;
+        imgsPath = `${this.bookName}/${this.slideName.replace(/\.[^.]+$/, '')}/`;
       } else {
         imgsPath = `${this.bookName}/${this.selectedSemester}/${
           this.selectedWeek
-        }/${this.slideName?.split('.')[0]}/`;
+        }/${this.slideName.replace(/\.[^.]+$/, '')}/`;
       }
-      this.slides = Constant.IMAGE_PATHS.images.filter((x: any) =>
-        x.includes(imgsPath)
-      );
+      this.slides = Constant.findImages(imgsPath);
       this.sortImagePathsByNumber(this.slides);
+      this.isLoading = this.slides.length > 0;
     }
   }
 
@@ -67,16 +69,7 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
-    const clickedInside = this.el.nativeElement
-      .querySelector('.slide .slide-container .content img')
-      .contains(event.target as Node);
-    const clickedScrollToTop = this.el.nativeElement
-      .querySelector('.slide .scroll-to-top img')
-      .contains(event.target as Node);
-    const clickedDownload = this.el.nativeElement
-      .querySelector('.slide a')
-      .contains(event.target as Node);
-    if (!clickedInside && !clickedScrollToTop && !clickedDownload) {
+    if ((event.target as HTMLElement)?.classList.contains('slide') && this.el.nativeElement.contains(event.target)) {
       this.closeSlide.emit(true);
     }
   }
@@ -86,10 +79,6 @@ export class XemSlideComponent implements OnChanges, AfterViewInit {
     this.slideContainer =
       this.el.nativeElement.querySelector('.slide-container');
 
-    // Listen to scroll events on the .slide-container
-    this.slideContainer.addEventListener('scroll', () => {
-      this.onslideContainerScroll();
-    });
   }
 
   // Handle scroll event for the .slide-container

@@ -10,21 +10,21 @@
   border: 3px solid black;
   cursor: pointer;
   gap: 15px;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   text-decoration: none;
 }
 
-.ke-hoach-bai-day:hover {
+.ke-hoach-bai-day:is(:hover, :focus-within) {
   transform: scale(1.05);
 }
 
-.ke-hoach-bai-day:hover .download {
-  transform: scale(1.1);
+.ke-hoach-bai-day:is(:hover, :focus-within) .download {
+  transform: scale(1.03);
 }
 
 .ke-hoach-bai-day .download {
   width: 5rem;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .ke-hoach-bai-day img {
@@ -54,7 +54,7 @@
   /* border: 6px solid white; */
   border-radius: 15px;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: none;
   outline: none;
   background-color: #eef30e;
@@ -63,8 +63,7 @@
   background-position: right bottom;
 }
 
-.content button:hover {
-  padding: 12px 17px;
+.content button:is(:hover, :focus-within) {
   color: #eef30e;
   background-position: left bottom;
 }

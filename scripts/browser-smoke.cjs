@@ -1,0 +1,142 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const cp = require('node:child_process');
+const express = require('express');
+const assert = require('node:assert/strict');
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+async function main() {
+  const root = path.resolve(__dirname, '..');
+  const app = express();
+  app.use(express.static(path.join(root, 'dist/vui-hoc-toan-5/browser')));
+  app.get('*', (_, res) => res.sendFile(path.join(root, 'dist/vui-hoc-toan-5/browser/index.html')));
+  const server = await new Promise(resolve => { const server = app.listen(0, '127.0.0.1', () => resolve(server)); });
+  const base = 'http://127.0.0.1:' + server.address().port;
+  const chromePath = ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(fs.existsSync);
+  assert(chromePath, 'Chrome or Edge is required');
+  const profile = path.join(root, '.angular', 'ui-smoke-' + Date.now());
+  fs.mkdirSync(profile, { recursive:true });
+  const browser = cp.spawn(chromePath, ['--headless=new', '--no-first-run', '--no-default-browser-check', '--remote-debugging-port=0', '--user-data-dir=' + profile, 'about:blank'], { windowsHide:true, stdio:'ignore' });
+  let socket;
+  try {
+    const portFile = path.join(profile, 'DevToolsActivePort');
+    for(let i=0; !fs.existsSync(portFile) && i<100; i++) await delay(100);
+    const port = fs.readFileSync(portFile,'utf8').split('\n')[0];
+    const tabs = await (await fetch('http://127.0.0.1:' + port + '/json/list')).json();
+    socket = new WebSocket(tabs.find(tab=>tab.type==='page').webSocketDebuggerUrl);
+    await new Promise(resolve=>socket.addEventListener('open',resolve,{once:true}));
+    let id=0;
+    const pending=new Map();
+    const exceptions=[];
+    const requests=[];
+    socket.addEventListener('message',message=>{
+      const data=JSON.parse(message.data);
+      if(data.id) { const request=pending.get(data.id); pending.delete(data.id); if(data.error)request.reject(data.error); else request.resolve(data.result); }
+      if(data.method==='Runtime.exceptionThrown') exceptions.push(data.params.exceptionDetails.text + ': ' + (data.params.exceptionDetails.exception?.description || ''));
+      if(data.method==='Network.requestWillBeSent') requests.push(data.params.request.url);
+      if(data.method==='Fetch.requestPaused') call('Fetch.fulfillRequest', { requestId:data.params.requestId, responseCode:402,
+        responseHeaders:[{name:'Content-Type',value:'application/json'},{name:'Access-Control-Allow-Origin',value:'*'}],
+        body:Buffer.from(JSON.stringify({error:{code:402,message:'Storage access restricted'}})).toString('base64') }).catch(error=>exceptions.push(String(error)));
+    });
+    const call=(method,params={})=>new Promise((resolve,reject)=>{ const number=++id; pending.set(number,{resolve,reject}); socket.send(JSON.stringify({id:number,method,params})); });
+    const evaluate=async expression=>(await call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true})).result.value;
+    const wait=async expression=> { for(let i=0;i<200;i++) { if(await evaluate(expression)) return; await delay(100); } throw new Error('Timed out: '+expression); };
+    await call('Runtime.enable'); await call('Network.enable'); await call('Page.enable');
+    await call('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
+    await call('Page.navigate',{url:base});
+    await wait("!!document.querySelector('app-home') && !document.querySelector('.route-loading')");
+    assert(!requests.some(url=>url.includes('questionAnswer')), 'Home fetched the question bank');
+    assert(!requests.some(url=>url.includes('common-resources.json') || url.includes('/catalog/slide.json')), 'Home fetched library-only metadata');
+    console.log('PASS home renders without a question-bank request');
+    await call('Page.navigate',{url:base+'/canh-dieu/e-book'});
+    await wait("document.querySelectorAll('app-ebook-button').length > 0 && !document.querySelector('.route-loading')");
+    await call('Network.emulateNetworkConditions',{offline:false,latency:100,downloadThroughput:750*1024,uploadThroughput:750*1024});
+    const openedAt = Date.now();
+    await evaluate("Array.from(document.querySelectorAll('.ebook')).find(card=>card.textContent.includes('SGK')).click()");
+    await wait("!!document.querySelector('app-flip-book') && !document.querySelector('app-flip-book .loading-file')");
+    console.log('Measured cover ready in '+(Date.now()-openedAt)+'ms with 100ms latency / 6Mbps throttling');
+    const flip = await evaluate("({ total:document.querySelectorAll('app-flip-book .page').length, requested:Array.from(document.querySelectorAll('app-flip-book .page img')).filter(img=>!!img.getAttribute('src')).length })");
+    assert(flip.total>10 && flip.requested<=7, JSON.stringify(flip));
+    await evaluate("document.querySelector('app-flip-book .right-arrow').click()");
+    await wait("!document.querySelector('app-flip-book .loading-file')");
+    await call('Network.emulateNetworkConditions',{offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
+    await delay(450);
+    console.log('PASS textbook preview and page turn: '+JSON.stringify(flip));
+    assert(await evaluate("document.querySelector('app-flip-book .page img').getAttribute('src').startsWith('previews/')"), 'Flip book did not use an optimized image');
+    fs.writeFileSync(path.join(root,'.angular/flip-book.png'),Buffer.from((await call('Page.captureScreenshot')).data,'base64'));
+    await call('Page.navigate',{url:base+'/tai-nguyen/cong-cu-ho-tro/slide'});
+    await wait("document.querySelectorAll('app-slide-button').length>0 && !document.querySelector('.route-loading')");
+    const catalog = JSON.parse(fs.readFileSync(path.join(root,'public/catalog/slide.json'),'utf8'));
+    const largest = Object.entries(catalog).filter(([folder])=>folder.startsWith('public/images/images/slide/')).sort((a,b)=>b[1].length-a[1].length)[0][0].split('/').at(-1);
+    await evaluate(`Array.from(document.querySelectorAll('app-slide-button [appPressable]')).find(card=>card.textContent.includes(${JSON.stringify(largest)})).click()`);
+    await wait("document.querySelectorAll('app-document-page').length>0");
+    await wait("!!document.querySelector('app-document-page img.loaded')");
+    const preview=await evaluate("({ total:document.querySelectorAll('app-document-page').length, requested:document.querySelectorAll('app-document-page .document-page > img[src]').length })");
+    assert(preview.requested<preview.total,JSON.stringify(preview));
+    const visible=await evaluate("!!document.querySelector('app-xem-slide')");
+    assert(visible,'Slide modal unexpectedly closed');
+    assert(!requests.some(url=>url.includes('firebasestorage.googleapis.com')),'Local documents contacted Firebase Storage');
+    assert.equal(exceptions.length,0,exceptions.join('\n'));
+    console.log('PASS scrolling preview defers later pages: '+JSON.stringify(preview));
+    console.log('PASS no runtime exceptions or Storage downloads for local document flows');
+    await call('Page.navigate',{url:base+'/giao-vien'});
+    await wait("document.querySelectorAll('app-teacher-library article').length > 0 && !document.querySelector('.loading-file')");
+    const fieldStyle = await evaluate("(() => {const s=getComputedStyle(document.querySelector('app-teacher-library select'));return {radius:s.borderRadius,border:s.borderTopWidth,color:s.color};})()");
+    assert.equal(fieldStyle.radius,'22px 26px 22px 24px','Shared dropdown radius was overridden');
+    assert.equal(fieldStyle.border,'4px','Shared dropdown border was overridden');
+    const fieldFocus = await evaluate("(() => {const input=document.querySelector('app-teacher-library input'); input.focus(); const s=getComputedStyle(input); return {outline:s.outlineStyle,shadow:s.boxShadow};})()");
+    assert.equal(fieldFocus.outline,'none','Focused fields should not have an outline');
+    assert.notEqual(fieldFocus.shadow,'none','Focused fields should retain a visible focus cue');
+    fs.writeFileSync(path.join(root,'.angular/teacher-library.png'),Buffer.from((await call('Page.captureScreenshot')).data,'base64'));
+    assert(await evaluate("document.querySelectorAll('app-teacher-library article').length <= 24"), 'Teacher library rendered the entire catalog');
+    await evaluate("const input=document.querySelector('app-teacher-library input'); input.value='SGK'; input.dispatchEvent(new Event('input',{bubbles:true}));");
+    await wait("document.querySelectorAll('app-teacher-library article').length > 0 && Array.from(document.querySelectorAll('app-teacher-library article h2')).every(h=>h.textContent.includes('SGK'))");
+    const download = await evaluate("document.querySelector('app-teacher-library article .actions a').href");
+    const response = await fetch(download);
+    assert(response.ok && response.headers.get('content-type') !== 'text/html', 'Teacher download does not return a document');
+    await response.body?.cancel(); // Header check is sufficient; do not keep a large PDF stream open.
+    await evaluate("document.querySelector('app-teacher-library article button').click()");
+    await wait("!!document.querySelector('app-resource-preview app-document-page img.loaded')");
+    console.log('PASS teacher search, bounded cards, original download and lazy preview');
+    await call('Page.navigate',{url:base+'/hoc-sinh'});
+    await wait("document.querySelectorAll('app-student-home .books a').length === 3");
+    assert.equal(exceptions.length,0,exceptions.join('\n'));
+    console.log('PASS student entry point and textbook links');
+    await call('Emulation.setDeviceMetricsOverride',{width:375,height:812,deviceScaleFactor:1,mobile:true});
+    await call('Page.navigate',{url:base+'/giao-vien'});
+    await wait("document.querySelectorAll('app-teacher-library article').length > 0 && !document.querySelector('.loading-file')");
+    assert(await evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"), 'Teacher library overflows a mobile screen');
+    await evaluate("const input=document.querySelector('app-teacher-library input'); input.value='zzzzmissingresource'; input.dispatchEvent(new Event('input',{bubbles:true}));");
+    await wait("!!document.querySelector('app-teacher-library app-empty-state svg')");
+    await evaluate("document.querySelector('app-empty-state').scrollIntoView({block:'center'})");
+    await delay(500);
+    fs.writeFileSync(path.join(root,'.angular/cartoon-empty-state.png'),Buffer.from((await call('Page.captureScreenshot')).data,'base64'));
+    await evaluate("document.querySelector('app-empty-state button').click()");
+    await wait("document.querySelectorAll('app-teacher-library article').length > 0");
+    console.log('PASS cartoon empty state and reset action');
+    console.log('PASS teacher library fits a 375px mobile viewport');
+    const liveStorage = process.argv.includes('--live-storage');
+    if (!liveStorage) await call('Fetch.enable',{patterns:[{urlPattern:'*firebasestorage.googleapis.com/*'}]});
+    for (const category of ['ke-hoach-bai-day','giao-an-dien-tu']) {
+      await call('Page.navigate',{url:base+'/canh-dieu/'+category});
+      if (liveStorage) {
+        await wait("document.querySelectorAll('app-resource-library app-ke-hoach-bai-day-button, app-resource-library app-giao-an-dien-tu-button').length > 0 && !document.querySelector('app-resource-library .loading-file')");
+        assert(await evaluate("!document.querySelector('app-resource-library .storage-warning')"), 'Live Storage downloads are unavailable');
+        await evaluate("document.querySelector('app-ke-hoach-bai-day-button .ke-hoach-bai-day, app-giao-an-dien-tu-button .giao-an-dien-tu').click()");
+        await wait("!!document.querySelector('app-xem-pdf a, app-xem-slide a')");
+        const originalUrl = await evaluate("document.querySelector('app-xem-pdf a, app-xem-slide a').href");
+        const original = await fetch(originalUrl, { headers: { Range: 'bytes=0-1023' } });
+        assert(original.ok && !['text/html','application/json'].includes(original.headers.get('content-type')), 'Remote original download failed');
+        await original.body?.cancel();
+        console.log('PASS live Firebase '+category+' listing and resolved original URLs');
+        continue;
+      }
+      await wait("!!document.querySelector('app-resource-library .preview-cards button')");
+      await evaluate("document.querySelector('app-resource-library .preview-cards button').click()");
+      await wait("!!document.querySelector('app-resource-preview app-document-page img.loaded')");
+      assert(await evaluate("!document.querySelector('app-resource-preview header a')"), 'Unavailable original has a download link');
+      console.log('PASS local '+category+' preview while Storage returns 402');
+    }
+    assert.equal(exceptions.length,0,exceptions.join('\n'));
+  } finally { socket?.close(); browser.kill(); await new Promise(resolve=>server.close(resolve)); }
+}
+main().catch(error=>{console.error(error);process.exitCode=1;});

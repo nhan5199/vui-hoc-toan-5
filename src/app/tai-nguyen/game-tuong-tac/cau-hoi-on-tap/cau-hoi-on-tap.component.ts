@@ -14,11 +14,12 @@ export class CauHoiOnTapComponent implements OnInit {
   constructor(private readonly databaseService: DatabaseService) {}
 
   isLoading = true;
+  loadError = false;
   listQuestionAnswer: any[] = [];
   ngOnInit(): void {
-    this.listQuestionAnswer = this.databaseService.getQuestionAnswers();
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
+    this.databaseService.getQuestionAnswers().subscribe({
+      next: data => { this.listQuestionAnswer = data; this.isLoading = false; },
+      error: () => { this.loadError = true; this.isLoading = false; }
+    });
   }
 }

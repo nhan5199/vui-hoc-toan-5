@@ -10,7 +10,7 @@
   border-radius: 15px;
   padding: 15px 25px;
   cursor: pointer;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
   border: 6px solid #5271ff;
   background-color: #eef30e;
   background: linear-gradient(to left, #eef30e 50%, #5271ff 50%);
@@ -18,8 +18,8 @@
   background-position: right bottom;
 }
 
-.game-tuong-tac-button:hover {
-  transform: scale(1.1);
+.game-tuong-tac-button:is(:hover, :focus-within) {
+  transform: scale(1.03);
 }
 
 a {
@@ -32,7 +32,7 @@ a {
   transform: translateY(-50%);
   left: -8%;
   width: 7.5rem;
-  transition: 0.75s ease;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease, background-position 220ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .game-tuong-tac-button a {
@@ -41,7 +41,7 @@ a {
   font-family: var(--anton-font);
   margin-left: 5%;
 }
-.game-tuong-tac-button:hover {
+.game-tuong-tac-button:is(:hover, :focus-within) {
   padding: 20px 30px;
   /* width: 550px; */
   color: #eef30e;
@@ -49,6 +49,6 @@ a {
   background-position: left bottom;
 }
 
-.game-tuong-tac-button:hover a {
+.game-tuong-tac-button:is(:hover, :focus-within) a {
   color: #eef30e;
 }

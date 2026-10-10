@@ -11,11 +11,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import Constant from '../../shared/constants/Constant';
+import { DocumentPageComponent } from '../document-page/document-page.component';
 
 @Component({
   selector: 'app-xem-pdf',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DocumentPageComponent],
   templateUrl: './xem-pdf.component.html',
   styleUrl: './xem-pdf.component.css',
 })
@@ -28,6 +29,8 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
   closepdf: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   pdfs: string[] = [];
+  isLoading = true;
+  trackPage = (_: number, path: string) => path;
   showScrollToTop: boolean = false;
   pdfContainer!: HTMLElement;
 
@@ -37,21 +40,20 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
     if (changes['pdfName'] && this.pdfName?.length > 0) {
       let imgsPath = '';
       if (this.bookName.includes('tai-nguyen')) {
-        imgsPath = `${this.bookName}/${this.pdfName?.split('.')[0]}/`;
+        imgsPath = `${this.bookName}/${this.pdfName?.replace(/\.[^.]+$/, '')}/`;
       } else {
         if (this.selectedSemester?.length > 0) {
           imgsPath = `${this.bookName}/${this.selectedSemester}/${
-            this.pdfName?.split('.')[0]
+            this.pdfName?.replace(/\.[^.]+$/, '')
           }/`;
         } else {
           imgsPath = `${this.bookName}${this.pdfName}`;
         }
       }
 
-      this.pdfs = Constant.IMAGE_PATHS.images.filter((x: any) =>
-        x.includes(imgsPath)
-      );
+      this.pdfs = Constant.findImages(imgsPath);
       this.sortImagePathsByNumber(this.pdfs);
+      this.isLoading = this.pdfs.length > 0;
     }
   }
 
@@ -59,10 +61,6 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
     // Get the .pdf-container element after the view has initialized
     this.pdfContainer = this.el.nativeElement.querySelector('.pdf-container');
 
-    // Listen to scroll events on the .pdf-container
-    this.pdfContainer.addEventListener('scroll', () => {
-      this.onPdfContainerScroll();
-    });
   }
 
   sortImagePathsByNumber(paths: string[]) {
@@ -81,16 +79,7 @@ export class XemPdfComponent implements OnChanges, AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
-    const clickedInside = this.el.nativeElement
-      .querySelector('.pdf .pdf-container .content img')
-      ?.contains(event.target as Node);
-    const clickedScrollToTop = this.el.nativeElement
-      .querySelector('.pdf .scroll-to-top img')
-      ?.contains(event.target as Node);
-    const clickedDownload = this.el.nativeElement
-      .querySelector('.slide a')
-      ?.contains(event.target as Node);
-    if (!clickedInside && !clickedScrollToTop && !clickedDownload) {
+    if ((event.target as HTMLElement)?.classList.contains('pdf') && this.el.nativeElement.contains(event.target)) {
       this.closepdf.emit(true);
     }
   }

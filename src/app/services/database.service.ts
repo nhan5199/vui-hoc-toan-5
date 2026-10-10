@@ -1,23 +1,18 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { map, take } from 'rxjs';
+import { ReadCacheService } from './read-cache.service';
+export type { FileData } from './file.service';
 
-export interface FileData {
-  name: string;
-  url: string;
-}
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class DatabaseService {
-  questionAnswers: any;
-
-  constructor() {}
-
-  setQuestionAnswers(value: any) {
-    this.questionAnswers = value;
-  }
-
+  constructor(private db: AngularFireDatabase, private cache: ReadCacheService) {}
   getQuestionAnswers() {
-    return this.questionAnswers;
+    return this.cache.read<any[]>('questionAnswer', () =>
+      this.db.object<any>('questionAnswer').valueChanges().pipe(take(1), map(data => {
+        const answers = data?.questionAnswer ?? data;
+        return Array.isArray(answers) ? answers : answers ? Object.values(answers) : [];
+      }))
+    );
   }
 }

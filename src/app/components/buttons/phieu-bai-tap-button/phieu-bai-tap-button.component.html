@@ -1,15 +1,15 @@
-<a class="phieu-bai-tap" (click)="onClickpdf()">
-  <img [src]="imgUrl" alt="" />
+<div appPressable class="phieu-bai-tap" (click)="onClickpdf()">
+  <img loading="lazy" decoding="async" [src]="imgUrl" alt="" />
   <div class="content">
     <p class="book-name">
       <span class="default">Phiếu bài tập</span> <br />
       <span style="font-family: 'anton'">{{ buttonName.split(".")[0] }}</span>
     </p>
-    <img
+    <a [href]="downloadUrl" download (click)="$event.stopPropagation()" [attr.aria-label]="'Tải ' + buttonName"><img loading="lazy" decoding="async"
       class="download"
       title="Tải file"
       src="icons/download-icon.png"
       alt=""
-    />
+    /></a>
   </div>
-</a>
+</div>

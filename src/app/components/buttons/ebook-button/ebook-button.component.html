@@ -1,4 +1,4 @@
-<div class="ebook" (click)="onClickButton()">
+<div appPressable class="ebook" (click)="onClickButton()">
   <div class="book">
     <div class="back"></div>
     <div class="page6"></div>
@@ -8,7 +8,7 @@
     <div class="page2"></div>
     <div class="page1"></div>
     <div class="front">
-      <img [src]="imageUrl[0].split('public/')[1]" alt="" />
+      <img loading="lazy" decoding="async" [src]="coverImage" [alt]="buttonName" />
     </div>
   </div>
   <div class="content">

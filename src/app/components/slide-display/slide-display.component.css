@@ -23,8 +23,7 @@
   margin: 10px 0;
   border-radius: 10px;
   opacity: 0;
-  transition: 0.75s ease;
-  transform: scale(0) translate(-50%, -50%);
+  transition: opacity 180ms ease-out;
 }
 
 .list-images .image img.active-img {
@@ -54,7 +53,7 @@
 
 .left-arrow:hover,
 .right-arrow:hover {
-  width: 50px;
+  scale: 1.08;
 }
 
 .download {
@@ -68,6 +67,5 @@
 }
 
 .download:hover {
-  width: 55px;
-  transition: 0.5s ease;
+  scale: 1.08;
 }

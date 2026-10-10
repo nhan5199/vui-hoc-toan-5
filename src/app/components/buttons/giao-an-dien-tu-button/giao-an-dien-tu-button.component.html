@@ -1,10 +1,10 @@
-<div class="giao-an-dien-tu" (click)="onClickSlide()">
-  <img [src]="urlImg" alt="" />
+<div appPressable class="giao-an-dien-tu" (click)="onClickSlide()">
+  <img loading="lazy" decoding="async" [src]="urlImg" alt="" />
   <div class="content">
     <p class="book-name">
       {{ buttonName.split(".")[0] }}
     </p>
-    <img
+    <img loading="lazy" decoding="async"
       class="download"
       title="Tải file"
       src="icons/download-icon.png"

@@ -1,3 +1,4 @@
+<p *ngIf="loadError" role="alert">Không tải được câu hỏi. Vui lòng tải lại trang để thử lại.</p>
 <div class="loading" *ngIf="isLoading"></div>
 <div class="cau-hoi-on-tap" [class.hidden]="isLoading">
   <div class="cau-hoi-on-tap-container">
