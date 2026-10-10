@@ -1,30 +1,11 @@
-<div class="slide" role="dialog" aria-modal="true" [attr.aria-busy]="isLoading">
+﻿<div class="slide" role="dialog" aria-modal="true" [attr.aria-busy]="isLoading" aria-label="Xem bài giảng">
+  <header class="document-toolbar"><span>{{ slideName }}</span><a class="ui-button" *ngIf="downloadUrl" [href]="downloadUrl" download>Tải bài giảng</a><button class="ui-button secondary" (click)="closeSlide.emit(true)" aria-label="Đóng bài giảng">Đóng ✕</button></header>
   <div class="loading-file" *ngIf="isLoading" role="status" aria-label="Đang tải tài liệu"><img src="images/images/file-loading.gif" alt="" /></div>
   <p class="document-empty" *ngIf="!slides.length">Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.</p>
-  <a [href]="downloadUrl"
-    ><img
-      class="download-img"
-      title="Tải file"
-      src="icons/download-icon.png"
-      alt=""
-  /></a>
   <div class="slide-container" (scroll)="onslideContainerScroll()">
     <div class="content">
-      <app-document-page *ngFor="let slide of slides; let i = index; trackBy: trackPage"
-        [src]="slide.split('public/')[1]" [eager]="i === 0"
-        ratio="16 / 9"
-        [alt]="'Trang ' + (i + 1)" (settled)="i === 0 && (isLoading = false)"></app-document-page>
+      <app-document-page *ngFor="let slide of slides; let i = index; trackBy: trackPage" [src]="slide.split('public/')[1]" [eager]="i === 0" ratio="16 / 9" [alt]="'Trang ' + (i + 1)" (settled)="i === 0 && (isLoading = false)" />
     </div>
   </div>
-  <div
-    class="scroll-to-top"
-    [ngClass]="{ show: showScrollToTop }"
-    (click)="scrollToTop()"
-  >
-    <img
-      src="icons/scroll-to-top-icon.png"
-      alt="Scroll to Top"
-      title="Scroll to Top"
-    />
-  </div>
+  <button class="scroll-to-top ui-button secondary" *ngIf="showScrollToTop" (click)="scrollToTop()" aria-label="Về đầu bài giảng">↑</button>
 </div>

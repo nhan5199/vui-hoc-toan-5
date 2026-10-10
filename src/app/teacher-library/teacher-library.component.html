@@ -1,29 +1,36 @@
-<main>
+﻿<main>
   <nav><a routerLink="/">Trang chủ</a><a routerLink="/hoc-sinh">Góc học sinh</a></nav>
-  <h1>Thư viện giáo viên</h1>
-  <p>Tìm tài liệu, xem trước và tải bản gốc để chuẩn bị bài dạy.</p>
-  <section class="filters" aria-label="Lọc tài liệu">
+  <header class="library-heading"><span class="heading-icon" aria-hidden="true">✏️</span><div><h1>Thư viện giáo viên</h1><p>Tìm tài liệu, xem trước và tải bản gốc để chuẩn bị bài dạy.</p></div></header>
+  <section class="filters ui-card" aria-label="Lọc tài liệu">
     <label class="query">Tên hoặc chủ đề<input type="search" [(ngModel)]="query" (ngModelChange)="applyFilters()" placeholder="Ví dụ: phân số, hình học..." /></label>
     <label>Bộ sách<select [(ngModel)]="book" (ngModelChange)="applyFilters()"><option value="">Tất cả bộ sách</option><option *ngFor="let option of books" [value]="option.value">{{ option.label }}</option></select></label>
     <label>Loại tài liệu<select [(ngModel)]="kind" (ngModelChange)="applyFilters()"><option value="">Tất cả tài liệu</option><option *ngFor="let option of kinds" [value]="option.value">{{ option.label }}</option></select></label>
     <label>Học kì<select [(ngModel)]="semester" (ngModelChange)="applyFilters()"><option value="">Cả năm</option><option value="hoc-ki-1">Học kì 1</option><option value="hoc-ki-2">Học kì 2</option></select></label>
     <label>Tuần<select [(ngModel)]="week" (ngModelChange)="applyFilters()"><option value="">Tất cả tuần</option><option *ngFor="let n of weeks" [value]="n">Tuần {{ n }}</option></select></label>
     <label>Định dạng<select [(ngModel)]="extension" (ngModelChange)="applyFilters()"><option value="">Tất cả định dạng</option><option *ngFor="let ext of extensions" [value]="ext">{{ ext.toUpperCase() }}</option></select></label>
-    <button (click)="reset()">Xóa bộ lọc</button>
+    <label class="download-filter"><input type="checkbox" [(ngModel)]="downloadableOnly" (ngModelChange)="applyFilters()" /> Chỉ tài liệu có bản tải xuống</label>
+    <button class="ui-button secondary" (click)="reset()">Xóa bộ lọc</button>
+    <p class="filter-note">Bộ lọc được ghi nhớ trên thiết bị này.</p>
   </section>
-  <p role="status">{{ filtered.length }} tài liệu</p>
+  <p class="result-count" *ngIf="!loading" role="status">{{ filtered.length }} tài liệu · Đang hiển thị {{ visible.length }}</p>
+  <app-resource-skeleton *ngIf="loading && !visible.length" [count]="8" [catalog]="true" />
   <app-empty-state *ngIf="!loading && !error && !filtered.length" title="Chưa tìm thấy bài học này!" message="Bạn thử từ khóa khác hoặc xóa bộ lọc nhé. Chú sách nhỏ sẽ giúp bạn tìm tiếp!" actionLabel="Xóa bộ lọc" (retry)="reset()" />
-  <section class="resources" aria-label="Danh sách tài liệu">
-    <article *ngFor="let resource of visible; trackBy: trackResource">
-      <img *ngIf="resource.thumbnailUrl" class="thumbnail" [src]="resource.thumbnailUrl" [alt]="resource.title" loading="lazy" decoding="async" />
-      <span class="format">{{ resource.extension.toUpperCase() }}</span>
-      <h2>{{ resource.title }}</h2><p>{{ size(resource.sizeBytes) }}</p>
-      <div class="actions"><button (click)="preview(resource)" [disabled]="loading">Xem trước</button><a [href]="resource.downloadUrl" download>Tải tài liệu</a></div>
+  <section class="resources" aria-label="Danh sách tài liệu" [attr.aria-busy]="loading">
+    <article class="ui-card" *ngFor="let resource of visible; trackBy: trackResource">
+      <div class="cover-slot">
+        <img *ngIf="resource.thumbnailUrl; else noCover" class="thumbnail" [src]="resource.thumbnailUrl" [alt]="resource.title" loading="lazy" decoding="async" />
+        <ng-template #noCover><span class="file-illustration" aria-hidden="true">📚</span></ng-template>
+      </div>
+      <div class="file-meta"><span class="format ui-badge">{{ resource.extension.toUpperCase() }}</span><span>{{ size(resource.sizeBytes) }}</span></div>
+      <h2>{{ resource.title }}</h2>
+      <p class="availability"><span [class.available]="resource.previewFolder">{{ resource.previewFolder ? '✓ Có bản xem trước' : 'Chưa có bản xem trước' }}</span><span [class.available]="resource.downloadUrl">{{ resource.downloadUrl ? '✓ Có bản tải xuống' : 'Chưa có bản tải xuống' }}</span></p>
+      <div class="actions"><button class="ui-button secondary" *ngIf="resource.previewFolder" (click)="preview(resource)" [disabled]="previewLoading">Xem trước</button><a class="ui-button" *ngIf="resource.downloadUrl" [href]="resource.downloadUrl" [attr.aria-label]="'Tải ' + resource.title + ' (' + resource.extension.toUpperCase() + ')'" download>Tải {{ resource.extension.toUpperCase() }}</a></div>
     </article>
   </section>
-  <button class="more" *ngIf="visible.length < filtered.length" (click)="more()">Xem thêm tài liệu</button>
-  <section class="browse"><h2>Tài liệu theo bộ sách</h2><p>Chọn bộ sách để xem thêm bài giảng và kế hoạch bài dạy.</p><div *ngFor="let option of books"><strong>{{ option.label }}</strong><a *ngFor="let category of kinds" [routerLink]="['/', option.value, category.value]">{{ category.label }}</a></div></section>
-  <div *ngIf="loading" class="loading-file" role="status" aria-label="Đang tải bản xem trước"><img src="images/images/file-loading.gif" alt="" /></div>
-  <p *ngIf="error" role="alert">Không tải được tài liệu. <button (click)="loadCatalog()">Thử lại</button></p>
+  <button class="more ui-button" *ngIf="visible.length < filtered.length" (click)="more()">Xem thêm tài liệu</button>
+  <section class="browse ui-card"><h2>Tài liệu theo bộ sách</h2><p>Chọn bộ sách để xem thêm bài giảng và kế hoạch bài dạy.</p><div *ngFor="let option of books"><strong>{{ option.label }}</strong><a class="ui-button secondary" *ngFor="let category of kinds" [routerLink]="['/', option.value, category.value]">{{ category.label }}</a></div></section>
+  <div *ngIf="previewLoading" class="loading-file" role="status" aria-label="Đang tải bản xem trước"><img src="images/images/file-loading.gif" alt="" /></div>
+  <p *ngIf="previewError" class="request-error" role="alert">Chưa mở được bản xem trước. Bạn thử chọn tài liệu lại nhé.</p>
+  <p *ngIf="error" class="request-error" role="alert">Không tải được tài liệu. <button class="ui-button" (click)="loadCatalog()">Thử lại</button></p>
 </main>
 <app-resource-preview *ngIf="selected as resource" [resource]="resource" (close)="selected = undefined" />

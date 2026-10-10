@@ -6,10 +6,12 @@ import { Resource } from '../shared/models/resource';
 import { AssetCatalogService } from '../services/asset-catalog.service';
 import { ResourcePreviewComponent } from '../components/resource-preview/resource-preview.component';
 import { EmptyStateComponent } from '../components/empty-state/empty-state.component';
+import { ResourceSkeletonComponent } from '../components/resource-skeleton/resource-skeleton.component';
+import { readPreference, writePreference } from '../shared/public-preferences';
 
 @Component({
   selector: 'app-teacher-library', standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, ResourcePreviewComponent, EmptyStateComponent],
+  imports: [CommonModule, FormsModule, RouterLink, ResourcePreviewComponent, EmptyStateComponent, ResourceSkeletonComponent],
   templateUrl: './teacher-library.component.html', styleUrl: './teacher-library.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -23,7 +25,10 @@ export class TeacherLibraryComponent implements OnInit {
   semester = '';
   week = '';
   extension = '';
+  downloadableOnly = false;
   loading = false;
+  previewLoading = false;
+  previewError = false;
   error = false;
   selected?: Resource;
   books = [{ value: 'canh-dieu', label: 'Cánh Diều' }, { value: 'chan-troi-sang-tao', label: 'Chân trời sáng tạo' }, { value: 'ket-noi-tri-thuc', label: 'Kết nối tri thức' }];
@@ -33,15 +38,19 @@ export class TeacherLibraryComponent implements OnInit {
   trackResource = (_: number, resource: Resource) => resource.id;
   constructor(private catalog: AssetCatalogService, private cd: ChangeDetectorRef, private route: ActivatedRoute) {}
   async ngOnInit(): Promise<void> {
-    this.book = this.route.snapshot.queryParamMap.get('book') ?? '';
+    this.restoreFilters();
+    const book = this.route.snapshot.queryParamMap.get('book');
+    if (book !== null) this.book = this.books.some(option => option.value === book) ? book : '';
     await this.loadCatalog();
   }
   async loadCatalog(): Promise<void> {
     this.loading = true;
     this.error = false;
+    this.cd.markForCheck();
     try { await this.catalog.loadResources(); } catch { this.error = true; }
     this.all = Array.from(this.catalog.resources.values()).flat().filter(resource => resource.status === 'published');
     this.extensions = [...new Set(this.all.map(resource => resource.extension))].sort();
+    if (!this.extensions.includes(this.extension)) this.extension = '';
     this.applyFilters();
     this.loading = false; this.cd.markForCheck();
   }
@@ -52,20 +61,35 @@ export class TeacherLibraryComponent implements OnInit {
       && (!this.kind || resource.kind === this.kind)
       && (!this.semester || resource.semester === this.semester)
       && (!this.week || resource.week === Number(this.week))
-      && (!this.extension || resource.extension === this.extension));
+      && (!this.extension || resource.extension === this.extension)
+      && (!this.downloadableOnly || !!resource.downloadUrl));
     this.visible = this.filtered.slice(0, 24);
+    writePreference('teacher-filters', { query: this.query, book: this.book, kind: this.kind, semester: this.semester, week: this.week, extension: this.extension, downloadableOnly: this.downloadableOnly });
   }
   more(): void { this.visible = this.filtered.slice(0, this.visible.length + 24); }
-  reset(): void { this.query = this.book = this.kind = this.semester = this.week = this.extension = ''; this.applyFilters(); }
+  reset(): void { this.query = this.book = this.kind = this.semester = this.week = this.extension = ''; this.downloadableOnly = false; this.applyFilters(); }
+  restoreFilters(): void {
+    const saved = readPreference('teacher-filters');
+    if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return;
+    const filters = saved as Record<string, unknown>;
+    this.query = typeof filters['query'] === 'string' ? filters['query'].slice(0, 200) : '';
+    this.book = this.books.some(option => option.value === filters['book']) ? String(filters['book']) : '';
+    this.kind = this.kinds.some(option => option.value === filters['kind']) ? String(filters['kind']) : '';
+    this.semester = ['hoc-ki-1', 'hoc-ki-2'].includes(String(filters['semester'])) ? String(filters['semester']) : '';
+    this.week = /^(?:[1-9]|[12]\d|3[0-6])$/.test(String(filters['week'])) ? String(filters['week']) : '';
+    this.extension = typeof filters['extension'] === 'string' ? filters['extension'] : '';
+    this.downloadableOnly = filters['downloadableOnly'] === true;
+  }
   size(bytes: number): string { return bytes < 1024 * 1024 ? Math.ceil(bytes / 1024) + ' KB' : (bytes / (1024 * 1024)).toFixed(1) + ' MB'; }
   async preview(resource: Resource): Promise<void> {
-    this.loading = true; this.error = false;
+    if (!resource.previewFolder || this.previewLoading) return;
+    this.previewLoading = true; this.previewError = false;
     try {
       const section = resource.previewFolder?.split('/')[3];
       if (section && ['canh-dieu', 'chan-troi-sang-tao', 'ket-noi-tri-thuc', 'tai-nguyen', 'bai-doc', 'slide'].includes(section)) await this.catalog.load(section);
       this.selected = resource;
-    } catch { this.error = true; }
-    finally { this.loading = false; this.cd.markForCheck(); }
+    } catch { this.previewError = true; }
+    finally { this.previewLoading = false; this.cd.markForCheck(); }
   }
   private normalize(value: string): string { return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd'); }
 }

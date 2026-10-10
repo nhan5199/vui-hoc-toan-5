@@ -1,7 +1,18 @@
 # Loading and display behavior
 
-- Inputs, dropdowns, textareas and file pickers share cartoon cream fields with
-  blue borders/text, rounded lettering and raised shadows in `src/styles.css`.
+- Resource lists show skeleton cards while metadata loads; append requests keep
+  existing cards visible. Route transitions retain the full-screen loader.
+- Textbooks use a single-page reader on screens up to 800px, with horizontal swipe,
+  100–250% zoom, page jump and count. Desktop retains animated spreads. Only visible
+  pages and the next two are requested; reading position is saved per book locally.
+- Teacher filters survive reopening on the same device, including a downloadable-only
+  option. Cards label format, size, download availability and preview availability;
+  unavailable previews/downloads do not render misleading action links.
+- Shared cartoon tokens and usage are documented in `docs/ui-guidelines.md`.
+
+- Inputs, dropdowns, textareas and file pickers share white pill fields with
+  blue borders/text and rounded lettering in `src/styles.css`. Dropdowns and search
+  fields use the blue magnifier badge from the input reference.
   Focus uses a darker border and inner highlight without an external outline.
   Keep component styles focused on layout;
   preserve focus, invalid, disabled and mobile states. Radio, checkbox, range and

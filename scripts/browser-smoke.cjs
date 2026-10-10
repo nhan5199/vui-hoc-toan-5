@@ -33,7 +33,9 @@ async function main() {
       if(data.id) { const request=pending.get(data.id); pending.delete(data.id); if(data.error)request.reject(data.error); else request.resolve(data.result); }
       if(data.method==='Runtime.exceptionThrown') exceptions.push(data.params.exceptionDetails.text + ': ' + (data.params.exceptionDetails.exception?.description || ''));
       if(data.method==='Network.requestWillBeSent') requests.push(data.params.request.url);
-      if(data.method==='Fetch.requestPaused') call('Fetch.fulfillRequest', { requestId:data.params.requestId, responseCode:402,
+      if(data.method==='Fetch.requestPaused' && data.params.request.url.includes('/catalog/common-resources.json')) {
+        delay(1200).then(()=>call('Fetch.continueRequest',{requestId:data.params.requestId})).catch(error=>exceptions.push(String(error)));
+      } else if(data.method==='Fetch.requestPaused') call('Fetch.fulfillRequest', { requestId:data.params.requestId, responseCode:402,
         responseHeaders:[{name:'Content-Type',value:'application/json'},{name:'Access-Control-Allow-Origin',value:'*'}],
         body:Buffer.from(JSON.stringify({error:{code:402,message:'Storage access restricted'}})).toString('base64') }).catch(error=>exceptions.push(String(error)));
     });
@@ -78,18 +80,33 @@ async function main() {
     assert.equal(exceptions.length,0,exceptions.join('\n'));
     console.log('PASS scrolling preview defers later pages: '+JSON.stringify(preview));
     console.log('PASS no runtime exceptions or Storage downloads for local document flows');
+    await call('Fetch.enable',{patterns:[{urlPattern:'*/catalog/common-resources.json'}]});
     await call('Page.navigate',{url:base+'/giao-vien'});
+    await wait("!!document.querySelector('app-teacher-library app-resource-skeleton')");
+    assert(await evaluate("!document.querySelector('app-teacher-library .loading-file')"), 'Catalog loading should show skeletons rather than a blocking preview loader');
     await wait("document.querySelectorAll('app-teacher-library article').length > 0 && !document.querySelector('.loading-file')");
+    await call('Fetch.disable');
+    console.log('PASS card skeletons during delayed metadata loading');
     const fieldStyle = await evaluate("(() => {const s=getComputedStyle(document.querySelector('app-teacher-library select'));return {radius:s.borderRadius,border:s.borderTopWidth,color:s.color};})()");
-    assert.equal(fieldStyle.radius,'22px 26px 22px 24px','Shared dropdown radius was overridden');
+    assert.equal(fieldStyle.radius,'28px','Shared dropdown radius was overridden');
     assert.equal(fieldStyle.border,'4px','Shared dropdown border was overridden');
-    const fieldFocus = await evaluate("(() => {const input=document.querySelector('app-teacher-library input'); input.focus(); const s=getComputedStyle(input); return {outline:s.outlineStyle,shadow:s.boxShadow};})()");
+    const matchingFields = await evaluate("Array.from(document.querySelectorAll('app-teacher-library select, app-teacher-library input[type=search]')).every(field=>{const s=getComputedStyle(field);return s.borderRadius==='28px' && s.borderTopWidth==='4px' && s.backgroundColor==='rgb(255, 255, 255)' && s.color==='rgb(52, 100, 255)' && s.backgroundImage.includes('circle');})");
+    assert(matchingFields, 'Teacher filters do not consistently match the white/blue magnifier reference');
+    await call('Page.bringToFront');
+    await evaluate("document.querySelector('app-teacher-library input[type=search]').focus()");
+    await delay(220); // Read the completed focus transition, rather than its initial frame.
+    const fieldFocus = await evaluate("(() => {const s=getComputedStyle(document.querySelector('app-teacher-library input[type=search]')); return {outline:s.outlineStyle,shadow:s.boxShadow};})()");
     assert.equal(fieldFocus.outline,'none','Focused fields should not have an outline');
-    assert.notEqual(fieldFocus.shadow,'none','Focused fields should retain a visible focus cue');
+    assert.notEqual(fieldFocus.shadow,'none','Focused fields should retain a visible focus cue: ' + JSON.stringify(await evaluate("({active:document.activeElement?.outerHTML,focused:document.hasFocus(),matches:document.querySelector('app-teacher-library input[type=search]').matches(':focus')})")));
     fs.writeFileSync(path.join(root,'.angular/teacher-library.png'),Buffer.from((await call('Page.captureScreenshot')).data,'base64'));
     assert(await evaluate("document.querySelectorAll('app-teacher-library article').length <= 24"), 'Teacher library rendered the entire catalog');
     await evaluate("const input=document.querySelector('app-teacher-library input'); input.value='SGK'; input.dispatchEvent(new Event('input',{bubbles:true}));");
     await wait("document.querySelectorAll('app-teacher-library article').length > 0 && Array.from(document.querySelectorAll('app-teacher-library article h2')).every(h=>h.textContent.includes('SGK'))");
+    await evaluate("document.querySelector('app-teacher-library .download-filter input').click()");
+    await call('Page.reload');
+    await wait("document.querySelectorAll('app-teacher-library article').length > 0 && document.querySelector('app-teacher-library input[type=search]').value === 'SGK'");
+    assert(await evaluate("document.querySelector('app-teacher-library .download-filter input').checked"), 'Download filter was not restored');
+    assert(await evaluate("Array.from(document.querySelectorAll('app-teacher-library article')).every(card=>card.querySelector('.actions a') && card.querySelector('.format') && card.querySelector('.availability'))"), 'Download cards are missing availability or format labels');
     const download = await evaluate("document.querySelector('app-teacher-library article .actions a').href");
     const response = await fetch(download);
     assert(response.ok && response.headers.get('content-type') !== 'text/html', 'Teacher download does not return a document');
@@ -97,11 +114,31 @@ async function main() {
     await evaluate("document.querySelector('app-teacher-library article button').click()");
     await wait("!!document.querySelector('app-resource-preview app-document-page img.loaded')");
     console.log('PASS teacher search, bounded cards, original download and lazy preview');
+    console.log('PASS teacher filters survive reload and cards label download/preview availability');
     await call('Page.navigate',{url:base+'/hoc-sinh'});
     await wait("document.querySelectorAll('app-student-home .books a').length === 3");
     assert.equal(exceptions.length,0,exceptions.join('\n'));
     console.log('PASS student entry point and textbook links');
     await call('Emulation.setDeviceMetricsOverride',{width:375,height:812,deviceScaleFactor:1,mobile:true});
+    await call('Page.navigate',{url:base+'/canh-dieu/e-book'});
+    await wait("document.querySelectorAll('app-ebook-button').length > 0 && !document.querySelector('.route-loading')");
+    await evaluate("Array.from(document.querySelectorAll('.ebook')).find(card=>card.textContent.includes('SGK')).click()");
+    await wait("!!document.querySelector('app-flip-book .mobile-page > img') && !document.querySelector('app-flip-book .loading-file')");
+    assert(await evaluate("document.querySelectorAll('app-flip-book .mobile-page img').length <= 3"), 'Mobile reader requested too many images');
+    assert(await evaluate("document.querySelector('app-flip-book .page-count').textContent.includes('3 /')"), 'Mobile reader did not resume the desktop reading position');
+    await evaluate("(() => { const stage=document.querySelector('app-flip-book .reader-stage'); const make=(type,x)=>new TouchEvent(type,{bubbles:true,touches:type==='touchstart'?[new Touch({identifier:1,target:stage,clientX:x,clientY:200})]:[],changedTouches:[new Touch({identifier:1,target:stage,clientX:x,clientY:200})]}); stage.dispatchEvent(make('touchstart',280)); stage.dispatchEvent(make('touchend',80)); })()");
+    await wait("document.querySelector('app-flip-book .page-count').textContent.includes('4 /') && !document.querySelector('app-flip-book .loading-file')");
+    await evaluate("document.querySelector('app-flip-book button[aria-label=\"Phóng to\"]').click()");
+    assert(await evaluate("document.querySelector('app-flip-book .zoom-reset').textContent.includes('125%') && document.querySelector('app-flip-book .reader-stage').scrollWidth > document.querySelector('app-flip-book .reader-stage').clientWidth"), 'Zoom did not enlarge the mobile page');
+    await evaluate("document.querySelector('app-flip-book .zoom-reset').click()");
+    assert(await evaluate("document.querySelector('app-flip-book').scrollWidth <= window.innerWidth + 1"), 'Reader controls overflow mobile viewport');
+    fs.writeFileSync(path.join(root,'.angular/mobile-reader.png'),Buffer.from((await call('Page.captureScreenshot')).data,'base64'));
+    await evaluate("document.querySelector('app-flip-book .close-reader').click()");
+    await evaluate("Array.from(document.querySelectorAll('.ebook')).find(card=>card.textContent.includes('SGK')).click()");
+    await wait("!!document.querySelector('app-flip-book .resume-note') && document.querySelector('app-flip-book .page-count').textContent.includes('4 /')");
+    await evaluate("document.querySelector('app-flip-book .close-reader').click()");
+    assert(await evaluate("document.body.style.overflow !== 'hidden'"), 'Closing the reader did not restore scrolling');
+    console.log('PASS mobile reader swipe, bounded images, zoom, resume and close controls');
     await call('Page.navigate',{url:base+'/giao-vien'});
     await wait("document.querySelectorAll('app-teacher-library article').length > 0 && !document.querySelector('.loading-file')");
     assert(await evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"), 'Teacher library overflows a mobile screen');
@@ -118,6 +155,10 @@ async function main() {
     if (!liveStorage) await call('Fetch.enable',{patterns:[{urlPattern:'*firebasestorage.googleapis.com/*'}]});
     for (const category of ['ke-hoach-bai-day','giao-an-dien-tu']) {
       await call('Page.navigate',{url:base+'/canh-dieu/'+category});
+      await wait("!!document.querySelector('app-resource-library select') && !document.querySelector('.route-loading')");
+      await delay(220);
+      const textbookFields = await evaluate("Array.from(document.querySelectorAll('app-resource-library select')).map(field=>{const s=getComputedStyle(field);return {radius:s.borderRadius,background:s.backgroundColor,image:s.backgroundImage};})");
+      assert(textbookFields.every(field=>field.radius==='28px' && field.background==='rgb(255, 255, 255)' && field.image.includes('circle')), 'Textbook semester/week fields do not match the shared reference: '+JSON.stringify(textbookFields));
       if (liveStorage) {
         await wait("document.querySelectorAll('app-resource-library app-ke-hoach-bai-day-button, app-resource-library app-giao-an-dien-tu-button').length > 0 && !document.querySelector('app-resource-library .loading-file')");
         assert(await evaluate("!document.querySelector('app-resource-library .storage-warning')"), 'Live Storage downloads are unavailable');

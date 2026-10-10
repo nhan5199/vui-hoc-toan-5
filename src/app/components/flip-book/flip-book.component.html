@@ -1,15 +1,44 @@
-﻿<div class="flip-book" (click)="closeBackdrop($event)" role="dialog" aria-label="Xem sách" aria-modal="true">
-  <a [href]="downloadUrl" download aria-label="Tải tài liệu"><img class="download" src="icons/download-icon.png" alt="Tải file" /></a>
-  <div class="loading-file" *ngIf="isLoading" role="status" aria-label="Đang tải trang"><img src="images/images/file-loading.gif" alt="" /></div>
-  <div class="request-error" *ngIf="hasPageError" role="alert">Không tải được trang sách. <button (click)="retry()">Thử lại</button></div>
+﻿<div #dialog class="flip-book" [class.mobile-reader]="mobile" (click)="closeBackdrop($event)" role="dialog" aria-label="Xem sách" aria-modal="true">
+  <header class="reader-header">
+    <span class="reader-title">Cùng đọc sách nhé!</span>
+    <a *ngIf="downloadUrl" class="ui-button secondary" [href]="downloadUrl" download>Tải sách</a>
+    <button class="ui-button secondary close-reader" (click)="closeFlipBook.emit(true)" aria-label="Đóng sách">Đóng ✕</button>
+  </header>
+  <p class="resume-note" *ngIf="resumed">Mình đọc tiếp từ lần trước nhé! <button class="ui-button secondary" (click)="jumpTo('1')">Về bìa sách</button></p>
+  <div class="request-error" *ngIf="hasPageError" role="alert">Không tải được trang sách. <button class="ui-button" (click)="retry()">Thử lại</button></div>
   <p class="document-empty" *ngIf="!listImgs.length">Chưa có bản xem trước. Bạn có thể tải tài liệu bằng nút tải xuống.</p>
-  <div class="book" [attr.aria-busy]="isLoading">
-    <button class="left-arrow" [disabled]="currentPageIndex === 0" (click)="onClick(-1)" aria-label="Trang trước"><img src="icons/left-arrow.png" alt="" /></button>
-    <button class="right-arrow" [disabled]="currentPageIndex + 2 > listImgs.length" (click)="onClick(1)" aria-label="Trang sau"><img src="icons/right-arrow.png" alt="" /></button>
-    <div id="pages" class="pages">
-      <div class="page" *ngFor="let img of listImgs; let i = index" [class.flipped]="i < currentPageIndex" [style.z-index]="i % 2 === 0 ? listImgs.length - i : i" (click)="flipPage(i)">
-        <img *ngIf="shouldLoadPage(i) && !failedPages.has(i)" [src]="previews.url(img)" decoding="async" [attr.fetchpriority]="visiblePages.includes(i) ? 'high' : 'low'" [alt]="'Trang ' + (i + 1)" (load)="pageLoaded(i, $event)" (error)="pageFailed(i)" />
+  <div class="reader-stage" [class.zoomed]="zoom > 1" [style.--reader-zoom]="zoom" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (touchcancel)="cancelTouch()">
+    <div class="loading-file" *ngIf="isLoading" role="status" aria-label="Đang tải trang"><img src="images/images/file-loading.gif" alt="" /></div>
+    <div *ngIf="mobile" class="mobile-page" [style.width.%]="zoom * 100" [attr.aria-busy]="isLoading">
+      <ng-container *ngFor="let i of visiblePages">
+        <img *ngIf="!failedPages.has(i)" [src]="previews.url(listImgs[i])" decoding="async" fetchpriority="high" [alt]="'Trang ' + (i + 1)" (load)="pageLoaded(i, $event)" (error)="pageFailed(i)" />
+      </ng-container>
+      <div class="prefetch" aria-hidden="true" *ngIf="prefetch">
+        <ng-container *ngFor="let offset of [1, 2]">
+          <img *ngIf="currentPageIndex + offset < listImgs.length" [src]="previews.url(listImgs[currentPageIndex + offset])" decoding="async" fetchpriority="low" alt="" (load)="pageLoaded(currentPageIndex + offset, $event)" />
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="!mobile" class="book" [attr.aria-busy]="isLoading">
+      <div id="pages" class="pages">
+        <div class="page" *ngFor="let img of listImgs; let i = index" [class.flipped]="i < currentPageIndex" [style.z-index]="i % 2 === 0 ? listImgs.length - i : i" (click)="zoom === 1 && flipPage(i)">
+          <img *ngIf="shouldLoadPage(i) && !failedPages.has(i)" [src]="previews.url(img)" decoding="async" [attr.fetchpriority]="visiblePages.includes(i) ? 'high' : 'low'" [alt]="'Trang ' + (i + 1)" (load)="pageLoaded(i, $event)" (error)="pageFailed(i)" />
+        </div>
       </div>
     </div>
   </div>
+  <footer class="reader-controls">
+    <div class="page-controls">
+      <button class="left-arrow ui-button" [disabled]="currentPageIndex === 0 || !listImgs.length" (click)="onClick(-1)" aria-label="Trang trước">←</button>
+      <span class="page-count" aria-live="polite" aria-atomic="true">Trang {{ pageLabel }} / {{ listImgs.length }}</span>
+      <button class="right-arrow ui-button" [disabled]="currentPageIndex >= lastIndex || !listImgs.length" (click)="onClick(1)" aria-label="Trang sau">→</button>
+    </div>
+    <div class="zoom-controls">
+      <label class="page-jump">Đến trang <input type="number" inputmode="numeric" min="1" [max]="listImgs.length" [value]="pageNumber" [disabled]="!listImgs.length" (change)="jumpTo($any($event.target).value)" /></label>
+      <button class="ui-button secondary" [disabled]="zoom === 1" (click)="changeZoom(-1)" aria-label="Thu nhỏ">−</button>
+      <button class="ui-button secondary zoom-reset" (click)="zoom = 1" aria-label="Vừa màn hình">{{ zoom * 100 }}%</button>
+      <button class="ui-button secondary" [disabled]="zoom === 2.5" (click)="changeZoom(1)" aria-label="Phóng to">+</button>
+    </div>
+    <span class="reader-hint" *ngIf="mobile">{{ zoom === 1 ? 'Vuốt trái hoặc phải để chuyển trang' : 'Kéo để đọc trang phóng to' }}</span>
+  </footer>
 </div>

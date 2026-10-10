@@ -8,6 +8,7 @@
 | Textbook documents | `src/app/components/book-detail/` |
 | Shared resource lists | `src/app/components/resource-library/` |
 | Teacher search / downloads | `src/app/teacher-library/` |
+| Shared cartoon UI / skeleton loading | `src/styles.css`, `docs/ui-guidelines.md`, `components/resource-skeleton/` |
 | Student guided entry | `src/app/student-home/` |
 | Optimized page/cover images | `scripts/optimize-previews.cjs`, `services/preview.service.ts` |
 | Reading content | `src/app/danh-sach-bai-doc/` |

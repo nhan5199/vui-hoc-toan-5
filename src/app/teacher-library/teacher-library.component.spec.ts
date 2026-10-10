@@ -12,8 +12,10 @@ describe('Teacher resource filtering', () => {
     downloadUrl: '/example.pdf', previewFolder: null, thumbnailUrl: null, status: 'published'
   });
   beforeEach(() => {
+    localStorage.removeItem('vht5:teacher-filters');
     library = new TeacherLibraryComponent({} as AssetCatalogService, {} as ChangeDetectorRef, {} as ActivatedRoute);
   });
+  afterEach(() => localStorage.removeItem('vht5:teacher-filters'));
   it('matches Vietnamese titles without requiring accents and combines type filters', () => {
     library.all = [resource('1', 'Phân số'), resource('2', 'Hình học'), resource('3', 'Phân số', 'pptx')];
     library.query = 'phan so'; library.extension = 'pdf'; library.book = 'canh-dieu';
@@ -27,5 +29,20 @@ describe('Teacher resource filtering', () => {
     library.applyFilters(); expect(library.visible.length).toBe(24);
     library.more(); expect(library.visible.length).toBe(48);
     library.more(); expect(library.visible.length).toBe(60);
+  });
+  it('filters unavailable downloads and restores filter preferences after reopening', () => {
+    const previewOnly = { ...resource('2', 'Phân số'), downloadUrl: '' };
+    library.all = [resource('1', 'Phân số'), previewOnly];
+    library.query = 'phan so'; library.downloadableOnly = true; library.applyFilters();
+    expect(library.filtered.map(item => item.id)).toEqual(['1']);
+    const reopened = new TeacherLibraryComponent({} as AssetCatalogService, {} as ChangeDetectorRef, {} as ActivatedRoute);
+    reopened.restoreFilters(); expect(reopened.query).toBe('phan so'); expect(reopened.downloadableOnly).toBeTrue();
+    library.reset(); reopened.restoreFilters(); expect(reopened.query).toBe(''); expect(reopened.downloadableOnly).toBeFalse();
+  });
+  it('ignores malformed or obsolete saved filter values', () => {
+    localStorage.setItem('vht5:teacher-filters', JSON.stringify({ book: 'unknown', week: '99', kind: 'unknown', downloadableOnly: 'true' }));
+    library.restoreFilters(); expect(library.book).toBe(''); expect(library.week).toBe(''); expect(library.kind).toBe(''); expect(library.downloadableOnly).toBeFalse();
+    localStorage.setItem('vht5:teacher-filters', '{broken');
+    expect(() => library.restoreFilters()).not.toThrow();
   });
 });

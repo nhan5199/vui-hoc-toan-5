@@ -14,16 +14,16 @@ import { PhieuBaiTapButtonComponent } from '../buttons/phieu-bai-tap-button/phie
 import { FlipBookComponent } from '../flip-book/flip-book.component';
 import { XemPdfComponent } from '../xem-pdf/xem-pdf.component';
 import { XemSlideComponent } from '../xem-slide/xem-slide.component';
-import { ScreenSizeService } from '../../services/screen-size.service';
 import { ResourcePreviewComponent } from '../resource-preview/resource-preview.component';
 import { Resource } from '../../shared/models/resource';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { ResourceSkeletonComponent } from '../resource-skeleton/resource-skeleton.component';
 
 export type ResourceKind = 'e-book' | 'ke-hoach-bai-day' | 'giao-an-dien-tu' | 'phieu-bai-tap';
 interface PreviewSelection { name: string; url: string; }
 @Component({
   selector: 'app-resource-library', standalone: true,
-  imports: [CommonModule, FormsModule, EBookButtonComponent, KeHoachBaiDayButtonComponent, GiaoAnDienTuButtonComponent, PhieuBaiTapButtonComponent, FlipBookComponent, XemPdfComponent, XemSlideComponent, ResourcePreviewComponent, EmptyStateComponent],
+  imports: [CommonModule, FormsModule, EBookButtonComponent, KeHoachBaiDayButtonComponent, GiaoAnDienTuButtonComponent, PhieuBaiTapButtonComponent, FlipBookComponent, XemPdfComponent, XemSlideComponent, ResourcePreviewComponent, EmptyStateComponent, ResourceSkeletonComponent],
   templateUrl: './resource-library.component.html',
   styleUrl: './resource-library.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -38,13 +38,13 @@ export class ResourceLibraryComponent implements OnInit {
   semester = 'hoc-ki-1';
   week = 'tuan-1';
   loading = true;
+  appending = false;
   error = false;
   unavailable = false;
   localPreview?: Pick<Resource, 'title' | 'downloadUrl' | 'previewFolder'>;
   get availableFiles(): FileData[] { return this.files.filter(file => !!file.url); }
   get unavailableFiles(): FileData[] { return this.files.filter(file => !file.url); }
   nextPageToken?: string;
-  mobile = false;
   selection?: PreviewSelection;
   viewer: 'flip' | 'pdf' | 'slide' = 'pdf';
   trackFile = (_: number, file: FileData) => file.resource?.id ?? (file.url || file.previewFolder || file.name);
@@ -57,10 +57,10 @@ export class ResourceLibraryComponent implements OnInit {
     const books: Record<string, string> = { 'canh-dieu': 'Cánh Diều', 'chan-troi-sang-tao': 'Chân trời sáng tạo', 'ket-noi-tri-thuc': 'Kết nối tri thức' };
     return names[this.kind] + ' — ' + (books[this.bookName] ?? '');
   }
-  constructor(private route: ActivatedRoute, private fileService: FileService, private cd: ChangeDetectorRef, private previews: PreviewService, private screen: ScreenSizeService) {}
+  constructor(private route: ActivatedRoute, private fileService: FileService, private cd: ChangeDetectorRef, private previews: PreviewService) {}
   ngOnInit(): void {
     this.requests.pipe(
-      tap(request => { this.loading = true; this.error = false; if (!request.append) this.files = this.fileService.getLocalPreviewsPage(this.folder).files; this.cd.markForCheck(); }),
+      tap(request => { this.loading = true; this.appending = request.append; this.error = false; if (!request.append) this.files = this.fileService.getLocalPreviewsPage(this.folder).files; this.cd.markForCheck(); }),
       switchMap(request => this.fileService.getFilesPage(this.folder, request.token).pipe(
         tap(page => { this.files = request.append ? [...this.files, ...page.files] : page.files; this.nextPageToken = page.nextPageToken; this.unavailable = !!page.unavailable || this.files.some(file => !file.url); }),
         catchError(() => { this.error = true; return of(null); })
@@ -71,7 +71,6 @@ export class ResourceLibraryComponent implements OnInit {
       this.path = this.route.snapshot.pathFromRoot.flatMap(route => route.url.map(segment => segment.path)).join('/');
       this.reload();
     });
-    this.screen.isMobileScreen$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(mobile => { this.mobile = mobile; this.cd.markForCheck(); });
   }
   reload(): void { this.nextPageToken = undefined; this.selection = undefined; this.localPreview = undefined; this.unavailable = false; this.requests.next({ append: false }); }
   retryDownloads(): void { this.fileService.refreshFolder(this.folder); this.reload(); }
@@ -85,6 +84,6 @@ export class ResourceLibraryComponent implements OnInit {
   openLocal(file: FileData): void { this.localPreview = { title: file.name, downloadUrl: '', previewFolder: file.previewFolder ?? null }; }
   open(selection: PreviewSelection): void {
     this.selection = selection;
-    this.viewer = this.kind === 'giao-an-dien-tu' ? 'slide' : this.kind === 'e-book' && selection.name.includes('SGK') && !this.mobile ? 'flip' : 'pdf';
+    this.viewer = this.kind === 'giao-an-dien-tu' ? 'slide' : this.kind === 'e-book' && selection.name.includes('SGK') ? 'flip' : 'pdf';
   }
 }
